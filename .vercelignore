@@ -1,0 +1,5 @@
+# Repo-only material: keep out of the public deployment
+docs/
+tools/
+README.md
+.gitignore
