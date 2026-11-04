@@ -230,8 +230,40 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* ==========================================================================
    Hero
    ========================================================================== */
-.hero { display: grid; place-items: center; min-height: clamp(420px, 72vh, 760px); padding-block: 80px 96px; }
-.hero__inner { text-align: center; }
+.hero { padding-block: 8px clamp(88px, 10vw, 128px); }
+.hero__inner { text-align: center; margin-top: clamp(56px, 7vw, 88px); }
+
+/* Paper collage — source-canvas proportions, directly on the page */
+.hero__media-wrap {
+  max-width: calc(1160px + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.collage {
+  position: relative;
+  aspect-ratio: 2114 / 846;
+  isolation: isolate;
+  overflow: clip;
+}
+.collage__layer { position: absolute; pointer-events: none; }
+.collage__piece {
+  display: block;
+  width: 100%; height: 100%;
+  transform-origin: 50% 100%;
+  -webkit-user-select: none; user-select: none;
+}
+.collage.is-pre .collage__piece { opacity: 0; transform: var(--from); }
+.collage.is-entering .collage__piece { will-change: transform, opacity; }
+.collage [data-layer="dome"] { --from: translateY(28px) scale(0.985); }
+.collage [data-layer="sun"] { --from: translateY(45%); }
+.collage [data-layer="building"] { --from: translateX(28px); }
+.collage [data-layer="plant"] { --from: scaleY(0.9); }
+.collage [data-layer="women"],
+.collage [data-layer="scientist"],
+.collage [data-layer="student"] { --from: translateY(20px); }
+.collage [data-layer^="sparkle"] { --from: rotate(-45deg) scale(0); }
+.collage__fallback { display: block; width: 100%; height: 100%; }
+
 .hero__title {
   font: 400 clamp(2.125rem, 4.4vw, 3.25rem)/1.14 var(--font-serif);
   letter-spacing: -0.012em;           /* negative tracking as display type grows */
@@ -539,7 +571,10 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .brand img { width: 112px; }
   .site-header__actions .btn--sm { display: none; }
 
-  .hero { min-height: auto; padding-block: 96px 88px; }
+  .hero { padding-block: 0 88px; }
+  .hero__inner { margin-top: 48px; }
+  /* Edge-to-edge on phones: every pixel of width goes to the collage */
+  .hero__media-wrap { padding-inline: 0; }
   .cards--2, .cards--3 { grid-template-columns: 1fr; }
   .cards--3 .card:last-child { grid-column: auto; }
   .card { min-height: 360px; padding: 28px 26px 30px; }
@@ -573,6 +608,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .js [data-reveal] { transform: none; transition: opacity 200ms ease !important; }
   .search-panel, .mobile-menu { transform: none !important; filter: none !important; transition: opacity 160ms ease !important; }
   .card:hover, .card:active, .btn:active, .icon-btn:active { transform: none; }
+  .collage .collage__piece { opacity: 1 !important; transform: none !important; }
+  .collage .collage__layer { transform: none !important; }
 }
 
 @media (prefers-reduced-transparency: reduce) {

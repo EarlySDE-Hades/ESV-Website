@@ -18,6 +18,8 @@ index.html          Homescreen markup
 css/styles.css      Brand tokens, layout, motion, accessibility preferences
 js/main.js          Header material, search, mobile menu, portfolio strip physics, scroll reveals
 assets/brand/       ESV wordmark (transparent PNG, dark + light)
+assets/hero/        Cropped collage layers, responsive WebPs and a flat fallback
+tools/hero-layers/  Offline extraction, masks and image audits
 assets/logos/       Drop campus + portfolio logo files here (see below)
 ```
 
@@ -41,6 +43,20 @@ Campus partner and portfolio logos currently render as text wordmarks. To use re
 
 SVG is preferred; otherwise use a transparent PNG at 2× display size (about 84px tall in the portfolio strip, 72px tall in the campus row).
 The section badges (handshake, angel wings) and the founder and investor icons are SVG placeholders. Swap them for the exported illustrations.
+
+## Hero collage
+
+The homepage assembles six paper cutouts from `Brand Assets/New v2.png` alongside
+an inline SVG sun and sparkles. People retain their original opaque pixels in
+lossless desktop exports. All positions come from an offline manifest and are
+embedded in HTML; there are no runtime dependencies or build steps.
+
+See [the layer tooling](tools/hero-layers/README.md) for the one-command extraction
+pipeline and [the acceptance report](docs/hero-collage-report.md) for measured results.
+The entrance reuses the site's springs and runs once after image decoding and
+visibility, then adds occasional twinkles and small pointer/scroll offsets.
+`?slow=10` slows assembly for inspection. Reduced motion shows a static composition;
+no JavaScript shows final layers, and a failed layer switches to the flat image.
 
 ## Interaction notes
 

@@ -8,3 +8,8 @@ Thumbs.db
 .vscode/
 *.log
 node_modules/
+
+# Offline hero artwork tooling and generated review files
+tools/hero-layers/.venv/
+tools/hero-layers/out/
+__pycache__/

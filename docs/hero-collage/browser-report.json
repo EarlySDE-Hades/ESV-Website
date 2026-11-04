@@ -1,0 +1,200 @@
+{
+  "viewports": [
+    {
+      "width": 1280,
+      "mediaWidth": 1160,
+      "mediaHeight": 464.21875,
+      "overflow": 0,
+      "entranceMs": 1478,
+      "frameCount": 254,
+      "averageFrameMs": 5.797244094488189,
+      "framesOver25ms": 1,
+      "maxFrameMs": 50,
+      "heroCLS": 0,
+      "mediaCLS": 0,
+      "willChange": [
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        "auto"
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/dome.webp",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/building.webp",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/plant.webp",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/women.webp",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/scientist.webp",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/student.webp",
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "mediaWidth": 960,
+      "mediaHeight": 384.171875,
+      "overflow": 0,
+      "entranceMs": 1511.3,
+      "frameCount": 265,
+      "averageFrameMs": 5.682264150943396,
+      "framesOver25ms": 0,
+      "maxFrameMs": 22.200000000000045,
+      "heroCLS": 0,
+      "mediaCLS": 0,
+      "willChange": [
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        "auto"
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/dome@1x.webp",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/building@1x.webp",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/plant@1x.webp",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/women@1x.webp",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/scientist@1x.webp",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/student@1x.webp",
+          "loaded": true
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "mediaWidth": 390,
+      "mediaHeight": 156.0625,
+      "overflow": 0,
+      "entranceMs": 1511.2,
+      "frameCount": 268,
+      "averageFrameMs": 5.61865671641791,
+      "framesOver25ms": 0,
+      "maxFrameMs": 16.5,
+      "heroCLS": 0,
+      "mediaCLS": 0,
+      "willChange": [
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        "auto"
+      ],
+      "images": [
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/dome@1x.webp",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/building@1x.webp",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/plant@1x.webp",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/women@1x.webp",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/scientist@1x.webp",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:5173/assets/hero/student@1x.webp",
+          "loaded": true
+        }
+      ]
+    }
+  ],
+  "scenarios": {
+    "pointer": {
+      "moving": "matrix(1, 0, 0, 1, 6.94642, 4.14855)",
+      "interrupted": "matrix(1, 0, 0, 1, 3.74818, 1.75658)",
+      "returned": "none"
+    },
+    "scroll": "matrix(1, 0, 0, 1, 0, 6.56587)",
+    "noReplay": true,
+    "runtimeReducedMotion": true,
+    "initialReducedMotion": {
+      "state": "settled",
+      "transforms": [
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none"
+      ],
+      "animations": 0
+    },
+    "noJS": true,
+    "brokenLayer": "fallback",
+    "timeout": [
+      {
+        "state": "waiting",
+        "at": 210.9
+      },
+      {
+        "state": "settled",
+        "at": 1722.2
+      }
+    ],
+    "visibilityThreshold": true,
+    "ambient": {
+      "simultaneousTwinkles": 1,
+      "offscreenCancellation": true,
+      "simulatedHiddenCancellation": true
+    },
+    "slowFrames": 4,
+    "reduceDuringEntrance": true
+  },
+  "consoleErrors": []
+}

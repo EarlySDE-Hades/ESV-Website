@@ -335,7 +335,216 @@
     items.forEach((el) => io.observe(el));
   }
 
+  /* ------------------------------------------------------------------------
+     Hero collage — one assembly, then occasional, visibility-gated depth
+     ------------------------------------------------------------------------ */
+  function initCollage(collage) {
+    const hero = collage.closest('.hero');
+    const pointerMedia = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const slow = Math.max(1, Math.min(10, Number(new URLSearchParams(location.search).get('slow')) || 1));
+    const schedule = {
+      dome: [0, 1, 0.70, 4, 12], sun: [140, 0.9, 0.85, 4, 12],
+      building: [220, 1, 0.60, 7, 6], plant: [320, 1, 0.60, 7, 6],
+      women: [420, 1, 0.55, 10, 0], scientist: [500, 1, 0.55, 10, 0],
+      student: [580, 1, 0.55, 10, 0],
+      'sparkle-1': [900, 0.8, 0.50, 0, 0], 'sparkle-2': [900, 0.8, 0.50, 0, 0],
+    };
+    const layers = $$('[data-layer]', collage).map((el) => ({
+      el, piece: $('.collage__piece', el), id: el.dataset.layer, spec: schedule[el.dataset.layer],
+    }));
+    const images = $$('img', collage);
+    const sparkles = layers.filter((layer) => layer.id.startsWith('sparkle'));
+    const entranceTimers = new Set();
+    const entranceSprings = [];
+    let ready = false, started = false, settled = false, failed = false;
+    let visible = false, quarterVisible = false, scroll = 0;
+    let px = 0, py = 0, scrollRaf = 0, twinkleTimer = 0, deadline = 0;
+    let twinkle = null, fade = null;
+    let completed = 0;
+    collage.dataset.state = 'waiting';
+
+    const ambientAllowed = () => settled && visible && !failed && !document.hidden && !reduceMotion.matches;
+
+    function renderDepth() {
+      layers.forEach(({ el, spec }) => {
+        const x = px / 100 * spec[3];
+        const y = py / 100 * spec[3] + scroll * spec[4];
+        if (x === 0 && y === 0) el.style.removeProperty('transform');
+        else el.style.transform = `translate3d(${x}px,${y}px,0)`;
+      });
+    }
+    // Coordinates use a 100-unit range so the shared spring's pixel rest tolerance
+    // remains precise. Re-targeting preserves both its current value and velocity.
+    const pointerX = createSpring((value) => { px = value; renderDepth(); });
+    const pointerY = createSpring((value) => { py = value; renderDepth(); });
+
+    function stopAmbient() {
+      clearTimeout(twinkleTimer); twinkleTimer = 0;
+      if (twinkle) { twinkle.cancel(); twinkle = null; }
+      if (scrollRaf) cancelAnimationFrame(scrollRaf);
+      scrollRaf = 0;
+      scroll = 0;
+      pointerX.set(0); pointerY.set(0);
+    }
+
+    function queueTwinkle() {
+      if (!ambientAllowed() || twinkleTimer || twinkle) return;
+      twinkleTimer = setTimeout(() => {
+        twinkleTimer = 0;
+        if (!ambientAllowed()) return;
+        const { piece } = sparkles[Math.floor(Math.random() * sparkles.length)];
+        twinkle = piece.animate([
+          { transform: 'rotate(0deg) scale(1)' },
+          { transform: 'rotate(45deg) scale(1.3)', offset: 0.5 },
+          { transform: 'rotate(0deg) scale(1)' },
+        ], { duration: 900, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' });
+        // Return to the original ray pattern, with no compositor hint at rest.
+        twinkle.onfinish = () => { twinkle = null; queueTwinkle(); };
+      }, 5000 + Math.random() * 4000);
+    }
+
+    function updateScroll() {
+      scrollRaf = 0;
+      if (!ambientAllowed()) return;
+      const rect = collage.getBoundingClientRect();
+      scroll = Math.max(0, Math.min(1, -rect.top / Math.max(rect.height, 1)));
+      renderDepth();
+    }
+    function requestScroll() {
+      if (ambientAllowed() && !scrollRaf) scrollRaf = requestAnimationFrame(updateScroll);
+    }
+    function syncAmbient() {
+      if (ambientAllowed()) { requestScroll(); queueTwinkle(); }
+      else stopAmbient();
+    }
+
+    function cancelEntrance() {
+      clearTimeout(deadline);
+      entranceTimers.forEach(clearTimeout); entranceTimers.clear();
+      entranceSprings.forEach((spring) => spring.stop());
+      collage.classList.remove('is-pre', 'is-entering');
+      layers.forEach(({ piece }) => {
+        piece.style.removeProperty('transform');
+        piece.style.removeProperty('opacity');
+      });
+    }
+
+    function showFinal(withFade = false) {
+      started = true; settled = true;
+      cancelEntrance();
+      collage.dataset.state = failed ? 'fallback' : 'settled';
+      if (withFade && !reduceMotion.matches) {
+        fade = collage.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 250, easing: 'ease-out' });
+        fade.onfinish = () => { fade = null; };
+      }
+      syncAmbient();
+    }
+
+    function fallback() {
+      if (failed) return;
+      failed = true;
+      if (fade) { fade.cancel(); fade = null; }
+      showFinal();
+      const flat = new Image(1600, 640);
+      flat.className = 'collage__fallback';
+      flat.alt = ''; flat.draggable = false; flat.decoding = 'async';
+      flat.setAttribute('aria-hidden', 'true');
+      flat.src = 'assets/hero/collage-flat.webp';
+      collage.replaceChildren(flat);
+    }
+
+    function renderEntrance(layer, value) {
+      const p = value / 100, remaining = 1 - p;
+      let transform;
+      switch (layer.id) {
+        case 'dome': transform = `translateY(${28 * remaining}px) scale(${1 - 0.015 * remaining})`; break;
+        case 'sun': transform = `translateY(${45 * remaining}%)`; break;
+        case 'building': transform = `translateX(${28 * remaining}px)`; break;
+        case 'plant': transform = `scaleY(${1 - 0.1 * remaining})`; break;
+        case 'women': case 'scientist': case 'student': transform = `translateY(${20 * remaining}px)`; break;
+        default: transform = `rotate(${-45 * remaining}deg) scale(${p})`;
+      }
+      layer.piece.style.transform = transform;
+      layer.piece.style.opacity = Math.max(0, Math.min(1, p));
+    }
+
+    function maybeStart() {
+      if (started || failed || !ready || !quarterVisible || document.hidden) return;
+      if (reduceMotion.matches) { showFinal(); return; }
+      started = true;
+      clearTimeout(deadline);
+      collage.classList.add('is-entering');
+      collage.dataset.state = 'entering';
+      layers.forEach((layer) => {
+        renderEntrance(layer, 0);
+        const spring = createSpring((value) => renderEntrance(layer, value), () => {
+          layer.piece.style.removeProperty('transform');
+          layer.piece.style.removeProperty('opacity');
+          // This piece must stay final while the remaining pieces finish.
+          layer.piece.style.opacity = '1';
+          layer.piece.style.transform = 'none';
+          if (++completed === layers.length) showFinal();
+        });
+        entranceSprings.push(spring);
+        const timer = setTimeout(() => {
+          entranceTimers.delete(timer);
+          spring.to(100, { from: 0, damping: layer.spec[1], response: layer.spec[2] * slow });
+        }, layer.spec[0] * slow);
+        entranceTimers.add(timer);
+      });
+      collage.classList.remove('is-pre');
+    }
+
+    images.forEach((img) => img.addEventListener('error', fallback, { once: true }));
+    if (reduceMotion.matches) showFinal();
+    else {
+      collage.classList.add('is-pre');
+      deadline = setTimeout(() => showFinal(true), 1500);
+    }
+    Promise.all(images.map((img) => img.decode())).then(() => {
+      ready = true; maybeStart();
+    }).catch(fallback);
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+        quarterVisible = entry.intersectionRatio >= 0.25;
+        maybeStart(); syncAmbient();
+      }, { threshold: [0, 0.25] }).observe(collage);
+    } else { visible = true; quarterVisible = true; maybeStart(); }
+
+    hero.addEventListener('pointermove', (event) => {
+      if (!ambientAllowed() || !pointerMedia.matches) return;
+      const rect = collage.getBoundingClientRect();
+      const x = Math.max(-100, Math.min(100, (event.clientX - rect.left - rect.width / 2) / (rect.width / 2) * 100));
+      const y = Math.max(-100, Math.min(100, (event.clientY - rect.top - rect.height / 2) / (rect.height / 2) * 100));
+      pointerX.to(x, { damping: 1, response: 0.6 });
+      pointerY.to(y, { damping: 1, response: 0.6 });
+    }, { passive: true });
+    hero.addEventListener('pointerleave', () => {
+      if (!ambientAllowed()) return;
+      pointerX.to(0, { damping: 1, response: 0.6 });
+      pointerY.to(0, { damping: 1, response: 0.6 });
+    }, { passive: true });
+    pointerMedia.addEventListener('change', () => { pointerX.set(0); pointerY.set(0); });
+    window.addEventListener('scroll', requestScroll, { passive: true });
+    window.addEventListener('resize', requestScroll, { passive: true });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && started && !settled) showFinal();
+      maybeStart(); syncAmbient();
+    });
+    reduceMotion.addEventListener('change', () => {
+      if (reduceMotion.matches) {
+        if (fade) { fade.cancel(); fade = null; }
+        showFinal();
+      } else syncAmbient();
+    });
+  }
+
   /* ------------------------------------------------------------------------ */
+  const collage = $('[data-collage]');
+  if (collage) initCollage(collage);
+
   const header = $('[data-header]');
   if (header) { initHeader(header); initSearch(header); initMobileMenu(header); }
   $$('[data-strip]').forEach(initStrip);
