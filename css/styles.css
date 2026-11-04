@@ -448,9 +448,9 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   text-align: center;
 }
 .section-sub {
-  margin-top: 26px;
-  font: 400 clamp(1rem, 1.6vw, 1.25rem)/1.4 var(--font-sans);
-  color: var(--ink);
+  margin-top: 12px;
+  font: 400 0.875rem/1.4 var(--font-sans);   /* matches .services__hint */
+  color: var(--ink-3);
 }
 
 /* ---------- Logo rows ---------- */
@@ -476,16 +476,16 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   display: grid; place-items: center;
   width: 44px; height: 44px; border-radius: 50%;
   color: var(--ink);
-  background: rgba(255, 255, 255, 0.6);
-  box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.14);
+  background: #fff;
+  box-shadow: inset 0 0 0 1.5px rgba(17, 17, 17, 0.32), 0 2px 6px -3px rgba(40, 30, 25, 0.25);
   transition: transform var(--dur-press) ease-out, background-color 160ms ease-out, opacity 200ms ease-out, box-shadow 200ms ease-out;
 }
 .carousel__arrow:active:not(:disabled) { transform: scale(0.92); }
-.carousel__arrow:disabled { opacity: 0.3; cursor: default; }
+.carousel__arrow:disabled { opacity: 0.45; cursor: default; }
 @media (hover: hover) and (pointer: fine) {
   .carousel__arrow:hover:not(:disabled) {
     background: #fff;
-    box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.2), 0 4px 12px -4px rgba(40, 30, 25, 0.2);
+    box-shadow: inset 0 0 0 1.5px rgba(17, 17, 17, 0.5), 0 6px 14px -4px rgba(40, 30, 25, 0.28);
   }
 }
 .carousel.is-static .carousel__arrow { visibility: hidden; }   /* every logo fits: nothing to step */
