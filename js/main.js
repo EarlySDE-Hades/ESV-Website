@@ -608,6 +608,8 @@
   if (heroSection) initHeroField(heroSection);
   const svcDialog = $('[data-svc-dialog]');
   if (svcDialog && svcDialog.showModal) initServices(svcDialog);
+  const growth = $('[data-growth]');
+  if (growth) initGrowth(growth);
   const coDialog = $('[data-co-dialog]');
   if (coDialog && coDialog.showModal) initCompanies(coDialog);
 
@@ -700,6 +702,165 @@
       e.preventDefault();
       close(() => { location.hash = href; });
     });
+  }
+
+  /* ------------------------------------------------------------------------
+     Growth — two seedling vines sprout below the hero and grow down the side
+     margins as you scroll (never across the content; hidden when the margins
+     are too narrow). Their growth depth is a critically
+     damped spring chasing the reading line (75% down the viewport), so it
+     trails the scroll organically and re-targets without seams. Leaves unfurl
+     as the tip passes them; sparkles twinkle. Scrolling back folds it away.
+     Reduced motion: fully grown and still.
+     ------------------------------------------------------------------------ */
+  function initGrowth(wrap) {
+    const main = wrap.parentElement;
+    const hero = $('.hero', main);
+    const ref = $('main > section.container:not(.hero)') || $('.container', main);
+    if (!hero || !ref) return;
+    const NS = 'http://www.w3.org/2000/svg';
+    const make = (tag, attrs = {}, parent) => {
+      const n = document.createElementNS(NS, tag);
+      for (const k in attrs) n.setAttribute(k, attrs[k]);
+      if (parent) parent.append(n);
+      return n;
+    };
+    const svg = make('svg', {}, wrap);
+    let vines = [], top = 0, depth = 0, built = false;
+    const MIN_MARGIN = 72;                               // below this there is no room: no vine
+
+    // Deterministic wobble so the vines keep their shape across rebuilds
+    let seed = 7;
+    const rand = () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646;
+
+    // One spring on depth (px down the page); each vine maps depth to its own length
+    const spring = createSpring((v) => { depth = v; paint(); });
+
+    function buildVine(cx, amp, H, side, M) {
+      const step = 340;
+      const n = Math.max(2, Math.round(H / step));
+      const dy = H / n;
+      let x0 = cx, y0 = 0;
+      let d = `M${x0} ${y0}`;
+      for (let i = 1; i <= n; i++) {
+        const x1 = cx + amp * (i % 2 ? 1 : -1) * side * (0.7 + rand() * 0.3);
+        const y1 = i * dy;
+        d += ` C${x0} ${y0 + dy * 0.5} ${x1} ${y1 - dy * 0.5} ${x1} ${y1}`;
+        x0 = x1; y0 = y1;
+      }
+      const stem = make('path', { d, class: 'growth__stem' }, svg);
+      const total = stem.getTotalLength();
+      stem.style.strokeDasharray = `${total} ${total}`;
+      const samples = [];
+      for (let i = 0; i <= 200; i++) {
+        const l = (total * i) / 200;
+        samples.push({ l, y: stem.getPointAtLength(l).y });
+      }
+
+      // Leaves alternate sides of the stem; size is capped so they stay in the margin
+      const fit = Math.min(1, (M - 24) / 150);
+      const nodes = [];
+      let flip = side;
+      for (let l = 60 + rand() * 60, k = 0; l < total - 30; l += 170 * (0.8 + rand() * 0.4), k++) {
+        const p = stem.getPointAtLength(l);
+        const q = stem.getPointAtLength(Math.min(total, l + 2));
+        const ang = (Math.atan2(q.y - p.y, q.x - p.x) * 180) / Math.PI;
+        const spark = k % 4 === 3;
+        const g = make('g', { class: spark ? 'growth__spark' : 'growth__leaf' }, svg);
+        g.setAttribute('transform', spark
+          ? `translate(${p.x + 20 * flip * fit} ${p.y - 8})`
+          : `translate(${p.x} ${p.y}) rotate(${ang + 58 * flip})`);
+        const sway = make('g', { class: 'growth__sway' }, g);
+        sway.style.setProperty('--sway', `${(spark ? 2.4 : 5.5) + rand() * 3}s`);
+        sway.style.animationDelay = `${-rand() * 6}s`;
+        const grow = make('g', { class: 'growth__grow' }, sway);
+        const s = (spark ? 0.7 + rand() * 0.5 : 0.75 + rand() * 0.5) * fit;
+        if (spark) {
+          make('path', { d: 'M0 -9C1 -2 2 -1 9 0C2 1 1 2 0 9C-1 2 -2 1 -9 0C-2 -1 -1 -2 0 -9Z', transform: `scale(${s})` }, grow);
+        } else {
+          make('path', { d: 'M0 0C9 -11 27 -13 40 0C27 13 9 11 0 0Z', transform: `scale(${s})` }, grow);
+          make('path', { d: 'M3 0L31 0', class: 'rib', transform: `scale(${s})` }, grow);
+          flip = -flip;
+        }
+        nodes.push({ el: g, l: l + 8, out: false });
+      }
+      const tip = make('circle', { r: 2.6, class: 'growth__tip' }, svg);
+      return { stem, total, samples, nodes, tip };
+    }
+
+    function build() {
+      seed = 7;
+      top = hero.offsetTop + hero.offsetHeight - 24;
+      const H = Math.max(0, main.offsetHeight - top - 40);
+      const W = wrap.clientWidth;
+      // Margin = space beside the content column
+      const r = ref.getBoundingClientRect();
+      const M = r.left + (parseFloat(getComputedStyle(ref).paddingLeft) || 0);
+      wrap.style.top = top + 'px';
+      wrap.style.height = H + 'px';
+      svg.setAttribute('width', W); svg.setAttribute('height', H);
+      svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+      svg.replaceChildren();
+      vines = [];
+      built = false;
+      if (H < 200 || M < MIN_MARGIN) return;
+      const amp = Math.min(M * 0.22, 36);
+      vines.push(buildVine(M * 0.5, amp, H, 1, M));       // left margin
+      seed = 31;
+      vines.push(buildVine(W - M * 0.5, amp, H, -1, M));  // right margin, mirrored
+      built = true;
+    }
+
+    const lengthAt = (v, y) => {
+      if (y <= 0) return 0;
+      const s = v.samples;
+      if (y >= s[s.length - 1].y) return v.total;
+      let lo = 0, hi = s.length - 1;
+      while (hi - lo > 1) { const mid = (lo + hi) >> 1; if (s[mid].y < y) lo = mid; else hi = mid; }
+      const a = s[lo], b = s[hi];
+      return a.l + (b.l - a.l) * ((y - a.y) / Math.max(1, b.y - a.y));
+    };
+
+    function paint() {
+      if (!built) return;
+      for (const v of vines) {
+        const drawn = lengthAt(v, depth);
+        v.stem.style.strokeDashoffset = String(v.total - drawn);
+        const p = v.stem.getPointAtLength(Math.max(0, drawn));
+        v.tip.setAttribute('cx', p.x); v.tip.setAttribute('cy', p.y);
+        v.tip.style.opacity = drawn > 2 && drawn < v.total - 2 ? '1' : '0';
+        for (const nd of v.nodes) {
+          const out = drawn >= nd.l;
+          if (out !== nd.out) { nd.out = out; nd.el.classList.toggle('is-out', out); }
+        }
+      }
+    }
+
+    const fullDepth = () => main.offsetHeight;
+    const targetDepth = () => Math.max(0, window.scrollY + window.innerHeight * 0.75 - top);
+
+    function update() {
+      if (!built) return;
+      if (reduceMotion.matches) { spring.set(fullDepth()); return; }
+      spring.to(targetDepth(), { damping: 1, response: 0.9 });
+    }
+
+    let raf = 0;
+    const rebuild = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        spring.stop();
+        build();
+        if (!built) return;
+        if (reduceMotion.matches) depth = fullDepth();
+        paint();
+        update();
+      });
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    reduceMotion.addEventListener('change', rebuild);
+    new ResizeObserver(rebuild).observe(main);
+    rebuild();
   }
 
   /* ------------------------------------------------------------------------
