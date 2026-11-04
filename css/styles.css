@@ -160,6 +160,37 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .primary-nav__links a:hover::after { transform: scaleX(1); }
 }
 
+/* Prologue: its brand card materialises from the link on hover / keyboard focus.
+   Enter waits a beat (no flicker when the pointer sweeps across the nav); exit is quicker. */
+.nav-reveal { position: relative; }
+.nav-reveal__card {
+  position: absolute; top: calc(100% + 10px); left: 50%;
+  display: block; padding: 14px 18px 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 0 0 1px rgba(17, 17, 17, 0.06), 0 18px 36px -16px rgba(40, 30, 25, 0.35);
+  transform-origin: 50% 0;                         /* grows out of the link */
+  transform: translate(-50%, -6px) scale(0.94);
+  filter: blur(4px);
+  opacity: 0; visibility: hidden;
+  pointer-events: none;
+  transition: opacity 140ms ease-in, transform 200ms ease-in, filter 140ms ease-in, visibility 0s 200ms;
+}
+.nav-reveal__card { width: max-content; }          /* size to the logo, not the narrow <li> */
+.nav-reveal__card img { display: block; width: 176px; max-width: none; height: auto; }
+.nav-reveal:has(a:focus-visible) .nav-reveal__card,
+.nav-reveal:hover .nav-reveal__card {
+  opacity: 1; visibility: visible;
+  transform: translate(-50%, 0) scale(1);
+  filter: none;
+  transition: opacity 200ms ease-out 60ms, transform 380ms var(--ease-out) 60ms, filter 220ms ease-out 60ms, visibility 0s 60ms;
+}
+@media not ((hover: hover) and (pointer: fine)) {
+  .nav-reveal:hover .nav-reveal__card { opacity: 0; visibility: hidden; }   /* touch: no sticky reveal */
+}
+
 .site-header__actions { display: flex; align-items: center; gap: 12px; margin-left: auto; }
 .menu-toggle { display: none; }
 
@@ -773,11 +804,12 @@ html:has(.svc-dialog[open]) { overflow: hidden; }
   .card:hover .card__icon { transform: none; }
   .collage .collage__piece { opacity: 1 !important; transform: none !important; }
   .collage .collage__layer { transform: none !important; }
+  .nav-reveal__card { transform: translate(-50%, 0) !important; filter: none !important; transition: opacity 160ms ease, visibility 0s !important; }
 }
 
 @media (prefers-reduced-transparency: reduce) {
   .card:has(.card__photo)::before, .card:hover:has(.card__photo)::before { background-color: rgba(238, 238, 238, 0.88); }
-  .site-header::before, .search-panel, .mobile-menu {
+  .site-header::before, .search-panel, .mobile-menu, .nav-reveal__card {
     background: var(--fair);
     -webkit-backdrop-filter: none; backdrop-filter: none;
   }
