@@ -465,7 +465,10 @@
         default: transform = `rotate(${-45 * remaining}deg) scale(${p})`;
       }
       layer.piece.style.transform = transform;
-      layer.piece.style.opacity = Math.max(0, Math.min(1, p));
+      // Opacity leads position: each piece is solid after the first ~30% of its travel and
+      // lands opaque. Tying opacity 1:1 to travel left overlapping layers see-through
+      // (back layers ghosting through front ones) and exposed inpainted seams for longer.
+      layer.piece.style.opacity = Math.max(0, Math.min(1, p / 0.3));
     }
 
     function maybeStart() {

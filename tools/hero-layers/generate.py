@@ -214,7 +214,9 @@ for i, name in enumerate(ids, 1):
     box = (max(0,x-4), max(0,y-4), min(W,x1+4), min(H,y1+4))
     x,y,x1,y1 = box
     crop = im.crop(box)
-    crop.save(DEST / f'{name}.webp', lossless=name in ('women','scientist','student'), quality=90, method=6, exact=True)
+    # People get a higher lossy quality than architecture: visually identical at display size,
+    # ~3x smaller than lossless. (No warping or retouching either way; see README.)
+    crop.save(DEST / f'{name}.webp', quality=92 if name in ('women','scientist','student') else 90, method=6, exact=True)
     small = crop.resize((round(crop.width/2),round(crop.height/2)), Image.Resampling.LANCZOS)
     small.save(DEST / f'{name}@1x.webp', quality=95, method=6, exact=True)
     # Audit the actual served WebPs, including compression and alpha quantisation.
