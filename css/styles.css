@@ -92,6 +92,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   touch-action: manipulation;
 }
 .btn:active { transform: scale(0.97); background: var(--pill-bg-hover); }
+.btn--ghost { background: transparent; box-shadow: inset 0 0 0 1px rgba(116, 95, 253, 0.35); }
 .btn--sm { min-height: 34px; padding: 0 14px; font-size: 0.6875rem; }
 
 @media (hover: hover) and (pointer: fine) {
@@ -444,8 +445,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   max-width: calc(1160px + var(--gutter) * 2);
 }
 .carousel__arrow {
-  /* vertically centred on the logo row: item padding 8px + half the 84px mark − half the button */
-  margin-top: 28px;
+  /* vertically centred on the logo row: item padding 8px + half the 100px mark − half the button */
+  margin-top: 36px;
   display: grid; place-items: center;
   width: 44px; height: 44px; border-radius: 50%;
   color: var(--ink);
@@ -483,17 +484,31 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .company {
   flex: none;
   width: clamp(168px, 17vw, 210px);
-  display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 22px;
-  padding: 8px 12px;
-  text-align: center;
+  display: flex; justify-content: center;
+  padding: 8px 6px;
 }
-.company__mark { display: grid; place-items: center; height: 84px; }
+/* Each logo is a button: a quiet tile appears on hover / press, so it reads as tappable */
+.company__mark {
+  display: grid; place-items: center;
+  width: 100%; height: 100px; padding: 8px 12px;
+  border-radius: 16px;
+  transition: transform var(--dur-press) ease-out, background-color 200ms ease-out, box-shadow 200ms ease-out;
+  -webkit-tap-highlight-color: transparent;
+}
+.company__mark:active { transform: scale(0.96); background: rgba(255, 255, 255, 0.9); }
+.company__mark:focus-visible { outline-offset: -2px; }
+.strip.is-dragging .company__mark { transform: none; background: none; }
+@media (hover: hover) and (pointer: fine) {
+  .company__mark:hover {
+    background: #fff;
+    box-shadow: 0 0 0 1px rgba(17, 17, 17, 0.06), 0 10px 24px -14px rgba(40, 30, 25, 0.35);
+  }
+}
 .company__mark img {
   max-width: 100%; height: auto;
   pointer-events: none;            /* drags belong to the strip, not the image */
   -webkit-user-drag: none;
 }
-.company__sector { font: 400 0.8125rem/1.35 var(--font-sans); color: var(--ink); min-height: 2.7em; }
 
 .portfolio .center { margin-top: 64px; }
 .portfolio .btn, .services .btn { min-width: 232px; min-height: 46px; }
@@ -777,3 +792,71 @@ html:has(.svc-dialog[open]) { overflow: hidden; }
   .site-header.is-scrolled::before { background: var(--fair); }
   .site-header.is-scrolled { border-bottom: 1px solid #555; }
 }
+
+/* ==========================================================================
+   Portfolio — company dialog (shares the services dialog surface)
+   ========================================================================== */
+.co-dialog { width: min(600px, calc(100vw - 32px)); }
+.co-dialog__logo {
+  display: grid; place-items: center start;
+  height: 72px; margin-bottom: 18px;
+}
+.co-dialog__logo img { max-height: 64px; max-width: 200px; width: auto; height: auto; }
+.co-dialog__title { margin-top: 8px; }
+.co-dialog__meta { margin-top: 6px; font: 400 0.875rem/1.4 var(--font-sans); color: var(--ink-3); }
+.co-dialog__summary { margin-top: 14px; font: 400 1.0625rem/1.5 var(--font-serif); color: var(--ink-2); }
+.co-dialog__label {
+  font: 600 0.75rem/1 var(--font-sans);
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3);
+}
+.co-dialog__posts { margin-top: 26px; }
+.co-posts { display: grid; gap: 8px; margin-top: 12px; }
+.co-posts:empty { display: none; }
+.co-post {
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px;
+  padding: 12px 14px; border-radius: 14px;
+  background: rgba(203, 140, 124, 0.09);
+  transition: transform var(--dur-press) ease-out, background-color 160ms ease-out;
+}
+.co-post:active { transform: scale(0.985); background: rgba(203, 140, 124, 0.16); }
+@media (hover: hover) and (pointer: fine) { .co-post:hover { background: rgba(203, 140, 124, 0.15); } }
+.co-post strong { display: block; font: 500 0.9375rem/1.35 var(--font-sans); }
+.co-post small { display: block; margin-top: 3px; font: 400 0.8125rem/1.3 var(--font-sans); color: var(--ink-3); }
+.co-post svg { width: 16px; height: 16px; color: var(--ink-3); }
+.co-dialog__empty { margin-top: 10px; font: 400 0.875rem/1.45 var(--font-sans); color: var(--ink-3); }
+.co-dialog__empty a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+.co-dialog__others {
+  margin: 28px -36px 0; padding: 22px 36px 0;
+  border-top: 1px solid rgba(17, 17, 17, 0.07);
+}
+.co-others {
+  display: flex; gap: 8px; margin-top: 12px;
+  overflow-x: auto; scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  margin-inline: -4px; padding: 2px 4px 4px;
+}
+.co-others::-webkit-scrollbar { display: none; }
+.co-other {
+  flex: none; scroll-snap-align: start;
+  display: grid; place-items: center;
+  width: 104px; height: 60px; padding: 8px 12px;
+  border-radius: 12px; background: #fff;
+  box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.08);
+  transition: transform var(--dur-press) ease-out, box-shadow 160ms ease-out;
+}
+.co-other img { max-width: 100%; max-height: 40px; width: auto; height: auto; pointer-events: none; }
+.co-other:active { transform: scale(0.95); }
+.co-other[aria-current="true"] { box-shadow: inset 0 0 0 1.5px var(--purple); }
+@media (hover: hover) and (pointer: fine) {
+  .co-other:hover { box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.2), 0 6px 14px -8px rgba(40, 30, 25, 0.3); }
+}
+.co-dialog__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 24px; }
+.co-dialog__actions .btn { padding-inline: 16px; }
+@media (max-width: 720px) {
+  .co-dialog__actions { grid-template-columns: 1fr; }
+  .co-dialog__others { margin-inline: -22px; padding-inline: 22px; }
+}
+.co-dialog__actions .btn.is-disabled { opacity: 0.55; cursor: default; }
+.co-dialog__actions .btn.is-disabled:active { transform: none; }

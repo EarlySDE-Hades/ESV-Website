@@ -137,7 +137,7 @@
     }
 
     /* Pointer dragging */
-    let pointerId = null, startX = 0, startY = 0, originX = 0, dragging = false, history = [];
+    let pointerId = null, startX = 0, startY = 0, originX = 0, dragging = false, dragEnded = false, history = [];
 
     viewport.addEventListener('pointerdown', (e) => {
       if (e.button !== 0) return;
@@ -169,6 +169,8 @@
       pointerId = null;
       if (!dragging) { if (!spring.running) settle(0); return; }
       dragging = false;
+      dragEnded = true;                                  // the click that ends a drag is not a tap
+      setTimeout(() => { dragEnded = false; }, 0);
       viewport.classList.remove('is-dragging');
       // Velocity from the last ~100ms of movement
       const now = e.timeStamp;
@@ -222,6 +224,28 @@
       prevBtn.addEventListener('click', () => go(-1));
       nextBtn.addEventListener('click', () => go(1));
     }
+
+    viewport.addEventListener('click', (e) => {
+      if (dragEnded) { e.preventDefault(); e.stopPropagation(); dragEnded = false; }
+    }, true);
+
+    /* Bring a logo fully into view: on keyboard focus, or when the company
+       dialog switches to it (so closing returns into a visible logo). */
+    function reveal(el, instant) {
+      const item = el.closest('.company') || el;
+      const pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+      const left = item.offsetLeft + x, right = left + item.offsetWidth, w = viewport.clientWidth;
+      let target = null;
+      if (left < pad) target = clamp(-(item.offsetLeft - pad));
+      else if (right > w - pad) target = clamp(-(item.offsetLeft + item.offsetWidth - w + pad));
+      if (target === null) return;
+      keyTarget = null;
+      if (instant || reduceMotion.matches) { spring.stop(); render(target); }
+      else spring.to(target, { from: x, damping: 1, response: 0.4 });
+    }
+    viewport.addEventListener('focusin', (e) => { if (e.target !== viewport) reveal(e.target); });
+    viewport.addEventListener('scroll', () => { viewport.scrollLeft = 0; });   // focus must not scroll the clipped box
+    viewport.addEventListener('strip:reveal', (e) => reveal(e.detail.el, e.detail.instant));
 
     new ResizeObserver(measure).observe(viewport);
     document.fonts && document.fonts.ready.then(measure);
@@ -584,6 +608,8 @@
   if (heroSection) initHeroField(heroSection);
   const svcDialog = $('[data-svc-dialog]');
   if (svcDialog && svcDialog.showModal) initServices(svcDialog);
+  const coDialog = $('[data-co-dialog]');
+  if (coDialog && coDialog.showModal) initCompanies(coDialog);
 
   /* ------------------------------------------------------------------------
      Services — each card opens a native modal <dialog> that grows out of the
@@ -673,6 +699,169 @@
       const href = cta.getAttribute('href');
       close(() => { location.hash = href; });
     });
+  }
+
+  /* ------------------------------------------------------------------------
+     Portfolio — each logo opens a company dialog that grows out of the logo
+     and returns into it. "More from the portfolio" swaps companies in place
+     with a short cross-fade, and keeps the strip in step underneath.
+     ------------------------------------------------------------------------ */
+  function initCompanies(dialog) {
+    let data;
+    try { data = JSON.parse($('#portfolio-data').textContent); } catch (err) { return; }
+    const bySlug = new Map(data.map((c) => [c.slug, c]));
+    const logos = new Map($$('[data-company]').map((b) => [b.dataset.company, b]));
+    const panel = $('[data-co-panel]', dialog);
+    const content = $('[data-co-content]', dialog);
+    const el = (k) => $(`[data-co-${k}]`, dialog);
+    const logoImg = el('logo'), sectorEl = el('sector'), nameEl = el('name'), metaEl = el('meta');
+    const summaryEl = el('summary'), postsEl = el('posts'), emptyEl = el('empty'), othersEl = el('others'), pageEl = el('page');
+    const strip = $('[data-strip]');
+    const PANEL = '#FAFAFA';
+    let origin = null, current = null, anim = null, contentAnim = null, swapAnim = null, closing = false;
+    const ARROW = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+    // "More from the portfolio": one chip per company, built once from the strip's logos
+    data.forEach((c) => {
+      const src = logos.get(c.slug) && $('img', logos.get(c.slug));
+      if (!src) return;
+      const li = document.createElement('li');
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'co-other'; b.dataset.slug = c.slug;
+      const img = document.createElement('img');
+      img.src = src.getAttribute('src'); img.alt = c.name; img.decoding = 'async';
+      b.append(img); li.append(b); othersEl.append(li);
+      b.addEventListener('click', () => swap(c.slug));
+    });
+
+    const esc = (t) => String(t).replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+    function fill(c) {
+      current = c;
+      logoImg.src = $('img', logos.get(c.slug)).getAttribute('src');
+      sectorEl.textContent = c.sector || 'Portfolio company';
+      nameEl.textContent = c.name;
+      metaEl.textContent = [c.location].filter(Boolean).join(' · ');
+      metaEl.hidden = !metaEl.textContent;
+      summaryEl.textContent = c.summary || 'A full company profile is on its way.';
+      const posts = c.posts || [];
+      postsEl.innerHTML = posts.map((p) => {
+        const ext = /^https?:/.test(p.href);
+        const when = p.date ? new Date(p.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
+        const sub = [p.kind, when].filter(Boolean).join(' · ');
+        return `<li><a class="co-post" href="${esc(p.href)}"${ext ? ' target="_blank" rel="noopener"' : ''}><span><strong>${esc(p.title)}</strong>${sub ? `<small>${esc(sub)}</small>` : ''}</span>${ARROW}</a></li>`;
+      }).join('');
+      emptyEl.hidden = posts.length > 0;
+      if (c.page) {
+        pageEl.href = c.page; pageEl.textContent = 'View company page';
+        pageEl.removeAttribute('aria-disabled'); pageEl.classList.remove('is-disabled');
+      } else {
+        pageEl.href = '#'; pageEl.textContent = 'Company page coming soon';
+        pageEl.setAttribute('aria-disabled', 'true'); pageEl.classList.add('is-disabled');
+      }
+      $$('.co-other', othersEl).forEach((b) => {
+        const on = b.dataset.slug === c.slug;
+        b.setAttribute('aria-current', on ? 'true' : 'false');
+        if (on) {                                         // keep the current chip in view without scrolling the page
+          const l = b.offsetLeft - othersEl.offsetLeft, r = l + b.offsetWidth;
+          if (l < othersEl.scrollLeft) othersEl.scrollLeft = l - 4;
+          else if (r > othersEl.scrollLeft + othersEl.clientWidth) othersEl.scrollLeft = r - othersEl.clientWidth + 4;
+        }
+      });
+    }
+
+    function fromOrigin() {
+      const c = origin.getBoundingClientRect();
+      const p = panel.getBoundingClientRect();
+      const dx = (c.left + c.width / 2) - (p.left + p.width / 2);
+      const dy = (c.top + c.height / 2) - (p.top + p.height / 2);
+      return `translate(${dx}px, ${dy}px) scale(${c.width / p.width}, ${c.height / p.height})`;
+    }
+
+    function open(btn) {
+      const c = bySlug.get(btn.dataset.company);
+      if (!c) return;
+      if (anim) anim.cancel();
+      if (contentAnim) contentAnim.forEach((a) => a.cancel());
+      closing = false;
+      origin = btn;
+      dialog.classList.remove('is-closing');
+      dialog.showModal();
+      fill(c);
+      panel.scrollTop = 0;
+      if (reduceMotion.matches) {
+        anim = panel.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 180, easing: 'ease-out' });
+        return;
+      }
+      anim = panel.animate([
+        { transform: fromOrigin(), backgroundColor: '#FFFFFF', borderRadius: '16px' },
+        { transform: 'none', backgroundColor: PANEL, borderRadius: '24px' },
+      ], { duration: 520, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' });
+      // Content arrives just behind the surface, so text is never seen stretched
+      contentAnim = [...panel.children].map((child) => child.animate(
+        [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }],
+        { duration: 320, delay: 150, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'backwards' },
+      ));
+    }
+
+    // Switch company inside the open dialog: content dips out, refills, rises back
+    function swap(slug) {
+      const c = bySlug.get(slug);
+      if (!c || c === current || closing) return;
+      origin = logos.get(slug);
+      if (strip) strip.dispatchEvent(new CustomEvent('strip:reveal', { detail: { el: origin, instant: true } }));
+      if (swapAnim) swapAnim.cancel();
+      if (reduceMotion.matches) { fill(c); return; }
+      swapAnim = content.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 110, easing: 'ease-in', fill: 'forwards' });
+      swapAnim.onfinish = () => {
+        fill(c);
+        swapAnim.cancel();
+        swapAnim = content.animate(
+          [{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }],
+          { duration: 260, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' },
+        );
+      };
+    }
+
+    function close(then) {
+      if (!dialog.open || closing) return;
+      closing = true;
+      dialog.classList.add('is-closing');
+      if (swapAnim) { swapAnim.cancel(); swapAnim = null; }
+      const finish = () => {
+        dialog.close();
+        dialog.classList.remove('is-closing');
+        closing = false; anim = null;
+        if (origin && !then) origin.focus({ preventScroll: true });
+        if (then) then();
+      };
+      if (contentAnim) contentAnim.forEach((a) => a.cancel());
+      if (reduceMotion.matches || !origin) {
+        anim = panel.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 160, easing: 'ease-in', fill: 'forwards' });
+      } else if (anim && anim.playState === 'running') {
+        anim.reverse();                                   // interrupted mid-open: retrace from here
+      } else {
+        [...panel.children].forEach((child) => child.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 120, fill: 'forwards' }));
+        anim = panel.animate([
+          { transform: 'none', backgroundColor: PANEL, borderRadius: '24px' },
+          { transform: fromOrigin(), backgroundColor: '#FFFFFF', borderRadius: '16px' },
+        ], { duration: 360, easing: 'cubic-bezier(0.64, 0, 0.36, 1)', fill: 'forwards' });
+      }
+      anim.onfinish = () => {
+        [...panel.children].forEach((child) => child.getAnimations().forEach((a) => a.cancel()));
+        anim.cancel(); finish();
+      };
+    }
+
+    logos.forEach((btn) => btn.addEventListener('click', () => open(btn)));
+    el('close').addEventListener('click', () => close());
+    dialog.addEventListener('cancel', (e) => { e.preventDefault(); close(); });    // Esc
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) close(); }); // backdrop
+    pageEl.addEventListener('click', (e) => { if (pageEl.getAttribute('aria-disabled') === 'true') e.preventDefault(); });
+    $$('[data-co-jump]', dialog).forEach((a) => a.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = a.getAttribute('href');
+      close(() => { location.hash = href; });
+    }));
   }
 
   /* ------------------------------------------------------------------------

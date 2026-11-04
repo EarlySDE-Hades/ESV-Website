@@ -102,9 +102,9 @@ if __name__ == "__main__":
     print("<!-- portfolio -->")
     for src, slug, alt, caption in PORTFOLIO:
         dest, size, soft = build(src, slug, "portfolio")
-        cap = (f'<span class="company__sector">{caption}</span>' if caption
-               else '<span class="company__sector" aria-hidden="true">&nbsp;</span>')
-        print(f'          <li class="company"><span class="company__mark">{img_tag(dest, size, alt)}</span>{cap}</li>')
+        # Sector, summary and posts live in the #portfolio-data JSON in index.html
+        print(f'          <li class="company"><button class="company__mark" type="button" '
+              f'aria-haspopup="dialog" data-company="{slug}">{img_tag(dest, size, alt)}</button></li>')
         if soft: print(f"<!-- NOTE: {src} is low-resolution -->")
     total = sum(p.stat().st_size for p in OUT.rglob("*") if p.is_file())
     print(f"<!-- total logo bytes: {total} -->")
