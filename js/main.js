@@ -695,8 +695,9 @@
     dialog.addEventListener('cancel', (e) => { e.preventDefault(); close(); });   // Esc
     dialog.addEventListener('click', (e) => { if (e.target === dialog) close(); }); // backdrop
     cta.addEventListener('click', (e) => {
-      e.preventDefault();
       const href = cta.getAttribute('href');
+      if (!href.startsWith('#')) return;                // a real page (e.g. the apply form): let the link go
+      e.preventDefault();
       close(() => { location.hash = href; });
     });
   }
@@ -716,6 +717,7 @@
     const el = (k) => $(`[data-co-${k}]`, dialog);
     const logoImg = el('logo'), sectorEl = el('sector'), nameEl = el('name'), metaEl = el('meta');
     const summaryEl = el('summary'), postsEl = el('posts'), emptyEl = el('empty'), othersEl = el('others'), pageEl = el('page');
+    const siteEl = el('site'), siteLabel = el('site-label');
     const strip = $('[data-strip]');
     const PANEL = '#FAFAFA';
     let origin = null, current = null, anim = null, contentAnim = null, swapAnim = null, closing = false;
@@ -740,9 +742,15 @@
       logoImg.src = $('img', logos.get(c.slug)).getAttribute('src');
       sectorEl.textContent = c.sector || 'Portfolio company';
       nameEl.textContent = c.name;
-      metaEl.textContent = [c.location].filter(Boolean).join(' · ');
+      metaEl.textContent = [c.location, c.founded && `Founded ${c.founded}`].filter(Boolean).join(' · ');
       metaEl.hidden = !metaEl.textContent;
       summaryEl.textContent = c.summary || 'A full company profile is on its way.';
+      siteEl.hidden = !c.website;
+      if (c.website) {
+        siteEl.href = c.website;
+        siteLabel.textContent = new URL(c.website).hostname.replace(/^www\./, '');
+        siteEl.setAttribute('aria-label', `${c.name} website (opens in a new tab)`);
+      }
       const posts = c.posts || [];
       postsEl.innerHTML = posts.map((p) => {
         const ext = /^https?:/.test(p.href);

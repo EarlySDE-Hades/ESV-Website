@@ -67,7 +67,7 @@
       </nav>
 
       <div class="site-header__actions">
-        <a class="btn btn--sm" href="#raise">Raise with us</a>
+        <a class="btn btn--sm" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
         <a class="btn btn--sm" href="#invest">Invest with us</a>
 
         <button class="icon-btn" type="button" aria-label="Search" aria-expanded="false" aria-controls="search-panel" data-search-toggle>
@@ -103,7 +103,7 @@
           <li><a href="#prologue">Prologue</a></li>
         </ul>
         <div class="mobile-menu__ctas">
-          <a class="btn" href="#raise">Raise with us</a>
+          <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
           <a class="btn" href="#invest">Invest with us</a>
         </div>
       </nav>
@@ -188,7 +188,7 @@
           Building a self&#8209;reliant India,<br /> one founder at a time.
         </h1>
         <div class="hero__ctas" data-reveal style="--i:1">
-          <a class="btn" href="#raise" id="raise">Pitch to us</a>
+          <a class="btn" href="https://ecosystem.earlyseedventures.com/apply" id="raise">Pitch to us</a>
           <a class="btn" href="#invest" id="invest">Invest with us</a>
         </div>
       </div>
@@ -318,6 +318,7 @@
             <h3 class="svc-dialog__title co-dialog__title" id="co-dialog-title" data-co-name></h3>
             <p class="co-dialog__meta" data-co-meta></p>
             <p class="co-dialog__summary" data-co-summary></p>
+            <a class="co-dialog__site" href="#" target="_blank" rel="noopener" data-co-site><span data-co-site-label></span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4h6v6M12 4l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             <section class="co-dialog__posts" aria-labelledby="co-posts-title">
               <h4 class="co-dialog__label" id="co-posts-title">On the blog</h4>
               <ul class="co-posts" role="list" data-co-posts></ul>
@@ -334,7 +335,8 @@
           </div>
         </div>
       </dialog>
-      <!-- Portfolio data. summary/location null = not shown. page = the company's page URL.
+      <!-- Portfolio data, summaries paraphrased from each company's website (Nov 2026).
+           location/founded null = not shown. website = company site. page = ESV company page URL.
            posts: [{"title": "...", "href": "...", "kind": "Article | Video | Podcast", "date": "2026-10-01"}] -->
       <script type="application/json" id="portfolio-data">
 [
@@ -343,7 +345,9 @@
     "name": "Flying Wedge Defence & Aerospace",
     "sector": "Defence & Aerospace",
     "location": "Bengaluru",
-    "summary": "Designs and builds indigenous unmanned aerial systems for India's defence forces.",
+    "founded": null,
+    "summary": "Builds indigenous autonomous unmanned aircraft, from the Kaalbhairav heavy drone to loitering munitions and interceptor drones.",
+    "website": "https://fwdefence.com/",
     "page": null,
     "posts": []
   },
@@ -352,7 +356,9 @@
     "name": "Skyroot Aerospace",
     "sector": "Space-tech",
     "location": "Hyderabad",
-    "summary": "Builds the Vikram series of launch vehicles. In 2022 it flew Vikram-S, India's first privately developed rocket.",
+    "founded": 2018,
+    "summary": "Develops the Vikram series of small launch vehicles for on-demand satellite launches. Its Vikram-S became India's first private rocket in 2022.",
+    "website": "https://www.skyroot.in/",
     "page": null,
     "posts": []
   },
@@ -361,7 +367,9 @@
     "name": "Garuda Aerospace",
     "sector": "Drone-tech",
     "location": "Chennai",
-    "summary": "Makes drones and drone services for agriculture, surveillance, mapping and delivery.",
+    "founded": null,
+    "summary": "Designs and manufactures drones for agriculture, industry and defence, and offers drone-as-a-service and DGCA-approved pilot training.",
+    "website": "https://www.garudaaerospace.com/",
     "page": null,
     "posts": []
   },
@@ -370,7 +378,9 @@
     "name": "Hesa",
     "sector": "Rural Commerce Platform",
     "location": "Hyderabad",
-    "summary": "A phygital platform that connects rural India to brands and services through a network of village entrepreneurs.",
+    "founded": 2019,
+    "summary": "Pairs an app with a network of village-level partners, called Hesaathis, to connect brands, banks and agri businesses with rural India.",
+    "website": "https://www.hesa.co/",
     "page": null,
     "posts": []
   },
@@ -378,53 +388,65 @@
     "slug": "electriq",
     "name": "Electriq",
     "sector": "Electric Mobility",
-    "location": null,
-    "summary": null,
+    "location": "Hyderabad, Bengaluru, Chennai",
+    "founded": null,
+    "summary": "Rents and sells electric two- and three-wheelers to last-mile and mid-mile delivery fleets, with battery swapping, fleet tracking and rider training.",
+    "website": "https://www.electriq.co.in/",
     "page": null,
     "posts": []
   },
   {
     "slug": "kyoora",
     "name": "Kyoora",
-    "sector": null,
+    "sector": "Pharma Distribution",
     "location": null,
-    "summary": null,
+    "founded": null,
+    "summary": "Acquires regional pharma distributors and runs them on its own ordering, logistics and data software, consolidating a fragmented market.",
+    "website": "https://kyoora.com/",
     "page": null,
     "posts": []
   },
   {
     "slug": "artment",
     "name": "Artment",
-    "sector": null,
+    "sector": "Art & Decor",
     "location": null,
-    "summary": null,
+    "founded": null,
+    "summary": "An art decor brand that blends art with everyday utility in premium products for the home.",
+    "website": "https://theartment.com/",
     "page": null,
     "posts": []
   },
   {
     "slug": "alchemyst-ai",
     "name": "Alchemyst AI",
-    "sector": null,
+    "sector": "AI Infrastructure",
     "location": null,
-    "summary": null,
+    "founded": null,
+    "summary": "Gives AI agents one API for a company's knowledge and persistent memory, with retrieval over internal documents and traces of what each agent used.",
+    "website": "https://getalchemystai.com/",
     "page": null,
     "posts": []
   },
   {
     "slug": "esportsxo",
     "name": "EsportsXO",
-    "sector": null,
+    "sector": "Esports Tech",
     "location": null,
-    "summary": null,
+    "founded": null,
+    "summary": "An esports platform for brands, publishers and tournament organisers, combining tournament software, campaign operations and creator networks.",
+    "website": "https://esports.battlexo.com/",
     "page": null,
     "posts": []
   },
   {
     "slug": "oll",
     "name": "OLL",
-    "sector": null,
-    "location": null,
-    "summary": null,
+    "sector": "K-12 Edtech",
+    "location": "Mumbai",
+    "founded": 2020,
+    "summary": "Teaches robotics, coding, AI and entrepreneurship to students and runs programmes for K-12 schools. Founded in 2020 by Shreyaan Daga, then 15.",
+    "website": "https://oll.co/",
     "page": null,
     "posts": []
   }
@@ -454,7 +476,7 @@
                 <span class="svc-card__more" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></svg></span>
               </button></li>
             </ul>
-            <a class="btn" href="#raise">Pitch to us</a>
+            <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
           </section>
 
           <section class="svc-group svc-group--wide" aria-labelledby="investors-title" data-reveal style="--i:1">
@@ -499,7 +521,7 @@
       </dialog>
 
       <!-- Dialog copy: one template per service. Edit freely. -->
-      <template id="svc-prefunding" data-group="For Founders" data-title="Pre-funding" data-cta="Pitch to us" data-href="#raise">
+      <template id="svc-prefunding" data-group="For Founders" data-title="Pre-funding" data-cta="Pitch to us" data-href="https://ecosystem.earlyseedventures.com/apply">
         <p class="svc-dialog__summary">Get investor-ready before you start the raise.</p>
         <ul class="svc-items" role="list">
           <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-chart"/></svg></span><span class="svc-item__text"><strong>Financial Modelling</strong><span>Projections built on assumptions you can defend in the room.</span></span></li>
@@ -508,7 +530,7 @@
           <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-search"/></svg></span><span class="svc-item__text"><strong>Market Research</strong><span>Market sizing and competitive landscape, properly sourced.</span></span></li>
         </ul>
       </template>
-      <template id="svc-fundraising" data-group="For Founders" data-title="Fundraising" data-cta="Pitch to us" data-href="#raise">
+      <template id="svc-fundraising" data-group="For Founders" data-title="Fundraising" data-cta="Pitch to us" data-href="https://ecosystem.earlyseedventures.com/apply">
         <p class="svc-dialog__summary">We run the raise alongside you, from first meeting to close.</p>
         <ul class="svc-items" role="list">
           <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-network"/></svg></span><span class="svc-item__text"><strong>Investor Access</strong><span>Introductions across our network of 400+ HNIs and family offices and 300+ venture funds.</span></span></li>

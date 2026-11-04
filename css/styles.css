@@ -837,6 +837,17 @@ html:has(.svc-dialog[open]) { overflow: hidden; }
 .co-dialog__title { margin-top: 8px; }
 .co-dialog__meta { margin-top: 6px; font: 400 0.875rem/1.4 var(--font-sans); color: var(--ink-3); }
 .co-dialog__summary { margin-top: 14px; font: 400 1.0625rem/1.5 var(--font-serif); color: var(--ink-2); }
+.co-dialog__site {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 12px; padding: 6px 12px 6px 14px; border-radius: 999px;
+  font: 500 0.875rem/1 var(--font-sans); color: var(--purple);
+  background: rgba(116, 95, 253, 0.08);
+  transition: transform var(--dur-press) ease-out, background-color 160ms ease-out;
+}
+.co-dialog__site[hidden] { display: none; }
+.co-dialog__site svg { width: 14px; height: 14px; }
+.co-dialog__site:active { transform: scale(0.97); background: rgba(116, 95, 253, 0.16); }
+@media (hover: hover) and (pointer: fine) { .co-dialog__site:hover { background: rgba(116, 95, 253, 0.14); } }
 .co-dialog__label {
   font: 600 0.75rem/1 var(--font-sans);
   letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3);
