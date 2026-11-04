@@ -1,0 +1,10 @@
+# Design source files (exported logos live in assets/brand)
+Figma Design/
+Brand Assets/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
+node_modules/
