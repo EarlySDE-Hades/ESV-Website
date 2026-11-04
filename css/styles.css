@@ -296,6 +296,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
     0 10px 24px -14px rgba(0, 0, 0, 0.12);
   transition: transform 160ms ease-out, box-shadow 320ms var(--ease-out);
   -webkit-user-select: none; user-select: none;
+  overflow: hidden;
+  isolation: isolate;               /* photo + veil stack beneath the text */
 }
 .card--sm { min-height: 336px; padding: 40px 38px 34px; gap: 22px; }
 .card:active { transform: scale(0.985); transition-duration: var(--dur-press); }
@@ -313,17 +315,30 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .card--sm .card__body { font-size: 1.0625rem; }
 .card--sm .card__body + .card__body { margin-top: -2px; }
 
-.card__cta {
+.card__icon {
   margin-top: auto;
-  display: inline-flex; align-items: baseline; gap: 10px;
-  font: 700 2.125rem/1 var(--font-sans);
-  letter-spacing: -0.025em;
+  align-self: flex-end;
+  width: 60px; height: 60px;
+  margin-right: -6px; margin-bottom: -10px;
   color: var(--ink);
+  transition: transform 420ms var(--ease-out);
 }
-.card__arrow {
-  font-size: 1.5rem; font-weight: 500;
-  opacity: 0; transform: translateX(-8px);
-  transition: opacity 200ms ease-out, transform 360ms var(--ease-out);
+.card--sm .card__icon { width: 46px; height: 46px; margin-bottom: -4px; }
+.card__icon svg { width: 100%; height: 100%; }
+
+/* Photo cards — a frosted veil keeps the photo as atmosphere and the text legible */
+.card__photo {
+  position: absolute; inset: 0; z-index: -2;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: blur(1.5px) saturate(0.85);
+  transform: scale(1.04);           /* hides the soft blur edge */
+  transition: transform 900ms var(--ease-out);
+}
+.card:has(.card__photo)::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: rgba(238, 238, 238, 0.62);
+  transition: background-color 420ms var(--ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -335,7 +350,10 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
       0 4px 10px rgba(0, 0, 0, 0.04),
       0 26px 44px -22px rgba(40, 30, 25, 0.24);
   }
-  .card:hover .card__arrow { opacity: 1; transform: none; }
+  .card:hover .card__icon { transform: translateY(-3px); }
+  /* Lift the veil slightly: the photo comes forward as the card does */
+  .card:hover .card__photo { transform: scale(1.07); }
+  .card:hover:has(.card__photo)::before { background-color: rgba(238, 238, 238, 0.52); }
   .card:active { transform: translateY(-1px) scale(0.985); }
 }
 
@@ -368,6 +386,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
    Sections
    ========================================================================== */
 .section { padding-top: clamp(80px, 10vw, 120px); }
+.campus { padding-top: clamp(104px, 13.3vw, 170px); }
+.portfolio { padding-top: clamp(112px, 14.8vw, 190px); }
 .section-head { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .badge {
   display: grid; place-items: center;
@@ -516,13 +536,32 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* ==========================================================================
    Footer
    ========================================================================== */
-.site-footer { border-top: 1px solid rgba(0, 0, 0, 0.06); padding-block: 36px calc(36px + env(safe-area-inset-bottom)); }
-.site-footer__inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
-.site-footer img { width: 112px; height: auto; }
-.site-footer ul { display: flex; flex-wrap: wrap; gap: 24px; font-size: 0.875rem; color: var(--ink-2); }
+.site-footer {
+  background: var(--slate);
+  color: var(--ink);
+  min-height: clamp(220px, 23vw, 300px);
+  display: flex;
+  padding-block: clamp(40px, 5vw, 64px) calc(32px + env(safe-area-inset-bottom));
+}
+.site-footer__inner {
+  display: grid; grid-template-columns: auto 1fr; grid-template-rows: 1fr auto;
+  column-gap: 48px; row-gap: 40px;
+}
+.site-footer img { width: 128px; height: auto; }
+.site-footer nav { justify-self: end; }
+.site-footer ul { display: flex; flex-wrap: wrap; gap: 12px 32px; font-size: 0.9375rem; }
 .site-footer a { transition: opacity 120ms ease-out; }
 .site-footer a:active { opacity: 0.5; }
-.site-footer__legal { font-size: 0.8125rem; color: var(--ink-3); }
+@media (hover: hover) and (pointer: fine) { .site-footer a:hover { opacity: 0.65; } }
+.site-footer__legal {
+  grid-column: 1 / -1; align-self: end;
+  padding-top: 18px; border-top: 1px solid rgba(17, 17, 17, 0.18);
+  font-size: 0.8125rem; color: #2A2523;     /* ≥ 4.5:1 on slate */
+}
+@media (max-width: 720px) {
+  .site-footer__inner { grid-template-columns: 1fr; }
+  .site-footer nav { justify-self: start; }
+}
 
 /* ==========================================================================
    Scroll reveal — a short, upward settle; staggered by --i
@@ -579,8 +618,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .cards--3 .card:last-child { grid-column: auto; }
   .card { min-height: 360px; padding: 28px 26px 30px; }
   .card--sm { min-height: 260px; }
-  .card__cta { font-size: 1.875rem; }
-  .card__arrow { opacity: 1; transform: none; }  /* no hover on touch — always show the affordance */
+  .card__icon { width: 52px; height: 52px; }
 
   .stats__grid { grid-template-columns: repeat(2, 1fr); }
   .stat dt { font-size: 1rem; }
@@ -608,11 +646,14 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .js [data-reveal] { transform: none; transition: opacity 200ms ease !important; }
   .search-panel, .mobile-menu { transform: none !important; filter: none !important; transition: opacity 160ms ease !important; }
   .card:hover, .card:active, .btn:active, .icon-btn:active { transform: none; }
+  .card:hover .card__photo { transform: scale(1.04); }
+  .card:hover .card__icon { transform: none; }
   .collage .collage__piece { opacity: 1 !important; transform: none !important; }
   .collage .collage__layer { transform: none !important; }
 }
 
 @media (prefers-reduced-transparency: reduce) {
+  .card:has(.card__photo)::before, .card:hover:has(.card__photo)::before { background-color: rgba(238, 238, 238, 0.88); }
   .site-header::before, .search-panel, .mobile-menu {
     background: var(--fair);
     -webkit-backdrop-filter: none; backdrop-filter: none;
@@ -620,6 +661,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 
 @media (prefers-contrast: more) {
+  .card:has(.card__photo)::before { background-color: rgba(244, 244, 244, 0.92); }
   :root { --ink-3: #3A3533; --rule: #A5675A; --pill-bg: #C9C2F5; --tile-edge: #2A120C; }
   .card { box-shadow: 0 0 0 1.5px #555; }
   .btn { box-shadow: 0 0 0 1.5px var(--purple); }
