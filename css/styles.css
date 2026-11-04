@@ -438,21 +438,45 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* ==========================================================================
    Portfolio strip — draggable, flickable, rubber-banded (see js/main.js)
    ========================================================================== */
+.carousel {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: start; gap: 8px;
+  margin-top: 56px;
+  max-width: calc(1160px + var(--gutter) * 2);
+}
+.carousel__arrow {
+  /* vertically centred on the logo row: item padding 8px + half the 84px mark − half the button */
+  margin-top: 28px;
+  display: grid; place-items: center;
+  width: 44px; height: 44px; border-radius: 50%;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.14);
+  transition: transform var(--dur-press) ease-out, background-color 160ms ease-out, opacity 200ms ease-out, box-shadow 200ms ease-out;
+}
+.carousel__arrow:active:not(:disabled) { transform: scale(0.92); }
+.carousel__arrow:disabled { opacity: 0.3; cursor: default; }
+@media (hover: hover) and (pointer: fine) {
+  .carousel__arrow:hover:not(:disabled) {
+    background: #fff;
+    box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.2), 0 4px 12px -4px rgba(40, 30, 25, 0.2);
+  }
+}
+.carousel.is-static .carousel__arrow { visibility: hidden; }   /* every logo fits: nothing to step */
+
 .strip {
   position: relative;
-  margin-top: 56px;
   overflow: hidden;
   touch-action: pan-y;                  /* vertical page scroll stays native */
   cursor: grab;
   outline-offset: -2px;
   /* scroll-edge effect: soften where content meets the viewport edge */
-  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0, #000 48px, #000 calc(100% - 48px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
 }
 .strip.is-dragging { cursor: grabbing; }
 .strip__track {
   display: flex; width: max-content;
-  padding-inline: max(var(--gutter), calc((100vw - var(--container)) / 2));
+  padding-inline: 24px;                 /* clears the edge fade so end logos sit fully opaque */
   will-change: transform;
   -webkit-user-select: none; user-select: none;
 }
@@ -490,10 +514,15 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 
 .services__groups {
-  display: grid; grid-template-columns: 2fr 4fr; gap: 56px; align-items: start;
+  display: grid; grid-template-columns: 2fr 4fr; gap: 24px; align-items: stretch;
   margin-top: 48px;
 }
-.svc-group { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+.svc-group {
+  display: flex; flex-direction: column; align-items: center; gap: 28px;
+  padding: 28px 24px 30px;
+  border-radius: 22px;
+  box-shadow: inset 0 0 0 1px rgba(203, 140, 124, 0.45);    /* hairline in golden glow */
+}
 .svc-group__head { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .svc-group__icon { width: 46px; height: 46px; color: var(--ink); }
 .svc-group__head h3 { font: 400 0.9375rem/1.3 var(--font-sans); }
@@ -541,7 +570,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .svc-card:hover .svc-card__more { transform: rotate(90deg); background: rgba(255, 255, 255, 0.55); }
   .svc-card:active { transform: translateY(-1px) scale(0.97); }
 }
-.svc-group > .btn { margin-top: 4px; }
+.svc-group > .btn { margin-top: auto; }             /* buttons line up across both panels */
 
 /* ---------- Detail dialog ---------- */
 html:has(.svc-dialog[open]) { overflow: hidden; }
@@ -701,6 +730,9 @@ html:has(.svc-dialog[open]) { overflow: hidden; }
   .stat dt { font-size: 1rem; }
   .logo-row { grid-template-columns: repeat(2, 1fr); }
 
+  .svc-group { padding: 24px 16px 24px; border-radius: 18px; }
+  .carousel { gap: 4px; }
+  .carousel__arrow { width: 36px; height: 36px; margin-top: 32px; }
   /* Investors: four cards become a 2×2 grid */
   .svc-group--wide .svc-cards { grid-auto-flow: row; grid-template-columns: 1fr 1fr; }
   .svc-card { min-height: 104px; }

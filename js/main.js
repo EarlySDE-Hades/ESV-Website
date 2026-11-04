@@ -81,17 +81,35 @@
 
     let minX = 0, maxX = 0, snaps = [0];
     let x = 0;                                           // presentation value (what's on screen)
-    const render = (v) => { x = v; track.style.transform = `translate3d(${v}px,0,0)`; };
+    let keyTarget = null;                                // where arrow/key steps are heading
+    const carousel = viewport.closest('[data-carousel]');
+    const prevBtn = carousel && $('[data-strip-prev]', carousel);
+    const nextBtn = carousel && $('[data-strip-next]', carousel);
+    function updateArrows() {
+      if (!prevBtn) return;
+      const t = spring.running && keyTarget !== null ? keyTarget : x;
+      prevBtn.disabled = t >= maxX - 1;
+      nextBtn.disabled = t <= minX + 1;
+    }
+    const render = (v) => { x = v; track.style.transform = `translate3d(${v}px,0,0)`; updateArrows(); };
     const spring = createSpring(render);
 
     function measure() {
       const overflow = track.scrollWidth - viewport.clientWidth;
-      maxX = 0;
-      minX = Math.min(0, -overflow);
-      const pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
-      const raw = $$('.company', track).map((el) => -(el.offsetLeft - pad));
-      snaps = [...new Set(raw.map((v) => Math.round(clamp(v))).concat([minX, maxX]))].sort((a, b) => b - a);
-      render(clamp(x));
+      const fits = overflow <= 0;
+      if (carousel) carousel.classList.toggle('is-static', fits);   // everything visible: centre it, hide arrows
+      if (fits) {
+        minX = maxX = Math.round(-overflow / 2);
+        snaps = [minX];
+      } else {
+        maxX = 0;
+        minX = -overflow;
+        const pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+        const raw = $$('.company', track).map((el) => -(el.offsetLeft - pad));
+        snaps = [...new Set(raw.map((v) => Math.round(clamp(v))).concat([minX, maxX]))].sort((a, b) => b - a);
+      }
+      spring.stop();
+      render(clamp(fits ? minX : x));
     }
     const clamp = (v) => Math.max(minX, Math.min(maxX, v));
     const nearestSnap = (v) => snaps.reduce((best, s) => (Math.abs(s - v) < Math.abs(best - v) ? s : best), snaps[0]);
@@ -180,23 +198,30 @@
       wheelTimer = setTimeout(() => { wheelActive = false; settle(0); }, 120);
     }, { passive: false });
 
-    /* Keyboard — repeated presses step on from where the strip is *heading*,
+    /* Arrows + keyboard. Repeated steps go on from where the strip is *heading*,
        not where it happens to be mid-flight, so ten presses move ten logos. */
-    let keyTarget = null;
     viewport.addEventListener('pointerdown', () => { keyTarget = null; });
     viewport.addEventListener('wheel', () => { keyTarget = null; }, { passive: true });
-    viewport.addEventListener('keydown', (e) => {
-      if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) return;
-      e.preventDefault();
+    function go(where) {                                 // -1 / +1 = one logo; 'start' / 'end'
       const from = spring.running && keyTarget !== null ? keyTarget : nearestSnap(x);
       const i = snaps.indexOf(from);
-      let next;
-      if (e.key === 'Home') next = snaps[0];
-      else if (e.key === 'End') next = snaps[snaps.length - 1];
-      else next = snaps[Math.max(0, Math.min(snaps.length - 1, i + (e.key === 'ArrowRight' ? 1 : -1)))];
+      const next = where === 'start' ? snaps[0]
+        : where === 'end' ? snaps[snaps.length - 1]
+        : snaps[Math.max(0, Math.min(snaps.length - 1, i + where))];
       keyTarget = next;
       spring.to(next, { from: x, damping: 1, response: 0.4 });
+      updateArrows();
+    }
+    viewport.addEventListener('keydown', (e) => {
+      const map = { ArrowRight: 1, ArrowLeft: -1, Home: 'start', End: 'end' };
+      if (!(e.key in map)) return;
+      e.preventDefault();
+      go(map[e.key]);
     });
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => go(-1));
+      nextBtn.addEventListener('click', () => go(1));
+    }
 
     new ResizeObserver(measure).observe(viewport);
     document.fonts && document.fonts.ready.then(measure);
