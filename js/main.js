@@ -557,6 +557,98 @@
   if (collage) initCollage(collage);
   const heroSection = $('.hero');
   if (heroSection) initHeroField(heroSection);
+  const svcDialog = $('[data-svc-dialog]');
+  if (svcDialog && svcDialog.showModal) initServices(svcDialog);
+
+  /* ------------------------------------------------------------------------
+     Services — each card opens a native modal <dialog> that grows out of the
+     card (its size and colour) and returns into it on close. Closing mid-open
+     reverses from the current frame, so it is always interruptible.
+     ------------------------------------------------------------------------ */
+  function initServices(dialog) {
+    const panel = $('[data-svc-panel]', dialog);
+    const body = $('[data-svc-body]', dialog);
+    const groupEl = $('[data-svc-group]', dialog);
+    const titleEl = $('[data-svc-title]', dialog);
+    const cta = $('[data-svc-cta]', dialog);
+    const CARD_COLOR = getComputedStyle(document.documentElement).getPropertyValue('--golden-glow').trim() || '#CB8C7C';
+    let origin = null, anim = null, contentAnim = null, closing = false;
+
+    function fromCard() {
+      const c = origin.getBoundingClientRect();
+      const p = panel.getBoundingClientRect();
+      const dx = (c.left + c.width / 2) - (p.left + p.width / 2);
+      const dy = (c.top + c.height / 2) - (p.top + p.height / 2);
+      return `translate(${dx}px, ${dy}px) scale(${c.width / p.width}, ${c.height / p.height})`;
+    }
+
+    function open(card) {
+      const tpl = document.getElementById('svc-' + card.dataset.service);
+      if (!tpl) return;
+      if (anim) anim.cancel();
+      if (contentAnim) contentAnim.forEach((a) => a.cancel());
+      closing = false;
+      origin = card;
+      groupEl.textContent = tpl.dataset.group;
+      titleEl.innerHTML = tpl.dataset.title;
+      body.replaceChildren(tpl.content.cloneNode(true));
+      cta.textContent = tpl.dataset.cta;
+      cta.setAttribute('href', tpl.dataset.href);
+      dialog.classList.remove('is-closing');
+      dialog.showModal();
+      panel.scrollTop = 0;
+
+      if (reduceMotion.matches) {
+        anim = panel.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 180, easing: 'ease-out' });
+        return;
+      }
+      anim = panel.animate([
+        { transform: fromCard(), backgroundColor: CARD_COLOR, borderRadius: '12px' },
+        { transform: 'none', backgroundColor: '#FAFAFA', borderRadius: '24px' },
+      ], { duration: 520, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' });
+      // Content arrives just behind the surface, so text is never seen stretched
+      contentAnim = [...panel.children].map((el) => el.animate(
+        [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }],
+        { duration: 320, delay: 150, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'backwards' },
+      ));
+    }
+
+    function close(then) {
+      if (!dialog.open || closing) return;
+      closing = true;
+      dialog.classList.add('is-closing');
+      const finish = () => {
+        dialog.close();
+        dialog.classList.remove('is-closing');
+        closing = false; anim = null;
+        if (origin) origin.focus({ preventScroll: true });
+        if (then) then();
+      };
+      if (contentAnim) contentAnim.forEach((a) => a.cancel());
+      if (reduceMotion.matches || !origin) {
+        anim = panel.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 160, easing: 'ease-in', fill: 'forwards' });
+      } else if (anim && anim.playState === 'running') {
+        anim.reverse();                                 // interrupted mid-open: retrace from here
+      } else {
+        [...panel.children].forEach((el) => el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 120, fill: 'forwards' }));
+        anim = panel.animate([
+          { transform: 'none', backgroundColor: '#FAFAFA', borderRadius: '24px' },
+          { transform: fromCard(), backgroundColor: CARD_COLOR, borderRadius: '12px' },
+        ], { duration: 360, easing: 'cubic-bezier(0.64, 0, 0.36, 1)', fill: 'forwards' });
+      }
+      anim.onfinish = () => { [...panel.children].forEach((el) => el.getAnimations().forEach((a) => a.cancel())); anim.cancel(); finish(); };
+    }
+
+    $$('.svc-card').forEach((card) => card.addEventListener('click', () => open(card)));
+    $('[data-svc-close]', dialog).addEventListener('click', () => close());
+    dialog.addEventListener('cancel', (e) => { e.preventDefault(); close(); });   // Esc
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) close(); }); // backdrop
+    cta.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = cta.getAttribute('href');
+      close(() => { location.hash = href; });
+    });
+  }
 
   /* ------------------------------------------------------------------------
      Hero field — the collage's sparkle motif extended into a quiet, living

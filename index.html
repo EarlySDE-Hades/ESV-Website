@@ -39,6 +39,23 @@
       <rect x="9" y="27" width="7" height="13" rx="3.5"/><rect x="32" y="27" width="7" height="13" rx="3.5"/>
       <path d="M4.5 30.5c-1.2 2.3-1.2 5.7 0 8M43.5 30.5c1.2 2.3 1.2 5.7 0 8M19.5 32.5l1.5 2-1.5 2M28.5 32.5l-1.5 2 1.5 2"/>
     </g></symbol>
+    <!-- Service detail icons (24px line set) -->
+    <symbol id="s-chart" viewBox="0 0 24 24"><path d="M4 19h16M7 16v-4M11 16V8M15 16v-6M19 16V5"/></symbol>
+    <symbol id="s-deck" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="11" rx="1.5"/><path d="M12 15.5V20M8.5 20h7M7.5 12l3-3 2 2 4-4"/></symbol>
+    <symbol id="s-scale" viewBox="0 0 24 24"><path d="M12 4v16M8 20h8M5 7h14M5 7l-2.5 6a2.5 2.5 0 0 0 5 0L5 7ZM19 7l-2.5 6a2.5 2.5 0 0 0 5 0L19 7Z"/></symbol>
+    <symbol id="s-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></symbol>
+    <symbol id="s-network" viewBox="0 0 24 24"><circle cx="12" cy="5.5" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="18" r="2.2"/><path d="M11 7.5 6.2 16M13 7.5l4.8 8.5M7.2 18h9.6"/></symbol>
+    <symbol id="s-talk" viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h7A2.5 2.5 0 0 1 16 6.5v4a2.5 2.5 0 0 1-2.5 2.5H9l-3.5 3v-3A2.5 2.5 0 0 1 4 10.5v-4Z"/><path d="M18.5 9A1.5 1.5 0 0 1 20 10.5v4a1.5 1.5 0 0 1-1.5 1.5H18v3l-3.5-3H12"/></symbol>
+    <symbol id="s-doc" viewBox="0 0 24 24"><path d="M6.5 3.5h7l4 4v13h-11v-17Z"/><path d="M13.5 3.5v4h4M9 12h6M9 15.5h6"/></symbol>
+    <symbol id="s-doc-check" viewBox="0 0 24 24"><path d="M6.5 3.5h7l4 4v13h-11v-17Z"/><path d="M13.5 3.5v4h4M9 14l2 2 4-4"/></symbol>
+    <symbol id="s-cap" viewBox="0 0 24 24"><path d="M2.5 9.5 12 5l9.5 4.5L12 14 2.5 9.5Z"/><path d="M6.5 11.5V16c0 1.4 2.5 3 5.5 3s5.5-1.6 5.5-3v-4.5M21.5 9.5V15"/></symbol>
+    <symbol id="s-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.6-3 2.8-5 5.5-5s4.9 2 5.5 5"/><circle cx="16.5" cy="9" r="2.5"/><path d="M16 14c2.3 0 4 1.6 4.5 4"/></symbol>
+    <symbol id="s-spark" viewBox="0 0 24 24"><path d="M12 3v5M12 16v5M3 12h5M16 12h5M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></symbol>
+    <symbol id="s-coins" viewBox="0 0 24 24"><ellipse cx="9" cy="7" rx="5" ry="2.5"/><path d="M4 7v4c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5V7"/><path d="M10 15.6c.9 1.1 2.8 1.9 5 1.9 2.8 0 5-1.1 5-2.5v-4c0-1.4-2.2-2.5-5-2.5"/><path d="M20 15v4c0 1.4-2.2 2.5-5 2.5s-5-1.1-5-2.5v-3"/></symbol>
+    <symbol id="s-pie" viewBox="0 0 24 24"><path d="M11 4.5a7.5 7.5 0 1 0 8.5 8.5H11V4.5Z"/><path d="M14 3a7 7 0 0 1 7 7h-7V3Z"/></symbol>
+    <symbol id="s-trend" viewBox="0 0 24 24"><path d="M3.5 17.5 9 12l3.5 3.5 8-8"/><path d="M15 7.5h5.5V13"/></symbol>
+    <symbol id="s-filter" viewBox="0 0 24 24"><path d="M3.5 5h17l-6.5 8v5.5l-4 2V13L3.5 5Z"/></symbol>
+    <symbol id="s-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></symbol>
   </svg>
   <a class="skip-link" href="#main">Skip to content</a>
 
@@ -301,49 +318,118 @@
     <section class="section services" id="services" aria-labelledby="services-title">
       <div class="container">
         <h2 class="section-title section-title--ruled" id="services-title" data-reveal><span>Our Services</span></h2>
+        <p class="services__hint" data-reveal>Select a service to see what’s included.</p>
 
         <div class="services__groups">
-          <section class="tree" aria-labelledby="founders-title" data-reveal>
-            <header class="tree__head">
-              <!-- Placeholder icon — replace with the exported "hand + lightbulb" illustration -->
-              <svg class="tree__icon" viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 8a9 9 0 0 0-5 16.5V29h10v-4.5A9 9 0 0 0 24 8Z"/><path d="M20 32h8M21 35h6M24 15v8l-2-2m2 2 2-2"/><path d="M24 2v2M12 6l1.5 1.5M36 6l-1.5 1.5M8 16h2M38 16h2"/><path d="M12 44c2-4 5-6 9-6h7c2 0 3-1 3-2"/></g></svg>
+          <section class="svc-group" aria-labelledby="founders-title" data-reveal>
+            <header class="svc-group__head">
+              <svg class="svc-group__icon" viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 8a9 9 0 0 0-5 16.5V29h10v-4.5A9 9 0 0 0 24 8Z"/><path d="M20 32h8M21 35h6M24 15v8l-2-2m2 2 2-2"/><path d="M24 2v2M12 6l1.5 1.5M36 6l-1.5 1.5M8 16h2M38 16h2"/><path d="M12 44c2-4 5-6 9-6h7c2 0 3-1 3-2"/></g></svg>
               <h3 id="founders-title">For Founders</h3>
             </header>
-            <ul class="tree__children" role="list">
-              <li>
-                <div class="tile">Pre-funding</div>
-                <ul class="tile__list">
-                  <li>Financial Modelling</li><li>Pitch Decks</li><li>Valuation Reports</li><li>Market Research</li>
-                </ul>
-              </li>
-              <li>
-                <div class="tile">Fundraising</div>
-                <ul class="tile__list">
-                  <li>Investor Access</li><li>Negotiation Support</li><li>Transaction &amp; Legal Support</li>
-                </ul>
-              </li>
+            <ul class="svc-cards" role="list">
+              <li><button class="svc-card" type="button" data-service="prefunding" aria-haspopup="dialog">
+                <span class="svc-card__title">Pre-funding</span>
+                <span class="svc-card__more" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></svg></span>
+              </button></li>
+              <li><button class="svc-card" type="button" data-service="fundraising" aria-haspopup="dialog">
+                <span class="svc-card__title">Fundraising</span>
+                <span class="svc-card__more" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></svg></span>
+              </button></li>
             </ul>
+            <a class="btn" href="#raise">Pitch to us</a>
           </section>
 
-          <section class="tree tree--wide" aria-labelledby="investors-title" data-reveal style="--i:1">
-            <header class="tree__head">
-              <!-- Placeholder icon — replace with the exported "hand + coin" illustration -->
-              <svg class="tree__icon" viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="27" cy="14" r="9"/><path d="M29.5 10.5c-.6-1-1.6-1.5-2.8-1.5-1.6 0-2.7.9-2.7 2.1 0 2.9 6 1.6 6 4.6 0 1.3-1.3 2.3-3 2.3-1.3 0-2.4-.6-3-1.6M27 7.5v13"/><path d="M38 9a12 12 0 0 1-1 13l1 3"/><path d="M10 44c2-5 4-9 8-11l4-7c1-2 3-2 4 0l-2 7h6"/></g></svg>
+          <section class="svc-group svc-group--wide" aria-labelledby="investors-title" data-reveal style="--i:1">
+            <header class="svc-group__head">
+              <svg class="svc-group__icon" viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="27" cy="14" r="9"/><path d="M29.5 10.5c-.6-1-1.6-1.5-2.8-1.5-1.6 0-2.7.9-2.7 2.1 0 2.9 6 1.6 6 4.6 0 1.3-1.3 2.3-3 2.3-1.3 0-2.4-.6-3-1.6M27 7.5v13"/><path d="M38 9a12 12 0 0 1-1 13l1 3"/><path d="M10 44c2-5 4-9 8-11l4-7c1-2 3-2 4 0l-2 7h6"/></g></svg>
               <h3 id="investors-title">For Investors</h3>
             </header>
-            <ul class="tree__children" role="list">
-              <li><div class="tile">Community<br />&amp; Education</div></li>
-              <li><div class="tile">Full<br />Documentation</div></li>
-              <li><div class="tile">Syndicate Access</div></li>
-              <li><div class="tile">Curated<br />Deal Flow</div></li>
+            <ul class="svc-cards" role="list">
+              <li><button class="svc-card" type="button" data-service="community" aria-haspopup="dialog">
+                <span class="svc-card__title">Community &amp; Education</span>
+                <span class="svc-card__more" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></svg></span>
+              </button></li>
+              <li><button class="svc-card" type="button" data-service="documentation" aria-haspopup="dialog">
+                <span class="svc-card__title">Full Documentation</span>
+                <span class="svc-card__more" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></svg></span>
+              </button></li>
+              <li><button class="svc-card" type="button" data-service="syndicate" aria-haspopup="dialog">
+                <span class="svc-card__title">Syndicate Access</span>
+                <span class="svc-card__more" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></svg></span>
+              </button></li>
+              <li><button class="svc-card" type="button" data-service="dealflow" aria-haspopup="dialog">
+                <span class="svc-card__title">Curated Deal Flow</span>
+                <span class="svc-card__more" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></svg></span>
+              </button></li>
             </ul>
+            <a class="btn" href="#invest">Invest with us</a>
           </section>
         </div>
-
-        <div class="center" data-reveal>
-          <a class="btn" href="#invest">Invest with us</a>
-        </div>
       </div>
+
+      <!-- Service detail dialog: grows from the card that opened it (js/main.js, initServices) -->
+      <dialog class="svc-dialog" aria-labelledby="svc-dialog-title" data-svc-dialog>
+        <div class="svc-dialog__panel" data-svc-panel>
+          <button class="svc-dialog__close icon-btn" type="button" aria-label="Close" data-svc-close>
+            <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </button>
+          <p class="svc-dialog__group" data-svc-group></p>
+          <h3 class="svc-dialog__title" id="svc-dialog-title" data-svc-title></h3>
+          <div data-svc-body></div>
+          <a class="btn svc-dialog__cta" href="#" data-svc-cta></a>
+        </div>
+      </dialog>
+
+      <!-- Dialog copy: one template per service. Edit freely. -->
+      <template id="svc-prefunding" data-group="For Founders" data-title="Pre-funding" data-cta="Pitch to us" data-href="#raise">
+        <p class="svc-dialog__summary">Get investor-ready before you start the raise.</p>
+        <ul class="svc-items" role="list">
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-chart"/></svg></span><span class="svc-item__text"><strong>Financial Modelling</strong><span>Projections built on assumptions you can defend in the room.</span></span></li>
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-deck"/></svg></span><span class="svc-item__text"><strong>Pitch Decks</strong><span>A narrative and deck structured the way investors read them.</span></span></li>
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-scale"/></svg></span><span class="svc-item__text"><strong>Valuation Reports</strong><span>A defensible valuation range, with the method shown.</span></span></li>
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-search"/></svg></span><span class="svc-item__text"><strong>Market Research</strong><span>Market sizing and competitive landscape, properly sourced.</span></span></li>
+        </ul>
+      </template>
+      <template id="svc-fundraising" data-group="For Founders" data-title="Fundraising" data-cta="Pitch to us" data-href="#raise">
+        <p class="svc-dialog__summary">We run the raise alongside you, from first meeting to close.</p>
+        <ul class="svc-items" role="list">
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-network"/></svg></span><span class="svc-item__text"><strong>Investor Access</strong><span>Introductions across our network of 400+ HNIs and family offices and 300+ venture funds.</span></span></li>
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-talk"/></svg></span><span class="svc-item__text"><strong>Negotiation Support</strong><span>Term-sheet review and negotiation, so you know what every clause costs you.</span></span></li>
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-doc-check"/></svg></span><span class="svc-item__text"><strong>Transaction &amp; Legal Support</strong><span>Diligence, documentation and closing, handled with you.</span></span></li>
+        </ul>
+      </template>
+      <template id="svc-community" data-group="For Investors" data-title="Community &amp; Education" data-cta="Invest with us" data-href="#invest">
+        <p class="svc-dialog__summary">Learn early-stage investing alongside other investors.</p>
+        <ul class="svc-items" role="list">
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-cap"/></svg></span><span class="svc-item__text"><strong>Investor Sessions</strong><span>How to evaluate startups, valuations and term sheets, explained simply.</span></span></li>
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-people"/></svg></span><span class="svc-item__text"><strong>Peer Community</strong><span>Share notes on deals and sectors with other investors.</span></span></li>
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-spark"/></svg></span><span class="svc-item__text"><strong>Founder Access</strong><span>Meet the founders behind the companies you back.</span></span></li>
+        </ul>
+      </template>
+      <template id="svc-documentation" data-group="For Investors" data-title="Full Documentation" data-cta="Invest with us" data-href="#invest">
+        <p class="svc-dialog__summary">Every opportunity comes with the paperwork done properly.</p>
+        <ul class="svc-items" role="list">
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-search"/></svg></span><span class="svc-item__text"><strong>Due Diligence</strong><span>Our diligence findings, shared with every opportunity.</span></span></li>
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-doc"/></svg></span><span class="svc-item__text"><strong>Investment Memo</strong><span>A written memo on the business, the round and the risks.</span></span></li>
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-doc-check"/></svg></span><span class="svc-item__text"><strong>Legal Paperwork</strong><span>Agreements prepared and executed for you.</span></span></li>
+        </ul>
+      </template>
+      <template id="svc-syndicate" data-group="For Investors" data-title="Syndicate Access" data-cta="Invest with us" data-href="#invest">
+        <p class="svc-dialog__summary">Back early-stage startups alongside other investors.</p>
+        <ul class="svc-items" role="list">
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-coins"/></svg></span><span class="svc-item__text"><strong>From ₹2 Lakh</strong><span>Start with a minimum syndicate ticket of ₹2 Lakh.</span></span></li>
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-pie"/></svg></span><span class="svc-item__text"><strong>Pooled Investing</strong><span>Invest together through a syndicate, on the same terms.</span></span></li>
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-trend"/></svg></span><span class="svc-item__text"><strong>Rounds of $50K – $2M</strong><span>Access the round sizes where early value is created.</span></span></li>
+        </ul>
+      </template>
+      <template id="svc-dealflow" data-group="For Investors" data-title="Curated Deal Flow" data-cta="Invest with us" data-href="#invest">
+        <p class="svc-dialog__summary">Opportunities we have screened before they reach you.</p>
+        <ul class="svc-items" role="list">
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-filter"/></svg></span><span class="svc-item__text"><strong>Screened First</strong><span>Startups evaluated by our team before you see them.</span></span></li>
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-grid"/></svg></span><span class="svc-item__text"><strong>Across Sectors</strong><span>From space-tech and drones to mobility and rural commerce.</span></span></li>
+          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-spark"/></svg></span><span class="svc-item__text"><strong>Early Stage</strong><span>Built on 60+ startup investments initiated.</span></span></li>
+        </ul>
+      </template>
     </section>
   </main>
 
