@@ -335,13 +335,13 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .card__icon {
   margin-top: auto;
   align-self: flex-end;
-  width: 60px; height: 60px;
+  width: 68px; height: 68px;
   margin-right: -6px; margin-bottom: -10px;
   color: var(--ink);
   transition: transform 420ms var(--ease-out);
 }
-.card--sm .card__icon { width: 46px; height: 46px; margin-bottom: -4px; }
-.card__icon svg { width: 100%; height: 100%; }
+.card--sm .card__icon { width: 54px; height: 54px; margin-bottom: -4px; }
+.card__icon img { display: block; width: 100%; height: 100%; object-fit: contain; }
 
 /* Photo cards — a frosted veil keeps the photo as atmosphere and the text legible */
 .card__photo {
@@ -539,7 +539,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   box-shadow: inset 0 0 0 1px rgba(203, 140, 124, 0.45);    /* hairline in golden glow */
 }
 .svc-group__head { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-.svc-group__icon { width: 46px; height: 46px; color: var(--ink); }
+.svc-group__icon { width: 64px; height: 64px; object-fit: contain; }
 .svc-group__head h3 { font: 400 0.9375rem/1.3 var(--font-sans); }
 
 .svc-cards {
@@ -739,7 +739,7 @@ html:has(.svc-dialog[open]) { overflow: hidden; }
   .cards--3 .card:last-child { grid-column: auto; }
   .card { min-height: 360px; padding: 28px 26px 30px; }
   .card--sm { min-height: 260px; }
-  .card__icon { width: 52px; height: 52px; }
+  .card__icon { width: 58px; height: 58px; }
 
   .stats__grid { grid-template-columns: repeat(2, 1fr); }
   .stat dt { font-size: 1rem; }
