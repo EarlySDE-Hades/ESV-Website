@@ -547,6 +547,208 @@
   /* ------------------------------------------------------------------------ */
   const collage = $('[data-collage]');
   if (collage) initCollage(collage);
+  const heroSection = $('.hero');
+  if (heroSection) initHeroField(heroSection);
+
+  /* ------------------------------------------------------------------------
+     Hero field — the collage's sparkle motif extended into a quiet, living
+     background: sparkles and seeds drift up, twinkle one at a time, lean away
+     from the pointer, and a tap on empty space pops a small burst.
+     One rAF loop, paused off-screen; a still frame under reduced motion.
+     ------------------------------------------------------------------------ */
+  function initHeroField(hero) {
+    const wrap = $('.hero__media-wrap', hero);
+    if (!wrap || !document.createElement('canvas').getContext) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.className = 'hero-field';
+    canvas.setAttribute('aria-hidden', 'true');
+    hero.prepend(canvas);
+    const ctx = canvas.getContext('2d');
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    const GREY = '161,161,161';        // the collage sparkles' own stroke colour
+    const GLOW = '203,140,124';        // golden glow
+    const SEED = '213,174,143';        // bronze
+    const RADIUS = 160;                // pointer influence, px
+
+    let W = 0, H = 0, dpr = 1, particles = [], bursts = [];
+    let raf = 0, last = 0, visible = true, fieldAlpha = 0;
+    let pointer = null;                // { x, y } in canvas px, or null
+
+    const rand = (a, b) => a + Math.random() * (b - a);
+
+    function makeParticle(spawnAnywhere = true) {
+      const sparkle = Math.random() < 0.72;
+      return {
+        sparkle,
+        x: rand(0, W),
+        y: spawnAnywhere ? rand(0, H) : H + rand(10, 40),
+        size: sparkle ? rand(7, 20) : rand(1.1, 2.1),
+        color: sparkle ? (Math.random() < 0.18 ? GLOW : GREY) : SEED,
+        base: sparkle ? rand(0.32, 0.62) : rand(0.28, 0.5),
+        vy: -rand(3, 8),                       // px/s, rising like seeds
+        sway: rand(4, 9), swayRate: rand(0.08, 0.16), phase: rand(0, Math.PI * 2),
+        rot: rand(0, Math.PI / 4),
+        // springs for pointer response (critically damped)
+        ox: 0, oy: 0, vox: 0, voy: 0, lit: 0, vlit: 0,
+        // twinkle
+        nextTwinkle: rand(1, 14), twinkle: 0,
+      };
+    }
+
+    function resize() {
+      const heroRect = hero.getBoundingClientRect();
+      const h = wrap.offsetTop + wrap.offsetHeight + 40;   // collage band, fading before the headline
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = Math.round(heroRect.width); H = Math.round(h);
+      canvas.style.height = H + 'px';
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const target = Math.max(12, Math.min(42, Math.round((W * H) / 24000)));
+      while (particles.length < target) particles.push(makeParticle());
+      particles.length = target;
+      particles.forEach((p) => { if (p.x > W) p.x = rand(0, W); if (p.y > H) p.y = rand(0, H); });
+      if (!raf) draw(performance.now() / 1000, 0);
+    }
+
+    function sparklePath(size) {
+      // Eight rays with an open centre — same construction as the collage SVG sparkles
+      const inner = size * 0.32, outer = size;
+      for (let i = 0; i < 8; i++) {
+        const a = (i * Math.PI) / 4;
+        const r2 = i % 2 ? outer * 0.55 : outer;        // diagonals shorter
+        ctx.moveTo(Math.cos(a) * inner, Math.sin(a) * inner);
+        ctx.lineTo(Math.cos(a) * r2, Math.sin(a) * r2);
+      }
+    }
+
+    function step(p, t, dt) {
+      p.y += p.vy * dt;
+      if (p.y < -30) Object.assign(p, makeParticle(false));
+
+      // Pointer: lean away + light up, eased with a critically damped spring
+      let tx = 0, ty = 0, tl = 0;
+      if (pointer) {
+        const px = p.x + Math.sin(t * p.swayRate + p.phase) * p.sway;
+        const dx = px - pointer.x, dy = p.y - pointer.y;
+        const d = Math.hypot(dx, dy);
+        if (d < RADIUS && d > 0.01) {
+          const f = (1 - d / RADIUS) ** 2;
+          tx = (dx / d) * f * 24; ty = (dy / d) * f * 24; tl = f;
+        }
+      }
+      const k = 110, c = 21;                              // ω ≈ 10.5 → response ≈ 0.6 s, ζ = 1
+      p.vox += (-k * (p.ox - tx) - c * p.vox) * dt; p.ox += p.vox * dt;
+      p.voy += (-k * (p.oy - ty) - c * p.voy) * dt; p.oy += p.voy * dt;
+      p.vlit += (-k * (p.lit - tl) - c * p.vlit) * dt; p.lit += p.vlit * dt;
+
+      // Occasional individual twinkle (never in unison, never a steady pulse)
+      if (p.sparkle) {
+        p.nextTwinkle -= dt;
+        if (p.nextTwinkle <= 0 && p.twinkle === 0) { p.twinkle = 0.0001; p.nextTwinkle = rand(6, 14); }
+        if (p.twinkle > 0) { p.twinkle += dt / 0.9; if (p.twinkle >= 1) p.twinkle = 0; }
+      }
+    }
+
+    function draw(t, dt) {
+      ctx.clearRect(0, 0, W, H);
+      ctx.lineCap = 'round';
+      for (const p of particles) {
+        if (dt) step(p, t, dt);
+        const x = p.x + Math.sin(t * p.swayRate + p.phase) * p.sway + p.ox;
+        const y = p.y + p.oy;
+        // fade near the field's top and bottom edges
+        const edge = Math.min(1, y / 60, (H - y) / 90);
+        if (edge <= 0) continue;
+        const tw = p.twinkle > 0 ? Math.sin(p.twinkle * Math.PI) : 0;
+        const lit = Math.max(0, Math.min(1, p.lit));
+        const alpha = Math.min(1, (p.base + lit * 0.4 + tw * 0.3)) * edge * fieldAlpha;
+        ctx.save();
+        ctx.translate(x, y);
+        if (p.sparkle) {
+          ctx.rotate(p.rot + tw * (Math.PI / 4) + lit * 0.35);
+          const s = 1 + tw * 0.3 + lit * 0.35;
+          ctx.beginPath(); sparklePath(p.size * 0.5 * s);
+          ctx.strokeStyle = `rgba(${p.color},${alpha})`;
+          ctx.lineWidth = p.size > 14 ? 1.6 : 1.2;
+          ctx.stroke();
+        } else {
+          ctx.beginPath(); ctx.arc(0, 0, p.size * (1 + lit * 0.5), 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${p.color},${alpha})`;
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+      // Tap bursts: a seed popping — rays open outward and fade
+      bursts = bursts.filter((b) => (b.age += dt) < 0.9);
+      for (const b of bursts) {
+        const e = 1 - (1 - b.age / 0.9) ** 3;            // ease-out cubic
+        const a = (1 - b.age / 0.9) * 0.75;
+        b.parts.forEach((q) => {
+          ctx.save();
+          ctx.translate(b.x + Math.cos(q.a) * q.d * e, b.y + Math.sin(q.a) * q.d * e);
+          ctx.rotate(q.a + e * 0.6);
+          ctx.beginPath(); sparklePath(q.s * (0.6 + e * 0.4));
+          ctx.strokeStyle = `rgba(${q.c},${a})`; ctx.lineWidth = 1.2; ctx.stroke();
+          ctx.restore();
+        });
+      }
+    }
+
+    function frame(now) {
+      const t = now / 1000;
+      const dt = Math.min(t - last, 1 / 30); last = t;
+      fieldAlpha = Math.min(1, fieldAlpha + dt / 1.2);    // gentle fade-in on load
+      draw(t, dt);
+      raf = requestAnimationFrame(frame);
+    }
+    function start() {
+      if (raf || reduceMotion.matches || !visible || document.hidden) return;
+      last = performance.now() / 1000;
+      raf = requestAnimationFrame(frame);
+    }
+    function stop() { if (raf) cancelAnimationFrame(raf); raf = 0; }
+    function sync() {
+      if (reduceMotion.matches) { stop(); fieldAlpha = 1; pointer = null; bursts = []; draw(0, 0); return; }
+      visible && !document.hidden ? start() : stop();
+    }
+
+    // Pointer: fine pointers only (on touch there is no hover to respond to)
+    hero.addEventListener('pointermove', (e) => {
+      if (!finePointer.matches || reduceMotion.matches) return;
+      const r = canvas.getBoundingClientRect();
+      pointer = { x: e.clientX - r.left, y: e.clientY - r.top };
+    }, { passive: true });
+    hero.addEventListener('pointerleave', () => { pointer = null; });
+
+    // Tap / click on empty hero space pops a small burst (never on links or buttons)
+    hero.addEventListener('pointerdown', (e) => {
+      if (reduceMotion.matches || e.button !== 0 || e.target.closest('a, button, input')) return;
+      const r = canvas.getBoundingClientRect();
+      const x = e.clientX - r.left, y = e.clientY - r.top;
+      if (y > H) return;
+      const n = 6;
+      bursts.push({
+        x, y, age: 0,
+        parts: Array.from({ length: n }, (_, i) => ({
+          a: (i / n) * Math.PI * 2 + rand(-0.25, 0.25),
+          d: rand(28, 54), s: rand(3, 6),
+          c: Math.random() < 0.34 ? GLOW : GREY,
+        })),
+      });
+      if (bursts.length > 6) bursts.shift();
+    });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([en]) => { visible = en.isIntersecting; sync(); }).observe(canvas);
+    }
+    document.addEventListener('visibilitychange', sync);
+    reduceMotion.addEventListener('change', sync);
+    new ResizeObserver(resize).observe(wrap);
+    resize();
+    sync();
+  }
 
   const header = $('[data-header]');
   if (header) { initHeader(header); initSearch(header); initMobileMenu(header); }

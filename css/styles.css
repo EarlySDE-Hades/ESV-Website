@@ -230,7 +230,23 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 /* ==========================================================================
    Hero
    ========================================================================== */
-.hero { padding-block: 8px clamp(88px, 10vw, 128px); }
+.hero { position: relative; isolation: isolate; padding-block: 8px clamp(88px, 10vw, 128px); }
+
+/* Live field behind the collage (drawn by js/main.js). Sits below every hero
+   layer, never takes input, and dissolves at the sides and before the headline. */
+.hero-field {
+  position: absolute; top: 0; left: 0; z-index: -1;
+  width: 100%;
+  pointer-events: none;
+  -webkit-mask-image:
+    linear-gradient(to bottom, #000 0, #000 72%, transparent 100%),
+    linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, #000 0, #000 72%, transparent 100%),
+    linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+  mask-composite: intersect;
+}
 .hero__inner { text-align: center; margin-top: clamp(56px, 7vw, 88px); }
 
 /* Paper collage — source-canvas proportions, directly on the page */
