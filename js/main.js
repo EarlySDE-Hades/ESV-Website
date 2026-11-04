@@ -180,13 +180,21 @@
       wheelTimer = setTimeout(() => { wheelActive = false; settle(0); }, 120);
     }, { passive: false });
 
-    /* Keyboard */
+    /* Keyboard — repeated presses step on from where the strip is *heading*,
+       not where it happens to be mid-flight, so ten presses move ten logos. */
+    let keyTarget = null;
+    viewport.addEventListener('pointerdown', () => { keyTarget = null; });
+    viewport.addEventListener('wheel', () => { keyTarget = null; }, { passive: true });
     viewport.addEventListener('keydown', (e) => {
-      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) return;
       e.preventDefault();
-      const current = nearestSnap(spring.running ? spring.value : x);
-      const i = snaps.indexOf(current);
-      const next = snaps[Math.max(0, Math.min(snaps.length - 1, i + (e.key === 'ArrowRight' ? 1 : -1)))];
+      const from = spring.running && keyTarget !== null ? keyTarget : nearestSnap(x);
+      const i = snaps.indexOf(from);
+      let next;
+      if (e.key === 'Home') next = snaps[0];
+      else if (e.key === 'End') next = snaps[snaps.length - 1];
+      else next = snaps[Math.max(0, Math.min(snaps.length - 1, i + (e.key === 'ArrowRight' ? 1 : -1)))];
+      keyTarget = next;
       spring.to(next, { from: x, damping: 1, response: 0.4 });
     });
 

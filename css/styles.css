@@ -431,18 +431,9 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   display: grid; grid-template-columns: repeat(6, 1fr); align-items: center;
   gap: 28px; margin-top: 44px;
 }
-.logo-row li { display: grid; place-items: center; min-height: 80px; text-align: center; }
-.logo-row img { max-height: 72px; width: auto; }
-
-.wordmark {
-  display: inline-block;
-  font: 400 0.75rem/1.25 var(--font-sans);
-  color: var(--ink-3);
-  max-width: 18ch;
-  letter-spacing: 0.01em;
-}
-.wordmark b { display: block; font-weight: 700; font-size: 1.0625rem; letter-spacing: -0.01em; color: var(--ink-2); }
-.wordmark--serif, .wordmark--serif b { font-family: var(--font-serif); }
+.logo-row li { display: grid; place-items: center; min-height: 80px; }
+/* Sizes come from width/height attributes (balanced by visual area in tools/logos/build.py) */
+.logo-row img { max-width: 100%; height: auto; }
 
 /* ==========================================================================
    Portfolio strip — draggable, flickable, rubber-banded (see js/main.js)
@@ -472,14 +463,12 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   padding: 8px 12px;
   text-align: center;
 }
-.company img { max-height: 84px; width: auto; pointer-events: none; }
-.wordmark--logo {
-  display: grid; place-items: center; height: 84px;
-  max-width: none; color: var(--ink-2);
+.company__mark { display: grid; place-items: center; height: 84px; }
+.company__mark img {
+  max-width: 100%; height: auto;
+  pointer-events: none;            /* drags belong to the strip, not the image */
+  -webkit-user-drag: none;
 }
-.wordmark--logo b { font-size: 1.5rem; }
-.wordmark--spaced { font-size: 1.125rem; letter-spacing: 0.32em; font-weight: 500; }
-.wordmark--serif.wordmark--logo { font-size: 1.75rem; letter-spacing: 0.06em; color: #6B1E2E; }
 .company__sector { font: 400 0.8125rem/1.35 var(--font-sans); color: var(--ink); min-height: 2.7em; }
 
 .portfolio .center { margin-top: 64px; }
