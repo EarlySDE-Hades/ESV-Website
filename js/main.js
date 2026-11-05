@@ -1239,6 +1239,25 @@
     sync();
   }
 
+  /* About submenu — hover and keyboard focus open it in CSS; the chevron toggles it
+     for click and touch. Esc or a click outside closes it. */
+  function initNavMenu(menu) {
+    const toggle = $('[data-nav-menu-toggle]', menu);
+    const set = (open) => {
+      menu.classList.toggle('is-open', open);
+      menu.classList.toggle('is-closed', !open);
+      toggle.setAttribute('aria-expanded', String(open));
+    };
+    toggle.addEventListener('click', (e) => { e.stopPropagation(); set(!menu.classList.contains('is-open')); });
+    menu.addEventListener('keydown', (e) => { if (e.key === 'Escape') { set(false); toggle.focus(); } });
+    // Leaving hands control back to hover/focus
+    menu.addEventListener('mouseleave', () => { if (!menu.contains(document.activeElement)) menu.classList.remove('is-open', 'is-closed'); toggle.setAttribute('aria-expanded', 'false'); });
+    menu.addEventListener('mouseenter', () => { if (!menu.classList.contains('is-closed')) toggle.setAttribute('aria-expanded', 'true'); });
+    menu.addEventListener('focusout', (e) => { if (!menu.contains(e.relatedTarget)) { menu.classList.remove('is-open', 'is-closed'); toggle.setAttribute('aria-expanded', 'false'); } });
+    document.addEventListener('click', (e) => { if (!menu.contains(e.target) && menu.classList.contains('is-open')) { menu.classList.remove('is-open', 'is-closed'); toggle.setAttribute('aria-expanded', 'false'); } });
+  }
+  $$('[data-nav-menu]').forEach(initNavMenu);
+
   const header = $('[data-header]');
   if (header) { initHeader(header); initSearch(header); initMobileMenu(header); }
   $$('[data-strip]').forEach(initStrip);

@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy&display=swap" />
-  <link rel="stylesheet" href="css/styles.css?v=202611051035" />
+  <link rel="stylesheet" href="css/styles.css?v=202611051203" />
 
   <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
   <script>document.documentElement.classList.add('js');</script>
@@ -33,10 +33,21 @@
 
       <nav class="primary-nav" aria-label="Primary">
         <ul class="primary-nav__links">
-          <li><a href="index.html#about">About</a></li>
+          <li class="nav-menu" data-nav-menu>
+            <a href="index.html#about">About</a>
+            <button class="nav-menu__toggle" type="button" aria-expanded="false" aria-controls="about-menu" aria-label="More in About" data-nav-menu-toggle>
+              <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <!-- Submenu: grows out of the About item on hover, keyboard focus or chevron click -->
+            <div class="nav-menu__panel" id="about-menu">
+              <ul>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="team.html" aria-current="page">Team</a></li>
+                <li><a href="index.html#services">Services</a></li>
+              </ul>
+            </div>
+          </li>
           <li><a href="index.html#portfolio">Our Portfolio</a></li>
-          <li><a href="team.html" aria-current="page">Team</a></li>
-          <li><a href="index.html#services">Services</a></li>
           <li><a href="index.html#perspectives">Perspectives</a></li>
           <li class="nav-reveal">
             <a href="index.html#prologue">Prologue</a>
@@ -76,9 +87,9 @@
       <nav aria-label="Mobile">
         <ul>
           <li><a href="index.html#about">About</a></li>
+          <li class="mobile-menu__sub"><a href="team.html" aria-current="page">Team</a></li>
+          <li class="mobile-menu__sub"><a href="index.html#services">Services</a></li>
           <li><a href="index.html#portfolio">Our Portfolio</a></li>
-          <li><a href="team.html" aria-current="page">Team</a></li>
-          <li><a href="index.html#services">Services</a></li>
           <li><a href="index.html#perspectives">Perspectives</a></li>
           <li><a href="index.html#prologue">Prologue</a></li>
         </ul>
@@ -180,6 +191,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=202611051035" defer></script>
+  <script src="js/main.js?v=202611051203" defer></script>
 </body>
 </html>
