@@ -31,6 +31,7 @@
   /* Type */
   --font-serif: "Sorts Mill Goudy", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --font-display-num: "Cormorant Garamond", var(--font-serif);
+  --font-italic: "Playfair Display", Georgia, serif;   /* real italic cut, never synthesised */
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* Layout */
@@ -1041,7 +1042,7 @@ main > section:not(.hero) { position: relative; z-index: 1; }
 }
 .person__role {
   margin-top: 6px;
-  font: italic 400 1rem/1.35 var(--font-serif);
+  font: italic 400 0.9375rem/1.4 var(--font-italic);
   color: var(--ink-2);
 }
 .person__bio {
@@ -1233,3 +1234,25 @@ main > section:not(.hero) { position: relative; z-index: 1; }
 .profile__linkedin svg { width: 14px; height: 14px; }
 .profile__linkedin:not([href]) { color: var(--ink-2); text-decoration: none; cursor: default; }   /* placeholder until a URL is added */
 @media (hover: hover) and (pointer: fine) { .profile__linkedin:hover { text-decoration-color: currentColor; } }
+
+/* Team dialog: designation sits under the name, in the same italic as the cards */
+.team-dialog .svc-dialog__panel { display: flex; flex-direction: column; }
+.team-dialog .svc-dialog__title { order: 1; }
+.team-dialog .svc-dialog__group {
+  order: 2; margin-top: 8px;
+  font: italic 400 1.0625rem/1.4 var(--font-italic);
+  letter-spacing: 0; text-transform: none; color: var(--ink-2);
+}
+.team-dialog [data-svc-body] { order: 3; }
+.team-dialog .svc-dialog__cta { order: 4; }
+.profile__bio { color: var(--ink); }
+.team-dialog .pl-dialog__label { color: #9A5B4C; }                 /* brand brown (golden glow, darkened) */
+.profile__linkedin { gap: 8px; }
+.profile__linkedin .profile__li { width: 18px; height: 18px; }
+.profile__logos { gap: 18px 32px; }
+.profile__logos li { min-height: 48px; }
+.profile__logos img { height: 42px; max-width: 220px; }
+
+/* Campus row: logos keep their own widths with equal gaps between them (JS sets each width) */
+.carousel[data-visible] .company { padding-inline: 0; }
+.carousel[data-visible] .company__mark { padding-inline: 0; }

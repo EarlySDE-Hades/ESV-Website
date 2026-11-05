@@ -100,7 +100,18 @@
         const want = +carousel.dataset.visible;
         const n = innerWidth <= 560 ? Math.min(want, 2) : innerWidth <= 960 ? Math.min(want, 3) : want;
         const pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
-        track.style.setProperty('--item-w', `${Math.floor((viewport.clientWidth - pad * 2) / n)}px`);
+        // Equal *gaps*, not equal slots: wide wordmarks would otherwise crowd their neighbours.
+        // Each item = its logo's width + one gap; the gap is chosen so the first n fill the strip.
+        const items = $$('.company', track);
+        const logoW = items.map((li) => { const img = $('img', li); return img ? +img.getAttribute('width') : 160; });
+        const avail = viewport.clientWidth - pad * 2;
+        const first = logoW.slice(0, n).reduce((a, b) => a + b, 0);
+        const gap = Math.max(28, (avail - first) / n);
+        const fit = first + gap * n > avail ? avail / (first + gap * n) : 1;   // very narrow: shrink logos a touch
+        items.forEach((li, i) => {
+          li.style.width = `${Math.floor(logoW[i] * fit + gap)}px`;
+          const img = $('img', li); if (img) img.style.width = `${Math.floor(logoW[i] * fit)}px`;
+        });
       }
       const overflow = track.scrollWidth - viewport.clientWidth;
       const fits = overflow <= 0;
