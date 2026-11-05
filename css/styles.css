@@ -430,20 +430,33 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .card--sm .card__icon { width: 54px; height: 54px; margin-bottom: -4px; }
 .card__icon img { display: block; width: 100%; height: 100%; object-fit: contain; }
 
-/* Photo cards — a frosted veil keeps the photo as atmosphere and the text legible */
+/* Photo cards — frosted glass at rest; on hover the frost clears and the photo comes through.
+   A soft wash behind the text stays, so the copy is readable on the clear photo too. */
 .card__photo {
-  position: absolute; inset: 0; z-index: -2;
+  position: absolute; inset: 0; z-index: -3;
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: blur(1.5px) saturate(0.85);
-  transform: scale(1.04);           /* hides the soft blur edge */
-  transition: transform 900ms var(--ease-out);
+  filter: blur(5px) saturate(0.85);
+  transform: scale(1.06);           /* hides the soft blur edge */
+  transition: filter 520ms var(--ease-out), transform 900ms var(--ease-out);
 }
-.card:has(.card__photo)::before {
-  content: ""; position: absolute; inset: 0; z-index: -1;
-  background: rgba(238, 238, 238, 0.62);
-  transition: background-color 420ms var(--ease-out);
+.card:has(.card__photo)::before {     /* the frost */
+  content: ""; position: absolute; inset: 0; z-index: -2;
+  background: rgba(238, 238, 238, 0.55);
+  transition: opacity 520ms var(--ease-out);
 }
+.card:has(.card__photo)::after {      /* legibility wash under the text, revealed as the frost lifts */
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(244, 244, 244, 0.9) 0%, rgba(244, 244, 244, 0.72) 34%, rgba(244, 244, 244, 0) 62%);
+  opacity: 0;
+  transition: opacity 520ms var(--ease-out);
+}
+.card--sm:has(.card__photo)::after {
+  background: linear-gradient(180deg, rgba(244, 244, 244, 0.92) 0%, rgba(244, 244, 244, 0.8) 52%, rgba(244, 244, 244, 0) 82%);
+}
+.card:focus-visible .card__photo { filter: none; transform: scale(1.04); }
+.card:focus-visible:has(.card__photo)::before { opacity: 0; }
+.card:focus-visible:has(.card__photo)::after { opacity: 1; }
 
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
@@ -456,8 +469,9 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   }
   .card:hover .card__icon { transform: translateY(-3px); }
   /* Lift the veil slightly: the photo comes forward as the card does */
-  .card:hover .card__photo { transform: scale(1.07); }
-  .card:hover:has(.card__photo)::before { background-color: rgba(238, 238, 238, 0.52); }
+  .card:hover .card__photo { filter: none; transform: scale(1.04); }
+  .card:hover:has(.card__photo)::before { opacity: 0; }
+  .card:hover:has(.card__photo)::after { opacity: 1; }
   .card:active { transform: translateY(-1px) scale(0.985); }
 }
 
