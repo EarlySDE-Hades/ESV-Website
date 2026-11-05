@@ -95,6 +95,13 @@
     const spring = createSpring(render);
 
     function measure() {
+      // data-visible="4": size items so exactly N fit (fewer on narrow screens)
+      if (carousel && carousel.dataset.visible) {
+        const want = +carousel.dataset.visible;
+        const n = innerWidth <= 560 ? Math.min(want, 2) : innerWidth <= 960 ? Math.min(want, 3) : want;
+        const pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+        track.style.setProperty('--item-w', `${Math.floor((viewport.clientWidth - pad * 2) / n)}px`);
+      }
       const overflow = track.scrollWidth - viewport.clientWidth;
       const fits = overflow <= 0;
       if (carousel) carousel.classList.toggle('is-static', fits);   // everything visible: centre it, hide arrows
@@ -885,7 +892,7 @@
     const logoImg = el('logo'), sectorEl = el('sector'), nameEl = el('name'), metaEl = el('meta');
     const summaryEl = el('summary'), postsEl = el('posts'), emptyEl = el('empty'), othersEl = el('others'), pageEl = el('page');
     const siteEl = el('site'), siteLabel = el('site-label');
-    const strip = $('[data-strip]');
+    const strip = $('#portfolio [data-strip]');
     const PANEL = '#FAFAFA';
     let origin = null, current = null, anim = null, contentAnim = null, swapAnim = null, closing = false;
     const ARROW = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -902,6 +909,19 @@
       b.append(img); li.append(b); othersEl.append(li);
       b.addEventListener('click', () => swap(c.slug));
     });
+
+    // Arrows page the chip row; they dim at either end
+    const coPrev = $('[data-co-prev]', dialog), coNext = $('[data-co-next]', dialog);
+    const syncChipArrows = () => {
+      const max = othersEl.scrollWidth - othersEl.clientWidth - 6;
+      coPrev.disabled = othersEl.scrollLeft <= 6;
+      coNext.disabled = othersEl.scrollLeft >= max;
+    };
+    const page = (dir) => othersEl.scrollBy({ left: dir * othersEl.clientWidth, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    coPrev.addEventListener('click', () => page(-1));
+    coNext.addEventListener('click', () => page(1));
+    othersEl.addEventListener('scroll', syncChipArrows, { passive: true });
+    new ResizeObserver(syncChipArrows).observe(othersEl);
 
     const esc = (t) => String(t).replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
     function fill(c) {
@@ -938,10 +958,11 @@
         b.setAttribute('aria-current', on ? 'true' : 'false');
         if (on) {                                         // keep the current chip in view without scrolling the page
           const l = b.offsetLeft - othersEl.offsetLeft, r = l + b.offsetWidth;
-          if (l < othersEl.scrollLeft) othersEl.scrollLeft = l - 4;
+          if (l < othersEl.scrollLeft) othersEl.scrollLeft = Math.max(0, l - 4);
           else if (r > othersEl.scrollLeft + othersEl.clientWidth) othersEl.scrollLeft = r - othersEl.clientWidth + 4;
         }
       });
+      syncChipArrows();
     }
 
     function fromOrigin() {

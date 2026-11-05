@@ -591,6 +591,12 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   -webkit-user-drag: none;
 }
 
+/* Campus strip: N logos fill the strip exactly (JS sets --item-w from data-visible) */
+.carousel[data-visible] .company { width: var(--item-w, 200px); }
+.campus .carousel { margin-top: 44px; }
+.partner-mark { display: grid; place-items: center; width: 100%; height: 100px; padding: 8px 12px; }
+.partner-mark img { max-width: 100%; height: auto; pointer-events: none; -webkit-user-drag: none; }
+
 .portfolio .center { margin-top: 64px; }
 .portfolio .btn, .services .btn { min-width: 232px; min-height: 46px; }
 
@@ -924,18 +930,37 @@ html:has(.svc-dialog[open]) { overflow: hidden; }
   margin: 28px -36px 0; padding: 22px 36px 0;
   border-top: 1px solid rgba(17, 17, 17, 0.07);
 }
+/* Four chips visible, arrows either side step a page at a time */
+.co-others-nav {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 8px;
+  margin-top: 12px;
+}
+.co-others__arrow {
+  display: grid; place-items: center;
+  width: 32px; height: 32px; border-radius: 50%;
+  color: var(--ink); background: #fff;
+  box-shadow: inset 0 0 0 1.5px rgba(17, 17, 17, 0.32);
+  transition: transform var(--dur-press) ease-out, opacity 200ms ease-out, box-shadow 160ms ease-out;
+}
+.co-others__arrow:active:not(:disabled) { transform: scale(0.9); }
+.co-others__arrow:disabled { opacity: 0.4; cursor: default; }
+@media (hover: hover) and (pointer: fine) {
+  .co-others__arrow:hover:not(:disabled) { box-shadow: inset 0 0 0 1.5px rgba(17, 17, 17, 0.5), 0 4px 10px -4px rgba(40, 30, 25, 0.3); }
+}
 .co-others {
-  display: flex; gap: 8px; margin-top: 12px;
+  display: flex; gap: 8px;
   overflow-x: auto; scrollbar-width: none;
   overscroll-behavior-x: contain;
   scroll-snap-type: x proximity;
   margin-inline: -4px; padding: 2px 4px 4px;
 }
 .co-others::-webkit-scrollbar { display: none; }
+.co-others > li { flex: 0 0 calc((100% - 24px) / 4); }
+@media (max-width: 480px) { .co-others > li { flex-basis: calc((100% - 16px) / 3); } }
 .co-other {
-  flex: none; scroll-snap-align: start;
+  scroll-snap-align: start;
   display: grid; place-items: center;
-  width: 104px; height: 60px; padding: 8px 12px;
+  width: 100%; height: 60px; padding: 8px 10px;
   border-radius: 12px; background: #fff;
   box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.08);
   transition: transform var(--dur-press) ease-out, box-shadow 160ms ease-out;
