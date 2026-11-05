@@ -318,6 +318,7 @@
     { title: 'Syndicate access', section: 'Services', href: '#services' },
     { title: 'From the deal table', section: 'Perspectives', href: '#perspectives' },
     { title: 'Founder Stories', section: 'Perspectives', href: '#perspectives' },
+    { title: 'Prologue: models, decks, research', section: 'Prologue', href: '#prologue' },
     { title: 'Podcasts', section: 'Prologue', href: '#prologue' },
     { title: 'Pitch to us', section: 'Raise', href: '#raise' },
     { title: 'Invest with us', section: 'Invest', href: '#invest' },
@@ -623,8 +624,7 @@
   if (svcDialog && svcDialog.showModal) initServices(svcDialog);
   const growth = $('[data-growth]');
   if (growth) initGrowth(growth);
-  const coDialog = $('[data-co-dialog]');
-  if (coDialog && coDialog.showModal) initCompanies(coDialog);
+  $$('[data-co-dialog]').forEach((d) => { if (d.showModal) initCompanies(d); });
 
   /* ------------------------------------------------------------------------
      Services — each card opens a native modal <dialog> that grows out of the
@@ -882,17 +882,24 @@
      with a short cross-fade, and keeps the strip in step underneath.
      ------------------------------------------------------------------------ */
   function initCompanies(dialog) {
+    // One component, two uses: portfolio companies (default) and campus partners (data-kind="partner")
+    const scope = $(dialog.dataset.scope || '#portfolio');
+    const partner = dialog.dataset.kind === 'partner';
+    const T = partner
+      ? { kind: 'Campus partner', empty: 'A full partner profile is on its way.', page: 'View partner page', soon: 'Partner page coming soon' }
+      : { kind: 'Portfolio company', empty: 'A full company profile is on its way.', page: 'View company page', soon: 'Company page coming soon' };
     let data;
-    try { data = JSON.parse($('#portfolio-data').textContent); } catch (err) { return; }
+    try { data = JSON.parse($(`#${dialog.dataset.source || 'portfolio-data'}`).textContent); } catch (err) { return; }
+    if (!scope) return;
     const bySlug = new Map(data.map((c) => [c.slug, c]));
-    const logos = new Map($$('[data-company]').map((b) => [b.dataset.company, b]));
+    const logos = new Map($$('[data-company]', scope).map((b) => [b.dataset.company, b]));
     const panel = $('[data-co-panel]', dialog);
     const content = $('[data-co-content]', dialog);
     const el = (k) => $(`[data-co-${k}]`, dialog);
     const logoImg = el('logo'), sectorEl = el('sector'), nameEl = el('name'), metaEl = el('meta');
     const summaryEl = el('summary'), postsEl = el('posts'), emptyEl = el('empty'), othersEl = el('others'), pageEl = el('page');
     const siteEl = el('site'), siteLabel = el('site-label');
-    const strip = $('#portfolio [data-strip]');
+    const strip = $('[data-strip]', scope);
     const PANEL = '#FAFAFA';
     let origin = null, current = null, anim = null, contentAnim = null, swapAnim = null, closing = false;
     const ARROW = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -927,11 +934,11 @@
     function fill(c) {
       current = c;
       logoImg.src = $('img', logos.get(c.slug)).getAttribute('src');
-      sectorEl.textContent = c.sector || 'Portfolio company';
+      sectorEl.textContent = c.sector || T.kind;
       nameEl.textContent = c.name;
       metaEl.textContent = [c.location, c.founded && `Founded ${c.founded}`].filter(Boolean).join(' · ');
       metaEl.hidden = !metaEl.textContent;
-      summaryEl.textContent = c.summary || 'A full company profile is on its way.';
+      summaryEl.textContent = c.summary || T.empty;
       siteEl.hidden = !c.website;
       if (c.website) {
         siteEl.href = c.website;
@@ -947,10 +954,10 @@
       }).join('');
       emptyEl.hidden = posts.length > 0;
       if (c.page) {
-        pageEl.href = c.page; pageEl.textContent = 'View company page';
+        pageEl.href = c.page; pageEl.textContent = T.page;
         pageEl.removeAttribute('aria-disabled'); pageEl.classList.remove('is-disabled');
       } else {
-        pageEl.href = '#'; pageEl.textContent = 'Company page coming soon';
+        pageEl.href = '#'; pageEl.textContent = T.soon;
         pageEl.setAttribute('aria-disabled', 'true'); pageEl.classList.add('is-disabled');
       }
       $$('.co-other', othersEl).forEach((b) => {

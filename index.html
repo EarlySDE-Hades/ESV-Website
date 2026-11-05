@@ -15,8 +15,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy&display=swap" />
-  <link rel="stylesheet" href="css/styles.css?v=202611051301" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy&display=swap" />
+  <link rel="stylesheet" href="css/styles.css?v=202611051311" />
 
   <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
   <script>document.documentElement.classList.add('js');</script>
@@ -227,7 +227,7 @@
         </a>
       </div>
 
-      <div class="cards cards--3" id="prologue">
+      <div class="cards cards--3">
         <a class="card card--sm" href="#" data-reveal>
           <!-- Photo: add assets/perspectives/mit-wpu.webp (≈1200px wide), then uncomment:
           <img class="card__photo" src="assets/perspectives/mit-wpu.webp" alt="" loading="lazy" decoding="async" /> -->
@@ -257,8 +257,6 @@
         <div class="stat" data-reveal style="--i:1"><dt>HNIs and family offices</dt><dd>400+</dd></div>
         <div class="stat" data-reveal style="--i:2"><dt>Venture funds in our network</dt><dd>300+</dd></div>
         <div class="stat" data-reveal style="--i:3"><dt>Entrepreneurs in our community</dt><dd>2,000+</dd></div>
-        <div class="stat" data-reveal style="--i:4"><dt>Typical round size</dt><dd>$50K – $2M</dd></div>
-        <div class="stat" data-reveal style="--i:5"><dt>Minimum syndicate ticket</dt><dd>₹2 Lakh</dd></div>
       </dl>
     </section>
 
@@ -276,18 +274,124 @@
       <!-- Same draggable strip as the portfolio; four partners visible at a time (data-visible) -->
       <div class="carousel container" data-carousel data-visible="4" data-reveal style="--i:1">
         <button class="carousel__arrow" type="button" aria-label="Previous partners" data-strip-prev><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <div class="strip" data-strip tabindex="0" role="region" aria-roledescription="carousel" aria-label="Campus partners: drag, swipe, or use the arrows">
+      <div class="strip" data-strip tabindex="0" role="region" aria-roledescription="carousel" aria-label="Campus partners: drag, swipe, or use the arrows; select a logo for details">
         <ul class="strip__track" role="list" data-strip-track>
-          <li class="company"><span class="partner-mark"><img src="assets/logos/campus/nmims.webp" alt="SVKM&#x27;s NMIMS" width="72" height="72" loading="lazy" decoding="async" draggable="false" /></span></li>
-          <li class="company"><span class="partner-mark"><img src="assets/logos/campus/manipal.webp" alt="Manipal Academy of Higher Education" width="168" height="44" loading="lazy" decoding="async" draggable="false" /></span></li>
-          <li class="company"><span class="partner-mark"><img src="assets/logos/campus/mit-wpu.webp" alt="MIT World Peace University, Pune" width="162" height="47" loading="lazy" decoding="async" draggable="false" /></span></li>
-          <li class="company"><span class="partner-mark"><img src="assets/logos/campus/wise-sndtwu.webp" alt="WISE, SNDTWU Incubation Centre" width="112" height="68" loading="lazy" decoding="async" draggable="false" /></span></li>
-          <li class="company"><span class="partner-mark"><img src="assets/logos/campus/rcoem.webp" alt="Shri Ramdeobaba College of Engineering and Management, Nagpur" width="152" height="50" loading="lazy" decoding="async" draggable="false" /></span></li>
-          <li class="company"><span class="partner-mark"><img src="assets/logos/campus/msins.webp" alt="Maharashtra State Innovation Society" width="164" height="46" loading="lazy" decoding="async" draggable="false" /></span></li>
+          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="nmims"><img src="assets/logos/campus/nmims.webp" alt="SVKM&#x27;s NMIMS" width="72" height="72" loading="lazy" decoding="async" draggable="false" /></button></li>
+          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="manipal"><img src="assets/logos/campus/manipal.webp" alt="Manipal Academy of Higher Education" width="168" height="44" loading="lazy" decoding="async" draggable="false" /></button></li>
+          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="mit-wpu"><img src="assets/logos/campus/mit-wpu.webp" alt="MIT World Peace University, Pune" width="162" height="47" loading="lazy" decoding="async" draggable="false" /></button></li>
+          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="wise-sndtwu"><img src="assets/logos/campus/wise-sndtwu.webp" alt="WISE, SNDTWU Incubation Centre" width="112" height="68" loading="lazy" decoding="async" draggable="false" /></button></li>
+          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="rcoem"><img src="assets/logos/campus/rcoem.webp" alt="Shri Ramdeobaba College of Engineering and Management, Nagpur" width="152" height="50" loading="lazy" decoding="async" draggable="false" /></button></li>
+          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="msins"><img src="assets/logos/campus/msins.webp" alt="Maharashtra State Innovation Society" width="164" height="46" loading="lazy" decoding="async" draggable="false" /></button></li>
         </ul>
       </div>
         <button class="carousel__arrow" type="button" aria-label="Next partners" data-strip-next><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
+
+      <!-- Partner detail dialog: the company dialog component, fed by #partner-data below. -->
+      <dialog class="svc-dialog co-dialog" aria-labelledby="pa-dialog-title" data-co-dialog data-source="partner-data" data-scope="#team" data-kind="partner">
+        <div class="svc-dialog__panel co-dialog__panel" data-co-panel>
+          <button class="svc-dialog__close icon-btn" type="button" aria-label="Close" data-co-close>
+            <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </button>
+          <div class="co-dialog__content" data-co-content>
+            <div class="co-dialog__logo"><img alt="" data-co-logo /></div>
+            <p class="svc-dialog__group" data-co-sector></p>
+            <h3 class="svc-dialog__title co-dialog__title" id="pa-dialog-title" data-co-name></h3>
+            <p class="co-dialog__meta" data-co-meta></p>
+            <p class="co-dialog__summary" data-co-summary></p>
+            <a class="co-dialog__site" href="#" target="_blank" rel="noopener" data-co-site><span data-co-site-label></span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4h6v6M12 4l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <section class="co-dialog__posts" aria-labelledby="pa-posts-title">
+              <h4 class="co-dialog__label" id="pa-posts-title">On the blog</h4>
+              <ul class="co-posts" role="list" data-co-posts></ul>
+              <p class="co-dialog__empty" data-co-empty>No posts about this partner yet. <a href="#perspectives" data-co-jump>Browse Perspectives</a></p>
+            </section>
+          </div>
+          <section class="co-dialog__others" aria-labelledby="pa-others-title">
+            <h4 class="co-dialog__label" id="pa-others-title">More campus partners</h4>
+            <div class="co-others-nav">
+              <button class="co-others__arrow" type="button" aria-label="Previous partners" data-co-prev><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <ul class="co-others" role="list" data-co-others></ul>
+              <button class="co-others__arrow" type="button" aria-label="Next partners" data-co-next><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </section>
+          <div class="co-dialog__actions">
+            <a class="btn" href="#team" data-co-page>View partner page</a>
+            <a class="btn btn--ghost" href="#team" data-co-jump>All campus partners</a>
+          </div>
+        </div>
+      </dialog>
+      <!-- Partner data. Summaries describe each institution; review before launch.
+           Same fields as #portfolio-data; page = ESV partner page URL, posts = blog posts about the partnership. -->
+      <script type="application/json" id="partner-data">
+      [
+        {
+          "slug": "nmims",
+          "name": "SVKM's NMIMS",
+          "sector": "University",
+          "location": "Mumbai",
+          "founded": "1981",
+          "summary": "Narsee Monjee Institute of Management Studies, a deemed-to-be university run by Shri Vile Parle Kelavani Mandal, with schools across management, engineering, law, commerce and more.",
+          "website": "https://www.nmims.edu/",
+          "page": null,
+          "posts": []
+        },
+        {
+          "slug": "manipal",
+          "name": "Manipal Academy of Higher Education",
+          "sector": "University",
+          "location": "Manipal, Karnataka",
+          "founded": "1953",
+          "summary": "MAHE, an Institution of Eminence deemed-to-be university, spanning medicine, engineering, management, design and the sciences.",
+          "website": "https://manipal.edu/",
+          "page": null,
+          "posts": []
+        },
+        {
+          "slug": "mit-wpu",
+          "name": "MIT World Peace University",
+          "sector": "University",
+          "location": "Pune",
+          "founded": null,
+          "summary": "Dr. Vishwanath Karad MIT World Peace University, a private university in Pune with programmes across technology, management, design, law and the liberal arts.",
+          "website": "https://mitwpu.edu.in/",
+          "page": null,
+          "posts": []
+        },
+        {
+          "slug": "wise-sndtwu",
+          "name": "WISE, SNDTWU Incubation Centre",
+          "sector": "Incubator",
+          "location": "Mumbai",
+          "founded": null,
+          "summary": "The incubation centre at SNDT Women's University, supporting women-led and student startups from idea to launch.",
+          "website": null,
+          "page": null,
+          "posts": []
+        },
+        {
+          "slug": "rcoem",
+          "name": "Shri Ramdeobaba College of Engineering and Management",
+          "sector": "Engineering college",
+          "location": "Nagpur",
+          "founded": "1984",
+          "summary": "RCOEM, an autonomous engineering and management college in Nagpur run by the Shri Ramdeobaba Sarvajanik Samiti.",
+          "website": "https://www.rknec.edu/",
+          "page": null,
+          "posts": []
+        },
+        {
+          "slug": "msins",
+          "name": "Maharashtra State Innovation Society",
+          "sector": "Government innovation body",
+          "location": "Mumbai",
+          "founded": null,
+          "summary": "MSInS, the Government of Maharashtra's nodal body for innovation and startups, running programmes, grants and incubator support across the state.",
+          "website": "https://msins.in/",
+          "page": null,
+          "posts": []
+        }
+      ]
+      </script>
     </section>
 
     <!-- ============================== Portfolio ============================== -->
@@ -489,10 +593,6 @@
               <h3 id="founders-title">For Founders</h3>
             </header>
             <ul class="svc-cards" role="list">
-              <li><button class="svc-card" type="button" data-service="prefunding" aria-haspopup="dialog">
-                <span class="svc-card__title">Pre-funding</span>
-                <span class="svc-card__more" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></svg></span>
-              </button></li>
               <li><button class="svc-card" type="button" data-service="fundraising" aria-haspopup="dialog">
                 <span class="svc-card__title">Fundraising</span>
                 <span class="svc-card__more" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></svg></span>
@@ -543,15 +643,6 @@
       </dialog>
 
       <!-- Dialog copy: one template per service. Edit freely. -->
-      <template id="svc-prefunding" data-group="For Founders" data-title="Pre-funding" data-cta="Pitch to us" data-href="https://ecosystem.earlyseedventures.com/apply">
-        <p class="svc-dialog__summary">Get investor-ready before you start the raise.</p>
-        <ul class="svc-items" role="list">
-          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-chart"/></svg></span><span class="svc-item__text"><strong>Financial Modelling</strong><span>Projections built on assumptions you can defend in the room.</span></span></li>
-          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-deck"/></svg></span><span class="svc-item__text"><strong>Pitch Decks</strong><span>A narrative and deck structured the way investors read them.</span></span></li>
-          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-scale"/></svg></span><span class="svc-item__text"><strong>Valuation Reports</strong><span>A defensible valuation range, with the method shown.</span></span></li>
-          <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-search"/></svg></span><span class="svc-item__text"><strong>Market Research</strong><span>Market sizing and competitive landscape, properly sourced.</span></span></li>
-        </ul>
-      </template>
       <template id="svc-fundraising" data-group="For Founders" data-title="Fundraising" data-cta="Pitch to us" data-href="https://ecosystem.earlyseedventures.com/apply">
         <p class="svc-dialog__summary">We run the raise alongside you, from first meeting to close.</p>
         <ul class="svc-items" role="list">
@@ -593,6 +684,49 @@
         </ul>
       </template>
     </section>
+    <!-- ============================== Prologue (powered-by area, Prologue brand) ============================== -->
+    <section class="section prologue" id="prologue" aria-labelledby="prologue-title">
+      <div class="container">
+        <div class="prologue__panel" data-reveal>
+          <header class="prologue__head">
+            <p class="prologue__eyebrow">Powered by</p>
+            <h2 class="prologue__title" id="prologue-title"><img src="assets/prologue/prologue-light.webp" alt="Prologue by Earlyseed Ventures" width="320" height="60" loading="lazy" decoding="async" /></h2>
+            <p class="prologue__sub">Get investor-ready before you raise. These services are delivered through Prologue, by Earlyseed Ventures.</p>
+          </header>
+
+          <ul class="prologue__grid" role="list">
+            <li class="prologue-card">
+              <img src="assets/prologue/financial-model.webp" alt="" width="88" height="88" loading="lazy" decoding="async" />
+              <h3>Financial Models</h3>
+              <p>Projections and valuations built on assumptions you can defend in the room.</p>
+            </li>
+            <li class="prologue-card">
+              <img src="assets/prologue/pitch-deck.webp" alt="" width="88" height="88" loading="lazy" decoding="async" />
+              <h3>Pitch Decks</h3>
+              <p>A narrative and deck structured the way investors read them.</p>
+            </li>
+            <li class="prologue-card">
+              <img src="assets/prologue/market-research.webp" alt="" width="88" height="88" loading="lazy" decoding="async" />
+              <h3>Market Research</h3>
+              <p>Market sizing and competitive landscape, properly sourced.</p>
+            </li>
+            <li class="prologue-card">
+              <img src="assets/prologue/dashboard.webp" alt="" width="88" height="88" loading="lazy" decoding="async" />
+              <h3>Dashboards</h3>
+              <p>Clear dashboards for the metrics investors will ask about.</p>
+            </li>
+            <li class="prologue-card">
+              <img src="assets/prologue/consultancy.webp" alt="" width="88" height="88" loading="lazy" decoding="async" />
+              <h3>Consultancy</h3>
+              <p>One-to-one sessions on strategy, structure and preparing your raise.</p>
+            </li>
+          </ul>
+
+          <a class="prologue__cta" href="https://ecosystem.earlyseedventures.com/apply">Get started</a>
+          <span class="prologue__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- ============================== Footer ============================== -->
@@ -613,6 +747,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=202611051301" defer></script>
+  <script src="js/main.js?v=202611051311" defer></script>
 </body>
 </html>
