@@ -302,6 +302,7 @@
   const SEARCH_INDEX = [
     { title: 'About Earlyseed', section: 'About', href: '#about' },
     { title: 'Our Portfolio', section: 'Portfolio', href: '#portfolio' },
+    { title: 'Leadership', section: 'Team', href: 'team.html#leadership' },
     { title: 'Campus Partnerships', section: 'Team', href: '#team' },
     { title: 'Services for Founders', section: 'Services', href: '#services' },
     { title: 'Services for Investors', section: 'Services', href: '#services' },
@@ -350,7 +351,12 @@
       if (e.key === 'ArrowUp') { e.preventDefault(); highlight(active - 1); }
       if (e.key === 'Enter') {
         const link = $$('a', results)[active];
-        if (link) { e.preventDefault(); pop.hide({ restoreFocus: false }); location.hash = link.getAttribute('href'); }
+        if (link) {
+          e.preventDefault(); pop.hide({ restoreFocus: false });
+          const href = link.getAttribute('href');
+          if (href.startsWith('#') && $(href)) location.hash = href;
+          else location.href = href.startsWith('#') ? 'index.html' + href : href;
+        }
       }
     });
     results.addEventListener('click', (e) => { if (e.target.closest('a')) pop.hide({ restoreFocus: false }); });
