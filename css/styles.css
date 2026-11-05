@@ -201,14 +201,10 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .nav-menu__toggle svg { transition: transform 260ms var(--ease-out); }
 .nav-menu__toggle:active { transform: scale(0.9); }
 .nav-menu__panel {
-  position: absolute; top: calc(100% + 6px); left: -18px; z-index: 5;
-  min-width: 180px; padding: 8px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.86);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  backdrop-filter: blur(20px) saturate(180%);
-  box-shadow: 0 0 0 1px rgba(17, 17, 17, 0.06), 0 18px 36px -16px rgba(40, 30, 25, 0.35);
-  transform-origin: 30px 0;
+  /* Text only: no card, just the links dropping in under About */
+  position: absolute; top: calc(100% + 4px); left: 0; z-index: 5;
+  min-width: 160px;
+  transform-origin: 0 0;
   transform: translateY(-6px) scale(0.96);
   filter: blur(4px);
   opacity: 0; visibility: hidden;
@@ -228,17 +224,23 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
     transition: opacity 200ms ease-out 60ms, transform 320ms var(--ease-out) 60ms, filter 200ms ease-out 60ms, visibility 0s 60ms;
   }
   .nav-menu:hover .nav-menu__toggle svg { transform: rotate(180deg); }
-  .nav-menu__toggle:hover { background: rgba(17, 17, 17, 0.06); }
-  .nav-menu__panel a:hover { background: rgba(17, 17, 17, 0.05); }
+  .nav-menu__toggle:hover { background: rgba(116, 95, 253, 0.08); }
+  /* Faint purple glow on About and on each submenu link */
+  .primary-nav__links .nav-menu > a:hover,
+  .primary-nav__links .nav-menu__panel a:hover {
+    color: var(--purple);
+    text-shadow: 0 0 12px rgba(116, 95, 253, 0.45);
+  }
 }
 /* Esc / chevron-close while still hovered or focused */
 .nav-menu.is-closed .nav-menu__panel { opacity: 0 !important; visibility: hidden !important; }
 .nav-menu.is-closed .nav-menu__toggle svg { transform: none !important; }
 .primary-nav__links .nav-menu__panel a {
-  padding: 11px 12px; border-radius: 10px;
-  font-size: 0.8125rem; text-transform: none; letter-spacing: 0;
-  transition: background-color 140ms ease-out;
+  padding: 9px 0;
+  white-space: nowrap;
+  transition: color 160ms ease-out, text-shadow 200ms ease-out;
 }
+.primary-nav__links .nav-menu > a { transition: opacity 160ms ease-out, color 160ms ease-out, text-shadow 200ms ease-out; }
 .primary-nav__links .nav-menu__panel a::after { content: none; }
 .primary-nav__links .nav-menu__panel a[aria-current="page"] { font-weight: 600; }
 .nav-menu:has(.nav-menu__panel [aria-current="page"]) > a::after { transform: scaleX(1); }
@@ -858,7 +860,7 @@ html:has(.svc-dialog[open]) { overflow: hidden; }
 
 @media (prefers-reduced-transparency: reduce) {
   .card:has(.card__photo)::before, .card:hover:has(.card__photo)::before { background-color: rgba(238, 238, 238, 0.88); }
-  .site-header::before, .search-panel, .mobile-menu, .nav-reveal__card, .nav-menu__panel {
+  .site-header::before, .search-panel, .mobile-menu, .nav-reveal__card {
     background: var(--fair);
     -webkit-backdrop-filter: none; backdrop-filter: none;
   }
