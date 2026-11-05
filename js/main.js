@@ -620,8 +620,7 @@
   if (collage) initCollage(collage);
   const heroSection = $('.hero');
   if (heroSection) initHeroField(heroSection);
-  const svcDialog = $('[data-svc-dialog]');
-  if (svcDialog && svcDialog.showModal) initServices(svcDialog);
+  $$('[data-svc-dialog]').forEach((d) => { if (d.showModal) initServices(d); });
   const growth = $('[data-growth]');
   if (growth) initGrowth(growth);
   $$('[data-co-dialog]').forEach((d) => { if (d.showModal) initCompanies(d); });
@@ -637,7 +636,10 @@
     const groupEl = $('[data-svc-group]', dialog);
     const titleEl = $('[data-svc-title]', dialog);
     const cta = $('[data-svc-cta]', dialog);
-    const CARD_COLOR = getComputedStyle(document.documentElement).getPropertyValue('--golden-glow').trim() || '#CB8C7C';
+    // One component for every card-to-dialog: Services, Prologue, team profiles (data-cards / data-prefix)
+    const prefix = dialog.dataset.prefix || 'svc-';
+    let CARD_COLOR = '#CB8C7C';
+    const colourOf = (el) => { const c = getComputedStyle(el).backgroundColor; return !c || c === 'transparent' || c === 'rgba(0, 0, 0, 0)' ? '#FFFFFF' : c; };
     let origin = null, anim = null, contentAnim = null, closing = false;
 
     function fromCard() {
@@ -649,17 +651,19 @@
     }
 
     function open(card) {
-      const tpl = document.getElementById('svc-' + card.dataset.service);
+      const tpl = document.getElementById(prefix + card.dataset.service);
       if (!tpl) return;
       if (anim) anim.cancel();
       if (contentAnim) contentAnim.forEach((a) => a.cancel());
       closing = false;
       origin = card;
+      CARD_COLOR = colourOf(card);
       groupEl.textContent = tpl.dataset.group;
       titleEl.innerHTML = tpl.dataset.title;
       body.replaceChildren(tpl.content.cloneNode(true));
-      cta.textContent = tpl.dataset.cta;
-      cta.setAttribute('href', tpl.dataset.href);
+      cta.hidden = !tpl.dataset.cta;
+      cta.textContent = tpl.dataset.cta || '';
+      cta.setAttribute('href', tpl.dataset.href || '#');
       dialog.classList.remove('is-closing');
       dialog.showModal();
       panel.scrollTop = 0;
@@ -705,7 +709,7 @@
       anim.onfinish = () => { [...panel.children].forEach((el) => el.getAnimations().forEach((a) => a.cancel())); anim.cancel(); finish(); };
     }
 
-    $$('.svc-card').forEach((card) => card.addEventListener('click', () => open(card)));
+    $$(dialog.dataset.cards || '.svc-card').forEach((card) => card.addEventListener('click', () => open(card)));
     $('[data-svc-close]', dialog).addEventListener('click', () => close());
     dialog.addEventListener('cancel', (e) => { e.preventDefault(); close(); });   // Esc
     dialog.addEventListener('click', (e) => { if (e.target === dialog) close(); }); // backdrop

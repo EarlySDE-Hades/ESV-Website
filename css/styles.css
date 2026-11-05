@@ -638,9 +638,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   padding: 18px 18px 30px;
   border-radius: 12px;
   background: var(--golden-glow);
-  box-shadow:
-    inset 0 0 0 6px var(--golden-glow), inset 0 0 0 7px var(--tile-edge),
-    0 1px 2px rgba(58, 30, 22, 0.12), 0 12px 22px -16px rgba(58, 30, 22, 0.5);
+  box-shadow: 0 1px 2px rgba(58, 30, 22, 0.12), 0 12px 22px -16px rgba(58, 30, 22, 0.5);
   font: 400 clamp(1.0625rem, 1.5vw, 1.25rem)/1.18 var(--font-serif);
   color: var(--ink);
   text-align: center;
@@ -652,7 +650,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .svc-card:active { transform: scale(0.97); transition-duration: var(--dur-press); }
 .svc-card:focus-visible { outline-offset: 4px; }
 .svc-card__more {
-  position: absolute; right: 14px; bottom: 14px;
+  position: absolute; left: 0; right: 0; bottom: 12px; margin-inline: auto;   /* centred under the title */
   display: grid; place-items: center;
   width: 22px; height: 22px; border-radius: 50%;
   background: rgba(255, 255, 255, 0.32);
@@ -663,9 +661,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 @media (hover: hover) and (pointer: fine) {
   .svc-card:hover {
     transform: translateY(-3px);
-    box-shadow:
-      inset 0 0 0 6px var(--golden-glow), inset 0 0 0 7px var(--tile-edge),
-      0 2px 4px rgba(58, 30, 22, 0.12), 0 22px 34px -18px rgba(58, 30, 22, 0.55);
+    box-shadow: 0 2px 4px rgba(58, 30, 22, 0.12), 0 22px 34px -18px rgba(58, 30, 22, 0.55);
   }
   .svc-card:hover .svc-card__more { transform: rotate(90deg); background: rgba(255, 255, 255, 0.55); }
   .svc-card:active { transform: translateY(-1px) scale(0.97); }
@@ -1080,74 +1076,151 @@ main > section:not(.hero) { position: relative; z-index: 1; }
 @media (max-width: 480px) { .person__logos { min-height: 0; } }
 
 /* ==========================================================================
-   Prologue — a "powered by" area in Prologue's own brand
-   (Prologue Brand Guide: #3D3D40 ink, #F2F2F2 paper, blue #3D79F2, teal #49B9CD, mint #59EFC0, IBM Plex Sans)
+   Prologue — a "powered by" area in prologue.co.in's palette
+   (paper #FCFCFB, ink #1B2340, blue #4361EE, teal #2FA6B0, mint #4BE0B0, orange #EE6C3B, Poppins)
    ========================================================================== */
 .prologue { padding-bottom: clamp(96px, 12vw, 160px); }
 .services { padding-bottom: 0; }
 .prologue .container { max-width: calc(1240px + var(--gutter) * 2); }
+.prologue__panel, .pl-dialog {
+  --pl-ink: #1B2340; --pl-paper: #FCFCFB; --pl-muted: #6B7280; --pl-line: #E7E7E2; --pl-wash: #F1F1EC;
+  --pl-blue: #4361EE; --pl-teal: #2FA6B0; --pl-mint: #4BE0B0; --pl-orange: #EE6C3B;
+  --pl-font: "Poppins", var(--font-sans);
+}
 .prologue__panel {
-  --pl-ink: #3D3D40; --pl-paper: #F2F2F2; --pl-muted: #B9B9BE;
-  --pl-blue: #3D79F2; --pl-teal: #49B9CD; --pl-mint: #59EFC0;
-  position: relative; overflow: hidden;
   display: flex; flex-direction: column; align-items: center; text-align: center;
-  padding: clamp(40px, 5vw, 64px) clamp(20px, 4vw, 56px);
+  padding: clamp(40px, 5vw, 60px) clamp(20px, 4vw, 52px) clamp(32px, 4vw, 44px);
   border-radius: 28px;
   background:
-    radial-gradient(120% 80% at 50% -20%, rgba(61, 121, 242, 0.22), transparent 60%),
-    radial-gradient(60% 60% at 110% 110%, rgba(89, 239, 192, 0.12), transparent 60%),
-    var(--pl-ink);
-  color: var(--pl-paper);
-  font-family: "IBM Plex Sans", var(--font-sans);
+    radial-gradient(70% 60% at 0% 0%, rgba(67, 97, 238, 0.07), transparent 60%),
+    radial-gradient(60% 60% at 100% 100%, rgba(75, 224, 176, 0.10), transparent 60%),
+    var(--pl-paper);
+  box-shadow: inset 0 0 0 1px var(--pl-line), 0 24px 48px -32px rgba(27, 35, 64, 0.28);
+  color: var(--pl-ink);
+  font-family: var(--pl-font);
 }
-.prologue__eyebrow {
-  font: 500 0.75rem/1 "IBM Plex Sans", var(--font-sans); letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--pl-mint);
-}
-.prologue__title { margin-top: 14px; }
-.prologue__title img { display: block; width: min(280px, 70vw); height: auto; }
-.prologue__sub { max-width: 560px; margin-top: 18px; font: 400 1rem/1.55 "IBM Plex Sans", var(--font-sans); color: var(--pl-muted); }
+.prologue__head { display: flex; flex-direction: column; align-items: center; }
+.prologue__eyebrow { font: 600 0.75rem/1 var(--pl-font); letter-spacing: 0.16em; text-transform: uppercase; color: var(--pl-blue); }
+.prologue__title { margin-top: 16px; }
+.prologue__title a { display: block; border-radius: 12px; transition: transform var(--dur-press) ease-out, opacity 160ms ease-out; }
+.prologue__title a:active { transform: scale(0.98); }
+.prologue__title img { display: block; width: min(240px, 60vw); height: auto; margin-inline: auto; }
+.prologue__sub { max-width: 600px; margin-top: 20px; font: 400 1rem/1.6 var(--pl-font); color: var(--pl-muted); }
 
 .prologue__grid {
   display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px;
-  width: 100%; margin-top: clamp(36px, 5vw, 52px);
+  width: 100%; margin-top: clamp(36px, 5vw, 48px);
 }
+.prologue__grid > li { display: flex; }
 .prologue-card {
+  position: relative; width: 100%;
   display: flex; flex-direction: column; align-items: center;
-  padding: 26px 18px 28px;
+  padding: 26px 18px 52px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-  transition: background-color 220ms ease-out, box-shadow 220ms ease-out, transform 220ms var(--ease-out);
+  background: #fff;
+  box-shadow: inset 0 0 0 1px var(--pl-line), 0 1px 2px rgba(27, 35, 64, 0.05);
+  color: var(--pl-ink); text-align: center;
+  font-family: var(--pl-font);
+  transition: transform 200ms var(--ease-out), box-shadow 240ms ease-out;
+  -webkit-tap-highlight-color: transparent;
 }
-.prologue-card img { width: 88px; height: 88px; object-fit: contain; }
-.prologue-card h3 { margin-top: 18px; font: 600 1.0625rem/1.25 "IBM Plex Sans", var(--font-sans); color: var(--pl-paper); }
-.prologue-card p { margin-top: 8px; font: 400 0.875rem/1.55 "IBM Plex Sans", var(--font-sans); color: var(--pl-muted); }
+.prologue-card:active { transform: scale(0.97); transition-duration: var(--dur-press); }
+.prologue-card img { width: 84px; height: 84px; object-fit: contain; }
+.prologue-card__title { margin-top: 16px; font: 600 1.0625rem/1.25 var(--pl-font); }
+.prologue-card__line { margin-top: 8px; font: 400 0.8125rem/1.55 var(--pl-font); color: var(--pl-muted); }
+.prologue-card__more {
+  position: absolute; left: 0; right: 0; bottom: 16px; margin-inline: auto;
+  display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%;
+  background: var(--pl-wash); box-shadow: inset 0 0 0 1px var(--pl-line);
+  transition: transform 420ms var(--ease-out), background-color 200ms ease-out;
+}
+.prologue-card__more svg { width: 12px; height: 12px; fill: none; stroke: var(--pl-ink); stroke-width: 1.8; stroke-linecap: round; }
 @media (hover: hover) and (pointer: fine) {
-  .prologue-card:hover {
-    background: rgba(255, 255, 255, 0.07);
-    box-shadow: inset 0 0 0 1px rgba(89, 239, 192, 0.35);
-    transform: translateY(-2px);
-  }
+  .prologue-card:hover { transform: translateY(-3px); box-shadow: inset 0 0 0 1.5px var(--pl-mint), 0 18px 32px -20px rgba(27, 35, 64, 0.35); }
+  .prologue-card:hover .prologue-card__more { transform: rotate(90deg); background: var(--pl-mint); }
 }
+
+.prologue__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: clamp(32px, 4vw, 40px); }
 .prologue__cta {
   display: inline-flex; align-items: center; justify-content: center;
-  min-width: 200px; min-height: 46px; margin-top: clamp(32px, 4vw, 44px); padding: 0 28px;
+  min-width: 200px; min-height: 48px; padding: 0 28px;
   border-radius: 999px;
-  background: var(--pl-paper); color: var(--pl-ink);
-  font: 600 0.875rem/1 "IBM Plex Sans", var(--font-sans); letter-spacing: 0.04em; text-transform: uppercase;
-  transition: transform var(--dur-press) ease-out, background-color 160ms ease-out;
+  background: var(--pl-orange); color: #fff;
+  box-shadow: 0 8px 20px rgba(238, 108, 59, 0.3);
+  font: 600 0.9375rem/1 var(--pl-font);
+  transition: transform var(--dur-press) ease-out, box-shadow 200ms ease-out;
 }
+.prologue__cta--ghost { background: transparent; color: var(--pl-teal); box-shadow: inset 0 0 0 2px var(--pl-mint); }
 .prologue__cta:active { transform: scale(0.97); }
-@media (hover: hover) and (pointer: fine) { .prologue__cta:hover { background: #fff; } }
-.prologue__cta:focus-visible { outline: 2px solid var(--pl-mint); outline-offset: 3px; }
-/* The symbol's three dots, quietly signing the corner */
-.prologue__dots { position: absolute; right: 24px; bottom: 22px; display: flex; gap: 6px; }
-.prologue__dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--pl-blue); }
-.prologue__dots i:nth-child(2) { background: var(--pl-teal); }
-.prologue__dots i:nth-child(3) { background: var(--pl-mint); }
+@media (hover: hover) and (pointer: fine) {
+  .prologue__cta:hover { box-shadow: 0 10px 24px rgba(238, 108, 59, 0.4); }
+  .prologue__cta--ghost:hover { box-shadow: inset 0 0 0 2px var(--pl-teal); }
+  .prologue__links a:hover { color: var(--pl-blue); }
+}
+.prologue__cta:focus-visible, .prologue-card:focus-visible { outline: 2px solid var(--pl-blue); outline-offset: 3px; }
+.prologue__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; margin-top: 22px; font: 500 0.8125rem/1.4 var(--pl-font); }
+.prologue__links a { color: var(--pl-muted); text-decoration: underline; text-decoration-color: var(--pl-line); text-underline-offset: 4px; transition: color 160ms ease-out; }
+
+/* Prologue dialog: the shared dialog, in Prologue's type and accents */
+.pl-dialog .svc-dialog__panel { font-family: var(--pl-font); color: var(--pl-ink); }
+.pl-dialog .svc-dialog__group { color: var(--pl-blue); }
+.pl-dialog .svc-dialog__title { font-family: var(--pl-font); font-weight: 600; letter-spacing: -0.01em; }
+.pl-dialog .svc-dialog__summary { font-family: var(--pl-font); }
+.pl-dialog .svc-dialog__cta { background: var(--pl-orange); color: #fff; }
+.pl-dialog__label, .team-dialog .pl-dialog__label { margin-top: 22px; font: 600 0.6875rem/1 var(--font-sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+.pl-dialog .svc-items { margin-top: 12px; }
+.svc-item--plain { grid-template-columns: 1fr; }
+.svc-item--plain::before { content: ""; }
+.pl-dialog__link { display: inline-flex; align-items: center; gap: 6px; margin-top: 18px; font: 500 0.875rem/1.3 var(--pl-font); color: var(--pl-blue); }
+.pl-dialog__link svg { width: 12px; height: 12px; }
+@media (hover: hover) and (pointer: fine) { .pl-dialog__link:hover { text-decoration: underline; text-underline-offset: 3px; } }
 
 @media (max-width: 1100px) { .prologue__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 720px)  { .prologue__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } .prologue-card { padding: 22px 14px 24px; } }
+@media (max-width: 720px)  { .prologue__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } .prologue-card { padding: 22px 14px 48px; } }
 @media (max-width: 420px)  { .prologue__grid { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .prologue-card:hover { transform: none; } }
+
+/* ==========================================================================
+   Team — profile cards open a profile dialog
+   ========================================================================== */
+.person__card {
+  width: 100%; display: flex; flex-direction: column; align-items: flex-start; text-align: left;
+  padding: 0 0 4px; border-radius: var(--radius-card);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 200ms var(--ease-out);
+}
+.person__card:active { transform: scale(0.98); transition-duration: var(--dur-press); }
+.person__card:focus-visible { outline-offset: 6px; }
+.person__card .person__photo { transition: box-shadow 260ms ease-out, transform 320ms var(--ease-out); }
+.person__card .person__name { display: block; }
+.person__card .person__role { display: block; }
+.person__more {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 14px;
+  font: 500 0.75rem/1 var(--font-sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--purple);
+}
+.person__more svg { width: 11px; height: 11px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; transition: transform 420ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .person__card:hover .person__photo { transform: translateY(-3px); box-shadow: 0 18px 32px -20px rgba(40, 30, 25, 0.45); }
+  .person__card:hover .person__more svg { transform: rotate(90deg); }
+}
+.profile { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 20px; align-items: start; margin-top: 18px; }
+.profile__photo { width: 112px; height: 112px; object-fit: cover; border-radius: 16px; background: var(--sand); }
+.profile__bio { font: 400 0.9375rem/1.65 var(--font-sans); color: var(--ink-2); }
+.profile__tags { margin-top: 14px; padding-top: 0; }
+.profile__aff { margin-top: 6px; }
+.profile__logos { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 12px; }
+.profile__logos li {
+  display: flex; align-items: center; width: 100%; min-height: 56px; padding: 8px 14px;
+  border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.07);
+}
+.profile__logos img { display: block; width: auto; max-height: 40px; max-width: 160px; object-fit: contain; }
+@media (max-width: 480px) {
+  .profile { grid-template-columns: 1fr; }
+  .profile__photo { width: 96px; height: 96px; }
+}
+.pl-dialog .svc-item { background: var(--pl-wash); }
+.pl-dialog .svc-item__text strong, .pl-dialog .svc-item__text span { font-family: var(--pl-font); }
+.svc-dialog__cta[hidden] { display: none; }
+.person__card { flex: 1; }
+.person__more { margin-top: auto; padding-top: 14px; }
+.profile__logos img { height: 34px; max-height: none; max-width: 200px; }

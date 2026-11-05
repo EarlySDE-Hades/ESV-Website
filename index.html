@@ -15,8 +15,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy&display=swap" />
-  <link rel="stylesheet" href="css/styles.css?v=202611051311" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy&display=swap" />
+  <link rel="stylesheet" href="css/styles.css?v=202611051325" />
 
   <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
   <script>document.documentElement.classList.add('js');</script>
@@ -630,7 +630,7 @@
       </div>
 
       <!-- Service detail dialog: grows from the card that opened it (js/main.js, initServices) -->
-      <dialog class="svc-dialog" aria-labelledby="svc-dialog-title" data-svc-dialog>
+      <dialog class="svc-dialog" aria-labelledby="svc-dialog-title" data-svc-dialog data-cards=".svc-card" data-prefix="svc-">
         <div class="svc-dialog__panel" data-svc-panel>
           <button class="svc-dialog__close icon-btn" type="button" aria-label="Close" data-svc-close>
             <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -684,48 +684,128 @@
         </ul>
       </template>
     </section>
-    <!-- ============================== Prologue (powered-by area, Prologue brand) ============================== -->
+    <!-- ============================== Prologue (powered-by area, prologue.co.in palette) ============================== -->
     <section class="section prologue" id="prologue" aria-labelledby="prologue-title">
       <div class="container">
         <div class="prologue__panel" data-reveal>
           <header class="prologue__head">
             <p class="prologue__eyebrow">Powered by</p>
-            <h2 class="prologue__title" id="prologue-title"><img src="assets/prologue/prologue-light.webp" alt="Prologue by Earlyseed Ventures" width="320" height="60" loading="lazy" decoding="async" /></h2>
-            <p class="prologue__sub">Get investor-ready before you raise. These services are delivered through Prologue, by Earlyseed Ventures.</p>
+            <h2 class="prologue__title" id="prologue-title"><a href="https://www.prologue.co.in/" target="_blank" rel="noopener" aria-label="Prologue by Earlyseed Ventures (opens prologue.co.in)"><img src="assets/prologue/prologue-by-esv.webp" alt="Prologue by Earlyseed Ventures" width="280" height="162" loading="lazy" decoding="async" /></a></h2>
+            <p class="prologue__sub">We write the story before it begins: documentation, financial rigour and mentorship that make founders truly investment-ready.</p>
           </header>
 
           <ul class="prologue__grid" role="list">
-            <li class="prologue-card">
+            <li><button class="prologue-card" type="button" data-service="financial" aria-haspopup="dialog">
               <img src="assets/prologue/financial-model.webp" alt="" width="88" height="88" loading="lazy" decoding="async" />
-              <h3>Financial Models</h3>
-              <p>Projections and valuations built on assumptions you can defend in the room.</p>
-            </li>
-            <li class="prologue-card">
+              <span class="prologue-card__title">Financial Models</span>
+              <span class="prologue-card__line">Robust, assumption-driven models that hold up under investor scrutiny.</span>
+              <span class="prologue-card__more" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></svg></span>
+            </button></li>
+            <li><button class="prologue-card" type="button" data-service="deck" aria-haspopup="dialog">
               <img src="assets/prologue/pitch-deck.webp" alt="" width="88" height="88" loading="lazy" decoding="async" />
-              <h3>Pitch Decks</h3>
-              <p>A narrative and deck structured the way investors read them.</p>
-            </li>
-            <li class="prologue-card">
+              <span class="prologue-card__title">Pitch Decks</span>
+              <span class="prologue-card__line">A compelling narrative and design that gets investors leaning in.</span>
+              <span class="prologue-card__more" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></svg></span>
+            </button></li>
+            <li><button class="prologue-card" type="button" data-service="research" aria-haspopup="dialog">
               <img src="assets/prologue/market-research.webp" alt="" width="88" height="88" loading="lazy" decoding="async" />
-              <h3>Market Research</h3>
-              <p>Market sizing and competitive landscape, properly sourced.</p>
-            </li>
-            <li class="prologue-card">
+              <span class="prologue-card__title">Market Research</span>
+              <span class="prologue-card__line">Data-backed insights that prove your market opportunity is real.</span>
+              <span class="prologue-card__more" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></svg></span>
+            </button></li>
+            <li><button class="prologue-card" type="button" data-service="dataroom" aria-haspopup="dialog">
               <img src="assets/prologue/dashboard.webp" alt="" width="88" height="88" loading="lazy" decoding="async" />
-              <h3>Dashboards</h3>
-              <p>Clear dashboards for the metrics investors will ask about.</p>
-            </li>
-            <li class="prologue-card">
+              <span class="prologue-card__title">Data Room</span>
+              <span class="prologue-card__line">An organised, investor-ready data room that builds trust fast.</span>
+              <span class="prologue-card__more" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></svg></span>
+            </button></li>
+            <li><button class="prologue-card" type="button" data-service="consultancy" aria-haspopup="dialog">
               <img src="assets/prologue/consultancy.webp" alt="" width="88" height="88" loading="lazy" decoding="async" />
-              <h3>Consultancy</h3>
-              <p>One-to-one sessions on strategy, structure and preparing your raise.</p>
-            </li>
+              <span class="prologue-card__title">Consultancy</span>
+              <span class="prologue-card__line">Hands-on guidance to sharpen every investor-facing detail.</span>
+              <span class="prologue-card__more" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></svg></span>
+            </button></li>
           </ul>
 
-          <a class="prologue__cta" href="https://ecosystem.earlyseedventures.com/apply">Get started</a>
-          <span class="prologue__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <div class="prologue__actions">
+            <a class="prologue__cta" href="https://www.prologue.co.in/contact.html" target="_blank" rel="noopener">Get started</a>
+            <a class="prologue__cta prologue__cta--ghost" href="https://www.prologue.co.in/prefunding.html" target="_blank" rel="noopener">View pre-funding packages</a>
+          </div>
+          <p class="prologue__links">
+            <a href="https://www.prologue.co.in/education.html" target="_blank" rel="noopener">Entrepreneur bootcamps</a>
+            <a href="https://www.prologue.co.in/about.html" target="_blank" rel="noopener">About Prologue</a>
+            <a href="https://www.prologue.co.in/faq.html" target="_blank" rel="noopener">FAQ</a>
+          </p>
         </div>
       </div>
+
+      <!-- Prologue service dialog: same component as Services, grows from the card (js/main.js, initServices) -->
+      <dialog class="svc-dialog pl-dialog" aria-labelledby="pl-dialog-title" data-svc-dialog data-cards=".prologue-card" data-prefix="pl-">
+        <div class="svc-dialog__panel" data-svc-panel>
+          <button class="svc-dialog__close icon-btn" type="button" aria-label="Close" data-svc-close>
+            <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </button>
+          <p class="svc-dialog__group" data-svc-group></p>
+          <h3 class="svc-dialog__title" id="pl-dialog-title" data-svc-title></h3>
+          <div data-svc-body></div>
+          <a class="btn svc-dialog__cta" href="#" target="_blank" rel="noopener" data-svc-cta></a>
+        </div>
+      </dialog>
+
+      <!-- Dialog copy from the Prologue Brochure and prologue.co.in/prefunding. Edit freely. -->
+      <template id="pl-financial" data-group="Prologue · Pre-funding" data-title="Financial Models" data-cta="Get started" data-href="https://www.prologue.co.in/contact.html">
+        <p class="svc-dialog__summary">Robust, assumption-driven models that hold up under investor scrutiny.</p>
+        <p class="pl-dialog__label">What you get</p>
+        <ul class="svc-items" role="list">
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>Clarity over complexity</strong><span>Numbers that tell your story.</span></span></li>
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>A defensible raise</strong><span>Structure your raise with a model you can defend.</span></span></li>
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>Investor-ready numbers</strong><span>Projections that hold up in the room.</span></span></li>
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>Valuation Report</strong><span>Defensible valuations grounded in method, not guesswork.</span></span></li>
+        </ul>
+        <a class="pl-dialog__link" href="https://www.prologue.co.in/prefunding.html" target="_blank" rel="noopener">See packages on prologue.co.in <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4h6v6M12 4l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </template>
+      <template id="pl-deck" data-group="Prologue · Pre-funding" data-title="Pitch Decks" data-cta="Get started" data-href="https://www.prologue.co.in/contact.html">
+        <p class="svc-dialog__summary">A compelling narrative and design that gets investors leaning in.</p>
+        <p class="pl-dialog__label">What you get</p>
+        <ul class="svc-items" role="list">
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>The investor mindset</strong><span>Learn how investors read a deck, and chisel your focus to “the ask”.</span></span></li>
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>Storytelling</strong><span>From visuals to copy, the story carries the deck.</span></span></li>
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>Brevity</strong><span>Less really is more: every slide earns its place.</span></span></li>
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>Mock Pitch</strong><span>Practise the pitch with real feedback, before it counts.</span></span></li>
+        </ul>
+        <a class="pl-dialog__link" href="https://www.prologue.co.in/prefunding.html" target="_blank" rel="noopener">See packages on prologue.co.in <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4h6v6M12 4l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </template>
+      <template id="pl-research" data-group="Prologue · Pre-funding" data-title="Market Research" data-cta="Get started" data-href="https://www.prologue.co.in/contact.html">
+        <p class="svc-dialog__summary">Data-backed insights that prove your market opportunity is real.</p>
+        <p class="pl-dialog__label">What you get</p>
+        <ul class="svc-items" role="list">
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>Target Market Validation</strong><span>Confirming there’s a real market before you build for it.</span></span></li>
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>Market Fit</strong><span>Sharpening your product until the market pulls it from you.</span></span></li>
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>Industry Guidance</strong><span>Sector-specific wisdom from mentors who have walked the path.</span></span></li>
+        </ul>
+        <a class="pl-dialog__link" href="https://www.prologue.co.in/prefunding.html" target="_blank" rel="noopener">See packages on prologue.co.in <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4h6v6M12 4l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </template>
+      <template id="pl-dataroom" data-group="Prologue · Pre-funding" data-title="Data Room" data-cta="Get started" data-href="https://www.prologue.co.in/contact.html">
+        <p class="svc-dialog__summary">An organised, investor-ready data room that builds trust fast.</p>
+        <p class="pl-dialog__label">What you get</p>
+        <ul class="svc-items" role="list">
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>Investor-ready documents</strong><span>Built with precision and clarity, from pitch to valuation.</span></span></li>
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>Document Consultation</strong><span>Expert review and refinement of the documentation you already have.</span></span></li>
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>Branding</strong><span>A brand identity that signals credibility from the first impression.</span></span></li>
+        </ul>
+        <a class="pl-dialog__link" href="https://www.prologue.co.in/prefunding.html" target="_blank" rel="noopener">See packages on prologue.co.in <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4h6v6M12 4l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </template>
+      <template id="pl-consultancy" data-group="Prologue · Pre-funding" data-title="Consultancy" data-cta="Get started" data-href="https://www.prologue.co.in/contact.html">
+        <p class="svc-dialog__summary">Hands-on guidance to sharpen every investor-facing detail.</p>
+        <p class="pl-dialog__label">Includes</p>
+        <ul class="svc-items" role="list">
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>Document Consultation</strong><span>Expert review and refinement of your existing deck and projections, tested against our investor panel.</span></span></li>
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>Investor Preparedness</strong><span>Sharpening your story, numbers and answers before the real conversation.</span></span></li>
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>Mock Pitch</strong><span>Practice pitches with real feedback, before it counts.</span></span></li>
+          <li class="svc-item svc-item--plain"><span class="svc-item__text"><strong>Mentorship</strong><span>Direct access to seasoned operators who have built and scaled before.</span></span></li>
+        </ul>
+        <a class="pl-dialog__link" href="https://www.prologue.co.in/prefunding.html" target="_blank" rel="noopener">See packages on prologue.co.in <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4h6v6M12 4l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </template>
     </section>
   </main>
 
@@ -747,6 +827,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=202611051311" defer></script>
+  <script src="js/main.js?v=202611051325" defer></script>
 </body>
 </html>
