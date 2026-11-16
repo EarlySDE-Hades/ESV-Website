@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Earlyseed Ventures</title>
+  <meta name="description" content="From seed to success: a recap of the Earlyseed Ventures evening for founders, investors and ecosystem leaders." />
+  <meta name="theme-color" content="#F4F4F4" />
+  <!-- Link previews (WhatsApp, LinkedIn, X). The image URL must be absolute: update the domain if it differs. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Earlyseed Ventures" />
+  <meta property="og:title" content="Earlyseed Ventures" />
+  <meta property="og:description" content="Building a self-reliant India, one founder at a time. Capital for founders; curated early-stage deal flow for investors." />
+  <meta property="og:image" content="https://www.earlyseedventures.com/assets/brand/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/icons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/brand/icons/favicon-16.png" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/brand/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Playfair+Display:wght@400;500&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy&display=swap" />
+  <link rel="stylesheet" href="css/styles.css?v=202611161942" />
+
+  <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============================== Header ============================== -->
+  <header class="site-header" data-header>
+    <div class="site-header__inner container">
+      <a class="brand" href="index.html" aria-label="Earlyseed Ventures — home">
+        <img src="assets/brand/logo-dark.png" alt="earlyseed VENTURES" width="136" height="51" />
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary">
+        <ul class="primary-nav__links">
+          <li class="nav-menu" data-nav-menu>
+            <a href="index.html#about">About</a>
+            <button class="nav-menu__toggle" type="button" aria-expanded="false" aria-controls="about-menu" aria-label="More in About" data-nav-menu-toggle>
+              <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <!-- Submenu: grows out of the About item on hover, keyboard focus or chevron click -->
+            <div class="nav-menu__panel" id="about-menu">
+              <ul>
+                <li><a href="index.html#about">About Us</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="index.html#services">Services</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="index.html#portfolio">Our Portfolio</a></li>
+          <li><a href="index.html#perspectives">Perspectives</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li class="nav-reveal">
+            <!-- On hover / keyboard focus the word morphs into the Prologue logo, in place -->
+            <a class="nav-morph" href="index.html#prologue" aria-label="Prologue">
+              <span class="nav-morph__text" aria-hidden="true">Prologue</span>
+              <img class="nav-morph__logo" src="assets/brand/prologue-wordmark.webp" alt="" width="341" height="96" decoding="async" />
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <a class="btn btn--sm" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
+        <a class="btn btn--sm" href="index.html#for-investors">Invest with us</a>
+
+        <button class="icon-btn" type="button" aria-label="Search" aria-expanded="false" aria-controls="search-panel" data-search-toggle>
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m15 15 5.5 5.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </button>
+
+        <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+          <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search popover — materialises from the search icon -->
+    <div class="search-panel" id="search-panel" role="dialog" aria-label="Search the site" hidden data-search-panel>
+      <label class="visually-hidden" for="site-search">Search</label>
+      <div class="search-panel__field">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m15 15 5.5 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <input id="site-search" type="search" placeholder="Search Earlyseed" autocomplete="off" data-search-input />
+        <kbd>esc</kbd>
+      </div>
+      <ul class="search-panel__results" data-search-results></ul>
+    </div>
+
+    <!-- Mobile menu — drops from the header and returns the same way -->
+    <div class="mobile-menu" id="mobile-menu" hidden data-mobile-menu>
+      <nav aria-label="Mobile">
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li class="mobile-menu__sub"><a href="team.html">Team</a></li>
+          <li class="mobile-menu__sub"><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#portfolio">Our Portfolio</a></li>
+          <li><a href="index.html#perspectives">Perspectives</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="index.html#prologue">Prologue</a></li>
+        </ul>
+        <div class="mobile-menu__ctas">
+          <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
+          <a class="btn" href="index.html#for-investors">Invest with us</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="post-page">
+    <!-- ============================== Event recap: From seed to success ============================== -->
+    <!-- Photos: assets/events/seed-to-success-*.webp (originals in Photos/event-2026-03, from the event gallery) -->
+    <article class="post" aria-labelledby="post-title">
+      <header class="post__head container">
+        <a class="post__back" href="events.html#past"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>All events</a>
+        <p class="eyebrow" data-reveal>Event recap · 5 March 2026</p>
+        <h1 class="post__title" id="post-title" data-reveal style="--i:1">From seed to success:<br /> building what Bharat dreams</h1>
+        <p class="post__lede" data-reveal style="--i:2">Building institutional India starts with building the right rooms. We brought founders, investors and ecosystem leaders together for an evening that was less about networking and more about an honest conversation: what does it actually take to scale a startup sustainably?</p>
+      </header>
+
+      <figure class="post__hero container" data-reveal>
+        <img src="assets/events/seed-to-success-audience-wide.webp" alt="A full room of founders and investors seated at round tables during the event" width="1200" height="800" decoding="async" />
+      </figure>
+
+      <div class="post__body container">
+        <h2 class="section-title section-title--ruled" data-reveal><span>How the evening unfolded</span></h2>
+
+        <ol class="post__moments" role="list">
+          <li class="moment" data-reveal>
+            <img class="moment__photo" src="assets/events/seed-to-success-panel.webp" alt="Four investors in a panel discussion on stage" width="1200" height="800" loading="lazy" decoding="async" />
+            <div class="moment__text">
+              <p class="ev-row__type">01 · Investor panel</p>
+              <h3 class="moment__title">Grounded perspectives on capital</h3>
+              <p>An experienced investor panel set the tone with capital efficiency, disciplined metrics and long-term thinking: the kind of clarity every founder needs early.</p>
+            </div>
+          </li>
+          <li class="moment" data-reveal>
+            <img class="moment__photo" src="assets/events/seed-to-success-stage-wide.webp" alt="A speaker addressing the room from the stage" width="1200" height="800" loading="lazy" decoding="async" />
+            <div class="moment__text">
+              <p class="ev-row__type">02 · Keynote</p>
+              <h3 class="moment__title">Why India, why now</h3>
+              <p>The keynote made a compelling case for India as one of the most exciting investment destinations today. The tailwinds are real, and the moment is now.</p>
+            </div>
+          </li>
+          <li class="moment" data-reveal>
+            <img class="moment__photo" src="assets/events/seed-to-success-address.webp" alt="An Earlyseed Ventures speaker at the podium" width="1200" height="800" loading="lazy" decoding="async" />
+            <div class="moment__text">
+              <p class="ev-row__type">03 · Our vision</p>
+              <h3 class="moment__title">A full-lifecycle ecosystem</h3>
+              <p>We shared what Earlyseed Ventures is building: early mentoring, institutional readiness, fundraising and strategic exits. We don’t just write cheques. We walk the journey with founders.</p>
+            </div>
+          </li>
+          <li class="moment" data-reveal>
+            <img class="moment__photo" src="assets/events/seed-to-success-founder-pitch.webp" alt="A founder pitching on stage in front of the Earlyseed Ventures backdrop" width="1200" height="800" loading="lazy" decoding="async" />
+            <div class="moment__text">
+              <p class="ev-row__type">04 · Portfolio pitches</p>
+              <h3 class="moment__title">Four founders took the stage</h3>
+              <p>Four of our portfolio companies pitched to the room, spanning D2C beverages, pharma-tech, electric mobility and smart IoT for students. Watching them was a reminder of exactly why we do this.</p>
+            </div>
+          </li>
+          <li class="moment" data-reveal>
+            <img class="moment__photo" src="assets/events/seed-to-success-growth-partners.webp" alt="The Strategic Growth Partners standing together on stage" width="1200" height="800" loading="lazy" decoding="async" />
+            <div class="moment__text">
+              <p class="ev-row__type">05 · Launch</p>
+              <h3 class="moment__title">Our Strategic Growth Partners</h3>
+              <p>We launched our Strategic Growth Partners: industry leaders who have joined hands with us to mentor founders, open doors and build alongside us. <a class="post__link" href="team.html#growth-partners">Meet them</a>.</p>
+            </div>
+          </li>
+        </ol>
+
+        <h2 class="section-title section-title--ruled" data-reveal><span>In the room</span></h2>
+        <p class="post__para" data-reveal>The formal programme gave way to some of the most energising conversations of the evening. New connections, new possibilities, new momentum, because great ecosystems are never built alone.</p>
+
+        <ul class="post__gallery" role="list">
+          <li data-reveal><img src="assets/events/seed-to-success-lamp-lighting.webp" alt="The Earlyseed Ventures leadership at the lamp-lighting" width="1200" height="800" loading="lazy" decoding="async" /></li>
+          <li data-reveal style="--i:1"><img src="assets/events/seed-to-success-audience.webp" alt="Guests listening from the front rows" width="1200" height="800" loading="lazy" decoding="async" /></li>
+          <li data-reveal style="--i:2"><img src="assets/events/seed-to-success-networking.webp" alt="Guests in conversation after the programme" width="1200" height="800" loading="lazy" decoding="async" /></li>
+          <li data-reveal><img src="assets/events/seed-to-success-pitch-room.webp" alt="A speaker addressing the full room" width="1200" height="800" loading="lazy" decoding="async" /></li>
+          <li data-reveal style="--i:1"><img src="assets/events/seed-to-success-tables.webp" alt="Guests seated at round tables" width="1200" height="800" loading="lazy" decoding="async" /></li>
+          <li data-reveal style="--i:2"><img src="assets/events/seed-to-success-team.webp" alt="The Earlyseed Ventures team on stage" width="1200" height="800" loading="lazy" decoding="async" /></li>
+        </ul>
+
+        <div class="post__close" data-reveal>
+          <p class="post__quote">Our goal remains simple but ambitious: to help build companies that aren’t just successful startups, but institutions that contribute to building institutional India.</p>
+          <p class="post__thanks">Grateful to everyone who showed up, engaged and believed, and to our associate partner Equinova and co-sponsor Nuvama for making the evening possible.</p>
+          <div class="hero__ctas">
+            <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
+            <a class="btn btn--ghost" href="events.html">All events</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- ============================== Footer ============================== -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <img src="assets/brand/logo-dark.png" alt="earlyseed VENTURES" width="112" height="42" />
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#portfolio">Portfolio</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#perspectives">Perspectives</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__legal">© <span data-year>2026</span> Earlyseed Ventures</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=202611161942" defer></script>
+</body>
+</html>

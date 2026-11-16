@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Playfair+Display:wght@400;500&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy&display=swap" />
-  <link rel="stylesheet" href="css/styles.css?v=202611161913" />
+  <link rel="stylesheet" href="css/styles.css?v=202611161942" />
 
   <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
   <script>document.documentElement.classList.add('js');</script>
@@ -191,8 +191,19 @@
       </div>
     </section>
 
+    <!-- ============================== Offline / Online filter ============================== -->
+    <!-- Every event carries data-mode="offline" or "online"; the filter shows or hides them (js: initEventFilter) -->
+    <div class="container ev-filter-wrap" id="filter">
+      <div class="ev-filter" role="group" aria-label="Show events" data-ev-filter>
+        <button class="ev-filter__btn is-active" type="button" aria-pressed="true" data-mode="all">All</button>
+        <button class="ev-filter__btn" type="button" aria-pressed="false" data-mode="offline">Offline</button>
+        <button class="ev-filter__btn" type="button" aria-pressed="false" data-mode="online">Online</button>
+        <span class="ev-filter__pill" aria-hidden="true"></span>
+      </div>
+    </div>
+
     <!-- ============================== Upcoming ============================== -->
-    <!-- Skeleton: each .ev-row is one event. Fill in the date tile, type, title, place and the Register link
+    <!-- Skeleton: each .ev-row is one event. Set data-mode (offline / online) and its badge, then fill in the date tile, type, title, place and the Register link
          (add an href and remove aria-disabled / is-disabled). Delete rows you don't need. -->
     <section class="section ev-section" id="upcoming" aria-labelledby="upcoming-title">
       <div class="container">
@@ -201,68 +212,62 @@
           <p class="section-sub">Dates will be announced here.</p>
         </header>
 
-        <ul class="ev-list" role="list">
-          <li class="ev-row" data-reveal>
+        <ul class="ev-list" role="list" data-ev-list>
+          <li class="ev-row" data-mode="offline" data-reveal>
             <div class="ev-row__date" aria-label="Date to be announced"><span class="ev-row__day">TBA</span><span class="ev-row__month">Date</span></div>
             <div class="ev-row__body">
-              <p class="ev-row__type">Founder meet-up</p>
+              <p class="ev-row__type">Founder meet-up <span class="ev-mode ev-mode--offline">Offline</span></p>
               <h3 class="ev-row__title">To be announced</h3>
               <p class="ev-row__meta">Location to be announced</p>
             </div>
             <a class="btn btn--sm ev-row__cta is-disabled" aria-disabled="true">Register</a>
           </li>
-          <li class="ev-row" data-reveal style="--i:1">
+          <li class="ev-row" data-mode="online" data-reveal style="--i:1">
             <div class="ev-row__date" aria-label="Date to be announced"><span class="ev-row__day">TBA</span><span class="ev-row__month">Date</span></div>
             <div class="ev-row__body">
-              <p class="ev-row__type">Investor session</p>
+              <p class="ev-row__type">Investor session <span class="ev-mode ev-mode--online">Online</span></p>
               <h3 class="ev-row__title">To be announced</h3>
-              <p class="ev-row__meta">Location to be announced</p>
+              <p class="ev-row__meta">Joining link shared on registration</p>
             </div>
             <a class="btn btn--sm ev-row__cta is-disabled" aria-disabled="true">Register</a>
           </li>
-          <li class="ev-row" data-reveal style="--i:2">
+          <li class="ev-row" data-mode="offline" data-reveal style="--i:2">
             <div class="ev-row__date" aria-label="Date to be announced"><span class="ev-row__day">TBA</span><span class="ev-row__month">Date</span></div>
             <div class="ev-row__body">
-              <p class="ev-row__type">Campus programme</p>
+              <p class="ev-row__type">Campus programme <span class="ev-mode ev-mode--offline">Offline</span></p>
               <h3 class="ev-row__title">To be announced</h3>
               <p class="ev-row__meta">Location to be announced</p>
             </div>
             <a class="btn btn--sm ev-row__cta is-disabled" aria-disabled="true">Register</a>
           </li>
         </ul>
+        <p class="ev-empty" hidden data-ev-empty>No upcoming events of this kind yet.</p>
       </div>
     </section>
 
     <!-- ============================== Past ============================== -->
-    <!-- Skeleton: each .ev-card is one past event. Swap .ev-card__photo for an <img class="ev-card__photo">,
-         then fill in the date, title and summary. -->
+    <!-- Each .ev-card is one past event, linking to its recap page (see tools/events/seed-to-success.html). -->
     <section class="section ev-section ev-section--last" id="past" aria-labelledby="past-title">
       <div class="container">
         <header class="section-head" data-reveal>
           <h2 class="section-title section-title--ruled" id="past-title"><span>Past events</span></h2>
-          <p class="section-sub">Photos and recaps will be added here.</p>
         </header>
 
-        <ul class="ev-grid" role="list">
-          <li class="ev-card" data-reveal>
-            <div class="ev-card__photo" aria-hidden="true"></div>
-            <p class="ev-row__type">Date · City</p>
-            <h3 class="ev-card__title">Event title</h3>
-            <p class="ev-card__text">A short recap of the event goes here.</p>
-          </li>
-          <li class="ev-card" data-reveal style="--i:1">
-            <div class="ev-card__photo" aria-hidden="true"></div>
-            <p class="ev-row__type">Date · City</p>
-            <h3 class="ev-card__title">Event title</h3>
-            <p class="ev-card__text">A short recap of the event goes here.</p>
-          </li>
-          <li class="ev-card" data-reveal style="--i:2">
-            <div class="ev-card__photo" aria-hidden="true"></div>
-            <p class="ev-row__type">Date · City</p>
-            <h3 class="ev-card__title">Event title</h3>
-            <p class="ev-card__text">A short recap of the event goes here.</p>
+        <!-- One wide card per past event: photo beside the summary, linking to its recap page -->
+        <ul class="ev-past" role="list" data-ev-list>
+          <li data-mode="offline" data-reveal>
+            <a class="ev-feature" href="event-seed-to-success.html">
+              <img class="ev-feature__photo" src="assets/events/seed-to-success-audience-wide.webp" alt="" width="1200" height="800" loading="lazy" decoding="async" />
+              <div class="ev-feature__body">
+                <p class="ev-row__type">5 March 2026 <span class="ev-mode ev-mode--offline">Offline</span></p>
+                <h3 class="ev-feature__title">From seed to success: building what Bharat dreams</h3>
+                <p class="ev-feature__text">An evening for founders, investors and ecosystem leaders: an investor panel, a keynote on India, four portfolio pitches and the launch of our Strategic Growth Partners.</p>
+                <span class="person__more">Read the recap <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3.5v9M3.5 8h9"/></svg></span>
+              </div>
+            </a>
           </li>
         </ul>
+        <p class="ev-empty" hidden data-ev-empty>No past events of this kind yet.</p>
       </div>
     </section>
   </main>
@@ -285,6 +290,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=202611161913" defer></script>
+  <script src="js/main.js?v=202611161942" defer></script>
 </body>
 </html>

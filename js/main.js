@@ -347,6 +347,7 @@
     { title: 'Events', section: 'Events', href: 'events.html' },
     { title: 'Upcoming events', section: 'Events', href: 'events.html#upcoming' },
     { title: 'Past events', section: 'Events', href: 'events.html#past' },
+    { title: 'From seed to success: event recap', section: 'Events', href: 'event-seed-to-success.html' },
     { title: 'Services for Founders: fundraising', section: 'Services', href: '#services' },
     { title: 'Services for Investors', section: 'Services', href: '#for-investors' },
     { title: 'Syndicate access', section: 'Services', href: '#for-investors' },
@@ -673,6 +674,8 @@
   if (growth) initGrowth(growth);
   const evHero = $('.ev-hero');
   if (evHero) initEventsHero(evHero);
+  const evFilter = $('[data-ev-filter]');
+  if (evFilter) initEventFilter(evFilter);
   $$('[data-co-dialog]').forEach((d) => { if (d.showModal) initCompanies(d); });
 
   /* ------------------------------------------------------------------------
@@ -844,6 +847,41 @@
      Events hero — the scene leans a little toward the pointer, nearer layers
      more than far ones (CSS reads --px / --py; see .ev-par). Mouse only.
      ------------------------------------------------------------------------ */
+  /* Events filter: All / Offline / Online. A pill slides under the chosen option; events
+     of the other kind are hidden, and a list with nothing left shows its empty line. */
+  function initEventFilter(bar) {
+    const btns = $$('.ev-filter__btn', bar), pill = $('.ev-filter__pill', bar);
+    const lists = $$('[data-ev-list]');
+    const movePill = () => {
+      const b = $('.ev-filter__btn.is-active', bar);
+      pill.style.width = b.offsetWidth + 'px';
+      pill.style.transform = `translateX(${b.offsetLeft}px)`;
+    };
+    function apply(mode) {
+      btns.forEach((b) => { const on = b.dataset.mode === mode; b.classList.toggle('is-active', on); b.setAttribute('aria-pressed', String(on)); });
+      movePill();
+      lists.forEach((list) => {
+        let shown = 0;
+        $$(':scope > [data-mode]', list).forEach((li) => {
+          const show = mode === 'all' || li.dataset.mode === mode;
+          li.hidden = !show;
+          if (!show) return;
+          shown++;
+          li.classList.add('is-in');                                   // never leave a filtered-in item waiting on scroll reveal
+          if (!reduceMotion.matches) li.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }],
+            { duration: 320, delay: (shown - 1) * 50, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'backwards' });
+        });
+        const empty = list.nextElementSibling;
+        if (empty && empty.matches('[data-ev-empty]')) empty.hidden = shown > 0;
+      });
+    }
+    btns.forEach((b) => b.addEventListener('click', () => apply(b.dataset.mode)));
+    movePill();
+    requestAnimationFrame(() => bar.classList.add('is-ready'));       // no slide on first paint
+    window.addEventListener('resize', movePill);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(movePill);
+  }
+
   function initEventsHero(hero) {
     const art = $('.ev-hero__art', hero);
     if (!art || reduceMotion.matches || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;

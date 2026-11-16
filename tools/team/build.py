@@ -2,6 +2,7 @@
 
     team.html    <- tools/team/main.html
     events.html  <- tools/events/main.html
+    event-seed-to-success.html  <- tools/events/seed-to-success.html
 
 Run after changing the shared header/footer in index.html, or either main.html:
 
@@ -22,6 +23,7 @@ head = re.sub(r"<title>.*?</title>", "<title>Earlyseed Ventures</title>", head)
 PAGES = [
     ("team.html", "tools/team/main.html", "The leadership team, strategic growth partners and team behind Earlyseed Ventures.", "Team"),
     ("events.html", "tools/events/main.html", "Founder meet-ups, investor sessions and campus programmes from Earlyseed Ventures.", "Events"),
+    ("event-seed-to-success.html", "tools/events/seed-to-success.html", "From seed to success: a recap of the Earlyseed Ventures evening for founders, investors and ecosystem leaders.", "-"),
 ]
 
 
