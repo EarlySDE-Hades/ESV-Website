@@ -1656,3 +1656,5 @@ div.ev-card__photo { background: linear-gradient(135deg, var(--crema), var(--san
 /* Tall mobile browsers: sections that fill the screen use the dynamic viewport */
 @supports (height: 100dvh) { .mobile-menu { max-height: calc(100dvh - var(--header-h, 68px)); overflow-y: auto; overscroll-behavior: contain; } }
 .stat dd { color: #A8624F; }   /* large numerals: 3:1 against the page */
+/* Numbered lists used for layout carry no browser indent (the recap moments were pushed 40px right on phones) */
+:where(ol[role="list"]) { list-style: none; margin: 0; padding: 0; }
