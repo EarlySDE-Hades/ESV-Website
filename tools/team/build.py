@@ -1,5 +1,6 @@
 """Build the inner pages from index.html's head, header and footer plus each page's own <main>.
 
+    about.html   <- tools/about/main.html
     team.html    <- tools/team/main.html
     events.html  <- tools/events/main.html
     event-seed-to-success.html  <- tools/events/seed-to-success.html
@@ -21,6 +22,7 @@ head = re.sub(r"<title>.*?</title>", "<title>Earlyseed Ventures</title>", head)
 
 # output file, source of <main>, meta description, nav link text to mark as the current page
 PAGES = [
+    ("about.html", "tools/about/main.html", "Earlyseed Ventures is a boutique investment banking firm in Mumbai, helping tech start-ups raise seed to Series A rounds.", "About"),
     ("team.html", "tools/team/main.html", "The leadership team, strategic growth partners and team behind Earlyseed Ventures.", "Team"),
     ("events.html", "tools/events/main.html", "Founder meet-ups, investor sessions and campus programmes from Earlyseed Ventures.", "Events"),
     ("event-seed-to-success.html", "tools/events/seed-to-success.html", "From seed to success: a recap of the Earlyseed Ventures evening for founders, investors and ecosystem leaders.", "-"),
@@ -31,7 +33,9 @@ def relink(html, out, label):
     # Section anchors live on the homepage
     html = re.sub(r'href="#(?!main\b)([\w-]+)"', r'href="index.html#\1"', html)
     html = html.replace('href="/"', 'href="index.html"')
-    return html.replace(f'<a href="{out}">{label}</a>', f'<a href="{out}" aria-current="page">{label}</a>')
+    for text in (label, label + " Us"):
+        html = html.replace(f'<a href="{out}">{text}</a>', f'<a href="{out}" aria-current="page">{text}</a>')
+    return html
 
 
 for out, main_src, description, label in PAGES:

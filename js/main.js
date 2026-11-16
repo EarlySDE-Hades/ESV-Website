@@ -318,7 +318,10 @@
      Search
      ------------------------------------------------------------------------ */
   const SEARCH_INDEX = [
-    { title: 'About Earlyseed', section: 'About', href: '#about' },
+    { title: 'About Earlyseed', section: 'About', href: 'about.html' },
+    { title: 'Our mission', section: 'About', href: 'about.html' },
+    { title: 'Our growth journey', section: 'About', href: 'about.html#ab-journey-title' },
+    { title: 'Sectors we work across', section: 'About', href: 'about.html#ab-sectors-title' },
     { title: 'Leadership team', section: 'Team', href: 'team.html#leadership' },
     { title: 'CA Monica Gupta, Co-founder and CEO', section: 'Team', href: 'team.html#leadership' },
     { title: 'CA Manan Patel, Head of Investments & Tax', section: 'Team', href: 'team.html#leadership' },
@@ -674,6 +677,7 @@
   if (growth) initGrowth(growth);
   const evHero = $('.ev-hero');
   if (evHero) initEventsHero(evHero);
+  initTouchCards();
   const evFilter = $('[data-ev-filter]');
   if (evFilter) initEventFilter(evFilter);
   $$('[data-co-dialog]').forEach((d) => { if (d.showModal) initCompanies(d); });
@@ -880,6 +884,18 @@
     requestAnimationFrame(() => bar.classList.add('is-ready'));       // no slide on first paint
     window.addEventListener('resize', movePill);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(movePill);
+  }
+
+  /* Touch screens have no hover, so the Perspectives photos would stay frosted for good.
+     There, a card clears while it sits in the middle band of the screen and frosts again
+     as it scrolls away (.is-clear mirrors the hover styles). */
+  function initTouchCards() {
+    const cards = $$('.card:has(.card__photo)');
+    if (!cards.length || !('IntersectionObserver' in window) || window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => e.target.classList.toggle('is-clear', e.isIntersecting));
+    }, { rootMargin: '-30% 0px -30% 0px', threshold: 0 });
+    cards.forEach((c) => io.observe(c));
   }
 
   function initEventsHero(hero) {

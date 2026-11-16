@@ -1529,3 +1529,130 @@ div.ev-card__photo { background: linear-gradient(135deg, var(--crema), var(--san
 .ev-empty { margin-top: clamp(28px, 4vw, 40px); text-align: center; font: 400 1.0625rem/1.5 var(--font-serif); color: var(--ink-3); }
 .ev-empty[hidden] { display: none; }
 @media (prefers-reduced-motion: reduce) { .ev-filter.is-ready .ev-filter__pill { transition: none; } }
+
+/* ==========================================================================
+   About page (about.html, built from tools/about/main.html)
+   ========================================================================== */
+.ab-hero { padding-top: clamp(28px, 5vw, 64px); }
+.ab-hero__inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.ab-hero__inner .ev-hero__title { max-width: 900px; }
+.ab-hero__lede { max-width: 700px; margin-top: 22px; font: 400 clamp(1.0625rem, 1.5vw, 1.1875rem)/1.55 var(--font-serif); color: var(--ink-2); }
+.ab-hero .hero__ctas { margin-top: 34px; }
+.ab-hero__art { margin-top: clamp(36px, 6vw, 72px); }
+.ab-hero__art img { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
+.about-page .container { max-width: calc(1000px + var(--gutter) * 2); }
+.ab-mission { text-align: center; padding-top: clamp(48px, 7vw, 88px); }
+.ab-mission__text { max-width: 820px; margin: 6px auto 0; font: 400 clamp(1.625rem, 3.2vw, 2.375rem)/1.25 var(--font-serif); letter-spacing: -0.012em; text-wrap: balance; }
+.ab-stats { margin-top: clamp(56px, 8vw, 96px); }
+.ab-stats__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 720px) { .ab-stats__grid { grid-template-columns: 1fr; } }
+.ab-section [id] { scroll-margin-top: 110px; }
+.ab-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: clamp(28px, 4vw, 40px); }
+.ab-chips li {
+  padding: 12px 22px; border-radius: 999px; background: var(--crema);
+  box-shadow: inset 0 0 0 1px rgba(154, 91, 76, 0.22);
+  font: 400 1.0625rem/1 var(--font-serif); color: var(--ink);
+}
+.ab-steps, .ab-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 24px); margin-top: clamp(32px, 5vw, 48px); }
+.ab-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ab-step, .ab-card {
+  padding: clamp(22px, 3vw, 30px); border-radius: var(--radius-card); background: #FAFAFA;
+  box-shadow: 0 0 0 1px rgba(17, 17, 17, 0.06), 0 20px 40px -32px rgba(40, 30, 25, 0.4);
+}
+.ab-step:nth-child(4) { grid-column: 1 / span 1; }
+.ab-step__n { display: block; font: 600 1.75rem/1 var(--font-display-num); color: var(--golden-glow); }
+.ab-step__title { margin-top: 12px; font: 400 1.375rem/1.2 var(--font-serif); letter-spacing: -0.01em; }
+.ab-card .ab-step__title { margin-top: 0; }
+.ab-step p, .ab-card p { margin-top: 10px; font: 400 0.9375rem/1.6 var(--font-sans); color: var(--ink-2); }
+.ab-more { margin-top: clamp(28px, 4vw, 40px); text-align: center; }
+@media (min-width: 861px) {                       /* five steps: three on top, two centred below */
+  .ab-steps { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .ab-step { grid-column: span 2; }
+  .ab-step:nth-child(4) { grid-column: 2 / span 2; }
+}
+@media (max-width: 860px) { .ab-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .ab-steps, .ab-cards { grid-template-columns: 1fr; } }
+
+/* Journey: a vertical line with a dot per year; goals are drawn open */
+.ab-timeline { position: relative; max-width: 680px; margin: clamp(36px, 5vw, 56px) auto 0; padding-left: 28px; }
+.ab-timeline::before { content: ""; position: absolute; left: 5px; top: 10px; bottom: 10px; width: 1.5px; background: var(--rule); }
+.ab-year { position: relative; display: grid; grid-template-columns: 84px minmax(0, 1fr); align-items: baseline; gap: 16px; padding: 14px 0; }
+.ab-year::before {
+  content: ""; position: absolute; left: -28px; top: 24px; width: 11px; height: 11px; border-radius: 50%;
+  background: var(--golden-glow); box-shadow: 0 0 0 4px var(--fair);
+}
+.ab-year--next::before { background: var(--fair); box-shadow: 0 0 0 4px var(--fair), inset 0 0 0 1.5px var(--golden-glow); }
+.ab-year__n { font: 600 1.75rem/1 var(--font-display-num); color: #9A5B4C; }
+.ab-year p { font: 400 1rem/1.6 var(--font-sans); color: var(--ink-2); }
+.ab-year__tag {
+  display: inline-block; margin-right: 6px; padding: 4px 8px; border-radius: 999px; vertical-align: 1px;
+  background: #EFE9FF; color: #4B38D8; box-shadow: inset 0 0 0 1px rgba(116, 95, 253, 0.25);
+  font: 600 0.5625rem/1 var(--font-sans); letter-spacing: 0.1em; text-transform: uppercase;
+}
+@media (max-width: 480px) { .ab-year { grid-template-columns: 1fr; gap: 6px; } }
+.ab-close { padding-bottom: clamp(80px, 10vw, 120px); }
+.ab-close .post__close { margin-top: 0; }
+.ab-steps, .ab-timeline, .ab-cards, .ab-chips { list-style: none; padding-left: 0; }
+.ab-timeline { padding-left: 28px; }
+.ab-hero__art img { mix-blend-mode: darken; -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent), linear-gradient(to bottom, transparent, #000 10%); -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent), linear-gradient(to bottom, transparent, #000 10%); mask-composite: intersect; }
+
+/* ==========================================================================
+   Mobile pass: legibility, tap targets and touch behaviour
+   ========================================================================== */
+/* Small text in a darker cut of the brand colours (was below 4.5:1 on the page background) */
+:root { --pill-ink: #4B38D8; }
+.eyebrow, .stat dt { color: #9A5B4C; }
+.ab-step__n { color: #B4705F; }
+.person__more, .post__back, .post__link, .profile__linkedin[href] { color: #4B38D8; }
+.btn--ghost { color: #4B38D8; }
+
+/* Perspectives photo cards on touch: cleared while in the middle of the screen (js: initTouchCards) */
+.card.is-clear .card__photo { filter: none; transform: scale(1.04); }
+.card.is-clear:has(.card__photo)::before { opacity: 0; }
+.card.is-clear:has(.card__photo)::after { opacity: 1; }
+
+@media (hover: none), (pointer: coarse), (max-width: 720px) {
+  /* Tap targets: at least 44px tall without changing how the text looks */
+  .site-footer ul { gap: 0 28px; }
+  .site-footer li a { display: inline-flex; align-items: center; min-height: 44px; }
+  .prologue__links { row-gap: 0; }
+  .prologue__links a { display: inline-flex; align-items: center; min-height: 44px; }
+  .post__back { min-height: 44px; margin-bottom: clamp(12px, 3vw, 28px); }
+  .post__link { display: inline-block; padding-block: 10px; margin-block: -10px; }
+  .carousel__arrow, .co-others__arrow { width: 44px; height: 44px; }
+  .btn--sm { min-height: 44px; font-size: 0.75rem; }
+  .nav-menu__toggle { width: 44px; height: 44px; }
+  /* Labels that were 9 to 11px */
+  .ev-mode, .ab-year__tag { font-size: 0.6875rem; padding: 5px 9px; }
+  .ev-row__month { font-size: 0.6875rem; }
+  .ev-row__type { font-size: 0.75rem; }
+  /* Typing in the search box must not zoom the page (iOS zooms inputs under 16px) */
+  .search-panel__field input { font-size: 16px; }
+}
+
+@media (max-width: 720px) {
+  /* Team, partners and leadership: two across on phones (was one tall column) */
+  .people, .people--6 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 16px; }
+  .person__photo { width: 100%; }
+  .person__name { font-size: 1.125rem; margin-top: 14px; overflow-wrap: anywhere; }
+  .people--6 .person__name { font-size: 1.125rem; }
+  .person__role { font-size: 0.875rem; }
+  .person__more { padding-top: 10px; min-height: 44px; }
+  /* Home: tighter rhythm between sections, cards a little shorter */
+  .card { min-height: 0; }
+  .card--sm { min-height: 260px; }
+  .hero__ctas .btn { flex: 1 1 100%; }
+  .ev-filter { width: 100%; }
+  .ev-filter__btn { flex: 1; padding: 0 10px; min-height: 44px; }
+  .ev-hero__art { margin-bottom: 20px; }
+  .ab-chips li { padding: 10px 16px; font-size: 1rem; }
+  .ab-year { padding: 12px 0; }
+  .moment__title { font-size: 1.375rem; }
+}
+@media (max-width: 340px) {
+  .people, .people--6 { grid-template-columns: 1fr; }
+  .person__photo { width: min(100%, 220px); }
+}
+/* Tall mobile browsers: sections that fill the screen use the dynamic viewport */
+@supports (height: 100dvh) { .mobile-menu { max-height: calc(100dvh - var(--header-h, 68px)); overflow-y: auto; overscroll-behavior: contain; } }
+.stat dd { color: #A8624F; }   /* large numerals: 3:1 against the page */

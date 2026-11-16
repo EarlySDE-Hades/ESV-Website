@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Earlyseed Ventures</title>
+  <meta name="description" content="Earlyseed Ventures is a boutique investment banking firm in Mumbai, helping tech start-ups raise seed to Series A rounds." />
+  <meta name="theme-color" content="#F4F4F4" />
+  <!-- Link previews (WhatsApp, LinkedIn, X). The image URL must be absolute: update the domain if it differs. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Earlyseed Ventures" />
+  <meta property="og:title" content="Earlyseed Ventures" />
+  <meta property="og:description" content="Building a self-reliant India, one founder at a time. Capital for founders; curated early-stage deal flow for investors." />
+  <meta property="og:image" content="https://www.earlyseedventures.com/assets/brand/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/icons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/brand/icons/favicon-16.png" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/brand/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Playfair+Display:wght@400;500&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy&display=swap" />
+  <link rel="stylesheet" href="css/styles.css?v=202611162004" />
+
+  <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============================== Header ============================== -->
+  <header class="site-header" data-header>
+    <div class="site-header__inner container">
+      <a class="brand" href="index.html" aria-label="Earlyseed Ventures — home">
+        <img src="assets/brand/logo-dark.png" alt="earlyseed VENTURES" width="136" height="51" />
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary">
+        <ul class="primary-nav__links">
+          <li class="nav-menu" data-nav-menu>
+            <a href="about.html" aria-current="page">About</a>
+            <button class="nav-menu__toggle" type="button" aria-expanded="false" aria-controls="about-menu" aria-label="More in About" data-nav-menu-toggle>
+              <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <!-- Submenu: grows out of the About item on hover, keyboard focus or chevron click -->
+            <div class="nav-menu__panel" id="about-menu">
+              <ul>
+                <li><a href="about.html" aria-current="page">About Us</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="index.html#services">Services</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="index.html#portfolio">Our Portfolio</a></li>
+          <li><a href="index.html#perspectives">Perspectives</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li class="nav-reveal">
+            <!-- On hover / keyboard focus the word morphs into the Prologue logo, in place -->
+            <a class="nav-morph" href="index.html#prologue" aria-label="Prologue">
+              <span class="nav-morph__text" aria-hidden="true">Prologue</span>
+              <img class="nav-morph__logo" src="assets/brand/prologue-wordmark.webp" alt="" width="341" height="96" decoding="async" />
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <a class="btn btn--sm" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
+        <a class="btn btn--sm" href="index.html#for-investors">Invest with us</a>
+
+        <button class="icon-btn" type="button" aria-label="Search" aria-expanded="false" aria-controls="search-panel" data-search-toggle>
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m15 15 5.5 5.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </button>
+
+        <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+          <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search popover — materialises from the search icon -->
+    <div class="search-panel" id="search-panel" role="dialog" aria-label="Search the site" hidden data-search-panel>
+      <label class="visually-hidden" for="site-search">Search</label>
+      <div class="search-panel__field">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m15 15 5.5 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <input id="site-search" type="search" placeholder="Search Earlyseed" autocomplete="off" data-search-input />
+        <kbd>esc</kbd>
+      </div>
+      <ul class="search-panel__results" data-search-results></ul>
+    </div>
+
+    <!-- Mobile menu — drops from the header and returns the same way -->
+    <div class="mobile-menu" id="mobile-menu" hidden data-mobile-menu>
+      <nav aria-label="Mobile">
+        <ul>
+          <li><a href="about.html" aria-current="page">About</a></li>
+          <li class="mobile-menu__sub"><a href="team.html">Team</a></li>
+          <li class="mobile-menu__sub"><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#portfolio">Our Portfolio</a></li>
+          <li><a href="index.html#perspectives">Perspectives</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="index.html#prologue">Prologue</a></li>
+        </ul>
+        <div class="mobile-menu__ctas">
+          <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
+          <a class="btn" href="index.html#for-investors">Invest with us</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="about-page">
+    <!-- ============================== About us ============================== -->
+    <!-- Copy source: BNI deck (ESV Presentation_BNI_Jun26v6): About us, End-to-end services, Growth journey, Recent updates -->
+    <section class="ab-hero" aria-labelledby="ab-title">
+      <div class="container ab-hero__inner">
+        <p class="eyebrow" data-reveal>About us</p>
+        <h1 class="ev-hero__title" id="ab-title" data-reveal style="--i:1">Boutique investment banking for India’s high-potential start-ups.</h1>
+        <p class="ab-hero__lede" data-reveal style="--i:2">Earlyseed Ventures is a boutique investment banking firm based in Mumbai. We work closely with fundamentally strong, tech-based B2B and B2C start-ups creating immense value, and help them raise seed, pre-Series A and Series A rounds.</p>
+        <div class="hero__ctas" data-reveal style="--i:3">
+          <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
+          <a class="btn btn--ghost" href="team.html">Meet the team</a>
+        </div>
+      </div>
+      <figure class="container ab-hero__art" data-reveal>
+        <img src="assets/hero/collage-flat.webp" alt="Collage of India’s builders: a scientist, two women carrying produce, a student, a historic dome, a modern building and a flowering plant under a rising sun" width="1600" height="640" decoding="async" />
+      </figure>
+    </section>
+
+    <!-- ============================== Mission ============================== -->
+    <section class="section ab-mission" aria-labelledby="ab-mission-title">
+      <div class="container">
+        <p class="eyebrow" id="ab-mission-title" data-reveal>Our mission</p>
+        <p class="ab-mission__text" data-reveal style="--i:1">Being instrumental in the making of a new India: a self-sufficient and self-reliant India.</p>
+      </div>
+    </section>
+
+    <!-- ============================== In numbers ============================== -->
+    <section class="stats container ab-stats" aria-label="Earlyseed in numbers">
+      <dl class="stats__grid ab-stats__grid">
+        <div class="stat" data-reveal><dt>HNIs and family offices in our investor network</dt><dd>400+</dd></div>
+        <div class="stat" data-reveal style="--i:1"><dt>VC funds in our network</dt><dd>300+</dd></div>
+        <div class="stat" data-reveal style="--i:2"><dt>Our sweet spot, from seed to Series A</dt><dd>USD 50K–4M</dd></div>
+      </dl>
+    </section>
+
+    <!-- ============================== Sectors ============================== -->
+    <section class="section ab-section" aria-labelledby="ab-sectors-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <h2 class="section-title section-title--ruled" id="ab-sectors-title"><span>Sectors we work across</span></h2>
+        </header>
+        <ul class="ab-chips" role="list" data-reveal style="--i:1">
+          <li>Finance</li>
+          <li>Agriculture</li>
+          <li>Healthcare</li>
+          <li>Education</li>
+          <li>Defence</li>
+          <li>Blockchain</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================== End-to-end ============================== -->
+    <section class="section ab-section" aria-labelledby="ab-e2e-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <h2 class="section-title section-title--ruled" id="ab-e2e-title"><span>With founders, end to end</span></h2>
+          <p class="section-sub">We support companies end to end, and onboard them with the vision of giving them future exits.</p>
+        </header>
+
+        <ol class="ab-steps" role="list">
+          <li class="ab-step" data-reveal>
+            <span class="ab-step__n" aria-hidden="true">01</span>
+            <h3 class="ab-step__title">Bootcamps</h3>
+            <p>We guide founders on round structuring, governance and risk management, go-to-market strategy, and other critical early-stage mentorship needs.</p>
+          </li>
+          <li class="ab-step" data-reveal style="--i:1">
+            <span class="ab-step__n" aria-hidden="true">02</span>
+            <h3 class="ab-step__title">Pre-funding</h3>
+            <p>We help founders build proper resources and structures for raising funds: market research, pitch decks, financial projections and valuation reports, through <a class="post__link" href="index.html#prologue">Prologue by ESV</a>.</p>
+          </li>
+          <li class="ab-step" data-reveal style="--i:2">
+            <span class="ab-step__n" aria-hidden="true">03</span>
+            <h3 class="ab-step__title">Investments</h3>
+            <p>We curate deals for our investors and believe in strategic capital: sourcing through our network, validating through our in-house investment committee and due diligence, and negotiating valuation and terms.</p>
+          </li>
+          <li class="ab-step" data-reveal>
+            <span class="ab-step__n" aria-hidden="true">04</span>
+            <h3 class="ab-step__title">Investment banking</h3>
+            <p>We guide early-stage founders on round structuring and fundraising, give portfolio companies access to institutional investors and angels for subsequent rounds, and assist with deal execution.</p>
+          </li>
+          <li class="ab-step" data-reveal style="--i:1">
+            <span class="ab-step__n" aria-hidden="true">05</span>
+            <h3 class="ab-step__title">Exits, pre-IPO and acquisitions</h3>
+            <p>Our newest vertical, so that the companies we back early have a path to an exit.</p>
+          </li>
+        </ol>
+        <p class="ab-more" data-reveal><a class="btn btn--ghost" href="index.html#services">See our services</a></p>
+      </div>
+    </section>
+
+    <!-- ============================== Journey ============================== -->
+    <section class="section ab-section" aria-labelledby="ab-journey-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <h2 class="section-title section-title--ruled" id="ab-journey-title"><span>Our growth journey</span></h2>
+        </header>
+
+        <ol class="ab-timeline" role="list">
+          <li class="ab-year" data-reveal><span class="ab-year__n">2020</span><p>Began our association as regional partners for a venture capital fund.</p></li>
+          <li class="ab-year" data-reveal><span class="ab-year__n">2022</span><p>Earlyseed Ventures Pvt. Ltd. was incorporated to support start-ups through investment banking services.</p></li>
+          <li class="ab-year" data-reveal><span class="ab-year__n">2023</span><p>Established an angel investor syndicate and carried out investments under the Earlyseed Ventures banner.</p></li>
+          <li class="ab-year" data-reveal><span class="ab-year__n">2024</span><p>Onboarded venture partners in Ludhiana and Jaipur, and conducted bootcamps in collaboration with Manipal.</p></li>
+          <li class="ab-year" data-reveal><span class="ab-year__n">2025</span><p>Launched the pre-IPO vertical and onboarded two franchise partners.</p></li>
+          <li class="ab-year ab-year--next" data-reveal><span class="ab-year__n">2026</span><p><span class="ab-year__tag">Goal</span> Expand to 10 franchise partners across the UAE, South India and West India.</p></li>
+          <li class="ab-year ab-year--next" data-reveal><span class="ab-year__n">2027</span><p><span class="ab-year__tag">Goal</span> Launch a ₹100 Cr Category I AIF.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================== Campuses ============================== -->
+    <section class="section ab-section" aria-labelledby="ab-campus-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <h2 class="section-title section-title--ruled" id="ab-campus-title"><span>On campus</span></h2>
+          <p class="section-sub">We connect with aspiring student entrepreneurs, and give them access to funding, mentorship and resources.</p>
+        </header>
+
+        <ul class="ab-cards" role="list">
+          <li class="ab-card" data-reveal>
+            <h3 class="ab-step__title">MIT World Peace University, Pune</h3>
+            <p>A programme for 4,000+ students, covering everything from business planning to pre-funding exercises such as pitch decks, financial projections and valuations.</p>
+          </li>
+          <li class="ab-card" data-reveal style="--i:1">
+            <h3 class="ab-step__title">Gharda Institute of Technology</h3>
+            <p>An MoU to support its incubation centre with mentorship, bootcamps and workshops, industry insights and access to investors and partners.</p>
+          </li>
+          <li class="ab-card" data-reveal style="--i:2">
+            <h3 class="ab-step__title">Skill Titans</h3>
+            <p>Knowledge partners for OLL’s Skill Titans, in partnership with CNBC-TV18, alongside MIT Pune, Manipal University, Gharda Institute of Technology and Ashoka University.</p>
+          </li>
+          <li class="ab-card" data-reveal>
+            <h3 class="ab-step__title">IIT Madras</h3>
+            <p>Invited as mentors for student founders.</p>
+          </li>
+        </ul>
+        <p class="ab-more" data-reveal><a class="btn btn--ghost" href="index.html#team">Our campus partners</a></p>
+      </div>
+    </section>
+
+    <!-- ============================== Close ============================== -->
+    <section class="section ab-section ab-close" aria-labelledby="ab-close-title">
+      <div class="container">
+        <div class="post__close" data-reveal>
+          <h2 class="post__quote" id="ab-close-title">Building a self-reliant India, one founder at a time.</h2>
+          <p class="post__thanks">Earlyseed Ventures · 3, Enterprise Centre, Near Orchid Hotel, Vile Parle (E), Mumbai 400099</p>
+          <div class="hero__ctas">
+            <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
+            <a class="btn" href="index.html#for-investors">Invest with us</a>
+            <a class="btn btn--ghost" href="team.html">Meet the team</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================== Footer ============================== -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <img src="assets/brand/logo-dark.png" alt="earlyseed VENTURES" width="112" height="42" />
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="about.html" aria-current="page">About</a></li>
+          <li><a href="index.html#portfolio">Portfolio</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#perspectives">Perspectives</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__legal">© <span data-year>2026</span> Earlyseed Ventures</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=202611162004" defer></script>
+</body>
+</html>
