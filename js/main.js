@@ -336,7 +336,7 @@
     { title: 'Karan Shah, Deal Manager', section: 'Team', href: 'team.html#team-members' },
     { title: 'Mehak Gupta, Creative Head', section: 'Team', href: 'team.html#team-members' },
     { title: 'Ruhaan Gupta, Investment Associate', section: 'Team', href: 'team.html#team-members' },
-    { title: 'Siddhant Baliga, Technology Consultant', section: 'Team', href: 'team.html#team-members' },
+    { title: 'Siddhant Baliga, Venture & Technology Strategy Consultant', section: 'Team', href: 'team.html#team-members' },
     { title: 'Dhwani Joshi, Bootcamp Coordinator', section: 'Team', href: 'team.html#team-members' },
     { title: 'Dale Galbano, Executive Assistant', section: 'Team', href: 'team.html#team-members' },
     { title: 'Sneha Lakra, Communication Designer', section: 'Team', href: 'team.html#team-members' },
