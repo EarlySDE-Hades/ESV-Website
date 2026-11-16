@@ -3,9 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Earlyseed Ventures — Building a self-reliant India, one founder at a time</title>
+  <title>Earlyseed Ventures</title>
   <meta name="description" content="Earlyseed Ventures helps Indian founders raise capital and gives investors access to curated early-stage deal flow, syndicates and education." />
   <meta name="theme-color" content="#F4F4F4" />
+  <!-- Link previews (WhatsApp, LinkedIn, X). The image URL must be absolute: update the domain if it differs. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Earlyseed Ventures" />
+  <meta property="og:title" content="Earlyseed Ventures" />
+  <meta property="og:description" content="Building a self-reliant India, one founder at a time. Capital for founders; curated early-stage deal flow for investors." />
+  <meta property="og:image" content="https://www.earlyseedventures.com/assets/brand/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="favicon.ico" sizes="48x48" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/icons/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/brand/icons/favicon-16.png" />
@@ -16,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Playfair+Display:wght@400;500&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy&display=swap" />
-  <link rel="stylesheet" href="css/styles.css?v=202611051442" />
+  <link rel="stylesheet" href="css/styles.css?v=202611161853" />
 
   <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
   <script>document.documentElement.classList.add('js');</script>
@@ -80,7 +89,7 @@
 
       <div class="site-header__actions">
         <a class="btn btn--sm" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
-        <a class="btn btn--sm" href="#invest">Invest with us</a>
+        <a class="btn btn--sm" href="#for-investors">Invest with us</a>
 
         <button class="icon-btn" type="button" aria-label="Search" aria-expanded="false" aria-controls="search-panel" data-search-toggle>
           <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m15 15 5.5 5.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
@@ -117,7 +126,7 @@
         </ul>
         <div class="mobile-menu__ctas">
           <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
-          <a class="btn" href="#invest">Invest with us</a>
+          <a class="btn" href="#for-investors">Invest with us</a>
         </div>
       </nav>
     </div>
@@ -201,8 +210,8 @@
           Building a self&#8209;reliant India,<br /> one founder at a time.
         </h1>
         <div class="hero__ctas" data-reveal style="--i:1">
-          <a class="btn" href="https://ecosystem.earlyseedventures.com/apply" id="raise">Pitch to us</a>
-          <a class="btn" href="#invest" id="invest">Invest with us</a>
+          <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
+          <a class="btn" href="#for-investors">Invest with us</a>
         </div>
       </div>
     </section>
@@ -211,15 +220,16 @@
     <!-- Growth: a seedling vine behind the page that grows as you scroll (built by initGrowth) -->
     <div class="growth" aria-hidden="true" data-growth></div>
 
+    <!-- Cards get an href when their article / video / podcast page exists -->
     <section class="perspectives container" id="perspectives" aria-label="Perspectives">
       <div class="cards cards--2">
-        <a class="card" href="#" data-reveal>
+        <a class="card" data-reveal>
           <img class="card__photo" src="assets/perspectives/deal-table.webp" alt="" loading="lazy" decoding="async" />
           <h2 class="card__title">From the deal table.</h2>
           <p class="card__body">Fundraising playbooks, founder stories and our work across India’s startup ecosystem.</p>
           <span class="card__icon"><img src="assets/illustrations/read.webp" alt="" width="96" height="96" loading="lazy" decoding="async" /><span class="visually-hidden">Read</span></span>
         </a>
-        <a class="card" href="#" data-reveal style="--i:1">
+        <a class="card" data-reveal style="--i:1">
           <img class="card__photo" src="assets/perspectives/founder-stories.webp" alt="" loading="lazy" decoding="async" />
           <h2 class="card__title">Founder Stories:<br />Founders on what raising capital really looked like.</h2>
           <p class="card__body">Finance for the Fundraising-Curious: Round structures, valuations and term sheets, explained simply.</p>
@@ -228,18 +238,18 @@
       </div>
 
       <div class="cards cards--3">
-        <a class="card card--sm" href="#" data-reveal>
+        <a class="card card--sm" data-reveal>
           <img class="card__photo" src="assets/perspectives/mit-wpu.webp" alt="" loading="lazy" decoding="async" />
           <p class="card__body">MIT World Peace University, Pune: A founder-readiness programme for 4,000+ students covering business planning, pitch decks, financial projections and valuations.</p>
           <span class="card__icon"><img src="assets/illustrations/read.webp" alt="" width="96" height="96" loading="lazy" decoding="async" /><span class="visually-hidden">Read</span></span>
         </a>
-        <a class="card card--sm" href="#" data-reveal style="--i:1">
+        <a class="card card--sm" data-reveal style="--i:1">
           <img class="card__photo" src="assets/perspectives/skill-titans.webp" alt="" loading="lazy" decoding="async" />
           <p class="card__body">Knowledge Partner, Skill Titans:</p>
           <p class="card__body">ESV designed the evaluation process for OLL’s Skill Titans, a CNBC-TV18 programme that drew startup ideas from students across 200+ schools, and mentored the winning teams.</p>
           <span class="card__icon"><img src="assets/illustrations/watch.webp" alt="" width="96" height="96" loading="lazy" decoding="async" /><span class="visually-hidden">Watch</span></span>
         </a>
-        <a class="card card--sm" href="#" data-reveal style="--i:2">
+        <a class="card card--sm" data-reveal style="--i:2">
           <img class="card__photo" src="assets/perspectives/podcasts.webp" alt="" loading="lazy" decoding="async" />
           <p class="card__body">Podcasts</p>
           <span class="card__icon"><img src="assets/illustrations/listen.webp" alt="" width="96" height="96" loading="lazy" decoding="async" /><span class="visually-hidden">Listen</span></span>
@@ -577,6 +587,16 @@
       </script>
     </section>
 
+    <!-- ============================== Events ============================== -->
+    <section class="section events" id="events" aria-labelledby="events-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <h2 class="section-title" id="events-title">Events</h2>
+          <p class="section-sub">Founder meet-ups, investor sessions and campus programmes. Upcoming dates will be announced here.</p>
+        </header>
+      </div>
+    </section>
+
     <!-- ============================== Services ============================== -->
     <section class="section services" id="services" aria-labelledby="services-title">
       <div class="container">
@@ -598,7 +618,7 @@
             <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
           </section>
 
-          <section class="svc-group svc-group--wide" aria-labelledby="investors-title" data-reveal style="--i:1">
+          <section class="svc-group svc-group--wide" id="for-investors" aria-labelledby="investors-title" data-reveal style="--i:1">
             <header class="svc-group__head">
               <img class="svc-group__icon" src="assets/illustrations/investors.webp" alt="" width="96" height="96" loading="lazy" decoding="async" />
               <h3 id="investors-title">For Investors</h3>
@@ -621,7 +641,7 @@
                 <span class="svc-card__more" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M8 3.5v9M3.5 8h9" /></svg></span>
               </button></li>
             </ul>
-            <a class="btn" href="#invest">Invest with us</a>
+            <a class="btn" href="#for-investors">Invest with us</a>
           </section>
         </div>
       </div>
@@ -648,7 +668,7 @@
           <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-doc-check"/></svg></span><span class="svc-item__text"><strong>Transaction &amp; Legal Support</strong><span>Diligence, documentation and closing, handled with you.</span></span></li>
         </ul>
       </template>
-      <template id="svc-community" data-group="For Investors" data-title="Community &amp; Education" data-cta="Invest with us" data-href="#invest">
+      <template id="svc-community" data-group="For Investors" data-title="Community &amp; Education" data-cta="Invest with us" data-href="#for-investors">
         <p class="svc-dialog__summary">Learn early-stage investing alongside other investors.</p>
         <ul class="svc-items" role="list">
           <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-cap"/></svg></span><span class="svc-item__text"><strong>Investor Sessions</strong><span>How to evaluate startups, valuations and term sheets, explained simply.</span></span></li>
@@ -656,7 +676,7 @@
           <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-spark"/></svg></span><span class="svc-item__text"><strong>Founder Access</strong><span>Meet the founders behind the companies you back.</span></span></li>
         </ul>
       </template>
-      <template id="svc-documentation" data-group="For Investors" data-title="Full Documentation" data-cta="Invest with us" data-href="#invest">
+      <template id="svc-documentation" data-group="For Investors" data-title="Full Documentation" data-cta="Invest with us" data-href="#for-investors">
         <p class="svc-dialog__summary">Every opportunity comes with the paperwork done properly.</p>
         <ul class="svc-items" role="list">
           <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-search"/></svg></span><span class="svc-item__text"><strong>Due Diligence</strong><span>Our diligence findings, shared with every opportunity.</span></span></li>
@@ -664,7 +684,7 @@
           <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-doc-check"/></svg></span><span class="svc-item__text"><strong>Legal Paperwork</strong><span>Agreements prepared and executed for you.</span></span></li>
         </ul>
       </template>
-      <template id="svc-syndicate" data-group="For Investors" data-title="Syndicate Access" data-cta="Invest with us" data-href="#invest">
+      <template id="svc-syndicate" data-group="For Investors" data-title="Syndicate Access" data-cta="Invest with us" data-href="#for-investors">
         <p class="svc-dialog__summary">Back early-stage startups alongside other investors.</p>
         <ul class="svc-items" role="list">
           <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-coins"/></svg></span><span class="svc-item__text"><strong>From ₹2 Lakh</strong><span>Start with a minimum syndicate ticket of ₹2 Lakh.</span></span></li>
@@ -672,7 +692,7 @@
           <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-trend"/></svg></span><span class="svc-item__text"><strong>Rounds of $50K – $2M</strong><span>Access the round sizes where early value is created.</span></span></li>
         </ul>
       </template>
-      <template id="svc-dealflow" data-group="For Investors" data-title="Curated Deal Flow" data-cta="Invest with us" data-href="#invest">
+      <template id="svc-dealflow" data-group="For Investors" data-title="Curated Deal Flow" data-cta="Invest with us" data-href="#for-investors">
         <p class="svc-dialog__summary">Opportunities we have screened before they reach you.</p>
         <ul class="svc-items" role="list">
           <li class="svc-item"><span class="svc-item__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#s-filter"/></svg></span><span class="svc-item__text"><strong>Screened First</strong><span>Startups evaluated by our team before you see them.</span></span></li>
@@ -825,6 +845,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=202611051442" defer></script>
+  <script src="js/main.js?v=202611161853" defer></script>
 </body>
 </html>

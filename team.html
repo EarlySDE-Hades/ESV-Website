@@ -3,9 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Team — Earlyseed Ventures</title>
+  <title>Earlyseed Ventures</title>
   <meta name="description" content="The leadership team behind Earlyseed Ventures." />
   <meta name="theme-color" content="#F4F4F4" />
+  <!-- Link previews (WhatsApp, LinkedIn, X). The image URL must be absolute: update the domain if it differs. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Earlyseed Ventures" />
+  <meta property="og:title" content="Earlyseed Ventures" />
+  <meta property="og:description" content="Building a self-reliant India, one founder at a time. Capital for founders; curated early-stage deal flow for investors." />
+  <meta property="og:image" content="https://www.earlyseedventures.com/assets/brand/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="favicon.ico" sizes="48x48" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/icons/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/brand/icons/favicon-16.png" />
@@ -16,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Playfair+Display:wght@400;500&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy&display=swap" />
-  <link rel="stylesheet" href="css/styles.css?v=202611051442" />
+  <link rel="stylesheet" href="css/styles.css?v=202611161853" />
 
   <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
   <script>document.documentElement.classList.add('js');</script>
@@ -60,7 +69,7 @@
 
       <div class="site-header__actions">
         <a class="btn btn--sm" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
-        <a class="btn btn--sm" href="index.html#invest">Invest with us</a>
+        <a class="btn btn--sm" href="index.html#for-investors">Invest with us</a>
 
         <button class="icon-btn" type="button" aria-label="Search" aria-expanded="false" aria-controls="search-panel" data-search-toggle>
           <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m15 15 5.5 5.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
@@ -97,7 +106,7 @@
         </ul>
         <div class="mobile-menu__ctas">
           <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
-          <a class="btn" href="index.html#invest">Invest with us</a>
+          <a class="btn" href="index.html#for-investors">Invest with us</a>
         </div>
       </nav>
     </div>
@@ -252,6 +261,129 @@
         </section>
       </template>
     </section>
+    <!-- ============================== Strategic Growth Partners ============================== -->
+    <!-- From the BNI deck, slide "Our Growth Partners". Portraits: tools/team/photos.py -->
+    <section class="section leadership partners" id="growth-partners" aria-labelledby="partners-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <h2 class="section-title" id="partners-title">Strategic Growth Partners</h2>
+        </header>
+
+        <ul class="people people--6" role="list">
+          <li class="person" data-reveal>
+            <img class="person__photo" src="assets/team/pankaj-harwansh.webp" alt="Portrait of Pankaj Harwansh" width="600" height="600" loading="lazy" decoding="async" />
+            <span class="person__name">Pankaj Harwansh</span>
+            <span class="person__role">Mumbai, India</span>
+          </li>
+          <li class="person" data-reveal style="--i:1">
+            <img class="person__photo" src="assets/team/s-robin.webp" alt="Portrait of S Robin" width="600" height="600" loading="lazy" decoding="async" />
+            <span class="person__name">S Robin</span>
+            <span class="person__role">Mumbai, India</span>
+          </li>
+          <li class="person" data-reveal style="--i:2">
+            <img class="person__photo" src="assets/team/subramanian-srinivasan.webp" alt="Portrait of Subramanian Srinivasan" width="600" height="600" loading="lazy" decoding="async" />
+            <span class="person__name">Subramanian Srinivasan</span>
+            <span class="person__role">Mumbai, India</span>
+          </li>
+          <li class="person" data-reveal style="--i:3">
+            <img class="person__photo" src="assets/team/suresh-menon.webp" alt="Portrait of Suresh Menon" width="600" height="600" loading="lazy" decoding="async" />
+            <span class="person__name">Suresh Menon</span>
+            <span class="person__role">Mumbai, India</span>
+          </li>
+          <li class="person" data-reveal style="--i:4">
+            <img class="person__photo" src="assets/team/sandeep-agrawal.webp" alt="Portrait of Sandeep Agrawal" width="600" height="600" loading="lazy" decoding="async" />
+            <span class="person__name">Sandeep Agrawal</span>
+            <span class="person__role">Mumbai, India</span>
+          </li>
+          <li class="person" data-reveal style="--i:5">
+            <img class="person__photo" src="assets/team/anup-nathani.webp" alt="Portrait of Anup Nathani" width="600" height="600" loading="lazy" decoding="async" />
+            <span class="person__name">Anup Nathani</span>
+            <span class="person__role">Mumbai, India</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <!-- ============================== Team ============================== -->
+    <!-- Portraits: tools/team/photos.py (a span.person__photo--empty with initials works as a placeholder). A card becomes clickable once it has a bio template (team-slug) below. -->
+    <section class="section leadership partners" id="team-members" aria-labelledby="members-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <h2 class="section-title" id="members-title">Team</h2>
+        </header>
+
+        <ul class="people" role="list">
+          <li class="person" data-reveal>
+            <button class="person__card" type="button" data-service="sakshay-upadhyay" aria-haspopup="dialog">
+              <img class="person__photo" src="assets/team/sakshay-upadhyay.webp" alt="Portrait of Sakshay Upadhyay" width="600" height="600" loading="lazy" decoding="async" />
+              <span class="person__name">Sakshay Upadhyay</span>
+              <span class="person__role">Investment Associate</span>
+              <span class="person__more">View profile <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3.5v9M3.5 8h9"/></svg></span>
+            </button>
+          </li>
+          <li class="person" data-reveal style="--i:1">
+              <img class="person__photo" src="assets/team/karan-shah.webp" alt="Portrait of Karan Shah" width="600" height="600" loading="lazy" decoding="async" />
+              <span class="person__name">Karan Shah</span>
+              <span class="person__role">Deal Manager</span>
+          </li>
+          <li class="person" data-reveal style="--i:2">
+              <img class="person__photo" src="assets/team/mehak-gupta.webp" alt="Portrait of Mehak Gupta" width="600" height="600" loading="lazy" decoding="async" />
+              <span class="person__name">Mehak Gupta</span>
+              <span class="person__role">Creative Head</span>
+          </li>
+          <li class="person" data-reveal style="--i:3">
+              <img class="person__photo" src="assets/team/ruhaan-gupta.webp" alt="Portrait of Ruhaan Gupta" width="600" height="600" loading="lazy" decoding="async" />
+              <span class="person__name">Ruhaan Gupta</span>
+              <span class="person__role">Investment Associate</span>
+          </li>
+          <li class="person" data-reveal style="--i:4">
+              <img class="person__photo" src="assets/team/siddhant-baliga.webp" alt="Portrait of Siddhant Baliga" width="600" height="600" loading="lazy" decoding="async" />
+              <span class="person__name">Siddhant Baliga</span>
+              <span class="person__role">Technology Consultant</span>
+          </li>
+          <li class="person" data-reveal>
+              <img class="person__photo" src="assets/team/dhwani-joshi.webp" alt="Portrait of Dhwani Joshi" width="600" height="600" loading="lazy" decoding="async" />
+              <span class="person__name">Dhwani Joshi</span>
+              <span class="person__role">Bootcamp Coordinator</span>
+          </li>
+          <li class="person" data-reveal style="--i:1">
+              <img class="person__photo" src="assets/team/dale-galbano.webp" alt="Portrait of Dale Galbano" width="600" height="600" loading="lazy" decoding="async" />
+              <span class="person__name">Dale Galbano</span>
+              <span class="person__role">Executive Assistant</span>
+          </li>
+          <li class="person" data-reveal style="--i:2">
+              <img class="person__photo" src="assets/team/sneha-lakra.webp" alt="Portrait of Sneha Lakra" width="600" height="600" loading="lazy" decoding="async" />
+              <span class="person__name">Sneha Lakra</span>
+              <span class="person__role">Communication Designer</span>
+          </li>
+          <li class="person" data-reveal style="--i:3">
+              <img class="person__photo" src="assets/team/siddarth-menon.webp" alt="Portrait of Siddarth Menon" width="600" height="600" loading="lazy" decoding="async" />
+              <span class="person__name">Siddarth Menon</span>
+              <span class="person__role">Investment Associate</span>
+          </li>
+          <li class="person" data-reveal style="--i:4">
+              <img class="person__photo" src="assets/team/manav-khare.webp" alt="Portrait of Manav Khare" width="600" height="600" loading="lazy" decoding="async" />
+              <span class="person__name">Manav Khare</span>
+              <span class="person__role">Investor Relations</span>
+          </li>
+        </ul>
+      </div>
+
+      <template id="team-sakshay-upadhyay" data-group="Investment Associate" data-title="Sakshay Upadhyay">
+        <div class="profile">
+          <img class="profile__photo" src="assets/team/sakshay-upadhyay.webp" alt="Portrait of Sakshay Upadhyay" width="600" height="600" decoding="async" />
+          <div class="profile__text">
+            <p class="profile__bio">Sakshay Upadhyay is an Investment Associate at Earlyseed Ventures and a Warwick Business School alumnus. With over four years in venture capital finance, Sakshay has worked with more than 30 founders on fundraising strategy and financial modelling.</p>
+            <a class="profile__linkedin" href="https://www.linkedin.com/in/sakshay-upadhyay" target="_blank" rel="noopener"><img class="profile__li" src="assets/brand/linkedin.webp" alt="" width="18" height="18" />LinkedIn profile</a>
+          </div>
+        </div>
+        <section class="profile__aff" aria-label="Affiliations">
+          <h4 class="pl-dialog__label">Affiliations</h4>
+          <ul class="profile__logos" role="list">
+            <li><img class="profile__logo--tall" src="assets/logos/team/warwick-business-school.webp" alt="Warwick Business School, The University of Warwick" width="142" height="168" decoding="async" draggable="false" /></li>
+          </ul>
+        </section>
+      </template>
+    </section>
   </main>
 
   <!-- ============================== Footer ============================== -->
@@ -272,6 +404,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=202611051442" defer></script>
+  <script src="js/main.js?v=202611161853" defer></script>
 </body>
 </html>

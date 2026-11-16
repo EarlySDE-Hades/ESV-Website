@@ -24,10 +24,24 @@ PEOPLE = [
     ("Rahul_new_nobg.png", "rahul-hingmire"),
     ("Sudhir_nobg.png", "sudhir-mehta"),
 ]
+# Growth partners: cut-outs lifted from the BNI deck (slide "Our Growth Partners")
+PEOPLE += [(f"partners/{slug}.png", slug) for slug in (
+    "pankaj-harwansh", "s-robin", "subramanian-srinivasan", "suresh-menon", "sandeep-agrawal", "anup-nathani")]
+# Team members: cut-outs in Team Photos/ (gitignored). Mehak and Sneha were supplied cut out;
+# the rest were cut out from the originals into Team Photos/cutouts/.
+PEOPLE += [("../Team Photos/Mehak_nobg.png", "mehak-gupta"), ("../Team Photos/sneha_nobg.png", "sneha-lakra")]
+PEOPLE += [(f"../Team Photos/cutouts/{slug}.png", slug) for slug in (
+    "sakshay-upadhyay", "karan-shah", "ruhaan-gupta", "dhwani-joshi", "dale-galbano",
+    "siddarth-menon", "manav-khare", "siddhant-baliga")
+    if (ROOT / "Team Photos" / "cutouts" / f"{slug}.png").exists()]
+# Photos that still have a background can be cropped square instead: (file, slug, (left, top, size))
+CROPS = []
 # Fine-tuning per person if the silhouette misreads (hair volume etc.): scale multiplier, x/y nudge (share of frame)
-TUNE = {"rahul-hingmire": (0.92, 0.0, 0.0)}
+TUNE = {"rahul-hingmire": (0.92, 0.0, 0.0),
+        "sakshay-upadhyay": (1.12, 0.0, 0.0), "karan-shah": (1.08, 0.0, 0.0), "mehak-gupta": (0.78, 0.0, 0.0),
+        "dhwani-joshi": (1.8, 0.0, 0.0), "dale-galbano": (1.15, 0.0, 0.0), "sneha-lakra": (1.1, 0.0, 0.0)}
 # Where the chin/neck sits, as a share of the height below the crown, when the silhouette can't show it
-NECK = {"monica-gupta": 0.31}
+NECK = {"monica-gupta": 0.31, "mehak-gupta": 0.30}
 
 
 def head_box(im, slug):
@@ -73,12 +87,32 @@ def build(src, slug):
     top, cx = top * s, cx * s
     left = cx - SIZE / 2 - dx * SIZE
     upper = top - SIZE * TOP - dy * SIZE
+    # Never show the cut edge of the source photo: keep the frame inside the image at the
+    # sides and bottom when the image is big enough (space above the head is fine).
+    if im.width >= SIZE:
+        left = min(max(left, 0), im.width - SIZE)
+    if im.height >= SIZE:
+        upper = min(upper, im.height - SIZE)
     canvas = Image.new("RGBA", (SIZE, SIZE), BEIGE + (255,))
     canvas.paste(im, (round(-left), round(-upper)), im)
     canvas.convert("RGB").save(OUT / f"{slug}.webp", quality=88, method=6)
     print(slug, f"head {neck - top:.0f}px", f"scale {s:.3f}")
 
 
+def build_crop(src, slug, box):
+    from PIL import ImageOps
+    im = ImageOps.exif_transpose(Image.open(ROOT / "Team Photos" / src)).convert("RGB")
+    left, top, size = box
+    side = round(size * im.width)
+    x, y = round(left * im.width), round(top * im.height)
+    side = min(side, im.width - x, im.height - y)
+    im = im.crop((x, y, x + side, y + side)).resize((SIZE, SIZE), Image.LANCZOS)
+    im.save(OUT / f"{slug}.webp", quality=88, method=6)
+    print(slug, f"crop {side}px")
+
+
 if __name__ == "__main__":
     for src, slug in PEOPLE:
         build(src, slug)
+    for src, slug, box in CROPS:
+        build_crop(src, slug, box)

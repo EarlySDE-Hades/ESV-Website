@@ -319,21 +319,56 @@
      ------------------------------------------------------------------------ */
   const SEARCH_INDEX = [
     { title: 'About Earlyseed', section: 'About', href: '#about' },
+    { title: 'Leadership team', section: 'Team', href: 'team.html#leadership' },
+    { title: 'CA Monica Gupta, Co-founder and CEO', section: 'Team', href: 'team.html#leadership' },
+    { title: 'CA Manan Patel, Head of Investments & Tax', section: 'Team', href: 'team.html#leadership' },
+    { title: 'CA Nimit Shah, Head of Partnerships', section: 'Team', href: 'team.html#leadership' },
+    { title: 'Adv. Rahul Hingmire, Chief Legal Advisor', section: 'Team', href: 'team.html#leadership' },
+    { title: 'Sudhir Mehta, Strategy and International Relations', section: 'Team', href: 'team.html#leadership' },
+    { title: 'Strategic Growth Partners', section: 'Team', href: 'team.html#growth-partners' },
+    { title: 'Pankaj Harwansh, Growth Partner', section: 'Team', href: 'team.html#growth-partners' },
+    { title: 'S Robin, Growth Partner', section: 'Team', href: 'team.html#growth-partners' },
+    { title: 'Subramanian Srinivasan, Growth Partner', section: 'Team', href: 'team.html#growth-partners' },
+    { title: 'Suresh Menon, Growth Partner', section: 'Team', href: 'team.html#growth-partners' },
+    { title: 'Sandeep Agrawal, Growth Partner', section: 'Team', href: 'team.html#growth-partners' },
+    { title: 'Anup Nathani, Growth Partner', section: 'Team', href: 'team.html#growth-partners' },
+    { title: 'Sakshay Upadhyay, Investment Associate', section: 'Team', href: 'team.html#team-members' },
+    { title: 'Karan Shah, Deal Manager', section: 'Team', href: 'team.html#team-members' },
+    { title: 'Mehak Gupta, Creative Head', section: 'Team', href: 'team.html#team-members' },
+    { title: 'Ruhaan Gupta, Investment Associate', section: 'Team', href: 'team.html#team-members' },
+    { title: 'Siddhant Baliga, Technology Consultant', section: 'Team', href: 'team.html#team-members' },
+    { title: 'Dhwani Joshi, Bootcamp Coordinator', section: 'Team', href: 'team.html#team-members' },
+    { title: 'Dale Galbano, Executive Assistant', section: 'Team', href: 'team.html#team-members' },
+    { title: 'Sneha Lakra, Communication Designer', section: 'Team', href: 'team.html#team-members' },
+    { title: 'Siddarth Menon, Investment Associate', section: 'Team', href: 'team.html#team-members' },
+    { title: 'Manav Khare, Investor Relations', section: 'Team', href: 'team.html#team-members' },
     { title: 'Our Portfolio', section: 'Portfolio', href: '#portfolio' },
-    { title: 'Leadership', section: 'Team', href: 'team.html#leadership' },
-    { title: 'Campus Partnerships', section: 'Team', href: '#team' },
-    { title: 'Services for Founders', section: 'Services', href: '#services' },
-    { title: 'Services for Investors', section: 'Services', href: '#services' },
-    { title: 'Pre-funding: modelling, decks, valuations', section: 'Services', href: '#services' },
-    { title: 'Fundraising & investor access', section: 'Services', href: '#services' },
-    { title: 'Syndicate access', section: 'Services', href: '#services' },
+    { title: 'Campus Partnerships', section: 'Partners', href: '#team' },
+    { title: 'Events', section: 'Events', href: '#events' },
+    { title: 'Services for Founders: fundraising', section: 'Services', href: '#services' },
+    { title: 'Services for Investors', section: 'Services', href: '#for-investors' },
+    { title: 'Syndicate access', section: 'Services', href: '#for-investors' },
+    { title: 'Curated deal flow', section: 'Services', href: '#for-investors' },
+    { title: 'Community & education', section: 'Services', href: '#for-investors' },
+    { title: 'Prologue: financial models, pitch decks, market research', section: 'Prologue', href: '#prologue' },
+    { title: 'Pre-funding: data room, consultancy', section: 'Prologue', href: '#prologue' },
     { title: 'From the deal table', section: 'Perspectives', href: '#perspectives' },
     { title: 'Founder Stories', section: 'Perspectives', href: '#perspectives' },
-    { title: 'Prologue: models, decks, research', section: 'Prologue', href: '#prologue' },
-    { title: 'Podcasts', section: 'Prologue', href: '#prologue' },
-    { title: 'Pitch to us', section: 'Raise', href: '#raise' },
-    { title: 'Invest with us', section: 'Invest', href: '#invest' },
-  ];
+    { title: 'Podcasts', section: 'Perspectives', href: '#perspectives' },
+    { title: 'Pitch to us', section: 'Raise', href: 'https://ecosystem.earlyseedventures.com/apply' },
+    { title: 'Invest with us', section: 'Invest', href: '#for-investors' },
+  ];  // Companies and partners come from the JSON the dialogs already use (home page only)
+  let fullIndex = null;
+  function searchIndex() {
+    if (fullIndex) return fullIndex;
+    const read = (id, section, href) => {
+      try { return JSON.parse($('#' + id).textContent).map((c) => ({ title: c.name, section, href })); } catch { return []; }
+    };
+    fullIndex = SEARCH_INDEX.concat(read('portfolio-data', 'Portfolio', '#portfolio'), read('partner-data', 'Partners', '#team'));
+    return fullIndex;
+  }
+
+
 
   function initSearch(header) {
     const panel = $('[data-search-panel]', header);
@@ -345,7 +380,7 @@
     let active = 0, matches = [];
     function renderResults() {
       const q = input.value.trim().toLowerCase();
-      matches = q ? SEARCH_INDEX.filter((r) => (r.title + ' ' + r.section).toLowerCase().includes(q)) : SEARCH_INDEX.slice(0, 6);
+      matches = q ? searchIndex().filter((r) => (r.title + ' ' + r.section).toLowerCase().includes(q)).slice(0, 8) : SEARCH_INDEX.slice(0, 6);
       active = 0;
       results.innerHTML = matches.length
         ? matches.map((r, i) => `<li><a href="${r.href}" aria-selected="${i === 0}">${r.title}<span>${r.section}</span></a></li>`).join('')
@@ -661,9 +696,74 @@
       return `translate(${dx}px, ${dy}px) scale(${c.width / p.width}, ${c.height / p.height})`;
     }
 
+    /* Shared-element mode (team profiles): the headshot on the card flies into its place in
+       the profile while the panel rises around it; closing sends it home again. The flying
+       copy always starts from where the photo is on screen right now, so opening and closing
+       can interrupt each other without a jump. */
+    const EASE_OUT = 'cubic-bezier(0.22, 1, 0.36, 1)';
+    const radiusOf = (el) => parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0;
+    let hero = false, heroSrc = null, heroDst = null, fly = null, flyAnim = null;
+    function endFly() {
+      if (flyAnim) { flyAnim.onfinish = null; flyAnim.cancel(); flyAnim = null; }
+      if (fly) { fly.remove(); fly = null; }
+    }
+    function flyPhoto(from, to, radFrom, radTo, timing) {
+      endFly();
+      fly = heroSrc.cloneNode();
+      fly.removeAttribute('loading'); fly.removeAttribute('style');
+      fly.className = 'fly-photo'; fly.alt = '';
+      Object.assign(fly.style, { left: to.left + 'px', top: to.top + 'px', width: to.width + 'px', height: to.height + 'px' });
+      dialog.append(fly);
+      const sx = from.width / to.width, sy = from.height / to.height;
+      flyAnim = fly.animate([
+        { transform: `translate(${from.left - to.left}px, ${from.top - to.top}px) scale(${sx}, ${sy})`, borderRadius: `${radFrom / sx}px` },
+        { transform: 'none', borderRadius: `${radTo}px` },
+      ], { ...timing, fill: 'both' });
+      return flyAnim;
+    }
+    function openHero() {
+      const from = heroSrc.getBoundingClientRect(), to = heroDst.getBoundingClientRect();
+      const r0 = radiusOf(heroSrc), r1 = radiusOf(heroDst);
+      heroSrc.style.visibility = 'hidden'; heroDst.style.visibility = 'hidden';
+      flyPhoto(from, to, r0, r1, { duration: 580, easing: EASE_OUT }).onfinish = () => { heroDst.style.visibility = ''; endFly(); };
+      anim = panel.animate(
+        [{ opacity: 0, transform: 'translateY(26px) scale(0.955)' }, { opacity: 1, transform: 'none' }],
+        { duration: 480, easing: EASE_OUT });
+      // Name, role, bio, link and affiliations follow the photo in, one after another
+      const parts = [titleEl, groupEl, ...$$('.profile__text > *, .profile__aff', body)];
+      contentAnim = parts.map((el, i) => el.animate(
+        [{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'none' }],
+        { duration: 460, delay: 150 + i * 55, easing: EASE_OUT, fill: 'backwards' }));
+    }
+    function closeHero(done) {
+      const flying = !!fly;
+      const from = (fly || heroDst).getBoundingClientRect();     // wherever the photo is right now
+      const to = heroSrc.getBoundingClientRect();
+      const opacity = getComputedStyle(panel).opacity;
+      if (anim) anim.cancel();
+      heroDst.style.visibility = 'hidden';
+      // Text leaves first and fast; the photo takes the longer road home
+      contentAnim = [titleEl, groupEl, ...$$('.profile__text > *, .profile__aff', body)].map((el) => el.animate(
+        [{ opacity: getComputedStyle(el).opacity }, { opacity: 0 }], { duration: 140, easing: 'ease-in', fill: 'forwards' }));
+      anim = panel.animate(
+        [{ opacity, transform: 'none' }, { opacity: 0, transform: 'translateY(18px) scale(0.965)' }],
+        { duration: 280, delay: 40, easing: 'cubic-bezier(0.4, 0, 1, 1)', fill: 'forwards' });
+      const out = flyPhoto(from, to, flying ? radiusOf(heroSrc) : radiusOf(heroDst), radiusOf(heroSrc),
+        { duration: flying ? 300 : 440, easing: 'cubic-bezier(0.32, 0.72, 0, 1)' });
+      out.onfinish = () => {
+        heroSrc.style.visibility = '';
+        endFly();
+        contentAnim.forEach((a) => a.cancel()); contentAnim = null;
+        anim.cancel();
+        done();
+      };
+    }
+
     function open(card) {
       const tpl = document.getElementById(prefix + card.dataset.service);
       if (!tpl) return;
+      endFly();
+      if (heroSrc) heroSrc.style.visibility = '';
       if (anim) anim.cancel();
       if (contentAnim) contentAnim.forEach((a) => a.cancel());
       closing = false;
@@ -678,11 +778,14 @@
       dialog.classList.remove('is-closing');
       dialog.showModal();
       panel.scrollTop = 0;
+      heroSrc = $('img.person__photo', card); heroDst = $('.profile__photo', body);
+      hero = !!(heroSrc && heroDst);
 
       if (reduceMotion.matches) {
         anim = panel.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 180, easing: 'ease-out' });
         return;
       }
+      if (hero) { openHero(); return; }
       anim = panel.animate([
         { transform: fromCard(), backgroundColor: CARD_COLOR, borderRadius: '12px' },
         { transform: 'none', backgroundColor: '#FAFAFA', borderRadius: '24px' },
@@ -705,6 +808,7 @@
         if (origin) origin.focus({ preventScroll: true });
         if (then) then();
       };
+      if (hero && origin && !reduceMotion.matches) { closeHero(finish); return; }
       if (contentAnim) contentAnim.forEach((a) => a.cancel());
       if (reduceMotion.matches || !origin) {
         anim = panel.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 160, easing: 'ease-in', fill: 'forwards' });
@@ -753,6 +857,13 @@
       if (parent) parent.append(n);
       return n;
     };
+    // Soft washes of brand colour drift slowly behind the page (also on phones, where the vines have no room)
+    [['crema', 6, 3], ['lilac', 94, 24], ['crema', 12, 50], ['lilac', 90, 74], ['crema', 28, 97]].forEach(([tone, x, y], i) => {
+      const w = document.createElement('div');
+      w.className = `growth__wash growth__wash--${tone}`;
+      w.style.left = x + '%'; w.style.top = y + '%'; w.style.animationDelay = `${-i * 6}s`;
+      wrap.append(w);
+    });
     const svg = make('svg', {}, wrap);
     let vines = [], top = 0, depth = 0, built = false;
     const MIN_MARGIN = 72;                               // below this there is no room: no vine
@@ -764,7 +875,7 @@
     // One spring on depth (px down the page); each vine maps depth to its own length
     const spring = createSpring((v) => { depth = v; paint(); });
 
-    function buildVine(cx, amp, H, side, M) {
+    function buildVine(cx, amp, H, side, M, W) {
       const step = 340;
       const n = Math.max(2, Math.round(H / step));
       const dy = H / n;
@@ -776,7 +887,7 @@
         d += ` C${x0} ${y0 + dy * 0.5} ${x1} ${y1 - dy * 0.5} ${x1} ${y1}`;
         x0 = x1; y0 = y1;
       }
-      const stem = make('path', { d, class: 'growth__stem' }, svg);
+      const stem = make('path', { d, class: 'growth__stem', stroke: 'url(#growth-stem)' }, svg);
       const total = stem.getTotalLength();
       stem.style.strokeDasharray = `${total} ${total}`;
       const samples = [];
@@ -785,34 +896,61 @@
         samples.push({ l, y: stem.getPointAtLength(l).y });
       }
 
-      // Leaves alternate sides of the stem; size is capped so they stay in the margin
+      // What grows on the stem: leaves (alternating, some in pairs), curling tendrils with a
+      // sparkle, and the odd blossom. Everything is sized to the margin and kept out of the content.
       const fit = Math.min(1, (M - 24) / 150);
+      const out = -side;                                     // direction away from the content column
+      const inContent = (x) => x > M - 16 && x < W - M + 16;
       const nodes = [];
+      const sprout = (g, base) => {
+        const sway = make('g', { class: 'growth__sway' }, g);
+        sway.style.setProperty('--sway', `${base + rand() * 3}s`);
+        sway.style.animationDelay = `${-rand() * 6}s`;
+        return make('g', { class: 'growth__grow' }, sway);
+      };
+      const leaf = (p, ang, dir, s, l) => {
+        const reach = (d) => p.x + Math.cos(((ang + 58 * d) * Math.PI) / 180) * 44 * s;
+        if (inContent(reach(dir)) && !inContent(reach(-dir))) dir = -dir;   // turn it outward
+        const g = make('g', { class: 'growth__leaf', transform: `translate(${p.x} ${p.y}) rotate(${ang + 58 * dir})` }, svg);
+        const grow = sprout(g, 5.5);
+        const t = `scale(${s})`;
+        make('path', { d: 'M0 0C9 -11 27 -13 40 0C27 13 9 11 0 0Z', transform: t }, grow);
+        make('path', { d: 'M0 0C9 -11 27 -13 40 0Z', class: 'shade', transform: t }, grow);
+        make('path', { d: 'M2 0Q20 -1.5 37 0M11 -.4l5 -5M19 -.7l6 -5.5M27 -.5l5 -4M13 -.4l5 4.6M22 -.6l5 4.6', class: 'rib', transform: t }, grow);
+        nodes.push({ el: g, l, out: false });
+      };
       let flip = side;
-      for (let l = 60 + rand() * 60, k = 0; l < total - 30; l += 170 * (0.8 + rand() * 0.4), k++) {
+      for (let l = 50 + rand() * 50, k = 0; l < total - 30; l += 150 * (0.8 + rand() * 0.4), k++) {
         const p = stem.getPointAtLength(l);
         const q = stem.getPointAtLength(Math.min(total, l + 2));
         const ang = (Math.atan2(q.y - p.y, q.x - p.x) * 180) / Math.PI;
-        const spark = k % 4 === 3;
-        const g = make('g', { class: spark ? 'growth__spark' : 'growth__leaf' }, svg);
-        g.setAttribute('transform', spark
-          ? `translate(${p.x + 20 * flip * fit} ${p.y - 8})`
-          : `translate(${p.x} ${p.y}) rotate(${ang + 58 * flip})`);
-        const sway = make('g', { class: 'growth__sway' }, g);
-        sway.style.setProperty('--sway', `${(spark ? 2.4 : 5.5) + rand() * 3}s`);
-        sway.style.animationDelay = `${-rand() * 6}s`;
-        const grow = make('g', { class: 'growth__grow' }, sway);
-        const s = (spark ? 0.7 + rand() * 0.5 : 0.75 + rand() * 0.5) * fit;
-        if (spark) {
-          make('path', { d: 'M0 -9C1 -2 2 -1 9 0C2 1 1 2 0 9C-1 2 -2 1 -9 0C-2 -1 -1 -2 0 -9Z', transform: `scale(${s})` }, grow);
+        if (k % 6 === 4) {
+          // Blossom: five petals around a golden eye
+          const g = make('g', { class: 'growth__bloom', transform: `translate(${p.x + 9 * out * fit} ${p.y})` }, svg);
+          const grow = sprout(g, 7);
+          const s = (0.95 + rand() * 0.45) * fit;
+          for (let i = 0; i < 5; i++) make('path', { d: 'M0 -1C-5 -5 -5 -12 0 -14C5 -12 5 -5 0 -1Z', transform: `scale(${s}) rotate(${i * 72})` }, grow);
+          make('circle', { r: 2.8 * s, class: 'eye' }, grow);
+          nodes.push({ el: g, l: l + 8, out: false });
+        } else if (k % 6 === 2) {
+          // Tendril curling away from the page, with a sparkle beside it
+          const c = make('g', { class: 'growth__curl', transform: `translate(${p.x} ${p.y}) scale(${out * fit} ${fit})` }, svg);
+          make('path', { d: 'M0 0c9 -4 20 0 21 10c1 9 -9 13 -13 7c-3 -5 3 -9 6 -5', pathLength: 1 }, c);
+          nodes.push({ el: c, l: l + 4, out: false });
+          const g = make('g', { class: 'growth__spark', transform: `translate(${p.x + 34 * out * fit} ${p.y - 14})` }, svg);
+          const grow = sprout(g, 2.4);
+          make('path', { d: 'M0 -9C1 -2 2 -1 9 0C2 1 1 2 0 9C-1 2 -2 1 -9 0C-2 -1 -1 -2 0 -9Z', transform: `scale(${(0.7 + rand() * 0.5) * fit})` }, grow);
+          nodes.push({ el: g, l: l + 40, out: false });
         } else {
-          make('path', { d: 'M0 0C9 -11 27 -13 40 0C27 13 9 11 0 0Z', transform: `scale(${s})` }, grow);
-          make('path', { d: 'M3 0L31 0', class: 'rib', transform: `scale(${s})` }, grow);
+          const s = (0.8 + rand() * 0.5) * fit;
+          leaf(p, ang, flip, s, l + 8);
+          if (k % 6 === 0) leaf(p, ang, -flip, s * 0.68, l + 34);   // a smaller partner leaf
           flip = -flip;
         }
-        nodes.push({ el: g, l: l + 8, out: false });
       }
-      const tip = make('circle', { r: 2.6, class: 'growth__tip' }, svg);
+      const tip = make('g', { class: 'growth__tip' }, svg);
+      make('circle', { r: 9, class: 'halo' }, tip);
+      make('circle', { r: 3 }, tip);
       return { stem, total, samples, nodes, tip };
     }
 
@@ -829,13 +967,16 @@
       svg.setAttribute('width', W); svg.setAttribute('height', H);
       svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
       svg.replaceChildren();
+      const grad = make('linearGradient', { id: 'growth-stem', gradientUnits: 'userSpaceOnUse', x1: 0, y1: 0, x2: 0, y2: Math.max(1, H) }, make('defs', {}, svg));
+      [[0, '#D3C1A9'], [0.35, '#CFA391'], [0.7, '#D3C1A9'], [1, '#CFA391']].forEach(([o, c]) => make('stop', { offset: o, 'stop-color': c }, grad));
       vines = [];
       built = false;
       if (H < 200 || M < MIN_MARGIN) return;
-      const amp = Math.min(M * 0.22, 36);
-      vines.push(buildVine(M * 0.5, amp, H, 1, M));       // left margin
+      const amp = Math.min(M * 0.18, 30);
+      const cx = M * 0.42;                                // sits toward the outer edge, clear of carousel arrows
+      vines.push(buildVine(cx, amp, H, 1, M, W));       // left margin
       seed = 31;
-      vines.push(buildVine(W - M * 0.5, amp, H, -1, M));  // right margin, mirrored
+      vines.push(buildVine(W - cx, amp, H, -1, M, W));  // right margin, mirrored
       built = true;
     }
 
@@ -855,7 +996,7 @@
         const drawn = lengthAt(v, depth);
         v.stem.style.strokeDashoffset = String(v.total - drawn);
         const p = v.stem.getPointAtLength(Math.max(0, drawn));
-        v.tip.setAttribute('cx', p.x); v.tip.setAttribute('cy', p.y);
+        v.tip.setAttribute('transform', `translate(${p.x} ${p.y})`);
         v.tip.style.opacity = drawn > 2 && drawn < v.total - 2 ? '1' : '0';
         for (const nd of v.nodes) {
           const out = drawn >= nd.l;

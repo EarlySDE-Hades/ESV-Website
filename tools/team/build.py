@@ -13,7 +13,7 @@ head, rest = src.split("<body>", 1)
 header = rest[rest.index("  <a class=\"skip-link\""):rest.index("  <main id=\"main\">")]
 footer = rest[rest.index("  <!-- ============================== Footer"):]
 
-head = re.sub(r"<title>.*?</title>", "<title>Team — Earlyseed Ventures</title>", head)
+head = re.sub(r"<title>.*?</title>", "<title>Earlyseed Ventures</title>", head)
 head = re.sub(r'(<meta name="description" content=")[^"]*', r"\1The leadership team behind Earlyseed Ventures.", head)
 
 def relink(html):

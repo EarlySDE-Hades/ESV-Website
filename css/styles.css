@@ -999,17 +999,36 @@ main > section:not(.hero) { position: relative; z-index: 1; }
   position: absolute; left: 0; right: 0; top: 0; height: 0;
   z-index: 0; pointer-events: none; overflow: hidden;
 }
-.growth svg { display: block; overflow: visible; }
-.growth__stem { fill: none; stroke: var(--sand); stroke-width: 1.6; stroke-linecap: round; }
-.growth__tip { fill: var(--golden-glow); }
-.growth__leaf path { fill: var(--crema); stroke: var(--sand); stroke-width: 1.3; stroke-linejoin: round; }
-.growth__leaf .rib { fill: none; }
+.growth svg { position: relative; display: block; overflow: visible; }
+.growth__stem { fill: none; stroke-width: 1.8; stroke-linecap: round; }
+.growth__tip circle { fill: var(--golden-glow); }
+.growth__tip .halo { opacity: 0.22; transform-box: fill-box; transform-origin: center; animation: growth-pulse 2.4s ease-in-out infinite alternate; }
+@keyframes growth-pulse { from { transform: scale(0.7); } to { transform: scale(1.25); } }
+.growth__leaf path { fill: var(--crema); stroke: var(--sand); stroke-width: 1.2; stroke-linejoin: round; }
+.growth__leaf .shade { fill: #EBD9C6; stroke: none; }
+.growth__leaf .rib { fill: none; stroke-width: 0.9; stroke-linecap: round; }
 .growth__spark path { fill: var(--pastel-purple); }
+.growth__bloom path { fill: var(--pastel-purple); fill-opacity: 0.62; stroke: #B48CF0; stroke-width: 0.6; }
+.growth__bloom .eye { fill: var(--golden-glow); }
+.growth__curl path {
+  fill: none; stroke: var(--sand); stroke-width: 1.3; stroke-linecap: round;
+  stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 500ms ease-in;
+}
+.growth__curl.is-out path { stroke-dashoffset: 0; transition: stroke-dashoffset 1100ms cubic-bezier(0.22, 1, 0.36, 1); }
+/* Washes: big, soft, slow. Gradients only (no blur filter), so they cost nothing to scroll. */
+.growth__wash {
+  position: absolute; width: min(82vw, 1020px); aspect-ratio: 1; border-radius: 50%;
+  translate: -50% -50%; animation: growth-drift 28s ease-in-out infinite alternate;
+}
+.growth__wash--crema { background: radial-gradient(closest-side, rgba(247, 224, 202, 0.55), rgba(247, 236, 226, 0)); }
+.growth__wash--lilac { background: radial-gradient(closest-side, rgba(206, 170, 253, 0.17), rgba(206, 170, 253, 0)); }
+@keyframes growth-drift { from { transform: translate3d(-4%, -3%, 0) scale(1); } to { transform: translate3d(4%, 3%, 0) scale(1.1); } }
 /* Leaves unfurl from their base when the stem reaches them, then sway a little */
 .growth__grow {
   transform: scale(0); transform-origin: 0 0;
   transition: transform 520ms cubic-bezier(0.32, 0, 0.67, 0);
 }
+.growth__bloom .growth__grow { transform: scale(0) rotate(-120deg); }
 .is-out > .growth__sway > .growth__grow {
   transform: scale(1);
   transition: transform 900ms cubic-bezier(0.34, 1.4, 0.64, 1);
@@ -1021,7 +1040,7 @@ main > section:not(.hero) { position: relative; z-index: 1; }
 @keyframes growth-twinkle { from { opacity: 1; } to { opacity: 0.35; } }
 @media (max-width: 720px) { .growth { opacity: 0.7; } }
 @media (prefers-reduced-motion: reduce) {
-  .growth__sway, .is-out.growth__spark .growth__sway { animation: none; }
+  .growth__sway, .is-out.growth__spark .growth__sway, .growth__wash, .growth__tip .halo { animation: none; }
 }
 
 /* ==========================================================================
@@ -1270,3 +1289,32 @@ main > section:not(.hero) { position: relative; z-index: 1; }
 /* Campus row: logos keep their own widths with equal gaps between them (JS sets each width) */
 .carousel[data-visible] .company { padding-inline: 0; }
 .carousel[data-visible] .company__mark { padding-inline: 0; }
+
+/* Anchors land clear of the sticky header */
+#for-investors, #events { scroll-margin-top: 110px; }
+.card:not([href]) { cursor: default; }
+
+/* Team profile: the headshot in flight between the card and the dialog (js: flyPhoto) */
+.fly-photo {
+  position: fixed; margin: 0; max-width: none; object-fit: cover; background: var(--sand);
+  transform-origin: 0 0; pointer-events: none; will-change: transform;
+  box-shadow: 0 22px 44px -18px rgba(40, 30, 25, 0.5);
+}
+
+/* Growth partners: a second row on the Team page, six across, name and city only */
+.leadership:has(+ .partners) { padding-bottom: clamp(40px, 5vw, 64px); }
+.partners { padding-top: clamp(24px, 4vw, 48px); }
+.partners .section-title { font-size: clamp(1.625rem, 3vw, 2.125rem); }
+@media (min-width: 1101px) { .people--6 { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.people--6 .person__name { font-size: 1.1875rem; margin-top: 18px; }
+
+/* Team members: five across (the default .people grid); placeholder photo boxes (initials) until portraits arrive */
+.partners + .partners { padding-top: 0; }
+.person__photo--empty {
+  display: grid; place-items: center;
+  background: var(--sand); box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.06);
+  font: 400 2.5rem/1 var(--font-serif); letter-spacing: 0.02em; color: rgba(58, 30, 22, 0.42);
+  user-select: none;
+}
+.profile__photo.person__photo--empty { font-size: 1.75rem; }
+.profile__logos img.profile__logo--tall { height: 76px; }   /* stacked logos (mark above wordmark) need more height to read */
