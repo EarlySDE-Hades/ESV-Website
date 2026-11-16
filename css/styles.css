@@ -161,38 +161,36 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   .primary-nav__links a:hover::after { transform: scaleX(1); }
 }
 
-/* Prologue: its brand card materialises from the link on hover / keyboard focus.
-   Enter waits a beat (no flicker when the pointer sweeps across the nav); exit is quicker. */
-.nav-reveal { position: relative; }
-.nav-reveal__card {
-  position: absolute; top: calc(100% + 10px); left: 50%;
-  display: block; padding: 14px 18px 12px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.82);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  backdrop-filter: blur(20px) saturate(180%);
-  box-shadow: 0 0 0 1px rgba(17, 17, 17, 0.06), 0 18px 36px -16px rgba(40, 30, 25, 0.35);
-  transform-origin: 50% 0;                         /* grows out of the link */
-  transform: translate(-50%, -6px) scale(0.94);
-  filter: blur(4px);
-  opacity: 0; visibility: hidden;
+/* Prologue: on hover / keyboard focus the word morphs into the Prologue logo, in place.
+   Both sit on the same spot; one blurs and fades out as the other sharpens in, so it reads
+   as a single thing changing shape. The link keeps its width, so the nav never shifts. */
+.nav-morph__text {
+  display: block;
+  transition: opacity 180ms ease-in, filter 220ms ease-in, transform 260ms ease-in;
+}
+.nav-morph__logo {
+  position: absolute; left: 50%; top: 50%;
+  width: auto; height: 23px; max-width: none;
+  transform: translate(-50%, -52%) scale(0.86);
+  opacity: 0; filter: blur(7px);
   pointer-events: none;
-  transition: opacity 140ms ease-in, transform 200ms ease-in, filter 140ms ease-in, visibility 0s 200ms;
+  transition: opacity 160ms ease-in, filter 200ms ease-in, transform 240ms ease-in;
 }
-.nav-reveal__card { width: max-content; }          /* size to the logo, not the narrow <li> */
-.nav-reveal__card img { display: block; width: 176px; max-width: none; height: auto; }
-.nav-reveal:has(a:focus-visible) .nav-reveal__card,
-.nav-reveal:hover .nav-reveal__card {
-  opacity: 1; visibility: visible;
-  transform: translate(-50%, 0) scale(1);
-  filter: none;
-  transition: opacity 200ms ease-out 60ms, transform 380ms var(--ease-out) 60ms, filter 220ms ease-out 60ms, visibility 0s 60ms;
-}
-@media not ((hover: hover) and (pointer: fine)) {
-  .nav-reveal:hover .nav-reveal__card { opacity: 0; visibility: hidden; }   /* touch: no sticky reveal */
+.primary-nav__links a.nav-morph::after { display: none; }      /* the logo is the hover state; no underline */
+.nav-morph:focus-visible .nav-morph__text { opacity: 0; filter: blur(7px); transform: scale(1.14, 1.3); }
+.nav-morph:focus-visible .nav-morph__logo { opacity: 1; filter: none; transform: translate(-50%, -52%) scale(1); }
+@media (hover: hover) and (pointer: fine) {
+  .nav-morph:hover .nav-morph__text {
+    opacity: 0; filter: blur(7px); transform: scale(1.14, 1.3);
+    transition: opacity 200ms ease-out, filter 260ms ease-out, transform 420ms var(--ease-out);
+  }
+  .nav-morph:hover .nav-morph__logo {
+    opacity: 1; filter: none; transform: translate(-50%, -52%) scale(1);
+    transition: opacity 240ms ease-out 70ms, filter 300ms ease-out 70ms, transform 480ms cubic-bezier(0.34, 1.3, 0.64, 1) 70ms;
+  }
 }
 
-/* About submenu: same material as the Prologue card, anchored under the item */
+/* About submenu, anchored under the item */
 .nav-menu { position: relative; display: flex; align-items: center; gap: 4px; }
 .nav-menu__toggle {
   display: grid; place-items: center; width: 22px; height: 22px; margin-right: -6px;
@@ -869,13 +867,15 @@ html:has(.svc-dialog[open]) { overflow: hidden; }
   .card:hover .card__icon { transform: none; }
   .collage .collage__piece { opacity: 1 !important; transform: none !important; }
   .collage .collage__layer { transform: none !important; }
-  .nav-reveal__card { transform: translate(-50%, 0) !important; filter: none !important; transition: opacity 160ms ease, visibility 0s !important; }
+  .nav-morph__text, .nav-morph__logo { filter: none !important; transition: opacity 160ms ease !important; }
+  .nav-morph__text { transform: none !important; }
+  .nav-morph__logo { transform: translate(-50%, -52%) !important; }
   .nav-menu__panel { transform: none !important; filter: none !important; transition: opacity 160ms ease, visibility 0s !important; }
 }
 
 @media (prefers-reduced-transparency: reduce) {
   .card:has(.card__photo)::before, .card:hover:has(.card__photo)::before { background-color: rgba(238, 238, 238, 0.88); }
-  .site-header::before, .search-panel, .mobile-menu, .nav-reveal__card {
+  .site-header::before, .search-panel, .mobile-menu {
     background: var(--fair);
     -webkit-backdrop-filter: none; backdrop-filter: none;
   }
@@ -1008,13 +1008,6 @@ main > section:not(.hero) { position: relative; z-index: 1; }
 .growth__leaf .shade { fill: #EBD9C6; stroke: none; }
 .growth__leaf .rib { fill: none; stroke-width: 0.9; stroke-linecap: round; }
 .growth__spark path { fill: var(--pastel-purple); }
-.growth__bloom path { fill: var(--pastel-purple); fill-opacity: 0.62; stroke: #B48CF0; stroke-width: 0.6; }
-.growth__bloom .eye { fill: var(--golden-glow); }
-.growth__curl path {
-  fill: none; stroke: var(--sand); stroke-width: 1.3; stroke-linecap: round;
-  stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 500ms ease-in;
-}
-.growth__curl.is-out path { stroke-dashoffset: 0; transition: stroke-dashoffset 1100ms cubic-bezier(0.22, 1, 0.36, 1); }
 /* Washes: big, soft, slow. Gradients only (no blur filter), so they cost nothing to scroll. */
 .growth__wash {
   position: absolute; width: min(82vw, 1020px); aspect-ratio: 1; border-radius: 50%;
@@ -1028,7 +1021,6 @@ main > section:not(.hero) { position: relative; z-index: 1; }
   transform: scale(0); transform-origin: 0 0;
   transition: transform 520ms cubic-bezier(0.32, 0, 0.67, 0);
 }
-.growth__bloom .growth__grow { transform: scale(0) rotate(-120deg); }
 .is-out > .growth__sway > .growth__grow {
   transform: scale(1);
   transition: transform 900ms cubic-bezier(0.34, 1.4, 0.64, 1);
@@ -1318,3 +1310,122 @@ main > section:not(.hero) { position: relative; z-index: 1; }
 }
 .profile__photo.person__photo--empty { font-size: 1.75rem; }
 .profile__logos img.profile__logo--tall { height: 76px; }   /* stacked logos (mark above wordmark) need more height to read */
+
+/* ==========================================================================
+   Events page (events.html, built from tools/events/main.html)
+   ========================================================================== */
+.events__all { margin-top: 26px; }
+.ev-hero { position: relative; padding-block: clamp(20px, 4vw, 44px) clamp(40px, 6vw, 72px); overflow: hidden; }
+.ev-hero__inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.ev-hero::before {                               /* warm morning sky behind the scene */
+  content: ""; position: absolute; inset: 0 -10% auto; height: 100%; z-index: -1; pointer-events: none;
+  background: radial-gradient(46% 42% at 50% 40%, rgba(253, 185, 47, 0.13), rgba(247, 224, 202, 0.32) 50%, rgba(244, 244, 244, 0) 100%);
+  animation: ev-fade 1800ms ease-out both;
+}
+.ev-hero { isolation: isolate; }
+.ev-hero__art { display: block; width: min(100%, 720px); height: auto; margin-bottom: clamp(28px, 4vw, 44px); overflow: visible; }
+/* Pointer parallax: each layer shifts by its depth (js: initEventsHero sets --px / --py, -1..1) */
+.ev-par {
+  transform: translate(calc(var(--px, 0) * var(--depth, 0) * 16px), calc(var(--py, 0) * var(--depth, 0) * 10px));
+  transition: transform 600ms var(--ease-out);
+}
+.ev-hero__line {
+  fill: none; stroke: var(--rule); stroke-width: 1.5; stroke-linecap: round;
+  transform-box: fill-box; transform-origin: center;
+  animation: ev-line 1100ms var(--ease-out) both;
+}
+@keyframes ev-line { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes ev-fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* Sun: rises once, then breathes. Its centre is the origin of its group. */
+.ev-hero__sun { animation: ev-sunrise 1600ms cubic-bezier(0.22, 1.15, 0.36, 1) 150ms both, ev-breathe 5s ease-in-out 1900ms infinite alternate; }
+.ev-hero__glow { animation: ev-fade 1800ms ease-out 300ms both, ev-glow 5s ease-in-out 2100ms infinite alternate; }
+@keyframes ev-sunrise { from { transform: translateY(118px); } to { transform: none; } }
+@keyframes ev-breathe { from { transform: scale(1); } to { transform: scale(1.025); } }
+@keyframes ev-glow { from { opacity: 1; } to { opacity: 0.6; } }
+/* Rays turn slowly round the sun; rings pulse outward like an invitation going out */
+.ev-hero__rays { animation: ev-fade 1200ms ease-out 1300ms both, ev-spin 90s linear infinite; }
+.ev-hero__rays line { stroke: #FDB92F; stroke-width: 2.2; stroke-linecap: round; opacity: 0.55; }
+@keyframes ev-spin { to { transform: rotate(360deg); } }
+.ev-hero__ring {
+  fill: none; stroke: #FDB92F; stroke-width: 1.4; vector-effect: non-scaling-stroke; opacity: 0;
+  animation: ev-ring 6s cubic-bezier(0.2, 0.6, 0.35, 1) var(--d, 0s) infinite;
+}
+@keyframes ev-ring { 0% { transform: scale(1); opacity: 0; } 12% { opacity: 0.5; } 100% { transform: scale(2.3); opacity: 0; } }
+/* Seeds lift off the ground and fade */
+.ev-hero__seeds { animation: ev-fade 1000ms ease-out 1500ms both; }
+.ev-hero__seed { fill: var(--golden-glow); opacity: 0; animation: ev-seed var(--t, 8s) ease-out var(--d, 0s) infinite; }
+@keyframes ev-seed {
+  0% { transform: translate(0, 0); opacity: 0; }
+  12% { opacity: 0.75; }
+  100% { transform: translate(var(--x, 0px), -170px); opacity: 0; }
+}
+/* Leaves sprout from their base with a little overshoot, then sway */
+.ev-hero__leaf {
+  transform-origin: 0 0;
+  animation: ev-sprout 900ms cubic-bezier(0.34, 1.5, 0.64, 1) var(--d, 1000ms) both, ev-sway 5.5s ease-in-out calc(var(--d, 1000ms) + 900ms) infinite alternate;
+}
+@keyframes ev-sprout { from { transform: scale(0); } to { transform: scale(1); } }
+@keyframes ev-sway { from { transform: rotate(0deg); } to { transform: rotate(7deg); } }
+.ev-hero__leaf path { fill: var(--crema); stroke: var(--sand); stroke-width: 1.2; stroke-linejoin: round; }
+.ev-hero__leaf .shade { fill: #EBD9C6; stroke: none; }
+.ev-hero__leaf .rib { fill: none; stroke-width: 0.9; stroke-linecap: round; }
+/* Sparkles pop in one by one, then twinkle and bob */
+.ev-hero__spark {
+  fill: var(--pastel-purple); transform-box: fill-box; transform-origin: center;
+  animation: ev-pop 600ms cubic-bezier(0.34, 1.6, 0.64, 1) var(--d, 900ms) both, ev-twinkle var(--t, 2.8s) ease-in-out calc(var(--d, 900ms) + 600ms) infinite alternate;
+}
+@keyframes ev-pop { from { transform: scale(0) rotate(-90deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes ev-twinkle { from { transform: translateY(3px) scale(1); opacity: 1; } to { transform: translateY(-4px) scale(0.72) rotate(20deg); opacity: 0.4; } }
+.ev-hero__title {
+  font: 400 clamp(2.125rem, 4.4vw, 3.25rem)/1.14 var(--font-serif);   /* same scale as the home hero */
+  letter-spacing: -0.015em; text-wrap: balance;
+}
+.ev-hero__sub { max-width: 520px; margin-top: 18px; font: 400 1rem/1.55 var(--font-sans); color: var(--ink-3); }
+.ev-hero .hero__ctas { margin-top: 34px; }
+
+.ev-section .container { max-width: calc(1000px + var(--gutter) * 2); }
+.ev-section--last { padding-bottom: clamp(80px, 10vw, 120px); }
+#upcoming, #past { scroll-margin-top: 90px; }
+
+/* Upcoming: one row per event */
+.ev-list { margin-top: clamp(32px, 5vw, 48px); border-top: 1px solid var(--rule); }
+.ev-row {
+  display: grid; grid-template-columns: 76px minmax(0, 1fr) auto; align-items: center; gap: clamp(16px, 3vw, 28px);
+  padding: 22px 4px; border-bottom: 1px solid var(--rule);
+}
+.ev-row__date {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  width: 76px; height: 76px; border-radius: 16px; background: var(--crema);
+  box-shadow: inset 0 0 0 1px rgba(58, 30, 22, 0.1);
+}
+.ev-row__day { font: 600 1.5rem/1 var(--font-display-num); color: #9A5B4C; }
+.ev-row__month { font: 500 0.625rem/1 var(--font-sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+.ev-row__type { font: 500 0.6875rem/1 var(--font-sans); letter-spacing: 0.12em; text-transform: uppercase; color: #9A5B4C; }
+.ev-row__title { margin-top: 8px; font: 400 1.375rem/1.2 var(--font-serif); letter-spacing: -0.01em; }
+.ev-row__meta { margin-top: 6px; font: 400 0.875rem/1.4 var(--font-sans); color: var(--ink-3); }
+.btn.is-disabled { opacity: 0.45; cursor: default; pointer-events: none; }
+@media (max-width: 560px) {
+  .ev-row { grid-template-columns: 64px minmax(0, 1fr); }
+  .ev-row__date { width: 64px; height: 64px; border-radius: 14px; }
+  .ev-row__cta { grid-column: 2; justify-self: start; }
+}
+
+/* Past: photo cards */
+.ev-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px clamp(20px, 3vw, 32px); margin-top: clamp(32px, 5vw, 48px); }
+.ev-card__photo {
+  display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; margin-bottom: 18px;
+  border-radius: var(--radius-card); background: var(--sand);
+  box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.06);
+}
+div.ev-card__photo { background: linear-gradient(135deg, var(--crema), var(--sand)); }   /* empty placeholder */
+.ev-card__title { margin-top: 8px; font: 400 1.25rem/1.2 var(--font-serif); letter-spacing: -0.01em; }
+.ev-card__text { margin-top: 8px; font: 400 0.875rem/1.5 var(--font-sans); color: var(--ink-3); }
+@media (max-width: 860px) { .ev-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .ev-grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) {
+  .ev-hero::before, .ev-hero__sun, .ev-hero__glow, .ev-hero__spark, .ev-hero__leaf, .ev-hero__line, .ev-hero__rays, .ev-hero__seeds { animation: none; }
+  .ev-hero__ring, .ev-hero__seed { animation: none; opacity: 0; }
+  .ev-par { transform: none; transition: none; }
+}
+@media (max-width: 560px) { .ev-hero__title br { display: none; } }

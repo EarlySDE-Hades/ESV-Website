@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Earlyseed Ventures</title>
-  <meta name="description" content="The leadership team behind Earlyseed Ventures." />
+  <meta name="description" content="The leadership team, strategic growth partners and team behind Earlyseed Ventures." />
   <meta name="theme-color" content="#F4F4F4" />
   <!-- Link previews (WhatsApp, LinkedIn, X). The image URL must be absolute: update the domain if it differs. -->
   <meta property="og:type" content="website" />
@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Playfair+Display:wght@400;500&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy&display=swap" />
-  <link rel="stylesheet" href="css/styles.css?v=202611161900" />
+  <link rel="stylesheet" href="css/styles.css?v=202611161913" />
 
   <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
   <script>document.documentElement.classList.add('js');</script>
@@ -58,11 +58,13 @@
           </li>
           <li><a href="index.html#portfolio">Our Portfolio</a></li>
           <li><a href="index.html#perspectives">Perspectives</a></li>
-          <li><a href="index.html#events">Events</a></li>
+          <li><a href="events.html">Events</a></li>
           <li class="nav-reveal">
-            <a href="index.html#prologue">Prologue</a>
-            <!-- Brand reveal on hover / keyboard focus (decorative: the link already says Prologue) -->
-            <span class="nav-reveal__card" aria-hidden="true"><img src="assets/brand/prologue.webp" alt="" width="176" height="102" decoding="async" /></span>
+            <!-- On hover / keyboard focus the word morphs into the Prologue logo, in place -->
+            <a class="nav-morph" href="index.html#prologue" aria-label="Prologue">
+              <span class="nav-morph__text" aria-hidden="true">Prologue</span>
+              <img class="nav-morph__logo" src="assets/brand/prologue-wordmark.webp" alt="" width="341" height="96" decoding="async" />
+            </a>
           </li>
         </ul>
       </nav>
@@ -101,7 +103,7 @@
           <li class="mobile-menu__sub"><a href="index.html#services">Services</a></li>
           <li><a href="index.html#portfolio">Our Portfolio</a></li>
           <li><a href="index.html#perspectives">Perspectives</a></li>
-          <li><a href="index.html#events">Events</a></li>
+          <li><a href="events.html">Events</a></li>
           <li><a href="index.html#prologue">Prologue</a></li>
         </ul>
         <div class="mobile-menu__ctas">
@@ -397,13 +399,13 @@
           <li><a href="team.html" aria-current="page">Team</a></li>
           <li><a href="index.html#services">Services</a></li>
           <li><a href="index.html#perspectives">Perspectives</a></li>
-          <li><a href="index.html#events">Events</a></li>
+          <li><a href="events.html">Events</a></li>
         </ul>
       </nav>
       <p class="site-footer__legal">© <span data-year>2026</span> Earlyseed Ventures</p>
     </div>
   </footer>
 
-  <script src="js/main.js?v=202611161900" defer></script>
+  <script src="js/main.js?v=202611161913" defer></script>
 </body>
 </html>

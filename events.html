@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Earlyseed Ventures</title>
+  <meta name="description" content="Founder meet-ups, investor sessions and campus programmes from Earlyseed Ventures." />
+  <meta name="theme-color" content="#F4F4F4" />
+  <!-- Link previews (WhatsApp, LinkedIn, X). The image URL must be absolute: update the domain if it differs. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Earlyseed Ventures" />
+  <meta property="og:title" content="Earlyseed Ventures" />
+  <meta property="og:description" content="Building a self-reliant India, one founder at a time. Capital for founders; curated early-stage deal flow for investors." />
+  <meta property="og:image" content="https://www.earlyseedventures.com/assets/brand/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/icons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/brand/icons/favicon-16.png" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/brand/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Playfair+Display:wght@400;500&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy&display=swap" />
+  <link rel="stylesheet" href="css/styles.css?v=202611161913" />
+
+  <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============================== Header ============================== -->
+  <header class="site-header" data-header>
+    <div class="site-header__inner container">
+      <a class="brand" href="index.html" aria-label="Earlyseed Ventures — home">
+        <img src="assets/brand/logo-dark.png" alt="earlyseed VENTURES" width="136" height="51" />
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary">
+        <ul class="primary-nav__links">
+          <li class="nav-menu" data-nav-menu>
+            <a href="index.html#about">About</a>
+            <button class="nav-menu__toggle" type="button" aria-expanded="false" aria-controls="about-menu" aria-label="More in About" data-nav-menu-toggle>
+              <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <!-- Submenu: grows out of the About item on hover, keyboard focus or chevron click -->
+            <div class="nav-menu__panel" id="about-menu">
+              <ul>
+                <li><a href="index.html#about">About Us</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="index.html#services">Services</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="index.html#portfolio">Our Portfolio</a></li>
+          <li><a href="index.html#perspectives">Perspectives</a></li>
+          <li><a href="events.html" aria-current="page">Events</a></li>
+          <li class="nav-reveal">
+            <!-- On hover / keyboard focus the word morphs into the Prologue logo, in place -->
+            <a class="nav-morph" href="index.html#prologue" aria-label="Prologue">
+              <span class="nav-morph__text" aria-hidden="true">Prologue</span>
+              <img class="nav-morph__logo" src="assets/brand/prologue-wordmark.webp" alt="" width="341" height="96" decoding="async" />
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <a class="btn btn--sm" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
+        <a class="btn btn--sm" href="index.html#for-investors">Invest with us</a>
+
+        <button class="icon-btn" type="button" aria-label="Search" aria-expanded="false" aria-controls="search-panel" data-search-toggle>
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m15 15 5.5 5.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </button>
+
+        <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+          <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search popover — materialises from the search icon -->
+    <div class="search-panel" id="search-panel" role="dialog" aria-label="Search the site" hidden data-search-panel>
+      <label class="visually-hidden" for="site-search">Search</label>
+      <div class="search-panel__field">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m15 15 5.5 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <input id="site-search" type="search" placeholder="Search Earlyseed" autocomplete="off" data-search-input />
+        <kbd>esc</kbd>
+      </div>
+      <ul class="search-panel__results" data-search-results></ul>
+    </div>
+
+    <!-- Mobile menu — drops from the header and returns the same way -->
+    <div class="mobile-menu" id="mobile-menu" hidden data-mobile-menu>
+      <nav aria-label="Mobile">
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li class="mobile-menu__sub"><a href="team.html">Team</a></li>
+          <li class="mobile-menu__sub"><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#portfolio">Our Portfolio</a></li>
+          <li><a href="index.html#perspectives">Perspectives</a></li>
+          <li><a href="events.html" aria-current="page">Events</a></li>
+          <li><a href="index.html#prologue">Prologue</a></li>
+        </ul>
+        <div class="mobile-menu__ctas">
+          <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
+          <a class="btn" href="index.html#for-investors">Invest with us</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="events-page">
+    <!-- ============================== Events hero ============================== -->
+    <!-- The rising sun, sparkles and leaves are the brand's own motifs (hero collage, scroll vine), drawn in SVG. -->
+    <section class="ev-hero" aria-labelledby="ev-hero-title">
+      <div class="container ev-hero__inner">
+        <svg class="ev-hero__art" viewBox="0 0 640 240" role="img" aria-label="A sun rising over the horizon, with rays, sparkles and leaves" focusable="false">
+          <defs>
+            <linearGradient id="ev-sun" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#FDB92F" />
+              <stop offset="0.72" stop-color="#FEB82C" />
+              <stop offset="1" stop-color="#F6EED9" />
+            </linearGradient>
+            <radialGradient id="ev-glow" cx="50%" cy="100%" r="60%">
+              <stop offset="0" stop-color="#FDB92F" stop-opacity="0.3" />
+              <stop offset="1" stop-color="#FDB92F" stop-opacity="0" />
+            </radialGradient>
+            <clipPath id="ev-horizon"><rect x="-40" y="-40" width="720" height="244" /></clipPath>
+          </defs>
+          <!-- Far layer: glow, pulse rings, turning rays and the sun, all cut off at the horizon -->
+          <g clip-path="url(#ev-horizon)">
+            <g class="ev-par" style="--depth:0.35">
+              <ellipse class="ev-hero__glow" cx="320" cy="204" rx="300" ry="170" fill="url(#ev-glow)" />
+              <g transform="translate(320 204)">
+                <circle class="ev-hero__ring" r="104" style="--d:0s" />
+                <circle class="ev-hero__ring" r="104" style="--d:-2s" />
+                <circle class="ev-hero__ring" r="104" style="--d:-4s" />
+                <g class="ev-hero__rays"><line y1="-120" y2="-150" transform="rotate(-82.5)" /><line y1="-120" y2="-136" transform="rotate(-67.5)" /><line y1="-120" y2="-150" transform="rotate(-52.5)" /><line y1="-120" y2="-136" transform="rotate(-37.5)" /><line y1="-120" y2="-150" transform="rotate(-22.5)" /><line y1="-120" y2="-136" transform="rotate(-7.5)" /><line y1="-120" y2="-150" transform="rotate(7.5)" /><line y1="-120" y2="-136" transform="rotate(22.5)" /><line y1="-120" y2="-150" transform="rotate(37.5)" /><line y1="-120" y2="-136" transform="rotate(52.5)" /><line y1="-120" y2="-150" transform="rotate(67.5)" /><line y1="-120" y2="-136" transform="rotate(82.5)" /></g>
+                <circle class="ev-hero__sun" r="104" fill="url(#ev-sun)" />
+              </g>
+            </g>
+          </g>
+          <!-- Seeds drifting up from the ground -->
+          <g class="ev-hero__seeds ev-par" style="--depth:0.7">
+            <circle class="ev-hero__seed" cx="232" cy="200" r="2.4" style="--d:-0.5s;--x:-14px;--t:7s" />
+            <circle class="ev-hero__seed" cx="268" cy="200" r="1.8" style="--d:-3.2s;--x:10px;--t:8.5s" />
+            <circle class="ev-hero__seed" cx="300" cy="200" r="2.2" style="--d:-5.6s;--x:-6px;--t:6.5s" />
+            <circle class="ev-hero__seed" cx="344" cy="200" r="1.6" style="--d:-1.8s;--x:8px;--t:9s" />
+            <circle class="ev-hero__seed" cx="378" cy="200" r="2.4" style="--d:-4.4s;--x:16px;--t:7.5s" />
+            <circle class="ev-hero__seed" cx="410" cy="200" r="1.8" style="--d:-6.8s;--x:-10px;--t:8s" />
+            <circle class="ev-hero__seed" cx="190" cy="200" r="1.6" style="--d:-2.6s;--x:-18px;--t:9.5s" />
+            <circle class="ev-hero__seed" cx="452" cy="200" r="2" style="--d:-7.4s;--x:20px;--t:8.8s" />
+          </g>
+          <path class="ev-hero__line" d="M40 204H600" />
+          <!-- Leaves sprout along the horizon, then sway -->
+          <g class="ev-par" style="--depth:0.15">
+            <g transform="translate(148 204) rotate(-58) scale(1)"><g class="ev-hero__leaf" style="--d:1000ms"><path d="M0 0C9 -11 27 -13 40 0C27 13 9 11 0 0Z" /><path class="shade" d="M0 0C9 -11 27 -13 40 0Z" /><path class="rib" d="M2 0Q20 -1.5 37 0" /></g></g>
+            <g transform="translate(148 204) rotate(-122) scale(0.72)"><g class="ev-hero__leaf" style="--d:1120ms"><path d="M0 0C9 -11 27 -13 40 0C27 13 9 11 0 0Z" /><path class="shade" d="M0 0C9 -11 27 -13 40 0Z" /><path class="rib" d="M2 0Q20 -1.5 37 0" /></g></g>
+            <g transform="translate(492 204) rotate(-122) scale(1)"><g class="ev-hero__leaf" style="--d:1060ms"><path d="M0 0C9 -11 27 -13 40 0C27 13 9 11 0 0Z" /><path class="shade" d="M0 0C9 -11 27 -13 40 0Z" /><path class="rib" d="M2 0Q20 -1.5 37 0" /></g></g>
+            <g transform="translate(492 204) rotate(-58) scale(0.72)"><g class="ev-hero__leaf" style="--d:1180ms"><path d="M0 0C9 -11 27 -13 40 0C27 13 9 11 0 0Z" /><path class="shade" d="M0 0C9 -11 27 -13 40 0Z" /><path class="rib" d="M2 0Q20 -1.5 37 0" /></g></g>
+            <g transform="translate(78 204) rotate(-70) scale(0.55)"><g class="ev-hero__leaf" style="--d:1300ms"><path d="M0 0C9 -11 27 -13 40 0C27 13 9 11 0 0Z" /><path class="shade" d="M0 0C9 -11 27 -13 40 0Z" /><path class="rib" d="M2 0Q20 -1.5 37 0" /></g></g>
+            <g transform="translate(78 204) rotate(-118) scale(0.42)"><g class="ev-hero__leaf" style="--d:1380ms"><path d="M0 0C9 -11 27 -13 40 0C27 13 9 11 0 0Z" /><path class="shade" d="M0 0C9 -11 27 -13 40 0Z" /><path class="rib" d="M2 0Q20 -1.5 37 0" /></g></g>
+            <g transform="translate(562 204) rotate(-110) scale(0.55)"><g class="ev-hero__leaf" style="--d:1340ms"><path d="M0 0C9 -11 27 -13 40 0C27 13 9 11 0 0Z" /><path class="shade" d="M0 0C9 -11 27 -13 40 0Z" /><path class="rib" d="M2 0Q20 -1.5 37 0" /></g></g>
+            <g transform="translate(562 204) rotate(-62) scale(0.42)"><g class="ev-hero__leaf" style="--d:1420ms"><path d="M0 0C9 -11 27 -13 40 0C27 13 9 11 0 0Z" /><path class="shade" d="M0 0C9 -11 27 -13 40 0Z" /><path class="rib" d="M2 0Q20 -1.5 37 0" /></g></g>
+          </g>
+          <!-- Sparkles: nearest layer -->
+          <g class="ev-par" style="--depth:1">
+            <g transform="translate(196 78) scale(1.5)"><path class="ev-hero__spark" style="--d:900ms;--t:2.6s" d="M0 -9C1 -2 2 -1 9 0C2 1 1 2 0 9C-1 2 -2 1 -9 0C-2 -1 -1 -2 0 -9Z" /></g>
+            <g transform="translate(470 54) scale(1)"><path class="ev-hero__spark" style="--d:1100ms;--t:3.1s" d="M0 -9C1 -2 2 -1 9 0C2 1 1 2 0 9C-1 2 -2 1 -9 0C-2 -1 -1 -2 0 -9Z" /></g>
+            <g transform="translate(84 150) scale(0.8)"><path class="ev-hero__spark" style="--d:1300ms;--t:2.2s" d="M0 -9C1 -2 2 -1 9 0C2 1 1 2 0 9C-1 2 -2 1 -9 0C-2 -1 -1 -2 0 -9Z" /></g>
+            <g transform="translate(560 138) scale(1.2)"><path class="ev-hero__spark" style="--d:1000ms;--t:2.9s" d="M0 -9C1 -2 2 -1 9 0C2 1 1 2 0 9C-1 2 -2 1 -9 0C-2 -1 -1 -2 0 -9Z" /></g>
+            <g transform="translate(330 22) scale(0.7)"><path class="ev-hero__spark" style="--d:1500ms;--t:3.4s" d="M0 -9C1 -2 2 -1 9 0C2 1 1 2 0 9C-1 2 -2 1 -9 0C-2 -1 -1 -2 0 -9Z" /></g>
+            <g transform="translate(120 60) scale(0.6)"><path class="ev-hero__spark" style="--d:1650ms;--t:2.4s" d="M0 -9C1 -2 2 -1 9 0C2 1 1 2 0 9C-1 2 -2 1 -9 0C-2 -1 -1 -2 0 -9Z" /></g>
+            <g transform="translate(596 70) scale(0.65)"><path class="ev-hero__spark" style="--d:1750ms;--t:3.0s" d="M0 -9C1 -2 2 -1 9 0C2 1 1 2 0 9C-1 2 -2 1 -9 0C-2 -1 -1 -2 0 -9Z" /></g>
+          </g>
+        </svg>
+
+        <p class="eyebrow" data-reveal>Events</p>
+        <!-- Placeholder headline and intro: edit freely -->
+        <h1 class="ev-hero__title" id="ev-hero-title" data-reveal style="--i:1">Where founders, investors<br /> and campuses meet.</h1>
+        <p class="ev-hero__sub" data-reveal style="--i:2">Founder meet-ups, investor sessions and campus programmes from Earlyseed Ventures.</p>
+        <div class="hero__ctas" data-reveal style="--i:3">
+          <a class="btn" href="#upcoming">Upcoming events</a>
+          <a class="btn btn--ghost" href="#past">Past events</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== Upcoming ============================== -->
+    <!-- Skeleton: each .ev-row is one event. Fill in the date tile, type, title, place and the Register link
+         (add an href and remove aria-disabled / is-disabled). Delete rows you don't need. -->
+    <section class="section ev-section" id="upcoming" aria-labelledby="upcoming-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <h2 class="section-title section-title--ruled" id="upcoming-title"><span>Upcoming</span></h2>
+          <p class="section-sub">Dates will be announced here.</p>
+        </header>
+
+        <ul class="ev-list" role="list">
+          <li class="ev-row" data-reveal>
+            <div class="ev-row__date" aria-label="Date to be announced"><span class="ev-row__day">TBA</span><span class="ev-row__month">Date</span></div>
+            <div class="ev-row__body">
+              <p class="ev-row__type">Founder meet-up</p>
+              <h3 class="ev-row__title">To be announced</h3>
+              <p class="ev-row__meta">Location to be announced</p>
+            </div>
+            <a class="btn btn--sm ev-row__cta is-disabled" aria-disabled="true">Register</a>
+          </li>
+          <li class="ev-row" data-reveal style="--i:1">
+            <div class="ev-row__date" aria-label="Date to be announced"><span class="ev-row__day">TBA</span><span class="ev-row__month">Date</span></div>
+            <div class="ev-row__body">
+              <p class="ev-row__type">Investor session</p>
+              <h3 class="ev-row__title">To be announced</h3>
+              <p class="ev-row__meta">Location to be announced</p>
+            </div>
+            <a class="btn btn--sm ev-row__cta is-disabled" aria-disabled="true">Register</a>
+          </li>
+          <li class="ev-row" data-reveal style="--i:2">
+            <div class="ev-row__date" aria-label="Date to be announced"><span class="ev-row__day">TBA</span><span class="ev-row__month">Date</span></div>
+            <div class="ev-row__body">
+              <p class="ev-row__type">Campus programme</p>
+              <h3 class="ev-row__title">To be announced</h3>
+              <p class="ev-row__meta">Location to be announced</p>
+            </div>
+            <a class="btn btn--sm ev-row__cta is-disabled" aria-disabled="true">Register</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================== Past ============================== -->
+    <!-- Skeleton: each .ev-card is one past event. Swap .ev-card__photo for an <img class="ev-card__photo">,
+         then fill in the date, title and summary. -->
+    <section class="section ev-section ev-section--last" id="past" aria-labelledby="past-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <h2 class="section-title section-title--ruled" id="past-title"><span>Past events</span></h2>
+          <p class="section-sub">Photos and recaps will be added here.</p>
+        </header>
+
+        <ul class="ev-grid" role="list">
+          <li class="ev-card" data-reveal>
+            <div class="ev-card__photo" aria-hidden="true"></div>
+            <p class="ev-row__type">Date · City</p>
+            <h3 class="ev-card__title">Event title</h3>
+            <p class="ev-card__text">A short recap of the event goes here.</p>
+          </li>
+          <li class="ev-card" data-reveal style="--i:1">
+            <div class="ev-card__photo" aria-hidden="true"></div>
+            <p class="ev-row__type">Date · City</p>
+            <h3 class="ev-card__title">Event title</h3>
+            <p class="ev-card__text">A short recap of the event goes here.</p>
+          </li>
+          <li class="ev-card" data-reveal style="--i:2">
+            <div class="ev-card__photo" aria-hidden="true"></div>
+            <p class="ev-row__type">Date · City</p>
+            <h3 class="ev-card__title">Event title</h3>
+            <p class="ev-card__text">A short recap of the event goes here.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================== Footer ============================== -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <img src="assets/brand/logo-dark.png" alt="earlyseed VENTURES" width="112" height="42" />
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#portfolio">Portfolio</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#perspectives">Perspectives</a></li>
+          <li><a href="events.html" aria-current="page">Events</a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__legal">© <span data-year>2026</span> Earlyseed Ventures</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=202611161913" defer></script>
+</body>
+</html>

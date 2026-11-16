@@ -344,7 +344,9 @@
     { title: 'Manav Khare, Investor Relations', section: 'Team', href: 'team.html#team-members' },
     { title: 'Our Portfolio', section: 'Portfolio', href: '#portfolio' },
     { title: 'Campus Partnerships', section: 'Partners', href: '#team' },
-    { title: 'Events', section: 'Events', href: '#events' },
+    { title: 'Events', section: 'Events', href: 'events.html' },
+    { title: 'Upcoming events', section: 'Events', href: 'events.html#upcoming' },
+    { title: 'Past events', section: 'Events', href: 'events.html#past' },
     { title: 'Services for Founders: fundraising', section: 'Services', href: '#services' },
     { title: 'Services for Investors', section: 'Services', href: '#for-investors' },
     { title: 'Syndicate access', section: 'Services', href: '#for-investors' },
@@ -669,6 +671,8 @@
   $$('[data-svc-dialog]').forEach((d) => { if (d.showModal) initServices(d); });
   const growth = $('[data-growth]');
   if (growth) initGrowth(growth);
+  const evHero = $('.ev-hero');
+  if (evHero) initEventsHero(evHero);
   $$('[data-co-dialog]').forEach((d) => { if (d.showModal) initCompanies(d); });
 
   /* ------------------------------------------------------------------------
@@ -837,6 +841,21 @@
   }
 
   /* ------------------------------------------------------------------------
+     Events hero — the scene leans a little toward the pointer, nearer layers
+     more than far ones (CSS reads --px / --py; see .ev-par). Mouse only.
+     ------------------------------------------------------------------------ */
+  function initEventsHero(hero) {
+    const art = $('.ev-hero__art', hero);
+    if (!art || reduceMotion.matches || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    hero.addEventListener('pointermove', (e) => {
+      const r = hero.getBoundingClientRect();
+      art.style.setProperty('--px', (((e.clientX - r.left) / r.width) * 2 - 1).toFixed(3));
+      art.style.setProperty('--py', (((e.clientY - r.top) / r.height) * 2 - 1).toFixed(3));
+    });
+    hero.addEventListener('pointerleave', () => { art.style.setProperty('--px', 0); art.style.setProperty('--py', 0); });
+  }
+
+  /* ------------------------------------------------------------------------
      Growth — two seedling vines sprout below the hero and grow down the side
      margins as you scroll (never across the content; hidden when the margins
      are too narrow). Their growth depth is a critically
@@ -876,7 +895,7 @@
     const spring = createSpring((v) => { depth = v; paint(); });
 
     function buildVine(cx, amp, H, side, M, W) {
-      const step = 340;
+      const step = 620;                                  // long, lazy bends: a stem, not a ribbon
       const n = Math.max(2, Math.round(H / step));
       const dy = H / n;
       let x0 = cx, y0 = 0;
@@ -896,8 +915,7 @@
         samples.push({ l, y: stem.getPointAtLength(l).y });
       }
 
-      // What grows on the stem: leaves (alternating, some in pairs), curling tendrils with a
-      // sparkle, and the odd blossom. Everything is sized to the margin and kept out of the content.
+      // What grows on the stem: leaves (alternating, some in pairs) and the odd sparkle. Everything is sized to the margin and kept out of the content.
       const fit = Math.min(1, (M - 24) / 150);
       const out = -side;                                     // direction away from the content column
       const inContent = (x) => x > M - 16 && x < W - M + 16;
@@ -924,27 +942,16 @@
         const p = stem.getPointAtLength(l);
         const q = stem.getPointAtLength(Math.min(total, l + 2));
         const ang = (Math.atan2(q.y - p.y, q.x - p.x) * 180) / Math.PI;
-        if (k % 6 === 4) {
-          // Blossom: five petals around a golden eye
-          const g = make('g', { class: 'growth__bloom', transform: `translate(${p.x + 9 * out * fit} ${p.y})` }, svg);
-          const grow = sprout(g, 7);
-          const s = (0.95 + rand() * 0.45) * fit;
-          for (let i = 0; i < 5; i++) make('path', { d: 'M0 -1C-5 -5 -5 -12 0 -14C5 -12 5 -5 0 -1Z', transform: `scale(${s}) rotate(${i * 72})` }, grow);
-          make('circle', { r: 2.8 * s, class: 'eye' }, grow);
-          nodes.push({ el: g, l: l + 8, out: false });
-        } else if (k % 6 === 2) {
-          // Tendril curling away from the page, with a sparkle beside it
-          const c = make('g', { class: 'growth__curl', transform: `translate(${p.x} ${p.y}) scale(${out * fit} ${fit})` }, svg);
-          make('path', { d: 'M0 0c9 -4 20 0 21 10c1 9 -9 13 -13 7c-3 -5 3 -9 6 -5', pathLength: 1 }, c);
-          nodes.push({ el: c, l: l + 4, out: false });
-          const g = make('g', { class: 'growth__spark', transform: `translate(${p.x + 34 * out * fit} ${p.y - 14})` }, svg);
+        if (k % 5 === 3) {
+          // A sparkle beside the stem, on the outer side
+          const g = make('g', { class: 'growth__spark', transform: `translate(${p.x + 26 * out * fit} ${p.y - 10})` }, svg);
           const grow = sprout(g, 2.4);
           make('path', { d: 'M0 -9C1 -2 2 -1 9 0C2 1 1 2 0 9C-1 2 -2 1 -9 0C-2 -1 -1 -2 0 -9Z', transform: `scale(${(0.7 + rand() * 0.5) * fit})` }, grow);
-          nodes.push({ el: g, l: l + 40, out: false });
+          nodes.push({ el: g, l: l + 20, out: false });
         } else {
           const s = (0.8 + rand() * 0.5) * fit;
           leaf(p, ang, flip, s, l + 8);
-          if (k % 6 === 0) leaf(p, ang, -flip, s * 0.68, l + 34);   // a smaller partner leaf
+          if (k % 5 === 0) leaf(p, ang, -flip, s * 0.68, l + 34);   // a smaller partner leaf
           flip = -flip;
         }
       }
@@ -972,7 +979,7 @@
       vines = [];
       built = false;
       if (H < 200 || M < MIN_MARGIN) return;
-      const amp = Math.min(M * 0.18, 30);
+      const amp = Math.min(M * 0.06, 9);                 // barely leaves the vertical
       const cx = M * 0.42;                                // sits toward the outer edge, clear of carousel arrows
       vines.push(buildVine(cx, amp, H, 1, M, W));       // left margin
       seed = 31;
