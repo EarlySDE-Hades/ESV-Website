@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Playfair+Display:wght@400;500&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy&display=swap" />
-  <link rel="stylesheet" href="css/styles.css?v=202611162006" />
+  <link rel="stylesheet" href="css/styles.css?v=202611162026" />
 
   <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
   <script>document.documentElement.classList.add('js');</script>
@@ -116,7 +116,7 @@
 
   <main id="main" class="about-page">
     <!-- ============================== About us ============================== -->
-    <!-- Copy source: BNI deck (ESV Presentation_BNI_Jun26v6): About us, End-to-end services, Growth journey, Recent updates -->
+    <!-- Copy sources: BNI deck (ESV Presentation_BNI_Jun26v6) and the previous site's About page (story, how we work, testimonial, contact) -->
     <section class="ab-hero" aria-labelledby="ab-title">
       <div class="container ab-hero__inner">
         <p class="eyebrow" data-reveal>About us</p>
@@ -137,6 +137,20 @@
       <div class="container">
         <p class="eyebrow" id="ab-mission-title" data-reveal>Our mission</p>
         <p class="ab-mission__text" data-reveal style="--i:1">Being instrumental in the making of a new India: a self-sufficient and self-reliant India.</p>
+      </div>
+    </section>
+
+    <!-- ============================== Our story ============================== -->
+    <section class="section ab-section" aria-labelledby="ab-story-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <h2 class="section-title section-title--ruled" id="ab-story-title"><span>Our story</span></h2>
+        </header>
+        <div class="ab-story" data-reveal style="--i:1">
+          <p>Built as a bridge between young, growing businesses and private equity investors, we build genuine financial partnerships.</p>
+          <p>Earlyseed Ventures started in 2020 as a consultancy for angel investors who wanted to expand their portfolio by investing in a new asset class: startup funding. We are now on a mission to create an ecosystem of transformational mentorship for founders at every level, from universities to incubation centres to big-ticket fund seekers.</p>
+          <p>Our commitment to founders is one of authentic partnership. We get into the skin of the business. Once due diligence is complete and a startup is taken on, we walk to the end of the path, which is why we analyse our parameters of entry closely before we begin.</p>
+        </div>
       </div>
     </section>
 
@@ -163,6 +177,37 @@
           <li>Defence</li>
           <li>Blockchain</li>
         </ul>
+      </div>
+    </section>
+
+    <!-- ============================== How we work ============================== -->
+    <section class="section ab-section" aria-labelledby="ab-how-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <h2 class="section-title section-title--ruled" id="ab-how-title"><span>How we work</span></h2>
+        </header>
+        <div class="ab-how">
+          <div class="ab-how__col" data-reveal>
+            <h3 class="ab-how__for">For start-ups</h3>
+            <ol class="ab-how__list" role="list">
+              <li><h4>Round one</h4><p>Fill in the starter form and send us your pitch deck. We get back to you in 7 to 10 working days.</p></li>
+              <li><h4>Deep dive</h4><p>A 1:1 session to get to know the founders and the brand: the core values and ideas that drive the business.</p></li>
+              <li><h4>Building a funding strategy</h4><p>We understand your funding requirements and build with you a pitch deck that captures your market position, the potential of the idea and the strength of the team behind it.</p></li>
+              <li><h4>Mandate and meetings</h4><p>Once you are convinced to work with us, we agree on a mandate and start setting up meetings with aligned investors.</p></li>
+            </ol>
+            <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
+          </div>
+          <div class="ab-how__col" data-reveal style="--i:1">
+            <h3 class="ab-how__for">For investors</h3>
+            <ol class="ab-how__list" role="list">
+              <li><h4>Deep dive</h4><p>We learn your investment philosophy and strategy.</p></li>
+              <li><h4>Knowledge sharing</h4><p>We share our view of the startup ecosystem, then present curated start-ups to look at, meet and potentially invest in.</p></li>
+              <li><h4>Closing the loop</h4><p>If you commit, we conduct due procedures to close the investment and lay out the next steps for founders and investors.</p></li>
+              <li><h4>Sustainable partnership</h4><p>Startup investments are slow-brewing. We are here for the long haul, working with you on a regular basis.</p></li>
+            </ol>
+            <a class="btn" href="index.html#for-investors">Invest with us</a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -254,12 +299,23 @@
       </div>
     </section>
 
+    <!-- ============================== Testimonial ============================== -->
+    <section class="section ab-section" aria-label="What investors say">
+      <div class="container">
+        <figure class="ab-quote" data-reveal>
+          <blockquote>“ESV introduced me to angel investing, which I was not too aware of. The ease of participation in promising startups, the elaborate screening process and investor participation in the screening makes the process transparent and creates confidence for an informed investment decision.”</blockquote>
+          <figcaption>Rajeev Deshpande · Angel investor</figcaption>
+        </figure>
+      </div>
+    </section>
+
     <!-- ============================== Close ============================== -->
     <section class="section ab-section ab-close" aria-labelledby="ab-close-title">
       <div class="container">
         <div class="post__close" data-reveal>
           <h2 class="post__quote" id="ab-close-title">Building a self-reliant India, one founder at a time.</h2>
           <p class="post__thanks">Earlyseed Ventures · 3, Enterprise Centre, Near Orchid Hotel, Vile Parle (E), Mumbai 400099</p>
+          <p class="ab-contact"><a href="tel:+912245133786">+91 22 4513 3786</a><a href="mailto:info@earlyseedventures.com">info@earlyseedventures.com</a></p>
           <div class="hero__ctas">
             <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
             <a class="btn" href="index.html#for-investors">Invest with us</a>
@@ -288,6 +344,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=202611162006" defer></script>
+  <script src="js/main.js?v=202611162026" defer></script>
 </body>
 </html>
