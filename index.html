@@ -24,8 +24,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Playfair+Display:wght@400;500&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy&display=swap" />
-  <link rel="stylesheet" href="css/styles.css?v=202611162026" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy:ital@0;1&display=swap" />
+  <link rel="stylesheet" href="css/styles.css?v=202611170201" />
 
   <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
   <script>document.documentElement.classList.add('js');</script>
@@ -90,7 +90,7 @@
       </nav>
 
       <div class="site-header__actions">
-        <a class="btn btn--sm" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
+        <a class="btn btn--sm" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
         <a class="btn btn--sm" href="#for-investors">Invest with us</a>
 
         <button class="icon-btn" type="button" aria-label="Search" aria-expanded="false" aria-controls="search-panel" data-search-toggle>
@@ -127,7 +127,7 @@
           <li><a href="#prologue">Prologue</a></li>
         </ul>
         <div class="mobile-menu__ctas">
-          <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
+          <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
           <a class="btn" href="#for-investors">Invest with us</a>
         </div>
       </nav>
@@ -211,7 +211,8 @@
         <h1 class="hero__title" id="hero-title" data-reveal>
           Building a self&#8209;reliant India,<br /> one founder at a time.
         </h1>
-        <div class="hero__ctas" data-reveal style="--i:1">
+        <p class="hero__lede" data-reveal style="--i:1">A Mumbai boutique investment bank helping India’s high-potential start-ups raise seed to Series A, and giving investors a seat at the table early.</p>
+        <div class="hero__ctas" data-reveal style="--i:2">
           <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
           <a class="btn" href="#for-investors">Invest with us</a>
         </div>
@@ -591,12 +592,19 @@
 
     <!-- ============================== Events ============================== -->
     <section class="section events" id="events" aria-labelledby="events-title">
-      <div class="container">
-        <header class="section-head" data-reveal>
-          <h2 class="section-title" id="events-title">Events</h2>
-          <p class="section-sub">Founder meet-ups, investor sessions and campus programmes.</p>
-          <a class="btn events__all" href="events.html">See all events</a>
-        </header>
+      <div class="container events__inner">
+        <h2 class="section-title section-title--ruled" id="events-title" data-reveal><span>Events</span></h2>
+        <p class="services__hint" data-reveal>Founder meet-ups, investor sessions and campus programmes.</p>
+        <a class="ev-feature" href="event-seed-to-success.html" data-reveal style="--i:1">
+          <img class="ev-feature__photo" src="assets/events/seed-to-success-audience-wide.webp" alt="" width="1200" height="800" loading="lazy" decoding="async" />
+          <div class="ev-feature__body">
+            <p class="ev-row__type">5 March 2026 <span class="ev-mode ev-mode--offline">Offline</span></p>
+            <h3 class="ev-feature__title">From seed to success: building what Bharat dreams</h3>
+            <p class="ev-feature__text">An investor panel, a keynote on India, four portfolio pitches and the launch of our Strategic Growth Partners.</p>
+            <span class="person__more">Read the recap <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3.5v9M3.5 8h9"/></svg></span>
+          </div>
+        </a>
+        <p class="center events__more" data-reveal><a class="btn btn--ghost" href="events.html">See all events</a></p>
       </div>
     </section>
 
@@ -708,7 +716,6 @@
     <section class="section prologue" id="prologue" aria-labelledby="prologue-title">
       <div class="container">
         <h2 class="section-title section-title--ruled" id="prologue-title" data-reveal><span>Services powered by</span></h2>
-        <p class="services__hint" data-reveal>Select a service to see what’s included.</p>
         <div class="prologue__panel" data-reveal>
           <header class="prologue__head">
             <div class="prologue__title"><a href="https://www.prologue.co.in/" target="_blank" rel="noopener" aria-label="Prologue by Earlyseed Ventures (opens prologue.co.in)"><img src="assets/prologue/prologue-by-esv.webp" alt="Prologue by Earlyseed Ventures" width="280" height="162" loading="lazy" decoding="async" /></a></div>
@@ -833,7 +840,14 @@
   <!-- ============================== Footer ============================== -->
   <footer class="site-footer">
     <div class="container site-footer__inner">
-      <img src="assets/brand/logo-dark.png" alt="earlyseed VENTURES" width="112" height="42" />
+      <div class="site-footer__brand">
+        <img src="assets/brand/logo-dark.png" alt="earlyseed VENTURES" width="112" height="42" />
+        <address class="site-footer__contact">
+          3, Enterprise Centre, Near Orchid Hotel,<br />Vile Parle (E), Mumbai 400099<br />
+          <a href="tel:+912245133786">+91 22 4513 3786</a><br />
+          <a href="mailto:info@earlyseedventures.com">info@earlyseedventures.com</a>
+        </address>
+      </div>
       <nav aria-label="Footer">
         <ul>
           <li><a href="about.html">About</a></li>
@@ -843,11 +857,15 @@
           <li><a href="#perspectives">Perspectives</a></li>
           <li><a href="events.html">Events</a></li>
         </ul>
+        <a class="btn site-footer__cta" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
       </nav>
-      <p class="site-footer__legal">© <span data-year>2026</span> Earlyseed Ventures</p>
+      <p class="site-footer__legal">
+        <span>© <span data-year>2026</span> Earlyseed Ventures</span>
+        <a href="https://www.linkedin.com/company/earlyseed-ventures" target="_blank" rel="noopener">LinkedIn</a>
+      </p>
     </div>
   </footer>
 
-  <script src="js/main.js?v=202611162026" defer></script>
+  <script src="js/main.js?v=202611170201" defer></script>
 </body>
 </html>

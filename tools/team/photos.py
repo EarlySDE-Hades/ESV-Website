@@ -27,19 +27,17 @@ PEOPLE = [
 # Growth partners: cut-outs lifted from the BNI deck (slide "Our Growth Partners")
 PEOPLE += [(f"partners/{slug}.png", slug) for slug in (
     "pankaj-harwansh", "s-robin", "subramanian-srinivasan", "suresh-menon", "sandeep-agrawal", "anup-nathani")]
-# Team members: cut-outs in Team Photos/ (gitignored). Mehak and Sneha were supplied cut out;
-# the rest were cut out from the originals into Team Photos/cutouts/.
-PEOPLE += [("../Team Photos/Mehak_nobg.png", "mehak-gupta"), ("../Team Photos/sneha_nobg.png", "sneha-lakra")]
-PEOPLE += [(f"../Team Photos/cutouts/{slug}.png", slug) for slug in (
-    "sakshay-upadhyay", "karan-shah", "ruhaan-gupta", "dhwani-joshi", "dale-galbano",
-    "siddarth-menon", "manav-khare", "siddhant-baliga")
-    if (ROOT / "Team Photos" / "cutouts" / f"{slug}.png").exists()]
+# Team members: cleaned, upscaled cut-outs in Team Photos/cleaned/ (gitignored)
+PEOPLE += [(f"../Team Photos/cleaned/{slug}.png", slug) for slug in (
+    "sakshay-upadhyay", "karan-shah", "mehak-gupta", "ruhaan-gupta", "siddhant-baliga",
+    "dhwani-joshi", "dale-galbano", "sneha-lakra", "siddarth-menon", "manav-khare")]
 # Photos that still have a background can be cropped square instead: (file, slug, (left, top, size))
 CROPS = []
 # Fine-tuning per person if the silhouette misreads (hair volume etc.): scale multiplier, x/y nudge (share of frame)
 TUNE = {"rahul-hingmire": (0.92, 0.0, 0.0),
         "sakshay-upadhyay": (1.12, 0.0, 0.0), "karan-shah": (1.08, 0.0, 0.0), "mehak-gupta": (0.78, 0.0, 0.0),
-        "dhwani-joshi": (1.8, 0.0, 0.0), "dale-galbano": (1.15, 0.0, 0.0), "sneha-lakra": (1.1, 0.0, 0.0)}
+        "dhwani-joshi": (2.4, 0.09, 0.0), "dale-galbano": (1.15, 0.0, 0.0), "sneha-lakra": (1.1, 0.0, 0.0),
+        "siddarth-menon": (1.08, 0.0, 0.0)}
 # Where the chin/neck sits, as a share of the height below the crown, when the silhouette can't show it
 NECK = {"monica-gupta": 0.31, "mehak-gupta": 0.30}
 

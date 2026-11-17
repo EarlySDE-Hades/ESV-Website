@@ -930,13 +930,6 @@
       if (parent) parent.append(n);
       return n;
     };
-    // Soft washes of brand colour drift slowly behind the page (also on phones, where the vines have no room)
-    [['crema', 6, 3], ['lilac', 94, 24], ['crema', 12, 50], ['lilac', 90, 74], ['crema', 28, 97]].forEach(([tone, x, y], i) => {
-      const w = document.createElement('div');
-      w.className = `growth__wash growth__wash--${tone}`;
-      w.style.left = x + '%'; w.style.top = y + '%'; w.style.animationDelay = `${-i * 6}s`;
-      wrap.append(w);
-    });
     const svg = make('svg', {}, wrap);
     let vines = [], top = 0, depth = 0, built = false;
     const MIN_MARGIN = 72;                               // below this there is no room: no vine

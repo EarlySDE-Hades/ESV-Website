@@ -24,8 +24,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Playfair+Display:wght@400;500&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy&display=swap" />
-  <link rel="stylesheet" href="css/styles.css?v=202611162026" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy:ital@0;1&display=swap" />
+  <link rel="stylesheet" href="css/styles.css?v=202611170201" />
 
   <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
   <script>document.documentElement.classList.add('js');</script>
@@ -70,7 +70,7 @@
       </nav>
 
       <div class="site-header__actions">
-        <a class="btn btn--sm" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
+        <a class="btn btn--sm" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
         <a class="btn btn--sm" href="index.html#for-investors">Invest with us</a>
 
         <button class="icon-btn" type="button" aria-label="Search" aria-expanded="false" aria-controls="search-panel" data-search-toggle>
@@ -107,7 +107,7 @@
           <li><a href="index.html#prologue">Prologue</a></li>
         </ul>
         <div class="mobile-menu__ctas">
-          <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
+          <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
           <a class="btn" href="index.html#for-investors">Invest with us</a>
         </div>
       </nav>
@@ -137,9 +137,9 @@
             <g class="ev-par" style="--depth:0.35">
               <ellipse class="ev-hero__glow" cx="320" cy="204" rx="300" ry="170" fill="url(#ev-glow)" />
               <g transform="translate(320 204)">
-                <circle class="ev-hero__ring" r="104" style="--d:0s" />
-                <circle class="ev-hero__ring" r="104" style="--d:-2s" />
-                <circle class="ev-hero__ring" r="104" style="--d:-4s" />
+                <circle class="ev-hero__ring" r="104" style="--n:0" />
+                <circle class="ev-hero__ring" r="104" style="--n:1" />
+                <circle class="ev-hero__ring" r="104" style="--n:2" />
                 <g class="ev-hero__rays"><line y1="-120" y2="-150" transform="rotate(-82.5)" /><line y1="-120" y2="-136" transform="rotate(-67.5)" /><line y1="-120" y2="-150" transform="rotate(-52.5)" /><line y1="-120" y2="-136" transform="rotate(-37.5)" /><line y1="-120" y2="-150" transform="rotate(-22.5)" /><line y1="-120" y2="-136" transform="rotate(-7.5)" /><line y1="-120" y2="-150" transform="rotate(7.5)" /><line y1="-120" y2="-136" transform="rotate(22.5)" /><line y1="-120" y2="-150" transform="rotate(37.5)" /><line y1="-120" y2="-136" transform="rotate(52.5)" /><line y1="-120" y2="-150" transform="rotate(67.5)" /><line y1="-120" y2="-136" transform="rotate(82.5)" /></g>
                 <circle class="ev-hero__sun" r="104" fill="url(#ev-sun)" />
               </g>
@@ -275,7 +275,14 @@
   <!-- ============================== Footer ============================== -->
   <footer class="site-footer">
     <div class="container site-footer__inner">
-      <img src="assets/brand/logo-dark.png" alt="earlyseed VENTURES" width="112" height="42" />
+      <div class="site-footer__brand">
+        <img src="assets/brand/logo-dark.png" alt="earlyseed VENTURES" width="112" height="42" />
+        <address class="site-footer__contact">
+          3, Enterprise Centre, Near Orchid Hotel,<br />Vile Parle (E), Mumbai 400099<br />
+          <a href="tel:+912245133786">+91 22 4513 3786</a><br />
+          <a href="mailto:info@earlyseedventures.com">info@earlyseedventures.com</a>
+        </address>
+      </div>
       <nav aria-label="Footer">
         <ul>
           <li><a href="about.html">About</a></li>
@@ -285,11 +292,15 @@
           <li><a href="index.html#perspectives">Perspectives</a></li>
           <li><a href="events.html" aria-current="page">Events</a></li>
         </ul>
+        <a class="btn site-footer__cta" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
       </nav>
-      <p class="site-footer__legal">© <span data-year>2026</span> Earlyseed Ventures</p>
+      <p class="site-footer__legal">
+        <span>© <span data-year>2026</span> Earlyseed Ventures</span>
+        <a href="https://www.linkedin.com/company/earlyseed-ventures" target="_blank" rel="noopener">LinkedIn</a>
+      </p>
     </div>
   </footer>
 
-  <script src="js/main.js?v=202611162026" defer></script>
+  <script src="js/main.js?v=202611170201" defer></script>
 </body>
 </html>

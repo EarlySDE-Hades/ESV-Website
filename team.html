@@ -24,8 +24,8 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Playfair+Display:wght@400;500&family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy&display=swap" />
-  <link rel="stylesheet" href="css/styles.css?v=202611162026" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy:ital@0;1&display=swap" />
+  <link rel="stylesheet" href="css/styles.css?v=202611170201" />
 
   <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
   <script>document.documentElement.classList.add('js');</script>
@@ -70,7 +70,7 @@
       </nav>
 
       <div class="site-header__actions">
-        <a class="btn btn--sm" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
+        <a class="btn btn--sm" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
         <a class="btn btn--sm" href="index.html#for-investors">Invest with us</a>
 
         <button class="icon-btn" type="button" aria-label="Search" aria-expanded="false" aria-controls="search-panel" data-search-toggle>
@@ -107,7 +107,7 @@
           <li><a href="index.html#prologue">Prologue</a></li>
         </ul>
         <div class="mobile-menu__ctas">
-          <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Raise with us</a>
+          <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
           <a class="btn" href="index.html#for-investors">Invest with us</a>
         </div>
       </nav>
@@ -275,32 +275,26 @@
           <li class="person" data-reveal>
             <img class="person__photo" src="assets/team/pankaj-harwansh.webp" alt="Portrait of Pankaj Harwansh" width="600" height="600" loading="lazy" decoding="async" />
             <span class="person__name">Pankaj Harwansh</span>
-            <span class="person__role">Mumbai, India</span>
           </li>
           <li class="person" data-reveal style="--i:1">
             <img class="person__photo" src="assets/team/s-robin.webp" alt="Portrait of S Robin" width="600" height="600" loading="lazy" decoding="async" />
             <span class="person__name">S Robin</span>
-            <span class="person__role">Mumbai, India</span>
           </li>
           <li class="person" data-reveal style="--i:2">
             <img class="person__photo" src="assets/team/subramanian-srinivasan.webp" alt="Portrait of Subramanian Srinivasan" width="600" height="600" loading="lazy" decoding="async" />
             <span class="person__name">Subramanian Srinivasan</span>
-            <span class="person__role">Mumbai, India</span>
           </li>
           <li class="person" data-reveal style="--i:3">
             <img class="person__photo" src="assets/team/suresh-menon.webp" alt="Portrait of Suresh Menon" width="600" height="600" loading="lazy" decoding="async" />
             <span class="person__name">Suresh Menon</span>
-            <span class="person__role">Mumbai, India</span>
           </li>
           <li class="person" data-reveal style="--i:4">
             <img class="person__photo" src="assets/team/sandeep-agrawal.webp" alt="Portrait of Sandeep Agrawal" width="600" height="600" loading="lazy" decoding="async" />
             <span class="person__name">Sandeep Agrawal</span>
-            <span class="person__role">Mumbai, India</span>
           </li>
           <li class="person" data-reveal style="--i:5">
             <img class="person__photo" src="assets/team/anup-nathani.webp" alt="Portrait of Anup Nathani" width="600" height="600" loading="lazy" decoding="async" />
             <span class="person__name">Anup Nathani</span>
-            <span class="person__role">Mumbai, India</span>
           </li>
         </ul>
       </div>
@@ -391,7 +385,14 @@
   <!-- ============================== Footer ============================== -->
   <footer class="site-footer">
     <div class="container site-footer__inner">
-      <img src="assets/brand/logo-dark.png" alt="earlyseed VENTURES" width="112" height="42" />
+      <div class="site-footer__brand">
+        <img src="assets/brand/logo-dark.png" alt="earlyseed VENTURES" width="112" height="42" />
+        <address class="site-footer__contact">
+          3, Enterprise Centre, Near Orchid Hotel,<br />Vile Parle (E), Mumbai 400099<br />
+          <a href="tel:+912245133786">+91 22 4513 3786</a><br />
+          <a href="mailto:info@earlyseedventures.com">info@earlyseedventures.com</a>
+        </address>
+      </div>
       <nav aria-label="Footer">
         <ul>
           <li><a href="about.html">About</a></li>
@@ -401,11 +402,15 @@
           <li><a href="index.html#perspectives">Perspectives</a></li>
           <li><a href="events.html">Events</a></li>
         </ul>
+        <a class="btn site-footer__cta" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
       </nav>
-      <p class="site-footer__legal">© <span data-year>2026</span> Earlyseed Ventures</p>
+      <p class="site-footer__legal">
+        <span>© <span data-year>2026</span> Earlyseed Ventures</span>
+        <a href="https://www.linkedin.com/company/earlyseed-ventures" target="_blank" rel="noopener">LinkedIn</a>
+      </p>
     </div>
   </footer>
 
-  <script src="js/main.js?v=202611162026" defer></script>
+  <script src="js/main.js?v=202611170201" defer></script>
 </body>
 </html>
