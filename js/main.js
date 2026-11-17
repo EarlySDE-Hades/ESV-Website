@@ -356,7 +356,10 @@
     { title: 'Syndicate access', section: 'Services', href: '#for-investors' },
     { title: 'Curated deal flow', section: 'Services', href: '#for-investors' },
     { title: 'Community & education', section: 'Services', href: '#for-investors' },
-    { title: 'Prologue: financial models, pitch decks, market research', section: 'Prologue', href: '#prologue' },
+    { title: 'Prologue by Earlyseed Ventures', section: 'Prologue', href: 'prologue.html' },
+    { title: 'Prologue: pitch deck review and build, financial models', section: 'Prologue', href: 'prologue.html#pl-services' },
+    { title: 'Fundraise Readiness Package', section: 'Prologue', href: 'prologue.html#pl-services' },
+    { title: 'Founders’ Bootcamp', section: 'Prologue', href: 'prologue.html#pl-services' },
     { title: 'Pre-funding: data room, consultancy', section: 'Prologue', href: '#prologue' },
     { title: 'From the deal table', section: 'Perspectives', href: '#perspectives' },
     { title: 'Founder Stories', section: 'Perspectives', href: '#perspectives' },
@@ -941,14 +944,14 @@
     // One spring on depth (px down the page); each vine maps depth to its own length
     const spring = createSpring((v) => { depth = v; paint(); });
 
-    function buildVine(cx, amp, H, side, M, W) {
-      const step = 620;                                  // long, lazy bends: a stem, not a ribbon
+    function buildVine(cx, amp, H, side, M, W, o) {
+      const step = o.step;                               // long, lazy bends: a stem, not a ribbon
       const n = Math.max(2, Math.round(H / step));
       const dy = H / n;
       let x0 = cx, y0 = 0;
       let d = `M${x0} ${y0}`;
       for (let i = 1; i <= n; i++) {
-        const x1 = cx + amp * (i % 2 ? 1 : -1) * side * (0.7 + rand() * 0.3);
+        const x1 = cx + amp * ((i + o.phase) % 2 ? 1 : -1) * side * (0.7 + rand() * 0.3);
         const y1 = i * dy;
         d += ` C${x0} ${y0 + dy * 0.5} ${x1} ${y1 - dy * 0.5} ${x1} ${y1}`;
         x0 = x1; y0 = y1;
@@ -985,7 +988,7 @@
         nodes.push({ el: g, l, out: false });
       };
       let flip = side;
-      for (let l = 50 + rand() * 50, k = 0; l < total - 30; l += 150 * (0.8 + rand() * 0.4), k++) {
+      for (let l = o.start + rand() * 50, k = o.k0; l < total - 30; l += o.gap * (0.8 + rand() * 0.4), k++) {
         const p = stem.getPointAtLength(l);
         const q = stem.getPointAtLength(Math.min(total, l + 2));
         const ang = (Math.atan2(q.y - p.y, q.x - p.x) * 180) / Math.PI;
@@ -1005,7 +1008,7 @@
       const tip = make('g', { class: 'growth__tip' }, svg);
       make('circle', { r: 9, class: 'halo' }, tip);
       make('circle', { r: 3 }, tip);
-      return { stem, total, samples, nodes, tip };
+      return { stem, total, samples, nodes, tip, lag: o.lag };
     }
 
     function build() {
@@ -1028,9 +1031,11 @@
       if (H < 200 || M < MIN_MARGIN) return;
       const amp = Math.min(M * 0.06, 9);                 // barely leaves the vertical
       const cx = M * 0.42;                                // sits toward the outer edge, clear of carousel arrows
-      vines.push(buildVine(cx, amp, H, 1, M, W));       // left margin
+      // The two sides are siblings, not mirror images: different bend length and phase,
+      // leaf spacing, set-in from the edge, and the right one trails the left a little.
+      vines.push(buildVine(cx, amp, H, 1, M, W, { step: 620, phase: 0, start: 50, gap: 150, k0: 0, lag: 0 }));
       seed = 31;
-      vines.push(buildVine(W - cx, amp, H, -1, M, W));  // right margin, mirrored
+      vines.push(buildVine(W - M * 0.47, amp * 1.3, H, -1, M, W, { step: 530, phase: 1, start: 120, gap: 172, k0: 2, lag: 90 }));
       built = true;
     }
 
@@ -1047,7 +1052,7 @@
     function paint() {
       if (!built) return;
       for (const v of vines) {
-        const drawn = lengthAt(v, depth);
+        const drawn = lengthAt(v, depth - v.lag);
         v.stem.style.strokeDashoffset = String(v.total - drawn);
         const p = v.stem.getPointAtLength(Math.max(0, drawn));
         v.tip.setAttribute('transform', `translate(${p.x} ${p.y})`);
@@ -1481,6 +1486,29 @@
      for click and touch. Esc or a click outside closes it. */
   function initNavMenu(menu) {
     const toggle = $('[data-nav-menu-toggle]', menu);
+    const list = $('.nav-thread', menu);
+    // The thread starts under the chevron and ends level with the last item; each branch curves
+    // off it to an item. Measured on every open, as the panel sits differently once scrolled.
+    // Layout offsets ignore transforms, so the geometry is right even while the panel is still
+    // animating in (measuring the on-screen boxes mid-animation left gaps in the thread).
+    const panel = list && list.closest('.nav-menu__panel');
+    const measure = () => {
+      if (!list) return;
+      const last = list.lastElementChild;
+      const listLeft = panel.offsetLeft + panel.clientLeft + list.offsetLeft;
+      const listTop = panel.offsetTop + panel.clientTop + list.offsetTop;
+      const chevronX = toggle.offsetLeft + toggle.offsetWidth / 2;
+      const chevronBottom = toggle.offsetTop + toggle.offsetHeight / 2 + 7;
+      list.style.setProperty('--tx', `${Math.round(chevronX - listLeft)}px`);
+      list.style.setProperty('--up', `${Math.round(listTop - chevronBottom)}px`);
+      list.style.setProperty('--len', `${Math.round(listTop + last.offsetTop + last.offsetHeight / 2 - chevronBottom)}px`);
+    };
+    ['mouseenter', 'focusin'].forEach((type) => menu.addEventListener(type, measure));
+    toggle.addEventListener('pointerdown', measure);
+    new MutationObserver(measure).observe(menu.closest('[data-header]') || document.body, { attributes: true, attributeFilter: ['class'] });
+    window.addEventListener('resize', measure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    measure();
     const set = (open) => {
       menu.classList.toggle('is-open', open);
       menu.classList.toggle('is-closed', !open);

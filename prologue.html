@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Earlyseed Ventures</title>
+  <meta name="description" content="Prologue by Earlyseed Ventures prepares early-stage founders for fundraising: the deck, the numbers and the understanding to defend both." />
+  <meta name="theme-color" content="#F4F4F4" />
+  <!-- Link previews (WhatsApp, LinkedIn, X). The image URL must be absolute: update the domain if it differs. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Earlyseed Ventures" />
+  <meta property="og:title" content="Earlyseed Ventures" />
+  <meta property="og:description" content="Building a self-reliant India, one founder at a time. Capital for founders; curated early-stage deal flow for investors." />
+  <meta property="og:image" content="https://www.earlyseedventures.com/assets/brand/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/icons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/brand/icons/favicon-16.png" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/brand/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy:ital@0;1&display=swap" />
+  <link rel="stylesheet" href="css/styles.css?v=202611171740" />
+
+  <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============================== Header ============================== -->
+  <header class="site-header" data-header>
+    <div class="site-header__inner container">
+      <a class="brand" href="index.html" aria-label="Earlyseed Ventures — home">
+        <img src="assets/brand/logo-dark.png" alt="earlyseed VENTURES" width="136" height="51" />
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary">
+        <ul class="primary-nav__links">
+          <li class="nav-menu" data-nav-menu>
+            <button class="nav-menu__toggle" type="button" aria-expanded="false" aria-controls="about-menu" aria-label="More in About" data-nav-menu-toggle>
+              <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <a href="about.html">About</a>
+            <!-- Submenu: a thread runs down from the chevron and branches to each item (js: initNavMenu sets the geometry) -->
+            <div class="nav-menu__panel" id="about-menu">
+              <ul class="nav-thread">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="index.html#services">Services</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="index.html#portfolio">Our Portfolio</a></li>
+          <li><a href="index.html#perspectives">Perspectives</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li class="nav-reveal">
+            <!-- On hover / keyboard focus the word morphs into the Prologue logo, in place -->
+            <a class="nav-morph" href="prologue.html" aria-label="Prologue">
+              <span class="nav-morph__text" aria-hidden="true">Prologue</span>
+              <img class="nav-morph__logo" src="assets/brand/prologue-wordmark.webp" alt="" width="341" height="96" decoding="async" />
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <a class="btn btn--sm" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
+        <a class="btn btn--sm" href="index.html#for-investors">Invest with us</a>
+
+        <button class="icon-btn" type="button" aria-label="Search" aria-expanded="false" aria-controls="search-panel" data-search-toggle>
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m15 15 5.5 5.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </button>
+
+        <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+          <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search popover — materialises from the search icon -->
+    <div class="search-panel" id="search-panel" role="dialog" aria-label="Search the site" hidden data-search-panel>
+      <label class="visually-hidden" for="site-search">Search</label>
+      <div class="search-panel__field">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m15 15 5.5 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <input id="site-search" type="search" placeholder="Search Earlyseed" autocomplete="off" data-search-input />
+        <kbd>esc</kbd>
+      </div>
+      <ul class="search-panel__results" data-search-results></ul>
+    </div>
+
+    <!-- Mobile menu — drops from the header and returns the same way -->
+    <div class="mobile-menu" id="mobile-menu" hidden data-mobile-menu>
+      <nav aria-label="Mobile">
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li class="mobile-menu__sub"><a href="team.html">Team</a></li>
+          <li class="mobile-menu__sub"><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#portfolio">Our Portfolio</a></li>
+          <li><a href="index.html#perspectives">Perspectives</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="prologue.html" aria-current="page">Prologue</a></li>
+        </ul>
+        <div class="mobile-menu__ctas">
+          <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
+          <a class="btn" href="index.html#for-investors">Invest with us</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="pl-page">
+    <!-- Prologue by Earlyseed Ventures. Copy source: Prologue repo, docs/prologue-marketing-os/01-strategy/positioning-and-icp.md
+         (one-liner, value propositions, offer ladder O1 to O7, brand voice, ESV association rules).
+         House rules from that repo: no prices until set, no outcome guarantees, no investor-introduction claims, no em dashes. -->
+
+    <!-- ============================== Hero ============================== -->
+    <section class="pl-hero" aria-labelledby="pl-title">
+      <div class="container pl-hero__inner">
+        <div class="pl-hero__copy">
+          <img class="pl-hero__logo" src="assets/brand/prologue-wordmark.webp" alt="Prologue" width="341" height="96" data-reveal />
+          <p class="pl-kicker" data-reveal style="--i:1">by Earlyseed Ventures</p>
+          <h1 class="pl-hero__title" id="pl-title" data-reveal style="--i:2">Walk into investor meetings with a deck, a model and answers you understand.</h1>
+          <p class="pl-hero__lede" data-reveal style="--i:3">Prologue prepares early-stage founders for fundraising: the deck, the numbers and the understanding to defend both.</p>
+          <div class="pl-hero__ctas" data-reveal style="--i:4">
+            <a class="pl-btn" href="https://www.prologue.co.in/contact.html" target="_blank" rel="noopener">Book a discovery call</a>
+            <a class="pl-btn pl-btn--ghost" href="#pl-services">See the services</a>
+          </div>
+        </div>
+
+        <!-- Proof visual: what investors test. Illustrative example, not client data. -->
+        <figure class="pl-proof" aria-label="Example: an investor question pinned to a slide and the model assumption behind it" data-reveal style="--i:2">
+          <div class="pl-slide">
+            <p class="pl-slide__label">Slide 6 · Go-to-market</p>
+            <div class="pl-slide__bars" aria-hidden="true"><span style="--h:34%"></span><span style="--h:52%"></span><span style="--h:71%"></span><span style="--h:96%"></span></div>
+          </div>
+          <div class="pl-sheet">
+            <p class="pl-sheet__label">Model · Assumptions</p>
+            <dl>
+              <div><dt>Monthly leads</dt><dd>1,200</dd></div>
+              <div class="is-hot"><dt>Lead to paid</dt><dd>3.5%</dd></div>
+              <div><dt>Avg. order</dt><dd>₹2,400</dd></div>
+            </dl>
+          </div>
+          <p class="pl-bubble"><span>Investor</span>“Where does 3.5% come from?”</p>
+          <p class="pl-bubble pl-bubble--you"><span>You</span>“Our last two pilots, and here is the downside case.”</p>
+          <figcaption>Illustrative example</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================== Moments ============================== -->
+    <section class="pl-section" aria-labelledby="pl-when-title">
+      <div class="container">
+        <header class="pl-head" data-reveal>
+          <p class="pl-kicker">When founders come to us</p>
+          <h2 class="pl-h2" id="pl-when-title">The meeting is booked. The questions are coming.</h2>
+        </header>
+        <ul class="pl-moments" role="list">
+          <li data-reveal><p class="pl-quote">“An investor asked for projections by next week.”</p><p>Projections with assumptions you can defend in the meeting.</p></li>
+          <li data-reveal style="--i:1"><p class="pl-quote">“The deck looks fine but doesn’t land.”</p><p>Structure first, design second.</p></li>
+          <li data-reveal style="--i:2"><p class="pl-quote">“I don’t know what investors expect to see.”</p><p>Learn the fundamentals first-time founders are expected to know.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================== Investor side ============================== -->
+    <section class="pl-section pl-side" aria-labelledby="pl-side-title">
+      <div class="container pl-side__inner">
+        <div data-reveal>
+          <p class="pl-kicker">Why Prologue</p>
+          <h2 class="pl-h2" id="pl-side-title">Built from the investor side of the table.</h2>
+        </div>
+        <div class="pl-side__body" data-reveal style="--i:1">
+          <p>Prologue is part of Earlyseed Ventures, an early-stage venture capital firm in Mumbai. Our team evaluates early-stage companies, so the work is shaped by what investors actually ask.</p>
+          <ul class="pl-principles" role="list">
+            <li><strong>You own the work.</strong> You should be able to explain every assumption without opening the file.</li>
+            <li><strong>Specific about what gets tested.</strong> The second meeting is usually where the model gets tested.</li>
+            <li><strong>Honest about limits.</strong> A better deck won’t raise the round on its own. It removes reasons to say no.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== Services ============================== -->
+    <section class="pl-section" id="pl-services" aria-labelledby="pl-services-title">
+      <div class="container">
+        <header class="pl-head" data-reveal>
+          <p class="pl-kicker">Services</p>
+          <h2 class="pl-h2" id="pl-services-title">Pick the part you need, or prepare end to end.</h2>
+          <p class="pl-sub">Fixed scope and clear deliverables for every engagement. Pricing is shared on the discovery call.</p>
+        </header>
+
+        <ul class="pl-offers" role="list">
+          <li class="pl-offer" data-reveal>
+            <img src="assets/prologue/pitch-deck.webp" alt="" width="176" height="176" loading="lazy" decoding="async" />
+            <h3>Pitch Deck Review</h3>
+            <p>Find out what an investor will question in your deck before the meeting does it for you.</p>
+            <p class="pl-offer__get">Written slide-by-slide review and a walkthrough session.</p>
+          </li>
+          <li class="pl-offer" data-reveal style="--i:1">
+            <img src="assets/prologue/pitch-deck.webp" alt="" width="176" height="176" loading="lazy" decoding="async" />
+            <h3>Pitch Deck Build</h3>
+            <p>A deck that makes one clear argument, slide by slide, in your own numbers.</p>
+            <p class="pl-offer__get">Narrative, structure and design of the investor deck.</p>
+          </li>
+          <li class="pl-offer" data-reveal style="--i:2">
+            <img src="assets/prologue/financial-model.webp" alt="" width="176" height="176" loading="lazy" decoding="async" />
+            <h3>Financial Model and Projections</h3>
+            <p>Projections built on assumptions you can explain, with scenarios ready for the questions investors ask.</p>
+            <p class="pl-offer__get">Driver-based model, assumptions book, scenarios and a founder walkthrough.</p>
+          </li>
+          <li class="pl-offer pl-offer--feature" data-reveal>
+            <img src="assets/prologue/consultancy.webp" alt="" width="176" height="176" loading="lazy" decoding="async" />
+            <p class="pl-tag">Most complete</p>
+            <h3>Fundraise Readiness Package</h3>
+            <p>Deck, model and investor Q&amp;A preparation, built together so every number matches.</p>
+            <p class="pl-offer__get">Deck Build plus Financial Model plus investor Q&amp;A preparation.</p>
+          </li>
+          <li class="pl-offer" data-reveal style="--i:1">
+            <img src="assets/prologue/dashboard.webp" alt="" width="176" height="176" loading="lazy" decoding="async" />
+            <h3>Investor Communication Prep</h3>
+            <p>Investor updates and a data room that make the next conversation easier.</p>
+            <p class="pl-offer__get">Investor update template, data room checklist and Q&amp;A rehearsal.</p>
+          </li>
+          <li class="pl-offer" data-reveal style="--i:2">
+            <img src="assets/prologue/market-research.webp" alt="" width="176" height="176" loading="lazy" decoding="async" />
+            <h3>Cohort Workshops</h3>
+            <p>Practical fundraising preparation sessions for your cohort, from people who evaluate early-stage companies.</p>
+            <p class="pl-offer__get">For accelerators, incubators and E-cells.</p>
+          </li>
+        </ul>
+
+        <aside class="pl-bootcamp" data-reveal aria-labelledby="pl-bootcamp-title">
+          <div>
+            <p class="pl-tag pl-tag--soon">Coming soon</p>
+            <h3 id="pl-bootcamp-title">Founders’ Bootcamp</h3>
+            <p>Eight weeks to learn the finance and fundraising fundamentals first-time founders are expected to know.</p>
+          </div>
+          <a class="pl-btn pl-btn--ghost" href="https://www.prologue.co.in/education.html" target="_blank" rel="noopener">Join the waitlist</a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============================== How it works ============================== -->
+    <section class="pl-section" aria-labelledby="pl-how-title">
+      <div class="container">
+        <header class="pl-head" data-reveal>
+          <p class="pl-kicker">How it works</p>
+          <h2 class="pl-h2" id="pl-how-title">Done with you, not for you.</h2>
+        </header>
+        <ol class="pl-steps" role="list">
+          <li data-reveal><span>1</span><h3>Discovery call</h3><p>Where your raise stands, what investors have asked and what you need first.</p></li>
+          <li data-reveal style="--i:1"><span>2</span><h3>Fixed scope</h3><p>Clear deliverables, turnaround and revision rounds, agreed before work starts.</p></li>
+          <li data-reveal style="--i:2"><span>3</span><h3>Working sessions</h3><p>Short, scheduled sessions so the deck and model reflect how you think about the business.</p></li>
+          <li data-reveal style="--i:3"><span>4</span><h3>Walkthrough</h3><p>We take you through every slide and assumption until you can defend them yourself.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================== Who + honesty ============================== -->
+    <section class="pl-section" aria-labelledby="pl-who-title">
+      <div class="container pl-split">
+        <div data-reveal>
+          <p class="pl-kicker">Who it’s for</p>
+          <h2 class="pl-h2" id="pl-who-title">Founders in India preparing to raise.</h2>
+          <ul class="pl-chips" role="list">
+            <li>First-time founders</li><li>Pre-seed startups</li><li>Seed-stage startups</li><li>Bootstrapped founders</li><li>Accelerators and incubators</li>
+          </ul>
+        </div>
+        <div class="pl-honest" data-reveal style="--i:1">
+          <h3>What Prologue does not do</h3>
+          <ul role="list">
+            <li>Guarantee funding, or promise investor introductions.</li>
+            <li>Change the numbers to tell a better story.</li>
+            <li>Affect any investment decision by Earlyseed Ventures.</li>
+          </ul>
+          <p class="pl-note">Prologue is a paid preparation service. Working with Prologue has no bearing on any investment decision by Earlyseed Ventures, and information you share with Prologue is not used in ESV investment evaluation without your written consent.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== Close ============================== -->
+    <section class="pl-section pl-close" aria-labelledby="pl-close-title">
+      <div class="container">
+        <div class="pl-close__card" data-reveal>
+          <h2 class="pl-h2" id="pl-close-title">Know what the investor will ask before they ask it.</h2>
+          <p>Tell us where your raise stands. We’ll tell you what to prepare first.</p>
+          <div class="pl-hero__ctas">
+            <a class="pl-btn" href="https://www.prologue.co.in/contact.html" target="_blank" rel="noopener">Book a discovery call</a>
+            <a class="pl-btn pl-btn--ghost" href="https://www.prologue.co.in/" target="_blank" rel="noopener">Visit prologue.co.in</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================== Footer ============================== -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="site-footer__brand">
+        <img src="assets/brand/logo-dark.png" alt="earlyseed VENTURES" width="112" height="42" />
+        <address class="site-footer__contact">
+          3, Enterprise Centre, Near Orchid Hotel,<br />Vile Parle (E), Mumbai 400099<br />
+          <a href="tel:+912245133786">+91 22 4513 3786</a><br />
+          <a href="mailto:info@earlyseedventures.com">info@earlyseedventures.com</a>
+        </address>
+      </div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="index.html#portfolio">Portfolio</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#perspectives">Perspectives</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+        <a class="btn site-footer__cta" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
+      </nav>
+      <p class="site-footer__legal">
+        <span>© <span data-year>2026</span> Earlyseed Ventures</span>
+        <a href="https://www.linkedin.com/company/earlyseed-ventures" target="_blank" rel="noopener">LinkedIn</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=202611171740" defer></script>
+</body>
+</html>

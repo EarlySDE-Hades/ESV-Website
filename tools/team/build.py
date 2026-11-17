@@ -22,6 +22,7 @@ head = re.sub(r"<title>.*?</title>", "<title>Earlyseed Ventures</title>", head)
 
 # output file, source of <main>, meta description, nav link text to mark as the current page
 PAGES = [
+    ("prologue.html", "tools/prologue/main.html", "Prologue by Earlyseed Ventures prepares early-stage founders for fundraising: the deck, the numbers and the understanding to defend both.", "Prologue"),
     ("about.html", "tools/about/main.html", "Earlyseed Ventures is a boutique investment banking firm in Mumbai, helping tech start-ups raise seed to Series A rounds.", "About"),
     ("team.html", "tools/team/main.html", "The leadership team, strategic growth partners and team behind Earlyseed Ventures.", "Team"),
     ("events.html", "tools/events/main.html", "Founder meet-ups, investor sessions and campus programmes from Earlyseed Ventures.", "Events"),

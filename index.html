@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy:ital@0;1&display=swap" />
-  <link rel="stylesheet" href="css/styles.css?v=202611170201" />
+  <link rel="stylesheet" href="css/styles.css?v=202611171740" />
 
   <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
   <script>document.documentElement.classList.add('js');</script>
@@ -63,13 +63,13 @@
       <nav class="primary-nav" aria-label="Primary">
         <ul class="primary-nav__links">
           <li class="nav-menu" data-nav-menu>
-            <a href="about.html">About</a>
             <button class="nav-menu__toggle" type="button" aria-expanded="false" aria-controls="about-menu" aria-label="More in About" data-nav-menu-toggle>
               <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
-            <!-- Submenu: grows out of the About item on hover, keyboard focus or chevron click -->
+            <a href="about.html">About</a>
+            <!-- Submenu: a thread runs down from the chevron and branches to each item (js: initNavMenu sets the geometry) -->
             <div class="nav-menu__panel" id="about-menu">
-              <ul>
+              <ul class="nav-thread">
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="team.html">Team</a></li>
                 <li><a href="#services">Services</a></li>
@@ -81,7 +81,7 @@
           <li><a href="events.html">Events</a></li>
           <li class="nav-reveal">
             <!-- On hover / keyboard focus the word morphs into the Prologue logo, in place -->
-            <a class="nav-morph" href="#prologue" aria-label="Prologue">
+            <a class="nav-morph" href="prologue.html" aria-label="Prologue">
               <span class="nav-morph__text" aria-hidden="true">Prologue</span>
               <img class="nav-morph__logo" src="assets/brand/prologue-wordmark.webp" alt="" width="341" height="96" decoding="async" />
             </a>
@@ -124,7 +124,7 @@
           <li><a href="#portfolio">Our Portfolio</a></li>
           <li><a href="#perspectives">Perspectives</a></li>
           <li><a href="events.html">Events</a></li>
-          <li><a href="#prologue">Prologue</a></li>
+          <li><a href="prologue.html">Prologue</a></li>
         </ul>
         <div class="mobile-menu__ctas">
           <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
@@ -866,6 +866,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=202611170201" defer></script>
+  <script src="js/main.js?v=202611171740" defer></script>
 </body>
 </html>
