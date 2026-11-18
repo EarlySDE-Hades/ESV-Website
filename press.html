@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Earlyseed Ventures</title>
+  <meta name="description" content="Us in the News: media coverage, funding announcements and industry conversations featuring Earlyseed Ventures and its co-founders." />
+  <meta name="theme-color" content="#F4F4F4" />
+  <!-- Link previews (WhatsApp, LinkedIn, X). The image URL must be absolute: update the domain if it differs. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Earlyseed Ventures" />
+  <meta property="og:title" content="Earlyseed Ventures" />
+  <meta property="og:description" content="Building a self-reliant India, one founder at a time. Capital for founders; curated early-stage deal flow for investors." />
+  <meta property="og:image" content="https://www.earlyseedventures.com/assets/brand/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/icons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/brand/icons/favicon-16.png" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/brand/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy:ital@0;1&display=swap" />
+  <link rel="stylesheet" href="css/styles.css?v=202611171932" />
+
+  <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============================== Header ============================== -->
+  <header class="site-header" data-header>
+    <div class="site-header__inner container">
+      <a class="brand" href="index.html" aria-label="Earlyseed Ventures — home">
+        <img src="assets/brand/logo-dark.png" alt="earlyseed VENTURES" width="136" height="51" />
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary">
+        <ul class="primary-nav__links">
+          <li class="nav-menu" data-nav-menu>
+            <button class="nav-menu__toggle" type="button" aria-expanded="false" aria-controls="about-menu" aria-label="More in About" data-nav-menu-toggle>
+              <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <a href="about.html">About</a>
+            <!-- Submenu: a thread runs down from the chevron and branches to each item (js: initNavMenu sets the geometry) -->
+            <div class="nav-menu__panel" id="about-menu">
+              <ul class="nav-thread">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="index.html#services">Services</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="index.html#portfolio">Our Portfolio</a></li>
+          <li class="nav-menu" data-nav-menu>
+            <button class="nav-menu__toggle" type="button" aria-expanded="false" aria-controls="perspectives-menu" aria-label="More in Perspectives" data-nav-menu-toggle>
+              <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <a href="index.html#perspectives">Perspectives</a>
+            <div class="nav-menu__panel" id="perspectives-menu">
+              <ul class="nav-thread">
+                <li><a href="index.html#perspectives">Perspectives</a></li>
+                <li><a href="press.html" aria-current="page">Our Press</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="events.html">Events</a></li>
+          <li class="nav-reveal">
+            <!-- On hover / keyboard focus the word morphs into the Prologue logo, in place -->
+            <a class="nav-morph" href="prologue.html" aria-label="Prologue">
+              <span class="nav-morph__text" aria-hidden="true">Prologue</span>
+              <img class="nav-morph__logo" src="assets/brand/prologue-wordmark.webp" alt="" width="341" height="96" decoding="async" />
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <a class="btn btn--sm" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
+        <a class="btn btn--sm" href="index.html#for-investors">Invest with us</a>
+
+        <button class="icon-btn" type="button" aria-label="Search" aria-expanded="false" aria-controls="search-panel" data-search-toggle>
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m15 15 5.5 5.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </button>
+
+        <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+          <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search popover — materialises from the search icon -->
+    <div class="search-panel" id="search-panel" role="dialog" aria-label="Search the site" hidden data-search-panel>
+      <label class="visually-hidden" for="site-search">Search</label>
+      <div class="search-panel__field">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m15 15 5.5 5.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <input id="site-search" type="search" placeholder="Search Earlyseed" autocomplete="off" data-search-input />
+        <kbd>esc</kbd>
+      </div>
+      <ul class="search-panel__results" data-search-results></ul>
+    </div>
+
+    <!-- Mobile menu — drops from the header and returns the same way -->
+    <div class="mobile-menu" id="mobile-menu" hidden data-mobile-menu>
+      <nav aria-label="Mobile">
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li class="mobile-menu__sub"><a href="team.html">Team</a></li>
+          <li class="mobile-menu__sub"><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#portfolio">Our Portfolio</a></li>
+          <li><a href="index.html#perspectives">Perspectives</a></li>
+          <li class="mobile-menu__sub"><a href="press.html" aria-current="page">Our Press</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="prologue.html">Prologue</a></li>
+        </ul>
+        <div class="mobile-menu__ctas">
+          <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
+          <a class="btn" href="index.html#for-investors">Invest with us</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="press-page">
+    <!-- ============================== Press hero: a front page ============================== -->
+    <!-- Cards and the full list are generated from tools/press/press.json by tools/team/build.py (double-brace placeholders). -->
+    <section class="press-hero" aria-labelledby="press-title">
+      <div class="container press-hero__inner">
+        <article class="paper" data-reveal>
+          <header class="paper__masthead">
+            <p class="paper__ear">Press &amp; media</p>
+            <img class="paper__name" src="assets/brand/logo-dark.png" alt="Earlyseed Ventures" width="640" height="241" />
+            <p class="paper__ear paper__ear--right">Mumbai</p>
+          </header>
+          <p class="paper__dateline"><span>Coverage 2023 to 2026</span><span>Links checked 18 November 2026</span><span>17 articles</span></p>
+          <h1 class="paper__headline" id="press-title">Us in the News</h1>
+          <p class="paper__deck">Explore media coverage, funding announcements and industry conversations featuring Earlyseed Ventures and our co-founders.</p>
+          <div class="paper__cols">
+            <section class="paper__col" aria-label="The Startup Mixer">
+              <p class="paper__kicker">The Startup Mixer</p>
+              <h2 class="paper__story"><a class="paper__story-link" href="https://news.webindia123.com/news/articles/business/20260831/4492723.html" target="_blank" rel="noopener noreferrer" aria-label="Read article: After a Sold-Out Debut, The Startup Mixer Returns with Edition 2 in Mumbai on September 2, WebIndia123 (opens in a new tab)">After a Sold-Out Debut, The Startup Mixer Returns with Edition 2 in Mumbai on September 2</a></h2>
+              <p class="paper__by">WebIndia123 · 31 Aug 2026</p>
+              <div class="paper__lines" aria-hidden="true"><span style="--w:100%"></span><span style="--w:96%"></span><span style="--w:100%"></span><span style="--w:88%"></span><span style="--w:100%"></span><span style="--w:92%"></span><span style="--w:64%"></span></div>
+            </section>
+            <section class="paper__col" aria-label="ElectriQ funding">
+              <p class="paper__kicker">ElectriQ funding</p>
+              <h2 class="paper__story"><a class="paper__story-link" href="https://www.tribuneindia.com/news/electriq-closes-early-seed-funding-round-to-accelerate-ev-ecosystem-expansion-in-india-and-beyond/" target="_blank" rel="noopener noreferrer" aria-label="Read article: ElectriQ Closes Early Seed Funding Round to Accelerate EV Ecosystem Expansion in India and Beyond, The Tribune (opens in a new tab)">ElectriQ Closes Early Seed Funding Round to Accelerate EV Ecosystem Expansion in India and Beyond</a></h2>
+              <p class="paper__by">The Tribune · 12 Jun 2026</p>
+              <div class="paper__lines" aria-hidden="true"><span style="--w:100%"></span><span style="--w:96%"></span><span style="--w:100%"></span><span style="--w:88%"></span><span style="--w:100%"></span><span style="--w:92%"></span><span style="--w:64%"></span></div>
+            </section>
+            <section class="paper__col" aria-label="Alchemyst AI funding">
+              <p class="paper__kicker">Alchemyst AI funding</p>
+              <h2 class="paper__story"><a class="paper__story-link" href="https://www.financialexpress.com/business/brandwagon-alchemyst-ai-raises-300k-to-drive-ai-powered-digital-workforce-solutions-3641283/lite/" target="_blank" rel="noopener noreferrer" aria-label="Read article: Alchemyst AI raises $300K to drive AI-powered digital workforce solutions, Financial Express (opens in a new tab)">Alchemyst AI raises $300K to drive AI-powered digital workforce solutions</a></h2>
+              <p class="paper__by">Financial Express · 16 Oct 2024</p>
+              <div class="paper__lines" aria-hidden="true"><span style="--w:100%"></span><span style="--w:96%"></span><span style="--w:100%"></span><span style="--w:88%"></span><span style="--w:100%"></span><span style="--w:92%"></span><span style="--w:64%"></span></div>
+            </section>
+            <section class="paper__col" aria-label="Skill Titans">
+              <p class="paper__kicker">Skill Titans</p>
+              <h2 class="paper__story"><a class="paper__story-link" href="https://www.moneycontrol.com/news/trends/features/skill-titans-season-1-an-exclusive-student-entrepreneurship-tv-show-11958341.html" target="_blank" rel="noopener noreferrer" aria-label="Read article: Skill Titans Season 1: An Exclusive Student Entrepreneurship TV Show, Moneycontrol (opens in a new tab)">Skill Titans Season 1: An Exclusive Student Entrepreneurship TV Show</a></h2>
+              <p class="paper__by">Moneycontrol · 26 Dec 2023</p>
+              <img class="paper__photo" src="assets/perspectives/skill-titans.webp" alt="" loading="lazy" decoding="async" />
+              <div class="paper__lines" aria-hidden="true"><span style="--w:100%"></span><span style="--w:96%"></span><span style="--w:100%"></span><span style="--w:88%"></span><span style="--w:100%"></span></div>
+            </section>
+          </div>
+          <a class="btn paper__jump" href="#coverage">Read the coverage <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 3v10M3.5 8.5 8 13l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================== Featured coverage carousel ============================== -->
+    <section class="section press-featured" id="coverage" aria-labelledby="coverage-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <h2 class="section-title" id="coverage-title">Featured coverage</h2>
+          <p class="section-sub">Partner content and press releases are labelled as such. Copies of the same story carried elsewhere are grouped under the original.</p>
+        </header>
+      </div>
+      <div class="carousel container press-carousel" data-carousel data-reveal style="--i:1">
+        <button class="carousel__arrow" type="button" aria-label="Previous articles" data-strip-prev><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="strip" data-strip tabindex="0" role="region" aria-roledescription="carousel" aria-label="Featured coverage: drag, swipe, or use the arrows">
+          <ul class="strip__track" role="list" data-strip-track>
+            <li class="press-card" data-type="sponsored">
+              <article class="press-card__inner">
+                <p class="press-card__pub">Forbes India</p>
+                <p class="press-card__meta"><time datetime="2024-01-12">12 Jan 2024</time><span class="press-card__type">Brand Connect</span></p>
+                <h3 class="press-card__title">Skill Titans Season 1: An Exclusive Student Entrepreneurship TV Show</h3>
+                <p class="press-card__topic">Skill Titans</p>
+                <p class="press-card__mention">Earlyseed Ventures as Knowledge Partner</p>
+                
+                <a class="press-card__link" href="https://navairindia.com/wp-content/uploads/2024/01/Forbes-India-12th-Jan-2024_Online.pdf#page=53" target="_blank" rel="noopener noreferrer" aria-label="Read article: Skill Titans Season 1: An Exclusive Student Entrepreneurship TV Show, Forbes India (opens in a new tab)">Read article <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </article>
+            </li>
+            <li class="press-card" data-type="sponsored">
+              <article class="press-card__inner">
+                <p class="press-card__pub">Moneycontrol</p>
+                <p class="press-card__meta"><time datetime="2023-12-26">26 Dec 2023</time><span class="press-card__type">Partner content</span></p>
+                <h3 class="press-card__title">Skill Titans Season 1: An Exclusive Student Entrepreneurship TV Show</h3>
+                <p class="press-card__topic">Skill Titans</p>
+                <p class="press-card__mention">Earlyseed Ventures as Knowledge Partner; Monica Gupta on the jury</p>
+                
+                <a class="press-card__link" href="https://www.moneycontrol.com/news/trends/features/skill-titans-season-1-an-exclusive-student-entrepreneurship-tv-show-11958341.html" target="_blank" rel="noopener noreferrer" aria-label="Read article: Skill Titans Season 1: An Exclusive Student Entrepreneurship TV Show, Moneycontrol (opens in a new tab)">Read article <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </article>
+            </li>
+            <li class="press-card" data-type="editorial">
+              <article class="press-card__inner">
+                <p class="press-card__pub">Financial Express</p>
+                <p class="press-card__meta"><time datetime="2024-10-16">16 Oct 2024</time><span class="press-card__type">News</span></p>
+                <h3 class="press-card__title">Alchemyst AI raises $300K to drive AI-powered digital workforce solutions</h3>
+                <p class="press-card__topic">Alchemyst AI funding</p>
+                <p class="press-card__mention">Early Seed Ventures participated in the round</p>
+                
+                <a class="press-card__link" href="https://www.financialexpress.com/business/brandwagon-alchemyst-ai-raises-300k-to-drive-ai-powered-digital-workforce-solutions-3641283/lite/" target="_blank" rel="noopener noreferrer" aria-label="Read article: Alchemyst AI raises $300K to drive AI-powered digital workforce solutions, Financial Express (opens in a new tab)">Read article <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </article>
+            </li>
+            <li class="press-card" data-type="editorial">
+              <article class="press-card__inner">
+                <p class="press-card__pub">Entrepreneur India</p>
+                <p class="press-card__meta"><time datetime="2024-10-16">16 Oct 2024</time><span class="press-card__type">News</span></p>
+                <h3 class="press-card__title">Tablesprint and Alchemyst AI Raise Early-Stage Funding</h3>
+                <p class="press-card__topic">Alchemyst AI funding</p>
+                <p class="press-card__mention">Early Seed Ventures named among the round&#x27;s investors</p>
+                
+                <a class="press-card__link" href="https://india.entrepreneur.com/news-and-trends/tablesprint-and-alchemyst-ai-raise-early-stage-funding/481385" target="_blank" rel="noopener noreferrer" aria-label="Read article: Tablesprint and Alchemyst AI Raise Early-Stage Funding, Entrepreneur India (opens in a new tab)">Read article <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </article>
+            </li>
+            <li class="press-card" data-type="press-release">
+              <article class="press-card__inner">
+                <p class="press-card__pub">The Tribune</p>
+                <p class="press-card__meta"><time datetime="2026-06-12">12 Jun 2026</time><span class="press-card__type">Press release (PTI feed)</span></p>
+                <h3 class="press-card__title">ElectriQ Closes Early Seed Funding Round to Accelerate EV Ecosystem Expansion in India and Beyond</h3>
+                <p class="press-card__topic">ElectriQ funding</p>
+                <p class="press-card__mention">Early Seed Ventures participated in the round</p>
+                
+                <a class="press-card__link" href="https://www.tribuneindia.com/news/electriq-closes-early-seed-funding-round-to-accelerate-ev-ecosystem-expansion-in-india-and-beyond/" target="_blank" rel="noopener noreferrer" aria-label="Read article: ElectriQ Closes Early Seed Funding Round to Accelerate EV Ecosystem Expansion in India and Beyond, The Tribune (opens in a new tab)">Read article <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </article>
+            </li>
+            <li class="press-card" data-type="roundup">
+              <article class="press-card__inner">
+                <p class="press-card__pub">YourStory</p>
+                <p class="press-card__meta"><time datetime="2024-10-16">16 Oct 2024</time><span class="press-card__type">Daily roundup</span></p>
+                <h3 class="press-card__title">Startup news and updates: Daily roundup (Oct 16, 2024)</h3>
+                <p class="press-card__topic">Alchemyst AI funding</p>
+                <p class="press-card__mention">Early Seed Ventures named in the Alchemyst AI round</p>
+                
+                <a class="press-card__link" href="https://yourstory.com/2024/10/startup-news-and-updates-daily-roundup-oct-16-2024" target="_blank" rel="noopener noreferrer" aria-label="Read article: Startup news and updates: Daily roundup (Oct 16, 2024), YourStory (opens in a new tab)">Read article <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </article>
+            </li>
+            <li class="press-card" data-type="roundup">
+              <article class="press-card__inner">
+                <p class="press-card__pub">Inc42</p>
+                <p class="press-card__meta"><time datetime="2024-10-19">19 Oct 2024</time><span class="press-card__type">Weekly funding roundup</span></p>
+                <h3 class="press-card__title">From Purplle To Eruditus – Indian Startups Raised $478 Mn This Week</h3>
+                <p class="press-card__topic">Alchemyst AI funding</p>
+                <p class="press-card__mention">Early Seed Ventures listed among Alchemyst AI&#x27;s investors</p>
+                
+                <a class="press-card__link" href="https://inc42.com/buzz/from-purplle-to-eruditus-indian-startups-raised-478-mn-this-week/" target="_blank" rel="noopener noreferrer" aria-label="Read article: From Purplle To Eruditus – Indian Startups Raised $478 Mn This Week, Inc42 (opens in a new tab)">Read article <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </article>
+            </li>
+            <li class="press-card" data-type="press-release">
+              <article class="press-card__inner">
+                <p class="press-card__pub">WebIndia123</p>
+                <p class="press-card__meta"><time datetime="2026-08-31">31 Aug 2026</time><span class="press-card__type">Press release (ANI)</span></p>
+                <h3 class="press-card__title">After a Sold-Out Debut, The Startup Mixer Returns with Edition 2 in Mumbai on September 2</h3>
+                <p class="press-card__topic">The Startup Mixer</p>
+                <p class="press-card__mention">EarlySeed Ventures as supporter; Monica Gupta, Manan Patel, Nimit Shah and Rahul Hingmire named</p>
+                <p class="press-card__also">Also carried by <a href="https://www.britishcolumbiatimes.com/news/after-a-sold-out-debut-the-startup-mixer-returns-with-edition-2-in-mumbai-on-september-220260831111628/" target="_blank" rel="noopener noreferrer" aria-label="British Columbia Times copy of this story (opens in a new tab)">British Columbia Times</a>, <a href="https://web.matrixnews.in/news/Ndd105abf2fbc59d98f442fd289dc14ec" target="_blank" rel="noopener noreferrer" aria-label="Matrix News copy of this story (opens in a new tab)">Matrix News</a></p>
+                <a class="press-card__link" href="https://news.webindia123.com/news/articles/business/20260831/4492723.html" target="_blank" rel="noopener noreferrer" aria-label="Read article: After a Sold-Out Debut, The Startup Mixer Returns with Edition 2 in Mumbai on September 2, WebIndia123 (opens in a new tab)">Read article <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </article>
+            </li>
+          </ul>
+        </div>
+        <button class="carousel__arrow" type="button" aria-label="Next articles" data-strip-next><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </section>
+
+    <!-- ============================== All coverage, by story ============================== -->
+    <section class="section press-all" aria-labelledby="press-all-title">
+      <div class="container">
+        <details class="press-all__box" data-reveal>
+          <summary><h2 class="press-all__title" id="press-all-title">View all coverage</h2><span class="press-all__count">17 articles in 4 stories</span><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M8 3.5v9M3.5 8h9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary>
+          <section class="press-group" aria-label="The Startup Mixer">
+            <h3 class="press-group__title">The Startup Mixer</h3>
+            <ul class="press-group__list" role="list">
+              <li class="press-row" data-type="press-release">
+                <span class="press-row__pub">WebIndia123</span>
+                <a class="press-row__title" href="https://news.webindia123.com/news/articles/business/20260831/4492723.html" target="_blank" rel="noopener noreferrer" aria-label="Read article: After a Sold-Out Debut, The Startup Mixer Returns with Edition 2 in Mumbai on September 2, WebIndia123 (opens in a new tab)">After a Sold-Out Debut, The Startup Mixer Returns with Edition 2 in Mumbai on September 2 <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="press-row__meta"><time datetime="2026-08-31">31 Aug 2026</time> · Press release (ANI)</span>
+                <p class="press-row__also">Also carried by <a href="https://www.britishcolumbiatimes.com/news/after-a-sold-out-debut-the-startup-mixer-returns-with-edition-2-in-mumbai-on-september-220260831111628/" target="_blank" rel="noopener noreferrer" aria-label="British Columbia Times copy of this story (opens in a new tab)">British Columbia Times</a>, <a href="https://web.matrixnews.in/news/Ndd105abf2fbc59d98f442fd289dc14ec" target="_blank" rel="noopener noreferrer" aria-label="Matrix News copy of this story (opens in a new tab)">Matrix News</a></p>
+              </li>
+            </ul>
+          </section>
+          <section class="press-group" aria-label="ElectriQ funding">
+            <h3 class="press-group__title">ElectriQ funding</h3>
+            <ul class="press-group__list" role="list">
+              <li class="press-row" data-type="press-release">
+                <span class="press-row__pub">The Tribune</span>
+                <a class="press-row__title" href="https://www.tribuneindia.com/news/electriq-closes-early-seed-funding-round-to-accelerate-ev-ecosystem-expansion-in-india-and-beyond/" target="_blank" rel="noopener noreferrer" aria-label="Read article: ElectriQ Closes Early Seed Funding Round to Accelerate EV Ecosystem Expansion in India and Beyond, The Tribune (opens in a new tab)">ElectriQ Closes Early Seed Funding Round to Accelerate EV Ecosystem Expansion in India and Beyond <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="press-row__meta"><time datetime="2026-06-12">12 Jun 2026</time> · Press release (PTI feed)</span>
+                
+              </li>
+              <li class="press-row" data-type="editorial">
+                <span class="press-row__pub">EVreporter</span>
+                <a class="press-row__title" href="https://evreporter.com/electriq-raises-early-seed-funding-to-support-ev-ecosystem-expansion-plans/" target="_blank" rel="noopener noreferrer" aria-label="Read article: ElectriQ raises early seed funding to support EV ecosystem expansion plans, EVreporter (opens in a new tab)">ElectriQ raises early seed funding to support EV ecosystem expansion plans <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="press-row__meta"><time datetime="2026-06-15">15 Jun 2026</time> · News</span>
+                
+              </li>
+              <li class="press-row" data-type="editorial">
+                <span class="press-row__pub">Automotive Lead News</span>
+                <a class="press-row__title" href="https://automotiveleadnews.com/2026/06/15/electriq-closes-early-seed-funding-round-to-gear-up-ev-ecosystem-expansion-plans/" target="_blank" rel="noopener noreferrer" aria-label="Read article: ElectriQ closes Early Seed Funding Round to gear up EV Ecosystem Expansion plans, Automotive Lead News (opens in a new tab)">ElectriQ closes Early Seed Funding Round to gear up EV Ecosystem Expansion plans <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="press-row__meta"><time datetime="2026-06-15">15 Jun 2026</time> · News</span>
+                
+              </li>
+              <li class="press-row" data-type="aggregator">
+                <span class="press-row__pub">Tulsian AI</span>
+                <a class="press-row__title" href="https://news.tulsian.ai/news/company-news/electriq-secures-early-seed-funding.html" target="_blank" rel="noopener noreferrer" aria-label="Read article: ElectriQ Secures Early Seed Funding, Tulsian AI (opens in a new tab)">ElectriQ Secures Early Seed Funding <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="press-row__meta"><time datetime="2026-06-11">11 Jun 2026</time> · News aggregator</span>
+                
+              </li>
+            </ul>
+          </section>
+          <section class="press-group" aria-label="Alchemyst AI funding">
+            <h3 class="press-group__title">Alchemyst AI funding</h3>
+            <ul class="press-group__list" role="list">
+              <li class="press-row" data-type="editorial">
+                <span class="press-row__pub">Financial Express</span>
+                <a class="press-row__title" href="https://www.financialexpress.com/business/brandwagon-alchemyst-ai-raises-300k-to-drive-ai-powered-digital-workforce-solutions-3641283/lite/" target="_blank" rel="noopener noreferrer" aria-label="Read article: Alchemyst AI raises $300K to drive AI-powered digital workforce solutions, Financial Express (opens in a new tab)">Alchemyst AI raises $300K to drive AI-powered digital workforce solutions <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="press-row__meta"><time datetime="2024-10-16">16 Oct 2024</time> · News</span>
+                
+              </li>
+              <li class="press-row" data-type="editorial">
+                <span class="press-row__pub">Entrepreneur India</span>
+                <a class="press-row__title" href="https://india.entrepreneur.com/news-and-trends/tablesprint-and-alchemyst-ai-raise-early-stage-funding/481385" target="_blank" rel="noopener noreferrer" aria-label="Read article: Tablesprint and Alchemyst AI Raise Early-Stage Funding, Entrepreneur India (opens in a new tab)">Tablesprint and Alchemyst AI Raise Early-Stage Funding <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="press-row__meta"><time datetime="2024-10-16">16 Oct 2024</time> · News</span>
+                
+              </li>
+              <li class="press-row" data-type="roundup">
+                <span class="press-row__pub">YourStory</span>
+                <a class="press-row__title" href="https://yourstory.com/2024/10/startup-news-and-updates-daily-roundup-oct-16-2024" target="_blank" rel="noopener noreferrer" aria-label="Read article: Startup news and updates: Daily roundup (Oct 16, 2024), YourStory (opens in a new tab)">Startup news and updates: Daily roundup (Oct 16, 2024) <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="press-row__meta"><time datetime="2024-10-16">16 Oct 2024</time> · Daily roundup</span>
+                
+              </li>
+              <li class="press-row" data-type="roundup">
+                <span class="press-row__pub">Inc42</span>
+                <a class="press-row__title" href="https://inc42.com/buzz/from-purplle-to-eruditus-indian-startups-raised-478-mn-this-week/" target="_blank" rel="noopener noreferrer" aria-label="Read article: From Purplle To Eruditus – Indian Startups Raised $478 Mn This Week, Inc42 (opens in a new tab)">From Purplle To Eruditus – Indian Startups Raised $478 Mn This Week <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="press-row__meta"><time datetime="2024-10-19">19 Oct 2024</time> · Weekly funding roundup</span>
+                
+              </li>
+              <li class="press-row" data-type="editorial">
+                <span class="press-row__pub">Indian Startup News</span>
+                <a class="press-row__title" href="https://indianstartupnews.com/funding/gen-ai-saas-startup-alchemyst-ai-raises-usd-300000-in-a-pre-seed-funding-round-7318429" target="_blank" rel="noopener noreferrer" aria-label="Read article: Gen-AI SaaS startup Alchemyst AI raises $300,000 in a pre-Seed funding round, Indian Startup News (opens in a new tab)">Gen-AI SaaS startup Alchemyst AI raises $300,000 in a pre-Seed funding round <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="press-row__meta"><time datetime="2024-10-16">16 Oct 2024</time> · News</span>
+                <p class="press-row__also">Also carried by <a href="https://www.thestartuptrends.com/Blog/3413/Gen-AI-SaaS-startup-Alchemyst-AI-raises-USD-300000-in-a-pre-Seed-funding-round.aspx" target="_blank" rel="noopener noreferrer" aria-label="The Startup Trends copy of this story (opens in a new tab)">The Startup Trends</a></p>
+              </li>
+              <li class="press-row" data-type="editorial">
+                <span class="press-row__pub">TimesTech</span>
+                <a class="press-row__title" href="https://timestech.in/alchemyst-ai-raises-300k-point-along-with-100-unicorns-early-seed-ventures/" target="_blank" rel="noopener noreferrer" aria-label="Read article: Alchemyst AI raises $300K in Pre-Seed Round led by Inflection Point Ventures along with 100Unicorns &amp; Early Seed Ventures, TimesTech (opens in a new tab)">Alchemyst AI raises $300K in Pre-Seed Round led by Inflection Point Ventures along with 100Unicorns &amp; Early Seed Ventures <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="press-row__meta"><time datetime="2024-10-16">16 Oct 2024</time> · News</span>
+                
+              </li>
+              <li class="press-row" data-type="editorial">
+                <span class="press-row__pub">Infomance</span>
+                <a class="press-row__title" href="https://www.infomance.com/startup-ecosystem/funding/alchemyst-ai-secures-300k-pre-seed-funding-led-by-ipv/" target="_blank" rel="noopener noreferrer" aria-label="Read article: Alchemyst AI Secures $300K Pre-Seed Funding Led by IPV, Infomance (opens in a new tab)">Alchemyst AI Secures $300K Pre-Seed Funding Led by IPV <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="press-row__meta"><time datetime="2024-10-16">16 Oct 2024</time> · News</span>
+                
+              </li>
+              <li class="press-row" data-type="editorial">
+                <span class="press-row__pub">The SaaS News</span>
+                <a class="press-row__title" href="https://www.thesaasnews.com/news/alchemyst-ai-secures-300k-in-pre-seed-round/" target="_blank" rel="noopener noreferrer" aria-label="Read article: Alchemyst AI Secures $300K in Pre-Seed Round, The SaaS News (opens in a new tab)">Alchemyst AI Secures $300K in Pre-Seed Round <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="press-row__meta"><time datetime="2024-10-17">17 Oct 2024</time> · News</span>
+                
+              </li>
+              <li class="press-row" data-type="editorial">
+                <span class="press-row__pub">The Volt Post</span>
+                <a class="press-row__title" href="https://thevoltpost.com/alchemyst-ai-llm-alchemystc1-lam-alchemystx1/" target="_blank" rel="noopener noreferrer" aria-label="Read article: Alchemyst AI LLM, AlchemystC1, LAM AlchemystX1 Funded, The Volt Post (opens in a new tab)">Alchemyst AI LLM, AlchemystC1, LAM AlchemystX1 Funded <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="press-row__meta"><time datetime="2024-10-17">17 Oct 2024</time> · News</span>
+                
+              </li>
+              <li class="press-row" data-type="editorial">
+                <span class="press-row__pub">IT Brief India</span>
+                <a class="press-row__title" href="https://itbrief.in/story/alchemyst-ai-secures-usd-300-000-for-generative-ai-growth" target="_blank" rel="noopener noreferrer" aria-label="Read article: Alchemyst AI secures USD $300,000 for generative AI growth, IT Brief India (opens in a new tab)">Alchemyst AI secures USD $300,000 for generative AI growth <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="press-row__meta"><time datetime="2024-10-22">22 Oct 2024</time> · News</span>
+                
+              </li>
+            </ul>
+          </section>
+          <section class="press-group" aria-label="Skill Titans">
+            <h3 class="press-group__title">Skill Titans</h3>
+            <ul class="press-group__list" role="list">
+              <li class="press-row" data-type="sponsored">
+                <span class="press-row__pub">Forbes India</span>
+                <a class="press-row__title" href="https://navairindia.com/wp-content/uploads/2024/01/Forbes-India-12th-Jan-2024_Online.pdf#page=53" target="_blank" rel="noopener noreferrer" aria-label="Read article: Skill Titans Season 1: An Exclusive Student Entrepreneurship TV Show, Forbes India (opens in a new tab)">Skill Titans Season 1: An Exclusive Student Entrepreneurship TV Show <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="press-row__meta"><time datetime="2024-01-12">12 Jan 2024</time> · Brand Connect</span>
+                
+              </li>
+              <li class="press-row" data-type="sponsored">
+                <span class="press-row__pub">Moneycontrol</span>
+                <a class="press-row__title" href="https://www.moneycontrol.com/news/trends/features/skill-titans-season-1-an-exclusive-student-entrepreneurship-tv-show-11958341.html" target="_blank" rel="noopener noreferrer" aria-label="Read article: Skill Titans Season 1: An Exclusive Student Entrepreneurship TV Show, Moneycontrol (opens in a new tab)">Skill Titans Season 1: An Exclusive Student Entrepreneurship TV Show <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <span class="press-row__meta"><time datetime="2023-12-26">26 Dec 2023</time> · Partner content</span>
+                
+              </li>
+            </ul>
+          </section>
+        </details>
+        <p class="press-contact" data-reveal>Media enquiries: <a href="mailto:info@earlyseedventures.com">info@earlyseedventures.com</a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================== Footer ============================== -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="site-footer__brand">
+        <img src="assets/brand/logo-dark.png" alt="earlyseed VENTURES" width="112" height="42" />
+        <address class="site-footer__contact">
+          3, Enterprise Centre, Near Orchid Hotel,<br />Vile Parle (E), Mumbai 400099<br />
+          <a href="tel:+912245133786">+91 22 4513 3786</a><br />
+          <a href="mailto:info@earlyseedventures.com">info@earlyseedventures.com</a>
+        </address>
+      </div>
+      <nav aria-label="Footer">
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="index.html#portfolio">Portfolio</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#perspectives">Perspectives</a></li>
+          <li><a href="press.html">Press</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+        <a class="btn site-footer__cta" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
+      </nav>
+      <p class="site-footer__legal">
+        <span>© <span data-year>2026</span> Earlyseed Ventures</span>
+        <a href="https://www.linkedin.com/company/earlyseed-ventures" target="_blank" rel="noopener">LinkedIn</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=202611171932" defer></script>
+</body>
+</html>

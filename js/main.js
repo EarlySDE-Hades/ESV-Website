@@ -123,7 +123,7 @@
         maxX = 0;
         minX = -overflow;
         const pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
-        const raw = $$('.company', track).map((el) => -(el.offsetLeft - pad));
+        const raw = Array.from(track.children).map((el) => -(el.offsetLeft - pad));   // logos or press cards
         snaps = [...new Set(raw.map((v) => Math.round(clamp(v))).concat([minX, maxX]))].sort((a, b) => b - a);
       }
       spring.stop();
@@ -250,7 +250,7 @@
     /* Bring a logo fully into view: on keyboard focus, or when the company
        dialog switches to it (so closing returns into a visible logo). */
     function reveal(el, instant) {
-      const item = el.closest('.company') || el;
+      const item = el.closest('.company, .press-card') || el;
       const pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
       const left = item.offsetLeft + x, right = left + item.offsetWidth, w = viewport.clientWidth;
       let target = null;
@@ -364,6 +364,7 @@
     { title: 'From the deal table', section: 'Perspectives', href: '#perspectives' },
     { title: 'Founder Stories', section: 'Perspectives', href: '#perspectives' },
     { title: 'Podcasts', section: 'Perspectives', href: '#perspectives' },
+    { title: 'Us in the News: press coverage', section: 'Our Press', href: 'press.html' },
     { title: 'Pitch to us', section: 'Raise', href: 'https://ecosystem.earlyseedventures.com/apply' },
     { title: 'Invest with us', section: 'Invest', href: '#for-investors' },
   ];  // Companies and partners come from the JSON the dialogs already use (home page only)

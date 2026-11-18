@@ -2,6 +2,7 @@
 
     about.html   <- tools/about/main.html
     team.html    <- tools/team/main.html
+    press.html   <- tools/press/main.html (+ tools/press/press.json)
     events.html  <- tools/events/main.html
     event-seed-to-success.html  <- tools/events/seed-to-success.html
 
@@ -25,6 +26,7 @@ PAGES = [
     ("prologue.html", "tools/prologue/main.html", "Prologue by Earlyseed Ventures prepares early-stage founders for fundraising: the deck, the numbers and the understanding to defend both.", "Prologue"),
     ("about.html", "tools/about/main.html", "Earlyseed Ventures is a boutique investment banking firm in Mumbai, helping tech start-ups raise seed to Series A rounds.", "About"),
     ("team.html", "tools/team/main.html", "The leadership team, strategic growth partners and team behind Earlyseed Ventures.", "Team"),
+    ("press.html", "tools/press/main.html", "Us in the News: media coverage, funding announcements and industry conversations featuring Earlyseed Ventures and its co-founders.", "Our Press"),
     ("events.html", "tools/events/main.html", "Founder meet-ups, investor sessions and campus programmes from Earlyseed Ventures.", "Events"),
     ("event-seed-to-success.html", "tools/events/seed-to-success.html", "From seed to success: a recap of the Earlyseed Ventures evening for founders, investors and ecosystem leaders.", "-"),
 ]
@@ -45,8 +47,19 @@ def relink(html, out, label):
     return html
 
 
+# Pages whose <main> has {{…}} placeholders filled from data
+import sys
+sys.path.insert(0, str(ROOT / "tools" / "press"))
+from render import render as render_press   # noqa: E402
+FILLERS = {"press.html": render_press}
+
+
 for out, main_src, description, label in PAGES:
     main = (ROOT / main_src).read_text(encoding="utf-8")
+    if out in FILLERS:
+        for key, value in FILLERS[out]().items():
+            main = main.replace(key, value)
+        assert "{{" not in main, f"unfilled placeholder in {out}"
     page_head = re.sub(r'(<meta name="description" content=")[^"]*', lambda m: m.group(1) + description, head)
     if out in EXTRA_HEAD:
         page_head = page_head.replace("</head>", EXTRA_HEAD[out] + "</head>")

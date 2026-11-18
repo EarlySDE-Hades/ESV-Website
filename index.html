@@ -77,7 +77,18 @@
             </div>
           </li>
           <li><a href="#portfolio">Our Portfolio</a></li>
-          <li><a href="#perspectives">Perspectives</a></li>
+          <li class="nav-menu" data-nav-menu>
+            <button class="nav-menu__toggle" type="button" aria-expanded="false" aria-controls="perspectives-menu" aria-label="More in Perspectives" data-nav-menu-toggle>
+              <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <a href="#perspectives">Perspectives</a>
+            <div class="nav-menu__panel" id="perspectives-menu">
+              <ul class="nav-thread">
+                <li><a href="#perspectives">Perspectives</a></li>
+                <li><a href="press.html">Our Press</a></li>
+              </ul>
+            </div>
+          </li>
           <li><a href="events.html">Events</a></li>
           <li class="nav-reveal">
             <!-- On hover / keyboard focus the word morphs into the Prologue logo, in place -->
@@ -123,6 +134,7 @@
           <li class="mobile-menu__sub"><a href="#services">Services</a></li>
           <li><a href="#portfolio">Our Portfolio</a></li>
           <li><a href="#perspectives">Perspectives</a></li>
+          <li class="mobile-menu__sub"><a href="press.html">Our Press</a></li>
           <li><a href="events.html">Events</a></li>
           <li><a href="prologue.html">Prologue</a></li>
         </ul>
@@ -855,6 +867,7 @@
           <li><a href="team.html">Team</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#perspectives">Perspectives</a></li>
+          <li><a href="press.html">Press</a></li>
           <li><a href="events.html">Events</a></li>
         </ul>
         <a class="btn site-footer__cta" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
