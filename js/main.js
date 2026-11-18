@@ -874,6 +874,44 @@
   }
   const persp = $('[data-persp]');
   if (persp) initPersp(persp);
+
+  /* ------------------------------------------------------------------------
+     Portfolio card videos: still by default (the poster is the video's first
+     frame); they loop only while the card is hovered or keyboard-focused, and
+     go back to the still frame on leave. Mouse/trackpad only, never with
+     reduced motion. Videos load once their card is near the screen, so a
+     hover starts them straight away.
+     ------------------------------------------------------------------------ */
+  function initCardVideos(videos) {
+    if (!videos.length || reduceMotion.matches || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) { e.target.preload = 'auto'; io.unobserve(e.target); } });
+      }, { rootMargin: '300px 0px' });
+      videos.forEach((v) => io.observe(v));
+    }
+    videos.forEach((v) => {
+      const card = v.closest('a') || v;
+      // loop: play while hovered, back to the first frame on leave.
+      // once: play from the start, hold the last frame (the settled state) while hovered and after leaving.
+      const once = v.dataset.cardVideo === 'once';
+      const start = () => {
+        v.preload = 'auto';
+        if (once) v.currentTime = 0;
+        const p = v.play(); if (p && p.catch) p.catch(() => {});
+      };
+      const stop = () => {
+        v.pause();
+        if (!once) v.currentTime = 0;
+        else if (v.duration) v.currentTime = Math.max(0, v.duration - 0.05);
+      };
+      card.addEventListener('pointerenter', start);
+      card.addEventListener('pointerleave', stop);
+      card.addEventListener('focus', start);
+      card.addEventListener('blur', stop);
+    });
+  }
+  initCardVideos($$('[data-card-video]'));
   initTouchCards();
   const evFilter = $('[data-ev-filter]');
   if (evFilter) initEventFilter(evFilter);

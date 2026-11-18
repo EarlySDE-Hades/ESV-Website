@@ -36,9 +36,20 @@ def render_portfolio():
         lazy = "" if i < 6 else 'loading="lazy" '
         search = " ".join(filter(None, [c["name"], c["sector"], c.get("tag"), c.get("location"), c.get("short")])).lower()
         meta = " · ".join(filter(None, [c.get("tag"), c.get("location")]))
+        # A card plays assets/portfolio/<slug>.mp4 when it exists (Portfolio Motion Library/compress.py), else shows the photo.
+        # Muted, no autoplay: js initCardVideos plays it only on hover, never with reduced motion.
+        # "motion": "once" in companies.json = play once and hold the last frame (e.g. the scooter parking); else loop.
+        if (ROOT / "assets/portfolio" / f"{c['slug']}.mp4").exists():
+            poster = f"{c['slug']}-poster.webp" if (ROOT / "assets/portfolio" / f"{c['slug']}-poster.webp").exists() else f"{c['slug']}.webp"
+            once = c.get("motion") == "once"
+            media = (f'<video src="assets/portfolio/{c["slug"]}.mp4" poster="assets/portfolio/{poster}" width="450" height="450" '
+                     f'muted {"" if once else "loop "}playsinline preload="none" disablepictureinpicture aria-hidden="true" '
+                     f'data-card-video="{"once" if once else "loop"}"></video>')
+        else:
+            media = f'<img src="assets/portfolio/{c["slug"]}.webp" alt="" width="450" height="450" {lazy}decoding="async" />'
         cards.append(f'''          <li class="pf-card" data-sector="{escape(c["sector"])}" data-search="{escape(search)}">
             <a class="pf-card__link" href="{page_of(c)}">
-              <span class="pf-card__media"><img src="assets/portfolio/{c["slug"]}.webp" alt="" width="450" height="450" {lazy}decoding="async" /><span class="pf-card__go" aria-hidden="true">{ARROW}</span></span>
+              <span class="pf-card__media">{media}<span class="pf-card__go" aria-hidden="true">{ARROW}</span></span>
               <span class="visually-hidden">{escape(c["name"])}{", " + escape(meta) if meta else ""}</span>
             </a>
           </li>''')

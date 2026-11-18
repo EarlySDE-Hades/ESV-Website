@@ -2377,7 +2377,7 @@ html:not(.js) .st-cover { display: none; }
   box-shadow: 0 0 0 1px rgba(17, 17, 17, 0.04), 0 14px 30px -24px rgba(40, 30, 25, 0.35);
   transition: transform 300ms var(--ease-out), box-shadow 300ms var(--ease-out);
 }
-.pf-card__media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 800ms var(--ease-out); }
+.pf-card__media img, .pf-card__media video { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 800ms var(--ease-out); }
 .pf-card__media { position: relative; }
 /* Arrow to the company page, bottom right: appears on hover / keyboard focus, always shown on touch */
 .pf-card__media .pf-card__go {
@@ -2403,7 +2403,7 @@ html:not(.js) .st-cover { display: none; }
 .pf-card__link:focus-visible .pf-card__media { outline: 2px solid var(--purple); outline-offset: 4px; }
 @media (hover: hover) and (pointer: fine) {
   .pf-card__link:hover .pf-card__media { transform: translateY(-4px); box-shadow: 0 0 0 1px rgba(17, 17, 17, 0.06), 0 26px 44px -26px rgba(40, 30, 25, 0.45); }
-  .pf-card__link:hover .pf-card__media img { transform: scale(1.04); }
+  .pf-card__link:hover .pf-card__media img, .pf-card__link:hover .pf-card__media video { transform: scale(1.04); }
   .pf-card__link:hover .pf-card__go { transform: translateX(3px); background: var(--pill-bg-hover); }
 }
 .pf-card.is-entering { animation: pf-in 420ms var(--ease-out) both; }
