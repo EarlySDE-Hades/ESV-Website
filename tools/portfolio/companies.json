@@ -1,0 +1,320 @@
+{
+  "_about": "Portfolio page and company pages. Order = the Figma mockup. Descriptions (short, long) are word for word from 'Portfolio Companies List for Website.xlsx' (Figma Source). Team, milestones and city are taken from the long description; sector groups drive the filter and are editorial. Card photos: assets/portfolio/<slug>.webp. pressTopic links a company to a story in tools/press/press.json for its Blogs & Media section. Rendered by tools/portfolio/render.py via tools/team/build.py.",
+  "companies": [
+    {
+      "slug": "hesa",
+      "name": "Hesa",
+      "sector": "Commerce & Retail",
+      "tag": "Rural commerce",
+      "location": "Hyderabad",
+      "short": "Hesa is a Hyderabad-based rural commerce platform connecting brands, banks and businesses with rural India. Through a phygital B2B2C model run by trained village-level entrepreneurs called Hesaathis, it delivers agri inputs, financial services and consumer products to households across tens of thousands of villages, while creating local livelihoods.",
+      "description": "Hesa is a Hyderabad-based rural commerce company building an integrated marketplace for Bharat. Co-founded by Vamsi Udayagiri and Hema Nandiraju, it combines a technology platform with a network of trained village-level entrepreneurs, known as Hesaathis, who serve households in their own communities. Rural commerce still runs on trust and personal relationships, and Hesa’s phygital model is built around that reality. Through its super app, agri, fintech, e-commerce and consumer brands reach rural customers directly, while farmers can buy inputs and sell produce, and families can access banking, insurance and everyday products at their doorstep. Present in over 50,000 villages, Hesa aims to connect India’s 650,000+ villages to mainstream markets, giving businesses a reliable last-mile channel and rural households better access, choice and income opportunities.",
+      "team": [
+        "Vamsi Udayagiri",
+        "Hema Nandiraju"
+      ],
+      "milestones": [
+        "Founded in 2019",
+        "Present in 50,000+ villages"
+      ],
+      "website": "https://www.hesa.co/",
+      "pressTopic": null
+    },
+    {
+      "slug": "oll",
+      "name": "OLL",
+      "sector": "Education",
+      "tag": "Edtech",
+      "location": "Mumbai",
+      "short": "OLL is a Mumbai-based edtech platform that teaches school students practical, future-ready skills such as coding, robotics, languages, arts and life skills through verified educators. Founded in 2020 by Shreyaan Daga, who started it as a teenager, OLL has reached tens of thousands of students and featured on Shark Tank India.",
+      "description": "OLL is a Mumbai-based edtech company focused on the skills that traditional schooling often leaves out. Founded in 2020 by Shreyaan Daga, who started the company at 15, OLL operates a marketplace that connects students with verified teachers for experiential courses in coding, robotics, languages, arts, life skills and other new-age subjects. The platform works with both individual learners and schools, using technology to bring quality skill-based learning to students regardless of where they live. OLL has reached tens of thousands of students across India and has run free skill-development programmes for underprivileged children. The company raised funding on Shark Tank India Season 2 and is building a nationwide network of schools and educators to make practical, career-relevant learning a standard part of every child’s education.",
+      "team": [
+        "Shreyaan Daga"
+      ],
+      "milestones": [
+        "Founded in 2020",
+        "Raised on Shark Tank India, Season 2"
+      ],
+      "website": "https://oll.co/",
+      "pressTopic": "skill-titans"
+    },
+    {
+      "slug": "garuda-aerospace",
+      "name": "Garuda Aerospace",
+      "sector": "Aerospace & Defence",
+      "tag": "Drones",
+      "location": "Chennai",
+      "short": "Garuda Aerospace is a Chennai-based drone technology company that designs, manufactures and deploys unmanned aerial systems for agriculture, defence, infrastructure and industrial use. With DGCA-certified indigenous drones, a Drone-as-a-Service business and a pilot training arm, it is one of India’s leading players in the Make in India drone ecosystem.",
+      "description": "Garuda Aerospace is a Chennai-based drone technology company founded in 2015 by Agnishwar Jayaprakash. It runs an integrated business spanning drone manufacturing, Drone-as-a-Service (DaaS) and DGCA-approved remote pilot training. Its indigenously designed Kisan drone was among the first in India to receive both DGCA type certification and remote pilot training approvals, and the company has since expanded into defence, surveillance, mining, energy and public safety applications. Garuda operates manufacturing and indigenisation facilities near Chennai, including a dedicated defence drone facility that covers design, prototyping, production and testing. Backed by cricketer MS Dhoni, who also serves as its brand ambassador, the company holds an export licence and is expanding into international markets, supporting India’s goal of self-reliance in drone technology.",
+      "team": [
+        "Agnishwar Jayaprakash"
+      ],
+      "milestones": [
+        "Founded in 2015",
+        "Kisan drone: DGCA type certified"
+      ],
+      "website": "https://www.garudaaerospace.com/",
+      "pressTopic": null
+    },
+    {
+      "slug": "flying-wedge",
+      "name": "Flying Wedge Defence & Aerospace",
+      "sector": "Aerospace & Defence",
+      "tag": "Defence tech",
+      "location": "Bengaluru",
+      "short": "Flying Wedge Defence & Aerospace (FWDA) is a Bengaluru-based defence company building autonomous unmanned combat aircraft. Its FWD-200 platform includes strike and bomber UAVs with ranges up to 2,000 km, and the company is developing an AI-driven fighter jet. FWDA’s mission is to give India indigenous, next-generation autonomous airpower for modern warfare.",
+      "description": "Flying Wedge Defence & Aerospace (FWDA) is a Bengaluru-based defence technology company founded in 2022 by Suhas Tejaskanda. The company designs and builds indigenous unmanned combat aircraft, with the aim of reducing India’s reliance on expensive imported platforms and giving the armed forces cost-effective autonomous airpower. Its FWD-200B, a medium altitude, long endurance (MALE) unmanned bomber with surveillance payloads and precision strike capability, completed its maiden flight in 2024 and is being taken forward with the Indian Army through the Army Design Bureau. FWDA has also unveiled the AI-powered Kaal Bhairava autonomous combat aircraft and is developing an AI-driven fighter jet. By building the full stack in India, from airframe to autonomy, FWDA is working to position the country among the leaders in next-generation unmanned warfare.",
+      "team": [
+        "Suhas Tejaskanda"
+      ],
+      "milestones": [
+        "Founded in 2022",
+        "FWD-200B maiden flight, 2024"
+      ],
+      "website": "https://fwdefence.com/",
+      "pressTopic": null
+    },
+    {
+      "slug": "skyroot",
+      "name": "Skyroot Aerospace",
+      "sector": "Aerospace & Defence",
+      "tag": "Spacetech",
+      "location": "Hyderabad",
+      "short": "Skyroot Aerospace is a Hyderabad-based space launch company building the Vikram series of rockets for small satellites. In July 2026, its Vikram-1 became India’s first privately developed rocket to reach orbit. Founded in 2018 by former ISRO scientists, Skyroot is India’s first spacetech unicorn and is opening space for affordable, on-demand launches.",
+      "description": "Skyroot Aerospace is a Hyderabad-based launch vehicle company founded in 2018 by Pawan Kumar Chandana and Bharath Daka, both IIT alumni and former ISRO scientists. Skyroot designs and builds the Vikram series of rockets to provide affordable, on-demand launches for the fast-growing global small satellite market. In November 2022, its Vikram-S became the first privately built Indian rocket to reach space on a suborbital flight. On 18 July 2026, Vikram-1, a carbon-composite orbital launch vehicle, lifted off from Sriharikota and reached low Earth orbit on its first attempt, making India one of only three countries with private orbital launch capability. Skyroot became India’s first spacetech unicorn in 2026 and builds its rockets at its Infinity Campus in Hyderabad, designed to produce one orbital rocket a month.",
+      "team": [
+        "Pawan Kumar Chandana",
+        "Bharath Daka"
+      ],
+      "milestones": [
+        "Founded in 2018",
+        "Vikram-S reached space, Nov 2022",
+        "Vikram-1 reached orbit, Jul 2026",
+        "India’s first spacetech unicorn, 2026"
+      ],
+      "website": "https://www.skyroot.in/",
+      "pressTopic": null
+    },
+    {
+      "slug": "electriq",
+      "name": "ElectriQ",
+      "sector": "Climate & Mobility",
+      "tag": "Electric mobility",
+      "location": "Hyderabad",
+      "short": "ElectriQ is a Hyderabad-based electric mobility company building an integrated EV ecosystem for India’s gig and last-mile delivery workforce. It manufactures electric two-wheelers, three-wheelers and small commercial vehicles, and pairs them with battery swapping and leasing, fleet management software, ride rentals and rider support, making clean mobility affordable and dependable for delivery riders.",
+      "description": "ElectriQ (Only Electriq Solutions Pvt Ltd) is a Hyderabad-based EV mobility OEM founded in 2021 by Anand Thakur. The company focuses on India’s gig and last-mile delivery workforce, a segment where vehicle cost, downtime and range anxiety directly affect riders’ daily earnings. ElectriQ manufactures electric two-wheelers, three-wheelers and small commercial vehicles at its plants in Hyderabad and Haryana, and wraps them in a full-service ecosystem: battery swapping and leasing with two-minute swaps, a digital platform for fleet, battery and rider management, ride rentals, roadside assistance and skill development. It works with delivery aggregators and has partnered with Yamaha Motor’s leasing arm in India to supply vehicles to food delivery fleets. ElectriQ’s aim is to make electric mobility the most practical and economical choice for every delivery rider.",
+      "team": [
+        "Anand Thakur"
+      ],
+      "milestones": [
+        "Founded in 2021",
+        "Early seed round closed, Jun 2026"
+      ],
+      "website": "https://www.electriq.co.in/",
+      "pressTopic": "electriq"
+    },
+    {
+      "slug": "kyoora",
+      "name": "Kyoora",
+      "sector": "Healthcare",
+      "tag": "Pharma distribution",
+      "location": null,
+      "short": "Kyoora is building the operating system for India’s pharmaceutical distribution. The company acquires and operates regional pharma distributors and connects them on software it builds in-house, turning a highly fragmented layer of the supply chain into a single network linking drug manufacturers, distributors and pharmacies across India.",
+      "description": "Kyoora is building the operating system for India’s pharmaceutical distribution. India’s pharma supply chain is among the most fragmented in the world: thousands of drug manufacturers reach lakhs of pharmacies through tens of thousands of regional distributors, and a typical pharmacy counter deals with many distributors at once. Kyoora addresses this by acquiring and operating regional distributors and integrating them on proprietary software that it builds and owns. Each distributor added to the network strengthens the whole, creating a single, compounding system that connects manufacturers, distributors and pharmacies. By consolidating and digitising the middle of the supply chain, Kyoora aims to improve availability, efficiency and reliability in how medicines move across India, from the factory to the pharmacy shelf.",
+      "team": [],
+      "milestones": [],
+      "website": "https://kyoora.com/",
+      "pressTopic": null
+    },
+    {
+      "slug": "alchemyst-ai",
+      "name": "Alchemyst AI",
+      "sector": "Software & Gaming",
+      "tag": "Generative AI",
+      "location": "Bengaluru",
+      "short": "Alchemyst AI is a Bengaluru-based generative AI company building AI infrastructure and digital employees for enterprises. Founded in 2023 by Uttaran Nayak and Anuran Roy, it helps businesses automate sales, marketing, support and operations with context-aware AI agents, and works with large enterprises across India, the United States and Southeast Asia.",
+      "description": "Alchemyst AI is a Bengaluru-based generative AI company founded in 2023 by Uttaran Nayak and Anuran Roy. The company began by building AI digital employees, starting with Maya, an AI agent designed to automate sales workflows, and has since grown into an AI infrastructure platform that helps enterprises deploy agents that understand business context and act on it. Its stack includes proprietary fine-tuned language and action models, along with a developer platform used by engineering teams to build and scale AI applications. Alchemyst serves organisations in financial services, healthcare, education technology and enterprise software, and works with Fortune 500 clients and a growing pipeline of enterprise pilots. With a presence in India, the United States and Southeast Asia, Alchemyst AI is building the foundation for how businesses put AI agents to work.",
+      "team": [
+        "Uttaran Nayak",
+        "Anuran Roy"
+      ],
+      "milestones": [
+        "Founded in 2023",
+        "$300K pre-seed round, Oct 2024"
+      ],
+      "website": "https://getalchemystai.com/",
+      "pressTopic": "alchemyst"
+    },
+    {
+      "slug": "artment",
+      "name": "The Artment",
+      "sector": "Consumer Brands",
+      "tag": "Home décor",
+      "location": "Gurugram",
+      "short": "The Artment is a Gurugram-based home décor and lifestyle brand creating art-inspired wall décor, lighting, dining and furniture. Founded in 2019, it uses Art Lab, its in-house data platform, to design products customers want, and makes them with artisans in India’s craft clusters, bringing global design to Indian homes at accessible prices.",
+      "description": "The Artment is a contemporary home décor and lifestyle brand founded in 2019 by Aditya Agarwal and Aanchal Agarwal. Its collections of wall décor, lighting, dining, tableware and furniture draw inspiration from art movements such as Cubism, Impressionism and Abstract Expressionism, making artistic, design-led living accessible to Indian homes. What sets The Artment apart is Art Lab, its proprietary data analytics platform, which tracks evolving consumer preferences and guides which products to design and launch. Every piece is made in India through a deep supply chain spanning key craft and manufacturing clusters, including Moradabad, Khurja, Firozabad and Jodhpur, supporting local artisans. The brand sells through its own website and leading marketplaces, and is expanding into pop-up stores and retail partnerships as it builds a globally relevant lifestyle brand from India.",
+      "team": [
+        "Aditya Agarwal",
+        "Aanchal Agarwal"
+      ],
+      "milestones": [
+        "Founded in 2019"
+      ],
+      "website": "https://theartment.com/",
+      "pressTopic": null
+    },
+    {
+      "slug": "dcgpac",
+      "name": "DCGpac",
+      "sector": "Supply Chain & Logistics",
+      "tag": "Packaging",
+      "location": "Gurugram",
+      "short": "DCGpac is a Gurugram-based B2B packaging and procurement company serving thousands of businesses across e-commerce, FMCG, pharma, food and industrial sectors. It manufactures, sources and delivers packaging, from corrugated boxes to sustainable and reusable formats, and operates across India, the UAE and the UK.",
+      "description": "DCGpac (DCG Tech Ltd) is a Gurugram-based packaging and procurement solutions company with roots going back to 2005. Founded by Suresh Bansal, DCGpac began by solving a simple problem: businesses could not easily buy quality packaging in the quantities they needed, when they needed it. Today it is a one-stop packaging partner, offering corrugated boxes, courier bags, protective packaging, tapes, labels and food-grade materials, along with packaging design and consultancy. Its ProPac suite covers sustainable packaging, automation, packaging-as-a-service, reusable and rental packaging, and circular-economy programmes. DCGpac runs a smart manufacturing plant in Noida, a pan-India fulfilment network and an AI-enabled sourcing platform, and has operations in the UAE and UK. The company aims to become a global, sustainability-driven packaging and supply chain leader built from India.",
+      "team": [
+        "Suresh Bansal"
+      ],
+      "milestones": [
+        "Roots going back to 2005",
+        "Operations in India, the UAE and the UK"
+      ],
+      "website": null,
+      "pressTopic": null
+    },
+    {
+      "slug": "winmagic-toys",
+      "name": "WinMagic Toys",
+      "sector": "Consumer Brands",
+      "tag": "Toys",
+      "location": "Mumbai",
+      "short": "WinMagic Toys is a Mumbai-based kids’ merchandise company that designs, manufactures, markets and distributes toys and games. Founded in 2017, it brings leading international toy brands to India and builds its own portfolio of brands made in India, serving offline and online retailers across the country and abroad.",
+      "description": "WinMagic Toys is a Mumbai-based multi-brand kids’ merchandise company founded in 2017 by Mukesh Jagwani. It works on both sides of the toy business. For international brands, WinMagic is a go-to partner for entering India, handling marketing and distribution across modern retail, specialty toy stores and e-commerce. The company has introduced several new categories to Indian shelves, bringing in trend-setting lines such as Hatchimals and L.O.L. Surprise!, and has built a portfolio of over 40 brands. Alongside distribution, WinMagic designs and manufactures its own range of licensed and generic toys, made in India for domestic and international markets. In a market still dominated by unbranded imports, WinMagic is building a company with two strong divisions: third-party distribution and owned brands sold globally.",
+      "team": [
+        "Mukesh Jagwani"
+      ],
+      "milestones": [
+        "Founded in 2017",
+        "40+ brands in its portfolio"
+      ],
+      "website": null,
+      "pressTopic": null
+    },
+    {
+      "slug": "cup-ji",
+      "name": "Cup-Ji",
+      "sector": "Food & Beverage",
+      "tag": "Tea",
+      "location": null,
+      "short": "Cup-Ji is a beverage brand that makes tea ready in seconds. Its patented ready-to-sip cups hold a premium whole-leaf tea blend sealed at the bottom under a filter, so users only add hot water. With 23+ green and black tea flavours, Cup-Ji serves consumers, offices and hospitality customers in India and abroad.",
+      "description": "Cup-Ji (Cup-Ji Foods and Beverages Pvt Ltd) is an Indian beverage brand built around a simple idea: a great cup of tea with nothing to prepare. Each Cup-Ji cup contains a whole-leaf tea blend made with real herbs, spices and botanicals, sealed at the bottom of a paper cup beneath a filter mesh and an airtight layer that keeps it fresh. Users simply add hot water, swirl and sip. The cup design is protected by a granted Indian patent. Cup-Ji offers more than 23 flavours across green and black teas, from Jasmine and Lemon Ginger to its signature Chatkara Green Tea. The brand comes from a family business with decades of experience in tea exports, has featured on Shark Tank India, and sells through its own website, marketplaces, corporate pantries and international trade channels.",
+      "team": [],
+      "milestones": [
+        "Patented ready-to-sip cup",
+        "Featured on Shark Tank India"
+      ],
+      "website": null,
+      "pressTopic": null
+    },
+    {
+      "slug": "just-deliveries",
+      "name": "JustDeliveries",
+      "sector": "Supply Chain & Logistics",
+      "tag": "Cold chain logistics",
+      "location": "Mumbai",
+      "short": "JustDeliveries is a Mumbai-based cold chain logistics company specialising in mid-mile transport for India’s food and beverage industry. Its asset-light, tech-enabled model gives restaurant chains, cafés and fresh and frozen food brands reliable temperature-controlled delivery, and it serves 100+ brands across Mumbai, Pune, Bengaluru, Delhi NCR and Hyderabad.",
+      "description": "JustDeliveries is a Mumbai-based cold chain logistics startup founded by Mansi Mahansaria to bring structure and reliability to the movement of perishable goods. India loses a large share of its food to gaps in storage and distribution, and most logistics operations remain unorganised. JustDeliveries focuses on mid-mile cold chain transport for the food and beverage sector, serving quick-service restaurants, café chains and fresh and frozen food brands. Its asset-light, plug-and-play third-party logistics model, backed by its own technology stack, lets brands scale temperature-controlled distribution without building their own fleets. The company works with over 100 F&B brands, including household names such as ITC, Swiggy and Blue Tokai, and operates across Mumbai, Pune, Bengaluru, Delhi NCR and Hyderabad, with all hubs profitable at city level and further expansion under way.",
+      "team": [
+        "Mansi Mahansaria"
+      ],
+      "milestones": [
+        "100+ F&B brands served"
+      ],
+      "website": null,
+      "pressTopic": null
+    },
+    {
+      "slug": "jimz-cart",
+      "name": "JimzCart",
+      "sector": "Commerce & Retail",
+      "tag": "Grocery retail",
+      "location": "Ludhiana",
+      "short": "JimzCart is a Ludhiana-based modern grocery supermarket chain from the house of Veejay’s Fair Price, carrying a family retail legacy of over 60 years. Its stores offer over 6,000 SKUs from leading national and international brands, with fresh produce, competitive prices and a convenient, modern shopping experience for families in Punjab.",
+      "description": "JimzCart (Jimz Cart Retail Pvt Ltd) is a modern grocery retail chain based in Ludhiana, Punjab. It comes from the house of Veejay’s Fair Price, a family grocery business with a legacy of more than 60 years built on fair pricing and customer trust. JimzCart brings that heritage into modern retail, offering more than 6,000 SKUs from the best national and international brands, alongside fresh produce, in well-organised, welcoming stores with quick, hassle-free billing. The leadership team combines decades of FMCG retail experience with a deep understanding of local supply chains and consumer behaviour in Punjab. JimzCart’s goal is to give families everything they need for the home under one roof, at competitive prices, while building a trusted supermarket brand for North India’s growing cities.",
+      "team": [],
+      "milestones": [
+        "60+ year family retail legacy",
+        "6,000+ SKUs"
+      ],
+      "website": null,
+      "pressTopic": null
+    },
+    {
+      "slug": "shaurrya-teleservices",
+      "name": "Shaurrya Teleservices",
+      "sector": "Telecom & Infrastructure",
+      "tag": "Digital infrastructure",
+      "location": "Gurugram",
+      "short": "Shaurrya Teleservices is a Gurugram-based neutral digital infrastructure provider and Category I Infrastructure Provider. It builds and manages shared telecom infrastructure, including towers, in-building solutions, fibre-to-the-home and 5G-ready networks, and is one of India’s first TRAI-empanelled Digital Connectivity Rating Agencies, helping make buildings ready for 5G and IoT.",
+      "description": "Shaurrya Teleservices is a Gurugram-based digital infrastructure company founded in 2021 and registered as a Category I Infrastructure Provider. It follows a neutral-host model, building shared infrastructure that multiple telecom operators can use, which lowers deployment costs and speeds up network rollout. Its services cover telecom tower deployment, in-building solutions (IBS), fibre-to-the-home (FTTH), 5G-ready deployments, IoT and AI-enabled network platforms. Shaurrya is among the first eight agencies empanelled by TRAI as a Digital Connectivity Rating Agency, which allows it to assess and rate the digital connectivity of residential and commercial properties, and then help developers improve those ratings with its infrastructure solutions. A member of the Digital Infrastructure Providers Association (DIPA), Shaurrya is working to make India’s buildings and cities ready for 5G, 6G and IoT.",
+      "team": [],
+      "milestones": [
+        "Founded in 2021",
+        "TRAI-empanelled Digital Connectivity Rating Agency"
+      ],
+      "website": null,
+      "pressTopic": null
+    },
+    {
+      "slug": "misfits",
+      "name": "Misfits",
+      "sector": "Food & Beverage",
+      "tag": "Prebiotic soda",
+      "location": "Mumbai",
+      "short": "Misfits is a Mumbai-based beverage brand that has launched India’s first prebiotic soda. Founded in 2024 by brothers Aditya and Yash Pai, it offers bold-flavoured, zero-added-sugar sodas with 7g of prebiotic fibre per can, giving consumers a gut-friendly alternative to sugary colas without giving up fizz or taste.",
+      "description": "Misfits is a Mumbai-based functional beverage brand founded in 2024 by brothers Aditya and Yash Pai. The idea came from a simple frustration: soda is fun to drink, but most options are loaded with sugar and offer nothing in return. Misfits set out to change that with India’s first prebiotic soda. Each can delivers 7g of prebiotic fibre from chicory root inulin, real fruit flavours and zero added sugar, built on a minimal-ingredient approach that supports gut health while keeping the fizz and bold taste people love. The name reflects the founders’ view that they did not fit the regular soda aisle. Misfits is available in leading supermarkets across Mumbai and online, and is expanding to other metro markets as it builds a new category of healthier carbonated drinks in India.",
+      "team": [
+        "Aditya Pai",
+        "Yash Pai"
+      ],
+      "milestones": [
+        "Founded in 2024",
+        "India’s first prebiotic soda"
+      ],
+      "website": null,
+      "pressTopic": null
+    },
+    {
+      "slug": "frevolt",
+      "name": "Frevolt",
+      "sector": "Climate & Mobility",
+      "tag": "Rooftop solar",
+      "location": "Pune",
+      "short": "Frevolt is a Pune-based rooftop solar platform that makes going solar simple for homeowners. Its app manages the full solar journey, from verified installers and collateral-free financing to subsidy support, real-time generation monitoring and maintenance, helping households cut electricity bills while bringing structure and trust to India’s fragmented rooftop solar market.",
+      "description": "Frevolt (Frevolt Green Energy Technologies Pvt Ltd) is a Pune-based clean energy company that makes rooftop solar easy and trustworthy for homeowners. Rooftop solar in India is still a fragmented market, and many households hold back because of high upfront costs, confusing subsidy processes and uncertainty about installer quality. Frevolt addresses each of these. Its platform connects homeowners with a network of verified installation partners, offers collateral-free solar financing, and helps customers apply for government subsidies. After installation, the Frevolt app provides real-time generation tracking, maintenance scheduling and system information, so owners can see their savings and keep systems running well. Installers in turn receive qualified leads and project management tools. Starting with Maharashtra, Frevolt is building an organised, end-to-end marketplace that accelerates India’s shift to clean, affordable energy.",
+      "team": [],
+      "milestones": [],
+      "website": null,
+      "pressTopic": null
+    },
+    {
+      "slug": "esportsxo",
+      "name": "EsportsXO",
+      "sector": "Software & Gaming",
+      "tag": "Esports",
+      "location": "Bengaluru",
+      "short": "EsportsXO is a Bengaluru-based esports and gaming company that connects gamers, brands and game publishers. Founded in 2020, it runs a tournament management and discovery platform, organises competitions across mobile, PC and console titles, manages gaming talent and teams, and has expanded into the Middle East with a regional base in Abu Dhabi.",
+      "description": "EsportsXO is a Bengaluru-based esports company founded in April 2020 by Utsav Umang, Rohit Raj and Vikas Goel. It brings together gamers, tournament organisers, game publishers and brands on a single ecosystem. Its products include BattleXO, a fully automated SaaS platform that lets any organisation host tournaments of any scale, along with a tournament discovery marketplace for players. EsportsXO also runs competitive teams, manages a roster of gaming content creators with large followings, and operates XO Space in Bengaluru, one of India’s first gaming houses, with streaming rooms, content production and residential facilities for players. For brands, it creates targeted engagement with India’s young gaming audience. In 2024, EsportsXO set up a regional headquarters in Abu Dhabi to expand into the Middle East and North Africa.",
+      "team": [
+        "Utsav Umang",
+        "Rohit Raj",
+        "Vikas Goel"
+      ],
+      "milestones": [
+        "Founded in April 2020",
+        "Regional HQ in Abu Dhabi, 2024"
+      ],
+      "website": "https://esports.battlexo.com/",
+      "pressTopic": null
+    }
+  ]
+}

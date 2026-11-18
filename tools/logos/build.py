@@ -26,7 +26,7 @@ PORTFOLIO = [
     ("Companies/FWDA logo.png", "flying-wedge", "Flying Wedge Defence & Aerospace", "Defence &amp; Aerospace"),
     ("Companies/Skyroot.svg", "skyroot", "Skyroot Aerospace", "Space-tech"),
     ("Companies/Garuda Aerospace.webp", "garuda-aerospace", "Garuda Aerospace", "Drone-tech"),
-    ("Companies/Hesa.png", "hesa", "Hesa", "Rural Commerce Platform"),
+    ("Companies/HESA.svg", "hesa", "Hesa", "Rural Commerce Platform"),   # new wordmark (Figma Source/HESA.svg)
     ("Companies/Electriq.png", "electriq", "Electriq", "Electric Mobility"),
     ("Companies/kyoora.png", "kyoora", "Kyoora", None),
     ("Companies/Artment.png", "artment", "Artment", None),

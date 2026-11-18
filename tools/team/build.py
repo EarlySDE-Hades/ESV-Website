@@ -3,6 +3,7 @@
     about.html   <- tools/about/main.html
     team.html    <- tools/team/main.html
     press.html   <- tools/press/main.html (+ tools/press/press.json)
+    portfolio.html, portfolio-<slug>.html  <- tools/portfolio/ (+ companies.json)
     events.html  <- tools/events/main.html
     event-seed-to-success.html  <- tools/events/seed-to-success.html
 
@@ -11,6 +12,7 @@ Run after changing the shared header/footer in index.html, or either main.html:
     python tools/team/build.py
 """
 import re
+from html import escape
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -26,7 +28,9 @@ PAGES = [
     ("prologue.html", "tools/prologue/main.html", "Prologue by Earlyseed Ventures prepares early-stage founders for fundraising: the deck, the numbers and the understanding to defend both.", "Prologue"),
     ("about.html", "tools/about/main.html", "Earlyseed Ventures is a boutique investment banking firm in Mumbai, helping tech start-ups raise seed to Series A rounds.", "About"),
     ("team.html", "tools/team/main.html", "The leadership team, strategic growth partners and team behind Earlyseed Ventures.", "Team"),
+    ("portfolio.html", "tools/portfolio/main.html", "The companies Earlyseed Ventures has raised for and invested in, from rural commerce and space-tech to AI and consumer brands.", "Our Portfolio"),
     ("press.html", "tools/press/main.html", "Us in the News: media coverage, funding announcements and industry conversations featuring Earlyseed Ventures and its co-founders.", "Our Press"),
+    ("bootcamps.html", "tools/bootcamps/main.html", "Founder bootcamps on campus: Earlyseed Ventures works with universities and incubators on business planning, pitch decks, financial projections and access to investors.", "Bootcamps"),
     ("events.html", "tools/events/main.html", "Founder meet-ups, investor sessions and campus programmes from Earlyseed Ventures.", "Events"),
     ("event-seed-to-success.html", "tools/events/seed-to-success.html", "From seed to success: a recap of the Earlyseed Ventures evening for founders, investors and ecosystem leaders.", "-"),
 ]
@@ -49,9 +53,30 @@ def relink(html, out, label):
 
 # Pages whose <main> has {{…}} placeholders filled from data
 import sys
-sys.path.insert(0, str(ROOT / "tools" / "press"))
-from render import render as render_press   # noqa: E402
-FILLERS = {"press.html": render_press}
+import importlib.util
+
+
+def _load(name, path):
+    spec = importlib.util.spec_from_file_location(name, ROOT / path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+press_render = _load("press_render", "tools/press/render.py")
+portfolio_render = _load("portfolio_render", "tools/portfolio/render.py")
+bootcamps_render = _load("bootcamps_render", "tools/bootcamps/render.py")
+FILLERS = {"press.html": press_render.render, "portfolio.html": portfolio_render.render_portfolio, "bootcamps.html": bootcamps_render.render}
+
+
+def write(out, main, description, label):
+    assert "{{" not in main, f"unfilled placeholder in {out}"
+    page_head = re.sub(r'(<meta name="description" content=")[^"]*', lambda m: m.group(1) + escape(description, quote=True), head)
+    if out in EXTRA_HEAD:
+        page_head = page_head.replace("</head>", EXTRA_HEAD[out] + "</head>")
+    page = page_head + "<body>\n" + relink(header, out, label) + main + "\n" + relink(footer, out, label)
+    (ROOT / out).write_text(page, encoding="utf-8", newline="\n")
+    print("wrote", out)
 
 
 for out, main_src, description, label in PAGES:
@@ -59,10 +84,8 @@ for out, main_src, description, label in PAGES:
     if out in FILLERS:
         for key, value in FILLERS[out]().items():
             main = main.replace(key, value)
-        assert "{{" not in main, f"unfilled placeholder in {out}"
-    page_head = re.sub(r'(<meta name="description" content=")[^"]*', lambda m: m.group(1) + description, head)
-    if out in EXTRA_HEAD:
-        page_head = page_head.replace("</head>", EXTRA_HEAD[out] + "</head>")
-    page = page_head + "<body>\n" + relink(header, out, label) + main + "\n" + relink(footer, out, label)
-    (ROOT / out).write_text(page, encoding="utf-8", newline="\n")
-    print("wrote", out)
+    write(out, main, description, label)
+
+# One page per portfolio company (portfolio-<slug>.html)
+for out, main, description in portfolio_render.company_pages():
+    write(out, main, description, "Our Portfolio")

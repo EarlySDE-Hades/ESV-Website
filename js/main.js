@@ -365,6 +365,8 @@
     { title: 'Founder Stories', section: 'Perspectives', href: '#perspectives' },
     { title: 'Podcasts', section: 'Perspectives', href: '#perspectives' },
     { title: 'Us in the News: press coverage', section: 'Our Press', href: 'press.html' },
+    { title: 'Our portfolio: all companies', section: 'Portfolio', href: 'portfolio.html' },
+    { title: 'Bootcamps: founder bootcamps on campus', section: 'Bootcamps', href: 'bootcamps.html' },
     { title: 'Pitch to us', section: 'Raise', href: 'https://ecosystem.earlyseedventures.com/apply' },
     { title: 'Invest with us', section: 'Invest', href: '#for-investors' },
   ];  // Companies and partners come from the JSON the dialogs already use (home page only)
@@ -374,7 +376,7 @@
     const read = (id, section, href) => {
       try { return JSON.parse($('#' + id).textContent).map((c) => ({ title: c.name, section, href })); } catch { return []; }
     };
-    fullIndex = SEARCH_INDEX.concat(read('portfolio-data', 'Portfolio', '#portfolio'), read('partner-data', 'Partners', '#team'));
+    fullIndex = SEARCH_INDEX.concat(read('portfolio-data', 'Portfolio', '#portfolio'), read('partner-data', 'Bootcamps', 'bootcamps.html'));
     return fullIndex;
   }
 
@@ -797,6 +799,81 @@
   }
   const stairs = $('[data-stairs]');
   if (stairs) initStairs(stairs);
+
+  /* ------------------------------------------------------------------------
+     Portfolio page: search + sector filter. Cards that come back animate in;
+     the sector is kept in the URL (?sector=…) so a filtered view can be shared.
+     ------------------------------------------------------------------------ */
+  function initPortfolioFilter(form) {
+    const q = $('[data-pf-q]', form), sel = $('[data-pf-sector]', form), count = $('[data-pf-count]', form);
+    const cards = $$('.pf-card', $('[data-pf-grid]'));
+    const empty = $('[data-pf-empty]');
+    const fromUrl = new URLSearchParams(location.search).get('sector');
+    if (fromUrl && [...sel.options].some((o) => o.value === fromUrl)) sel.value = fromUrl;
+    function apply() {
+      const terms = q.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      const sector = sel.value;
+      let shown = 0;
+      cards.forEach((card) => {
+        const ok = (!sector || card.dataset.sector === sector) && terms.every((t) => card.dataset.search.includes(t));
+        const was = !card.hidden;
+        card.hidden = !ok;
+        if (ok) {
+          shown++;
+          if (!was && !reduceMotion.matches) { card.classList.remove('is-entering'); void card.offsetWidth; card.classList.add('is-entering'); }
+        }
+      });
+      count.textContent = `${shown} ${shown === 1 ? 'company' : 'companies'}`;
+      empty.hidden = shown > 0;
+    }
+    q.addEventListener('input', apply);
+    sel.addEventListener('change', () => {
+      const url = new URL(location.href);
+      if (sel.value) url.searchParams.set('sector', sel.value); else url.searchParams.delete('sector');
+      history.replaceState(null, '', url);
+      apply();
+    });
+    $('[data-pf-reset]').addEventListener('click', () => { q.value = ''; sel.value = ''; sel.dispatchEvent(new Event('change')); q.focus(); });
+    apply();
+  }
+  const pfFilter = $('[data-pf-filter]');
+  if (pfFilter) initPortfolioFilter(pfFilter);
+
+  /* ------------------------------------------------------------------------
+     Home Perspectives: each row opens as it scrolls into view and stays open,
+     so the section builds up row by row into the mockup. Scroll-linked while
+     a row is opening (its top travelling from the bottom of the screen to
+     about 40% up); once fully open it is left alone, even on scrolling back.
+     ------------------------------------------------------------------------ */
+  function initPersp(sec) {
+    if (reduceMotion.matches) return;
+    const rows = $$('.persp-card', sec);
+    const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
+    const ease = (x) => 1 - Math.pow(1 - x, 3);
+    const done = new Set();
+    let raf = 0;
+    sec.classList.add('is-live');
+    function update() {
+      raf = 0;
+      const vh = innerHeight;
+      rows.forEach((row) => {
+        if (done.has(row)) return;
+        const top = row.getBoundingClientRect().top;
+        const raw = clamp01((vh * 0.98 - top) / (vh * 0.55));
+        const o = ease(raw);
+        row.style.setProperty('--o', o.toFixed(4));
+        row.style.setProperty('--t', ease(clamp01((raw - 0.45) / 0.55)).toFixed(4));
+        if (raw >= 1) { done.add(row); row.style.setProperty('--o', '1'); row.style.setProperty('--t', '1'); }
+      });
+      if (done.size === rows.length) removeEventListener('scroll', onScroll);
+    }
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', onScroll);
+    update();
+  }
+  const persp = $('[data-persp]');
+  if (persp) initPersp(persp);
   initTouchCards();
   const evFilter = $('[data-ev-filter]');
   if (evFilter) initEventFilter(evFilter);

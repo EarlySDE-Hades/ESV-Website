@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy:ital@0;1&display=swap" />
-  <link rel="stylesheet" href="css/styles.css?v=202611171932" />
+  <link rel="stylesheet" href="css/styles.css?v=202611182030" />
 
   <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
   <script>document.documentElement.classList.add('js');</script>
@@ -76,7 +76,7 @@
               </ul>
             </div>
           </li>
-          <li><a href="#portfolio">Our Portfolio</a></li>
+          <li><a href="portfolio.html">Our Portfolio</a></li>
           <li class="nav-menu" data-nav-menu>
             <button class="nav-menu__toggle" type="button" aria-expanded="false" aria-controls="perspectives-menu" aria-label="More in Perspectives" data-nav-menu-toggle>
               <svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -90,6 +90,7 @@
             </div>
           </li>
           <li><a href="events.html">Events</a></li>
+          <li><a href="bootcamps.html">Bootcamps</a></li>
           <li class="nav-reveal">
             <!-- On hover / keyboard focus the word morphs into the Prologue logo, in place -->
             <a class="nav-morph" href="prologue.html" aria-label="Prologue">
@@ -132,10 +133,11 @@
           <li><a href="about.html">About</a></li>
           <li class="mobile-menu__sub"><a href="team.html">Team</a></li>
           <li class="mobile-menu__sub"><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Our Portfolio</a></li>
+          <li><a href="portfolio.html">Our Portfolio</a></li>
           <li><a href="#perspectives">Perspectives</a></li>
           <li class="mobile-menu__sub"><a href="press.html">Our Press</a></li>
           <li><a href="events.html">Events</a></li>
+          <li><a href="bootcamps.html">Bootcamps</a></li>
           <li><a href="prologue.html">Prologue</a></li>
         </ul>
         <div class="mobile-menu__ctas">
@@ -235,40 +237,47 @@
     <!-- Growth: a seedling vine behind the page that grows as you scroll (built by initGrowth) -->
     <div class="growth" aria-hidden="true" data-growth></div>
 
-    <!-- Cards get an href when their article / video / podcast page exists -->
-    <section class="perspectives container" id="perspectives" aria-label="Perspectives">
-      <div class="cards cards--2">
-        <a class="card" data-reveal>
-          <img class="card__photo" src="assets/perspectives/deal-table.webp" alt="" decoding="async" />
-          <h2 class="card__title">From the deal table.</h2>
-          <p class="card__body">Fundraising playbooks, founder stories and our work across India’s startup ecosystem.</p>
-          <span class="card__icon"><img src="assets/illustrations/read.webp" alt="" width="96" height="96" loading="lazy" decoding="async" /><span class="visually-hidden">Read</span></span>
-        </a>
-        <a class="card" data-reveal style="--i:1">
-          <img class="card__photo" src="assets/perspectives/founder-stories.webp" alt="" decoding="async" />
-          <h2 class="card__title">Founder Stories:<br />Founders on what raising capital really looked like.</h2>
-          <p class="card__body">Finance for the Fundraising-Curious: Round structures, valuations and term sheets, explained simply.</p>
-          <span class="card__icon"><img src="assets/illustrations/read.webp" alt="" width="96" height="96" loading="lazy" decoding="async" /><span class="visually-hidden">Read</span></span>
-        </a>
-      </div>
-
-      <div class="cards cards--3">
-        <a class="card card--sm" data-reveal>
-          <img class="card__photo" src="assets/perspectives/mit-wpu.webp" alt="" decoding="async" />
-          <p class="card__body">MIT World Peace University, Pune: A founder-readiness programme for 4,000+ students covering business planning, pitch decks, financial projections and valuations.</p>
-          <span class="card__icon"><img src="assets/illustrations/read.webp" alt="" width="96" height="96" loading="lazy" decoding="async" /><span class="visually-hidden">Read</span></span>
-        </a>
-        <a class="card card--sm" data-reveal style="--i:1">
-          <img class="card__photo" src="assets/perspectives/skill-titans.webp" alt="" decoding="async" />
-          <p class="card__body">Knowledge Partner, Skill Titans:</p>
-          <p class="card__body">ESV designed the evaluation process for OLL’s Skill Titans, a CNBC-TV18 programme that drew startup ideas from students across 200+ schools, and mentored the winning teams.</p>
-          <span class="card__icon"><img src="assets/illustrations/watch.webp" alt="" width="96" height="96" loading="lazy" decoding="async" /><span class="visually-hidden">Watch</span></span>
-        </a>
-        <a class="card card--sm" data-reveal style="--i:2">
-          <img class="card__photo" src="assets/perspectives/podcasts.webp" alt="" decoding="async" />
-          <p class="card__body">Podcasts</p>
-          <span class="card__icon"><img src="assets/illustrations/listen.webp" alt="" width="96" height="96" loading="lazy" decoding="async" /><span class="visually-hidden">Listen</span></span>
-        </a>
+    <!-- Perspectives: stacked rows from the Figma mockup (Figma Source/ESV Website). As you scroll, each row
+         opens in turn and stays (js initPersp), building up to the mockup. Reduced motion: rows are simply there. -->
+    <section class="persp container" id="perspectives" aria-label="Perspectives" data-persp>
+      <div class="persp__stage">
+        <ol class="persp__deck" role="list">
+        <li class="persp-card persp-card--photo-left" style="--panel:var(--crema)">
+          <div class="persp-card__photo"><img src="assets/perspectives/deal-table.webp" alt="" style="object-position:22% 30%" decoding="async" /></div>
+          <div class="persp-card__text">
+            <h2 class="persp-card__title">From the deal table.</h2>
+            <p class="persp-card__body">Fundraising playbooks, founder stories and our work across India’s startup ecosystem.</p>
+          </div>
+        </li>
+        <li class="persp-card persp-card--photo-right" style="--panel:var(--sand)">
+          <div class="persp-card__photo"><img src="assets/perspectives/founder-stories.webp" alt="" style="object-position:50% 40%" decoding="async" /></div>
+          <div class="persp-card__text">
+            <h2 class="persp-card__title">Founder Stories:<br />Founders on what raising capital really looked like.</h2>
+            <p class="persp-card__body">Finance for the Fundraising-Curious: Round structures, valuations and term sheets, explained simply.</p>
+          </div>
+        </li>
+        <li class="persp-card persp-card--photo-left" style="--panel:var(--golden-glow)">
+          <div class="persp-card__photo"><img src="assets/perspectives/mit-wpu.webp" alt="" style="object-position:30% 45%" decoding="async" /></div>
+          <div class="persp-card__text">
+            <h2 class="persp-card__title">MIT World Peace University, Pune</h2>
+            <p class="persp-card__body">A founder-readiness programme for 4,000+ students covering business planning, pitch decks, financial projections and valuations.</p>
+          </div>
+        </li>
+        <li class="persp-card persp-card--photo-right" style="--panel:var(--bronze)">
+          <div class="persp-card__photo"><img src="assets/perspectives/skill-titans.webp" alt="" style="object-position:50% 35%" decoding="async" /></div>
+          <div class="persp-card__text">
+            <h2 class="persp-card__title">Knowledge Partner, Skill Titans</h2>
+            <p class="persp-card__body">ESV designed the evaluation process for OLL’s Skill Titans, a CNBC-TV18 programme that drew startup ideas from students across 200+ schools, and mentored the winning teams.</p>
+          </div>
+        </li>
+        <li class="persp-card persp-card--photo-left" style="--panel:var(--slate)">
+          <div class="persp-card__photo"><img src="assets/perspectives/podcasts.webp" alt="" style="object-position:50% 100%" decoding="async" /></div>
+          <div class="persp-card__text">
+            <h2 class="persp-card__title">Podcasts</h2>
+            <p class="persp-card__body">Entrepreneurship Unplugged with Suresh Menon. Grit, Guts &amp; Gumption: Monica Gupta’s journey as an entrepreneur.</p>
+          </div>
+        </li>
+        </ol>
       </div>
     </section>
 
@@ -296,52 +305,19 @@
       <!-- Same draggable strip as the portfolio; four partners visible at a time (data-visible) -->
       <div class="carousel container" data-carousel data-visible="4" data-reveal style="--i:1">
         <button class="carousel__arrow" type="button" aria-label="Previous partners" data-strip-prev><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <div class="strip" data-strip tabindex="0" role="region" aria-roledescription="carousel" aria-label="Campus partners: drag, swipe, or use the arrows; select a logo for details">
+      <div class="strip" data-strip tabindex="0" role="region" aria-roledescription="carousel" aria-label="Campus partners: drag, swipe, or use the arrows; select a logo for its bootcamps">
         <ul class="strip__track" role="list" data-strip-track>
-          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="nmims"><img src="assets/logos/campus/nmims.webp" alt="SVKM&#x27;s NMIMS" width="74" height="74" loading="lazy" decoding="async" draggable="false" /></button></li>
-          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="manipal"><img src="assets/logos/campus/manipal.webp" alt="Manipal Academy of Higher Education" width="191" height="50" loading="lazy" decoding="async" draggable="false" /></button></li>
-          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="mit-wpu"><img src="assets/logos/campus/mit-wpu.webp" alt="MIT World Peace University, Pune" width="176" height="51" loading="lazy" decoding="async" draggable="false" /></button></li>
-          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="wise-sndtwu"><img src="assets/logos/campus/wise-sndtwu.webp" alt="WISE, SNDTWU Incubation Centre" width="105" height="64" loading="lazy" decoding="async" draggable="false" /></button></li>
-          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="rcoem"><img src="assets/logos/campus/rcoem.webp" alt="Shri Ramdeobaba College of Engineering and Management, Nagpur" width="161" height="53" loading="lazy" decoding="async" draggable="false" /></button></li>
-          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="msins"><img src="assets/logos/campus/msins.webp" alt="Maharashtra State Innovation Society" width="182" height="51" loading="lazy" decoding="async" draggable="false" /></button></li>
+          <li class="company"><a class="company__mark" href="bootcamps.html#nmims" aria-label="SVKM&#x27;s NMIMS: bootcamps"><img src="assets/logos/campus/nmims.webp" alt="SVKM&#x27;s NMIMS" width="74" height="74" loading="lazy" decoding="async" draggable="false" /></a></li>
+          <li class="company"><a class="company__mark" href="bootcamps.html#manipal" aria-label="Manipal Academy of Higher Education: bootcamps"><img src="assets/logos/campus/manipal.webp" alt="Manipal Academy of Higher Education" width="191" height="50" loading="lazy" decoding="async" draggable="false" /></a></li>
+          <li class="company"><a class="company__mark" href="bootcamps.html#mit-wpu" aria-label="MIT World Peace University, Pune: bootcamps"><img src="assets/logos/campus/mit-wpu.webp" alt="MIT World Peace University, Pune" width="176" height="51" loading="lazy" decoding="async" draggable="false" /></a></li>
+          <li class="company"><a class="company__mark" href="bootcamps.html#wise-sndtwu" aria-label="WISE, SNDTWU Incubation Centre: bootcamps"><img src="assets/logos/campus/wise-sndtwu.webp" alt="WISE, SNDTWU Incubation Centre" width="105" height="64" loading="lazy" decoding="async" draggable="false" /></a></li>
+          <li class="company"><a class="company__mark" href="bootcamps.html#rcoem" aria-label="Shri Ramdeobaba College of Engineering and Management, Nagpur: bootcamps"><img src="assets/logos/campus/rcoem.webp" alt="Shri Ramdeobaba College of Engineering and Management, Nagpur" width="161" height="53" loading="lazy" decoding="async" draggable="false" /></a></li>
+          <li class="company"><a class="company__mark" href="bootcamps.html#msins" aria-label="Maharashtra State Innovation Society: bootcamps"><img src="assets/logos/campus/msins.webp" alt="Maharashtra State Innovation Society" width="182" height="51" loading="lazy" decoding="async" draggable="false" /></a></li>
         </ul>
       </div>
         <button class="carousel__arrow" type="button" aria-label="Next partners" data-strip-next><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
 
-      <!-- Partner detail dialog: the company dialog component, fed by #partner-data below. -->
-      <dialog class="svc-dialog co-dialog" aria-labelledby="pa-dialog-title" data-co-dialog data-source="partner-data" data-scope="#team" data-kind="partner">
-        <div class="svc-dialog__panel co-dialog__panel" data-co-panel>
-          <button class="svc-dialog__close icon-btn" type="button" aria-label="Close" data-co-close>
-            <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-          </button>
-          <div class="co-dialog__content" data-co-content>
-            <div class="co-dialog__logo"><img alt="" data-co-logo /></div>
-            <p class="svc-dialog__group" data-co-sector></p>
-            <h3 class="svc-dialog__title co-dialog__title" id="pa-dialog-title" data-co-name></h3>
-            <p class="co-dialog__meta" data-co-meta></p>
-            <p class="co-dialog__summary" data-co-summary></p>
-            <a class="co-dialog__site" href="#" target="_blank" rel="noopener" data-co-site><span data-co-site-label></span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4h6v6M12 4l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-            <section class="co-dialog__posts" aria-labelledby="pa-posts-title">
-              <h4 class="co-dialog__label" id="pa-posts-title">On the blog</h4>
-              <ul class="co-posts" role="list" data-co-posts></ul>
-              <p class="co-dialog__empty" data-co-empty>No posts about this partner yet. <a href="#perspectives" data-co-jump>Browse Perspectives</a></p>
-            </section>
-          </div>
-          <section class="co-dialog__others" aria-labelledby="pa-others-title">
-            <h4 class="co-dialog__label" id="pa-others-title">More campus partners</h4>
-            <div class="co-others-nav">
-              <button class="co-others__arrow" type="button" aria-label="Previous partners" data-co-prev><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-              <ul class="co-others" role="list" data-co-others></ul>
-              <button class="co-others__arrow" type="button" aria-label="Next partners" data-co-next><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            </div>
-          </section>
-          <div class="co-dialog__actions">
-            <a class="btn" href="#team" data-co-page>View partner page</a>
-            <a class="btn btn--ghost" href="#team" data-co-jump>All campus partners</a>
-          </div>
-        </div>
-      </dialog>
       <!-- Partner data. Summaries describe each institution; review before launch.
            Same fields as #portfolio-data; page = ESV partner page URL, posts = blog posts about the partnership. -->
       <script type="application/json" id="partner-data">
@@ -434,7 +410,7 @@
           <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="flying-wedge"><img src="assets/logos/portfolio/flying-wedge.webp" alt="Flying Wedge Defence &amp; Aerospace" width="174" height="52" loading="lazy" decoding="async" draggable="false" /></button></li>
           <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="skyroot"><img src="assets/logos/portfolio/skyroot.svg" alt="Skyroot Aerospace" width="116" height="77" loading="lazy" decoding="async" draggable="false" /></button></li>
           <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="garuda-aerospace"><img src="assets/logos/portfolio/garuda-aerospace.webp" alt="Garuda Aerospace" width="148" height="61" loading="lazy" decoding="async" draggable="false" /></button></li>
-          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="hesa"><img src="assets/logos/portfolio/hesa.webp" alt="Hesa" width="142" height="63" loading="lazy" decoding="async" draggable="false" /></button></li>
+          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="hesa"><img src="assets/logos/portfolio/hesa.svg" alt="Hesa" width="176" height="43" loading="lazy" decoding="async" draggable="false" /></button></li>
           <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="electriq"><img src="assets/logos/portfolio/electriq.webp" alt="Electriq" width="98" height="78" loading="lazy" decoding="async" draggable="false" /></button></li>
           <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="kyoora"><img src="assets/logos/portfolio/kyoora.webp" alt="Kyoora" width="174" height="52" loading="lazy" decoding="async" draggable="false" /></button></li>
           <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="artment"><img src="assets/logos/portfolio/artment.webp" alt="Artment" width="176" height="30" loading="lazy" decoding="async" draggable="false" /></button></li>
@@ -447,7 +423,7 @@
       </div>
 
       <div class="container center" data-reveal>
-        <a class="btn" href="#portfolio">View full portfolio</a>
+        <a class="btn" href="portfolio.html">View full portfolio</a>
       </div>
 
       <!-- Company detail dialog. Content comes from #portfolio-data below. -->
@@ -479,7 +455,7 @@
           </section>
           <div class="co-dialog__actions">
             <a class="btn" href="#portfolio" data-co-page>View company page</a>
-            <a class="btn btn--ghost" href="#portfolio" data-co-jump>All portfolio companies</a>
+            <a class="btn btn--ghost" href="portfolio.html">All portfolio companies</a>
           </div>
         </div>
       </dialog>
@@ -496,7 +472,7 @@
     "founded": null,
     "summary": "Builds indigenous autonomous unmanned aircraft, from the Kaalbhairav heavy drone to loitering munitions and interceptor drones.",
     "website": "https://fwdefence.com/",
-    "page": null,
+    "page": "portfolio-flying-wedge.html",
     "posts": []
   },
   {
@@ -507,7 +483,7 @@
     "founded": 2018,
     "summary": "Develops the Vikram series of small launch vehicles for on-demand satellite launches. Its Vikram-S became India's first private rocket in 2022.",
     "website": "https://www.skyroot.in/",
-    "page": null,
+    "page": "portfolio-skyroot.html",
     "posts": []
   },
   {
@@ -518,7 +494,7 @@
     "founded": null,
     "summary": "Designs and manufactures drones for agriculture, industry and defence, and offers drone-as-a-service and DGCA-approved pilot training.",
     "website": "https://www.garudaaerospace.com/",
-    "page": null,
+    "page": "portfolio-garuda-aerospace.html",
     "posts": []
   },
   {
@@ -529,7 +505,7 @@
     "founded": 2019,
     "summary": "Pairs an app with a network of village-level partners, called Hesaathis, to connect brands, banks and agri businesses with rural India.",
     "website": "https://www.hesa.co/",
-    "page": null,
+    "page": "portfolio-hesa.html",
     "posts": []
   },
   {
@@ -540,7 +516,7 @@
     "founded": null,
     "summary": "Rents and sells electric two- and three-wheelers to last-mile and mid-mile delivery fleets, with battery swapping, fleet tracking and rider training.",
     "website": "https://www.electriq.co.in/",
-    "page": null,
+    "page": "portfolio-electriq.html",
     "posts": []
   },
   {
@@ -551,7 +527,7 @@
     "founded": null,
     "summary": "Acquires regional pharma distributors and runs them on its own ordering, logistics and data software, consolidating a fragmented market.",
     "website": "https://kyoora.com/",
-    "page": null,
+    "page": "portfolio-kyoora.html",
     "posts": []
   },
   {
@@ -562,7 +538,7 @@
     "founded": null,
     "summary": "An art decor brand that blends art with everyday utility in premium products for the home.",
     "website": "https://theartment.com/",
-    "page": null,
+    "page": "portfolio-artment.html",
     "posts": []
   },
   {
@@ -573,7 +549,7 @@
     "founded": null,
     "summary": "Gives AI agents one API for a company's knowledge and persistent memory, with retrieval over internal documents and traces of what each agent used.",
     "website": "https://getalchemystai.com/",
-    "page": null,
+    "page": "portfolio-alchemyst-ai.html",
     "posts": []
   },
   {
@@ -584,7 +560,7 @@
     "founded": null,
     "summary": "An esports platform for brands, publishers and tournament organisers, combining tournament software, campaign operations and creator networks.",
     "website": "https://esports.battlexo.com/",
-    "page": null,
+    "page": "portfolio-esportsxo.html",
     "posts": []
   },
   {
@@ -595,7 +571,7 @@
     "founded": 2020,
     "summary": "Teaches robotics, coding, AI and entrepreneurship to students and runs programmes for K-12 schools. Founded in 2020 by Shreyaan Daga, then 15.",
     "website": "https://oll.co/",
-    "page": null,
+    "page": "portfolio-oll.html",
     "posts": []
   }
 ]
@@ -863,12 +839,13 @@
       <nav aria-label="Footer">
         <ul>
           <li><a href="about.html">About</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
           <li><a href="team.html">Team</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#perspectives">Perspectives</a></li>
           <li><a href="press.html">Press</a></li>
           <li><a href="events.html">Events</a></li>
+          <li><a href="bootcamps.html">Bootcamps</a></li>
         </ul>
         <a class="btn site-footer__cta" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
       </nav>
@@ -879,6 +856,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=202611181600" defer></script>
+  <script src="js/main.js?v=202611182000" defer></script>
 </body>
 </html>
