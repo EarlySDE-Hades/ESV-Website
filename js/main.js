@@ -681,6 +681,122 @@
   if (growth) initGrowth(growth);
   const evHero = $('.ev-hero');
   if (evHero) initEventsHero(evHero);
+
+  /* ------------------------------------------------------------------------
+     About hero stairs: the cloud cover parts, the scene's clouds drift into
+     place, then the coin climbs the staircase once (growing as it rises) and
+     lands on the top step; sparkles come on. Runs once, when in view.
+     ------------------------------------------------------------------------ */
+  function initStairs(fig) {
+    const svg = $('svg', fig);
+    if (!svg) return;
+    if (reduceMotion.matches || !svg.animate) { svg.classList.add('is-done'); return; }
+    const C = { x: 1052.98, y: 210.02, r: 81.69 };                 // the coin as drawn, on the top step
+    // Each tread: [top y, left x, x of the next riser], bottom to top, from the artwork
+    const STEPS = [[699.02, 535.89, 573.29], [662.03, 573.29, 614.89], [625.01, 614.89, 650.82], [587.98, 650.82, 686.81],
+      [550.96, 686.81, 724.22], [513.97, 724.22, 765.81], [476.94, 765.81, 801.75], [439.92, 801.75, 839.8],
+      [402.93, 839.8, 876.73], [365.9, 876.73, 913.13], [328.88, 913.13, 945.5]];
+    const S0 = 0.32;
+    const pts = STEPS.map(([y, a, b], k) => { const s = S0 + (1 - S0) * k / STEPS.length; return { x: (a + b) / 2, y: y - C.r * s, s }; });
+    pts.push({ x: C.x, y: C.y, s: 1 });
+    const tf = (x, y, s, rot = 0, sx = 1, sy = 1) =>
+      `translate(${(x - C.x).toFixed(1)}px, ${(y - C.y).toFixed(1)}px) rotate(${rot}deg) scale(${(s * sx).toFixed(3)}, ${(s * sy).toFixed(3)})`;
+    const UP = 'cubic-bezier(0.25, 0.7, 0.4, 1)', DOWN = 'cubic-bezier(0.6, 0, 0.85, 0.45)';
+
+    function climb(delay) {
+      const coin = $('.st-coin', svg);
+      const weights = pts.slice(1).map((p, i) => (i === pts.length - 2 ? 2.2 : 1));
+      const total = weights.reduce((a, b) => a + b, 0) + 0.6;       // + the landing settle
+      const frames = [{ transform: tf(pts[0].x, pts[0].y, pts[0].s), offset: 0, easing: UP }];
+      let at = 0;
+      for (let i = 1; i < pts.length; i++) {
+        const a = pts[i - 1], b = pts[i], w = weights[i - 1];
+        const lift = (i === pts.length - 1 ? 70 : 22) * (a.s + b.s) / 2;
+        frames.push({ transform: tf((a.x + b.x) / 2, Math.min(a.y, b.y) - lift, (a.s + b.s) / 2, -12), offset: (at + w / 2) / total, easing: DOWN });
+        at += w;
+        const last = i === pts.length - 1;
+        frames.push({ transform: last ? tf(b.x, b.y + 4, b.s, 0, 1.08, 0.9) : tf(b.x, b.y, b.s), offset: at / total, easing: UP });
+      }
+      frames.push({ transform: tf(C.x, C.y, 1), offset: 1 });
+      coin.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 260, delay, fill: 'both' });
+      return coin.animate(frames, { duration: 3300, delay: delay + 180, fill: 'both' }).finished;
+    }
+
+    function run() {
+      // 1. The cover parts from the middle out
+      $$('.st-puff', svg).forEach((p) => {
+        const cx = +p.getAttribute('cx'), cy = +p.getAttribute('cy');
+        const dx = cx - 960, dy = cy - 540, d = Math.hypot(dx, dy) || 1;
+        const push = 260 + Math.random() * 160;
+        p.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: `translate(${(dx / d) * push}px, ${(dy / d) * push * 0.6}px) scale(1.35)` }],
+          { duration: 1500 + Math.random() * 400, delay: 120 + d * 0.35, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', fill: 'both' });
+      });
+      // 2. The scene's own clouds drift out into place
+      $$('.st-cloud', svg).forEach((c, i) => {
+        const dir = c.dataset.side === 'l' ? 1 : -1;
+        c.animate([{ opacity: 0, transform: `translateX(${dir * 70}px)` }, { opacity: 1, transform: 'none' }],
+          { duration: 1400, delay: 500 + i * 70, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'both' });
+      });
+      // 3. The coin climbs, lands, glints; sparkles come on
+      climb(1300).then(() => {
+        $('.st-glint', svg).animate([{ opacity: 0.9, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(1.6)' }],
+          { duration: 800, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' });
+        const sparks = $$('.st-spark', svg);
+        sparks.forEach((s, i) => s.animate([{ opacity: 0, transform: 'scale(0)' }, { opacity: 1, transform: 'scale(1.25)', offset: 0.6 }, { opacity: 1, transform: 'scale(1)' }],
+          { duration: 520, delay: i * 70, easing: 'cubic-bezier(0.22, 1, 0.36, 1)', fill: 'both' }));
+        setTimeout(() => svg.classList.add('is-done'), sparks.length * 70 + 520);
+      }).catch(() => svg.classList.add('is-done'));
+    }
+
+    /* Clouds make way for the cursor: each one is pushed gently away from the
+       pointer (strongest up close, nothing beyond ~240px), and eases back when
+       it leaves. Uses the CSS translate property, so it adds to the entrance
+       animation and the idle drift instead of fighting them. Mouse/trackpad only. */
+    function interact() {
+      if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+      const clouds = $$('.st-cloud', svg).map((el) => ({ el, x: 0, y: 0, tx: 0, ty: 0, cx: 0, cy: 0 }));
+      const RADIUS = 240, PUSH = 46;                               // screen px
+      let raf = 0;
+      const measure = () => {
+        clouds.forEach((c) => {
+          const r = c.el.getBoundingClientRect();
+          c.cx = r.left + r.width / 2 - c.x;                       // resting centre, without our offset
+          c.cy = r.top + r.height / 2 - c.y;
+        });
+      };
+      const tick = () => {
+        let moving = false;
+        clouds.forEach((c) => {
+          c.x += (c.tx - c.x) * 0.12; c.y += (c.ty - c.y) * 0.12;   // critically damped follow
+          if (Math.abs(c.tx - c.x) > 0.05 || Math.abs(c.ty - c.y) > 0.05) moving = true;
+          c.el.style.translate = `${c.x.toFixed(2)}px ${c.y.toFixed(2)}px`;
+        });
+        raf = moving ? requestAnimationFrame(tick) : 0;
+      };
+      const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
+      fig.addEventListener('pointerenter', measure);
+      fig.addEventListener('pointermove', (e) => {
+        clouds.forEach((c) => {
+          const dx = c.cx - e.clientX, dy = c.cy - e.clientY;
+          const d = Math.hypot(dx, dy) || 1;
+          const f = Math.max(0, 1 - d / RADIUS);
+          const push = PUSH * f * f * (3 - 2 * f);                 // smoothstep falloff
+          c.tx = (dx / d) * push; c.ty = (dy / d) * push * 0.6;     // translate px are screen px here
+        });
+        kick();
+      });
+      fig.addEventListener('pointerleave', () => { clouds.forEach((c) => { c.tx = 0; c.ty = 0; }); kick(); });
+      window.addEventListener('scroll', () => { if (fig.matches(':hover')) measure(); }, { passive: true });
+      window.addEventListener('resize', measure);
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { io.disconnect(); run(); interact(); }
+    }, { threshold: 0.25 });
+    io.observe(fig);
+  }
+  const stairs = $('[data-stairs]');
+  if (stairs) initStairs(stairs);
   initTouchCards();
   const evFilter = $('[data-ev-filter]');
   if (evFilter) initEventFilter(evFilter);
