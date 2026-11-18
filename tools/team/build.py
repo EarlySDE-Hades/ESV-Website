@@ -30,9 +30,9 @@ PAGES = [
 ]
 
 
-# Extra <head> tags for a single page: the Prologue page wears Prologue's own type
+# Extra <head> tags for a single page: the Prologue page uses IBM Plex Sans, per the Prologue brand guide
 EXTRA_HEAD = {
-    "prologue.html": '  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap" />\n',
+    "prologue.html": '  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" />\n',
 }
 
 
