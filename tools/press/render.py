@@ -112,5 +112,4 @@ def render():
         "{{ARTICLE_COUNT}}": str(len(items)),
         "{{STORY_COUNT}}": str(len(STORY_ORDER)),
         "{{COVERAGE_SPAN}}": f"Coverage {years[0]} to {years[-1]}",
-        "{{VERIFIED_LABEL}}": _date_label(data["verifiedOn"]),
     }
