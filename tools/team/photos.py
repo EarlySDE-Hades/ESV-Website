@@ -36,7 +36,7 @@ CROPS = []
 # Fine-tuning per person if the silhouette misreads (hair volume etc.): scale multiplier, x/y nudge (share of frame)
 TUNE = {"rahul-hingmire": (0.92, 0.0, 0.0),
         "sakshay-upadhyay": (1.12, 0.0, 0.0), "karan-shah": (1.08, 0.0, 0.0), "mehak-gupta": (0.78, 0.0, 0.0),
-        "dhwani-joshi": (2.4, 0.09, 0.0), "dale-galbano": (1.15, 0.0, 0.0), "sneha-lakra": (1.1, 0.0, 0.0),
+        "dhwani-joshi": (1.2089, -0.0282, 0.0029), "dale-galbano": (1.15, 0.0, 0.0), "sneha-lakra": (1.1, 0.0, 0.0),
         "siddarth-menon": (1.08, 0.0, 0.0),
         "s-robin": (1.0, -0.011, 0.001), "sandeep-agrawal": (1.055, 0.0, 0.012),
         "ruhaan-gupta": (1.0167, 0.0, -0.005)}
