@@ -1883,6 +1883,9 @@ p { text-wrap: pretty; }
 /* Thread: the trunk runs right through to the last curve (a pixel of overlap, invisible as the colour is solid) */
 .nav-thread::before { left: calc(var(--tx, 11px) - 0.75px); height: calc(var(--len, 120px) - 12px); }
 .nav-thread > li::before, .nav-thread > li:first-child::before { left: -20.75px; top: calc(50% - 14px); height: 14px; width: 14px; }
+/* Same stroke for trunk and curves: both are borders, so the browser snaps them to the same
+   device-pixel width (a 1.5px filled bar was anti-aliased across two pixels and read thicker) */
+.nav-thread::before { width: 0; background: none; border-left: 1.5px solid var(--thread); border-radius: 0; }
 
 /* ==========================================================================
    Prologue page (prologue.html, built from tools/prologue/main.html)
