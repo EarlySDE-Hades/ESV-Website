@@ -683,6 +683,7 @@
   initTouchCards();
   const evFilter = $('[data-ev-filter]');
   if (evFilter) initEventFilter(evFilter);
+  $$('[data-pl-tabs]').forEach(initPlTabs);
   $$('[data-co-dialog]').forEach((d) => { if (d.showModal) initCompanies(d); });
 
   /* ------------------------------------------------------------------------
@@ -856,6 +857,30 @@
      ------------------------------------------------------------------------ */
   /* Events filter: All / Offline / Online. A pill slides under the chosen option; events
      of the other kind are hidden, and a list with nothing left shows its empty line. */
+  /* Prologue offerings: ARIA tabs (click, arrow keys, Home / End) */
+  function initPlTabs(root) {
+    const tabs = $$('[role="tab"]', root);
+    const select = (tab, focus) => {
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+      if (focus) tab.focus();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(t));
+      t.addEventListener('keydown', (e) => {
+        const n = tabs.length;
+        const k = { ArrowRight: i + 1, ArrowLeft: i - 1 + n, Home: 0, End: n - 1 }[e.key];
+        if (k === undefined) return;
+        e.preventDefault();
+        select(tabs[k % n], true);
+      });
+    });
+  }
+
   function initEventFilter(bar) {
     const btns = $$('.ev-filter__btn', bar), pill = $('.ev-filter__pill', bar);
     const lists = $$('[data-ev-list]');

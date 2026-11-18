@@ -30,6 +30,12 @@ PAGES = [
 ]
 
 
+# Extra <head> tags for a single page: the Prologue page wears Prologue's own type
+EXTRA_HEAD = {
+    "prologue.html": '  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap" />\n',
+}
+
+
 def relink(html, out, label):
     # Section anchors live on the homepage
     html = re.sub(r'href="#(?!main\b)([\w-]+)"', r'href="index.html#\1"', html)
@@ -42,6 +48,8 @@ def relink(html, out, label):
 for out, main_src, description, label in PAGES:
     main = (ROOT / main_src).read_text(encoding="utf-8")
     page_head = re.sub(r'(<meta name="description" content=")[^"]*', lambda m: m.group(1) + description, head)
+    if out in EXTRA_HEAD:
+        page_head = page_head.replace("</head>", EXTRA_HEAD[out] + "</head>")
     page = page_head + "<body>\n" + relink(header, out, label) + main + "\n" + relink(footer, out, label)
     (ROOT / out).write_text(page, encoding="utf-8", newline="\n")
     print("wrote", out)
