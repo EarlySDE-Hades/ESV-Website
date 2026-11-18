@@ -53,6 +53,11 @@ TEAM = [
     ("Team/cropped-FINAL-LOGO.png", "vis-legis", "Vis Legis Law Practice"),
     ("Team/RotaryMBS-Simple_RGB.png", "rotary", "Rotary"),
     ("Team/WILL_logo_negativo_340.png", "will", "Worldwide Independent Lawyers League"),
+    # Manan Patel's memberships (source: Founder Photos/Manan Patel Affiliations, gitignored)
+    ("../Founder Photos/Manan Patel Affiliations/BCAS.png", "bcas", "Bombay Chartered Accountants Society"),
+    ("../Founder Photos/Manan Patel Affiliations/CTC - Chamber of Tax Consultants.webp", "ctc", "The Chamber of Tax Consultants"),
+    ("../Founder Photos/Manan Patel Affiliations/Maccia.jpg", "maccia", "Maharashtra Chamber of Commerce, Industry and Agriculture"),
+    ("../Founder Photos/Manan Patel Affiliations/BNI Titan.jpg", "bni-titan", "BNI Titan"),
 ]
 
 # Display boxes in CSS px (assets are exported at 2x these)
@@ -157,8 +162,10 @@ def svg_aspect(path):
 def build(src_rel, slug, group):
     src = SRC / src_rel
     box = BOXES[group]
-    if group == "team" and slug in {"ascent", "corporate-connections", "ca-india", "yaha-water"}:
+    if group == "team" and slug in {"ascent", "corporate-connections", "ca-india", "yaha-water", "maccia", "bni-titan"}:
         box = dict(box, max_h=40)
+    if group == "team" and slug in {"ctc", "bcas"}:   # small lettering: shown tall (.profile__logo--tall)
+        box = dict(box, area=9000, max_w=180, max_h=80)
     dest_dir = OUT / group
     dest_dir.mkdir(parents=True, exist_ok=True)
     if src.suffix.lower() == ".svg":
