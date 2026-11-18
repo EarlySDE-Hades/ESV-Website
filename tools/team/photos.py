@@ -37,7 +37,7 @@ CROPS = []
 TUNE = {"rahul-hingmire": (0.92, 0.0, 0.0),
         "sakshay-upadhyay": (1.12, 0.0, 0.0), "karan-shah": (1.08, 0.0, 0.0), "mehak-gupta": (0.78, 0.0, 0.0),
         "dhwani-joshi": (1.2089, -0.0282, 0.0029), "dale-galbano": (1.15, 0.0, 0.0), "sneha-lakra": (1.1, 0.0, 0.0),
-        "siddarth-menon": (1.08, 0.0, 0.0),
+        "siddarth-menon": (1.099, 0.0278, -0.0212),
         "s-robin": (1.0, -0.011, 0.001), "sandeep-agrawal": (1.055, 0.0, 0.012),
         "ruhaan-gupta": (1.0167, 0.0, -0.005)}
 # Where the chin/neck sits, as a share of the height below the crown, when the silhouette can't show it
