@@ -2543,3 +2543,44 @@ html:not(.js) .st-cover { display: none; }
 .skeleton-line--role { width: 48%; margin-top: 10px; }
 @keyframes skeleton-shimmer { from { background-position: 100% 0; } to { background-position: 0 0; } }
 @media (prefers-reduced-motion: reduce) { .person__photo--skeleton, .skeleton-line { animation: none; } }
+
+/* Team profile: "Works" (books etc.) — a small pill that expands to show the covers */
+.profile__works { margin-top: 22px; }
+.profile__works-btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+  background: var(--purple-wash, #EEEBFF); color: #4B38D8; cursor: pointer; list-style: none;
+  font: 600 0.75rem/1 var(--font-sans); letter-spacing: 0.08em; text-transform: uppercase;
+  transition: background-color .2s ease;
+}
+.profile__works-btn::-webkit-details-marker { display: none; }
+.profile__works-btn:focus-visible { outline: 2px solid #4B38D8; outline-offset: 3px; }
+.profile__works-n { display: inline-grid; place-items: center; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: #fff; font-size: 0.6875rem; letter-spacing: 0; }
+.profile__works-btn svg { transition: transform .25s ease; }
+.profile__works[open] .profile__works-btn svg { transform: rotate(180deg); }
+@media (hover: hover) and (pointer: fine) { .profile__works-btn:hover { background: #E2DCFF; } }
+.works { display: grid; gap: 14px; margin-top: 16px; }
+.work { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 16px; align-items: center; animation: work-in .35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.work__cover { width: 72px; height: auto; border-radius: 4px; box-shadow: 0 6px 16px -6px rgba(20, 20, 40, .35); }
+.work__title { font: 600 0.9375rem/1.35 var(--font-sans); color: var(--ink); }
+.work__sub { margin-top: 4px; font: 400 0.8125rem/1.45 var(--font-sans); color: var(--ink-2); }
+.work__meta { margin-top: 6px; font: 500 0.75rem/1 var(--font-sans); color: var(--ink-3); }
+@keyframes work-in { from { opacity: 0; transform: translateY(-6px); } }
+@media (prefers-reduced-motion: reduce) { .work, .profile__works-btn svg { animation: none; transition: none; } }
+/* Board roles etc.: a company logo on a white tile in place of a book cover */
+.work--org { grid-template-columns: 96px minmax(0, 1fr); }
+.work__logo { display: grid; place-items: center; width: 96px; height: 64px; padding: 10px; border-radius: 10px; background: #fff; box-shadow: inset 0 0 0 1px rgba(20, 20, 40, .08); }
+.work__logo img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+.work--org .work__meta { margin-top: 5px; }
+/* Even logo rows: every logo gets the same area (height = sqrt(area / aspect ratio)), so a long
+   wordmark and a square crest read at the same visual weight. --ar (width/height) is set per image. */
+.profile__logos.profile__logos--even { gap: 18px 30px; }
+.profile__logos.profile__logos--even li { min-height: 0; }
+.profile__logos.profile__logos--even img,
+.profile__logos.profile__logos--even img.profile__logo--tall {
+  width: auto; max-width: none; max-height: none;
+  height: calc(sqrt(3800 / var(--ar, 2)) * 1px);
+}
+@media (max-width: 480px) {
+  .profile__logos.profile__logos--even img,
+  .profile__logos.profile__logos--even img.profile__logo--tall { height: calc(sqrt(2900 / var(--ar, 2)) * 1px); }
+}
