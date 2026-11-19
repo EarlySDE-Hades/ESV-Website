@@ -305,19 +305,52 @@
       <!-- Same draggable strip as the portfolio; four partners visible at a time (data-visible) -->
       <div class="carousel container" data-carousel data-visible="4" data-reveal style="--i:1">
         <button class="carousel__arrow" type="button" aria-label="Previous partners" data-strip-prev><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <div class="strip" data-strip tabindex="0" role="region" aria-roledescription="carousel" aria-label="Campus partners: drag, swipe, or use the arrows; select a logo for its bootcamps">
+      <div class="strip" data-strip tabindex="0" role="region" aria-roledescription="carousel" aria-label="Campus partners: drag, swipe, or use the arrows; select a logo for details">
         <ul class="strip__track" role="list" data-strip-track>
-          <li class="company"><a class="company__mark" href="bootcamps.html#nmims" aria-label="SVKM&#x27;s NMIMS: bootcamps"><img src="assets/logos/campus/nmims.webp" alt="SVKM&#x27;s NMIMS" width="74" height="74" loading="lazy" decoding="async" draggable="false" /></a></li>
-          <li class="company"><a class="company__mark" href="bootcamps.html#manipal" aria-label="Manipal Academy of Higher Education: bootcamps"><img src="assets/logos/campus/manipal.webp" alt="Manipal Academy of Higher Education" width="191" height="50" loading="lazy" decoding="async" draggable="false" /></a></li>
-          <li class="company"><a class="company__mark" href="bootcamps.html#mit-wpu" aria-label="MIT World Peace University, Pune: bootcamps"><img src="assets/logos/campus/mit-wpu.webp" alt="MIT World Peace University, Pune" width="176" height="51" loading="lazy" decoding="async" draggable="false" /></a></li>
-          <li class="company"><a class="company__mark" href="bootcamps.html#wise-sndtwu" aria-label="WISE, SNDTWU Incubation Centre: bootcamps"><img src="assets/logos/campus/wise-sndtwu.webp" alt="WISE, SNDTWU Incubation Centre" width="105" height="64" loading="lazy" decoding="async" draggable="false" /></a></li>
-          <li class="company"><a class="company__mark" href="bootcamps.html#rcoem" aria-label="Shri Ramdeobaba College of Engineering and Management, Nagpur: bootcamps"><img src="assets/logos/campus/rcoem.webp" alt="Shri Ramdeobaba College of Engineering and Management, Nagpur" width="161" height="53" loading="lazy" decoding="async" draggable="false" /></a></li>
-          <li class="company"><a class="company__mark" href="bootcamps.html#msins" aria-label="Maharashtra State Innovation Society: bootcamps"><img src="assets/logos/campus/msins.webp" alt="Maharashtra State Innovation Society" width="182" height="51" loading="lazy" decoding="async" draggable="false" /></a></li>
+          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="nmims"><img src="assets/logos/campus/nmims.webp" alt="SVKM&#x27;s NMIMS" width="74" height="74" loading="lazy" decoding="async" draggable="false" /></button></li>
+          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="manipal"><img src="assets/logos/campus/manipal.webp" alt="Manipal Academy of Higher Education" width="191" height="50" loading="lazy" decoding="async" draggable="false" /></button></li>
+          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="mit-wpu"><img src="assets/logos/campus/mit-wpu.webp" alt="MIT World Peace University, Pune" width="176" height="51" loading="lazy" decoding="async" draggable="false" /></button></li>
+          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="wise-sndtwu"><img src="assets/logos/campus/wise-sndtwu.webp" alt="WISE, SNDTWU Incubation Centre" width="105" height="64" loading="lazy" decoding="async" draggable="false" /></button></li>
+          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="rcoem"><img src="assets/logos/campus/rcoem.webp" alt="Shri Ramdeobaba College of Engineering and Management, Nagpur" width="161" height="53" loading="lazy" decoding="async" draggable="false" /></button></li>
+          <li class="company"><button class="company__mark" type="button" aria-haspopup="dialog" data-company="msins"><img src="assets/logos/campus/msins.webp" alt="Maharashtra State Innovation Society" width="182" height="51" loading="lazy" decoding="async" draggable="false" /></button></li>
         </ul>
       </div>
         <button class="carousel__arrow" type="button" aria-label="Next partners" data-strip-next><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
 
+      <!-- Partner detail dialog: the company dialog component, fed by #partner-data below. -->
+      <dialog class="svc-dialog co-dialog" aria-labelledby="pa-dialog-title" data-co-dialog data-source="partner-data" data-scope="#team" data-kind="partner">
+        <div class="svc-dialog__panel co-dialog__panel" data-co-panel>
+          <button class="svc-dialog__close icon-btn" type="button" aria-label="Close" data-co-close>
+            <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </button>
+          <div class="co-dialog__content" data-co-content>
+            <div class="co-dialog__logo"><img alt="" data-co-logo /></div>
+            <p class="svc-dialog__group" data-co-sector></p>
+            <h3 class="svc-dialog__title co-dialog__title" id="pa-dialog-title" data-co-name></h3>
+            <p class="co-dialog__meta" data-co-meta></p>
+            <p class="co-dialog__summary" data-co-summary></p>
+            <a class="co-dialog__site" href="#" target="_blank" rel="noopener" data-co-site><span data-co-site-label></span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4h6v6M12 4l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            <section class="co-dialog__posts" aria-labelledby="pa-posts-title">
+              <h4 class="co-dialog__label" id="pa-posts-title">On the blog</h4>
+              <ul class="co-posts" role="list" data-co-posts></ul>
+              <p class="co-dialog__empty" data-co-empty>No posts about this partner yet. <a href="#perspectives" data-co-jump>Browse Perspectives</a></p>
+            </section>
+          </div>
+          <section class="co-dialog__others" aria-labelledby="pa-others-title">
+            <h4 class="co-dialog__label" id="pa-others-title">More campus partners</h4>
+            <div class="co-others-nav">
+              <button class="co-others__arrow" type="button" aria-label="Previous partners" data-co-prev><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <ul class="co-others" role="list" data-co-others></ul>
+              <button class="co-others__arrow" type="button" aria-label="Next partners" data-co-next><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            </div>
+          </section>
+          <div class="co-dialog__actions">
+            <a class="btn" href="#team" data-co-page>View partner page</a>
+            <a class="btn btn--ghost" href="#team" data-co-jump>All campus partners</a>
+          </div>
+        </div>
+      </dialog>
       <!-- Partner data. Summaries describe each institution; review before launch.
            Same fields as #portfolio-data; page = ESV partner page URL, posts = blog posts about the partnership. -->
       <script type="application/json" id="partner-data">
@@ -330,7 +363,7 @@
           "founded": "1981",
           "summary": "Narsee Monjee Institute of Management Studies, a deemed-to-be university run by Shri Vile Parle Kelavani Mandal, with schools across management, engineering, law, commerce and more.",
           "website": "https://www.nmims.edu/",
-          "page": null,
+          "page": "bootcamps.html#nmims",
           "posts": []
         },
         {
@@ -341,7 +374,7 @@
           "founded": "1953",
           "summary": "MAHE, an Institution of Eminence deemed-to-be university, spanning medicine, engineering, management, design and the sciences.",
           "website": "https://manipal.edu/",
-          "page": null,
+          "page": "bootcamps.html#manipal",
           "posts": []
         },
         {
@@ -352,7 +385,7 @@
           "founded": null,
           "summary": "Dr. Vishwanath Karad MIT World Peace University, a private university in Pune with programmes across technology, management, design, law and the liberal arts.",
           "website": "https://mitwpu.edu.in/",
-          "page": null,
+          "page": "bootcamps.html#mit-wpu",
           "posts": []
         },
         {
@@ -363,7 +396,7 @@
           "founded": null,
           "summary": "The incubation centre at SNDT Women's University, supporting women-led and student startups from idea to launch.",
           "website": null,
-          "page": null,
+          "page": "bootcamps.html#wise-sndtwu",
           "posts": []
         },
         {
@@ -374,7 +407,7 @@
           "founded": "1984",
           "summary": "RCOEM, an autonomous engineering and management college in Nagpur run by the Shri Ramdeobaba Sarvajanik Samiti.",
           "website": "https://www.rknec.edu/",
-          "page": null,
+          "page": "bootcamps.html#rcoem",
           "posts": []
         },
         {
@@ -385,7 +418,7 @@
           "founded": null,
           "summary": "MSInS, the Government of Maharashtra's nodal body for innovation and startups, running programmes, grants and incubator support across the state.",
           "website": "https://msins.in/",
-          "page": null,
+          "page": "bootcamps.html#msins",
           "posts": []
         }
       ]
@@ -856,6 +889,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=2026111818001" defer></script>
+  <script src="js/main.js?v=202611191900" defer></script>
 </body>
 </html>

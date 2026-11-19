@@ -236,6 +236,7 @@
     },
     {
       "slug": "jimz-cart",
+      "motion": "once",
       "name": "JimzCart",
       "sector": "Commerce & Retail",
       "tag": "Grocery retail",
@@ -316,6 +317,44 @@
         "Regional HQ in Abu Dhabi, 2024"
       ],
       "website": "https://esports.battlexo.com/",
+      "pressTopic": null
+    },
+    {
+      "slug": "regenerix",
+      "name": "Regenerix",
+      "sector": "Climate & Mobility",
+      "tag": "Clean Energy",
+      "location": "",
+      "short": "Regenerix is a women-led climate-tech company that turns crop stubble into clean fuel. It clears farmers' fields of residue at no cost and converts it into biomass pellets on-site, giving industry a lower-carbon alternative to coal while helping end stubble burning.",
+      "description": "Regenerix is a women-led climate-tech company, incubated at IIT Kanpur, that tackles one of India's biggest sources of air pollution: the burning of crop stubble. Every year, millions of tonnes of residue are set alight across Indian farms after harvest. Regenerix offers farmers another way out. Using its patented stubble removal technology, it collects the residue straight from the fields at no cost to the farmer and converts it into biofuel pellets on-site. Those pellets give industries a cleaner, cost-competitive alternative to coal, cutting emissions at both ends: in the fields where stubble would have been burned, and in the boilers where coal would have been fired. The company is led by founder and CEO Aanchal Jain.",
+      "team": [
+        "Aanchal Jain"
+      ],
+      "milestones": [
+        "Incubated at IIT Kanpur",
+        "Patented stubble removal technology"
+      ],
+      "website": "https://regenerix.in/",
+      "pressTopic": null
+    },
+    {
+      "slug": "kalaneca",
+      "name": "Kalaneca",
+      "sector": "Consumer Brands",
+      "tag": "Handloom Fashion",
+      "location": "",
+      "short": "Kalaneca is a handloom saree brand that works with Uppada silk weavers in Andhra Pradesh. Started by twin sisters Ramya Rao and Kavea Chavali, it is known for customised designs kept exclusive to each customer, and sells to buyers across India and abroad.",
+      "description": "Kalaneca is a handloom saree brand built around the weavers of Uppada, a village near Kakinada in Andhra Pradesh known for its fine silk. It was started by twin sisters Ramya Rao and Kavea Chavali, inspired by their mother: what began as a hobby in 2014 became a full brand by 2018. Kalaneca works with around 75 weavers on 140 looms, and Uppada silk remains at the heart of its collections alongside cotton sarees. Customisation sets it apart. Each custom design is kept exclusive to the customer it was made for, from wedding sarees to everyday drapes. Over the past decade the brand has sold around 100,000 sarees, with customers in the US, UK, Australia, Singapore, Malaysia and Ireland, while bringing Uppada's handloom craft to a wider audience.",
+      "team": [
+        "Ramya Rao",
+        "Kavea Chavali"
+      ],
+      "milestones": [
+        "Started in 2014, launched as a brand in 2018",
+        "About 75 weavers on 140 looms",
+        "Around 100,000 sarees sold"
+      ],
+      "website": "https://kalaneca.com/",
       "pressTopic": null
     }
   ]

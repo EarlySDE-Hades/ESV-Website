@@ -895,15 +895,26 @@
       // loop: play while hovered, back to the first frame on leave.
       // once: play from the start, hold the last frame (the settled state) while hovered and after leaving.
       const once = v.dataset.cardVideo === 'once';
+      let hovered = false;
+      // Hold the last frame (matches the poster). If the length isn't known yet (left before it loaded), wait for it.
+      const toEnd = () => {
+        if (hovered) return;
+        if (v.duration) v.currentTime = Math.max(0, v.duration - 0.05);
+        else v.addEventListener('loadedmetadata', toEnd, { once: true });
+      };
       const start = () => {
+        hovered = true;
         v.preload = 'auto';
         if (once) v.currentTime = 0;
-        const p = v.play(); if (p && p.catch) p.catch(() => {});
+        const p = v.play();
+        // a play() that resolves after the pointer already left must not keep playing
+        if (p && p.then) p.then(() => { if (!hovered) stop(); }, () => {});
       };
       const stop = () => {
+        hovered = false;
         v.pause();
         if (!once) v.currentTime = 0;
-        else if (v.duration) v.currentTime = Math.max(0, v.duration - 0.05);
+        else toEnd();
       };
       card.addEventListener('pointerenter', start);
       card.addEventListener('pointerleave', stop);
@@ -1358,7 +1369,7 @@
     const scope = $(dialog.dataset.scope || '#portfolio');
     const partner = dialog.dataset.kind === 'partner';
     const T = partner
-      ? { kind: 'Campus partner', empty: 'A full partner profile is on its way.', page: 'View partner page', soon: 'Partner page coming soon' }
+      ? { kind: 'Campus partner', empty: 'A full partner profile is on its way.', page: 'View bootcamps', soon: 'Bootcamps coming soon' }
       : { kind: 'Portfolio company', empty: 'A full company profile is on its way.', page: 'View company page', soon: 'Company page coming soon' };
     let data;
     try { data = JSON.parse($(`#${dialog.dataset.source || 'portfolio-data'}`).textContent); } catch (err) { return; }
