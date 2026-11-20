@@ -883,13 +883,15 @@
      hover starts them straight away.
      ------------------------------------------------------------------------ */
   function initCardVideos(videos) {
-    if (!videos.length || reduceMotion.matches || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) { e.target.preload = 'auto'; io.unobserve(e.target); } });
-      }, { rootMargin: '300px 0px' });
-      videos.forEach((v) => io.observe(v));
-    }
+    if (!videos.length || reduceMotion.matches || !('IntersectionObserver' in window)) return;
+    const hover = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const saveData = navigator.connection && navigator.connection.saveData;
+    if (!hover && saveData) return;                                   // Data Saver on: keep the still images
+    const pre = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.preload = 'auto'; pre.unobserve(e.target); } });
+    }, { rootMargin: '300px 0px' });
+    videos.forEach((v) => pre.observe(v));
+    if (!hover) { initCardVideosScroll(videos); return; }
     videos.forEach((v) => {
       const card = v.closest('a') || v;
       // loop: play while hovered, back to the first frame on leave.
@@ -912,14 +914,76 @@
       };
       const stop = () => {
         hovered = false;
+        // once: never stop part-way; it plays on to its last frame and rests there (no seek needed,
+        // so it also works on servers that can't seek inside a video)
+        if (once) { if (v.paused) toEnd(); return; }
         v.pause();
-        if (!once) v.currentTime = 0;
-        else toEnd();
+        v.currentTime = 0;
       };
       card.addEventListener('pointerenter', start);
       card.addEventListener('pointerleave', stop);
       card.addEventListener('focus', start);
       card.addEventListener('blur', stop);
+    });
+  }
+
+  /* Touch screens (no hover): the card nearest the middle of the screen plays, one at a time.
+     loop: plays while it is the middle card, back to its first frame when another takes over.
+     once: plays the first time it reaches the middle, then holds its last frame (the poster). */
+  function initCardVideosScroll(videos) {
+    const near = new Set();
+    const played = new WeakSet();
+    let current = null;
+    const toEnd = (v) => {
+      if (v.duration) v.currentTime = Math.max(0, v.duration - 0.05);
+      else v.addEventListener('loadedmetadata', () => { if (v !== current) toEnd(v); }, { once: true });
+    };
+    const release = (v) => {
+      if (v.dataset.cardVideo === 'once') { if (v.paused && !v.ended && played.has(v)) toEnd(v); return; }   // let it finish on its last frame
+      v.pause();
+      v.currentTime = 0;
+    };
+    const activate = (v) => {
+      if (v === current) return;
+      if (current) release(current);
+      current = v;
+      if (!v) return;
+      const once = v.dataset.cardVideo === 'once';
+      if (once && played.has(v)) return;                              // already told its story: stay on the last frame
+      if (once) { played.add(v); v.currentTime = 0; }
+      v.preload = 'auto';
+      const p = v.play();
+      // iPhone Low Power Mode etc. refuse autoplay: the poster simply stays
+      if (p && p.then) p.then(() => { if (v !== current) release(v); }, () => {});
+    };
+    const pick = () => {
+      const mid = innerHeight / 2;
+      let best = null, bestD = Infinity;
+      near.forEach((v) => {
+        const r = v.getBoundingClientRect();
+        const d = Math.abs(r.top + r.height / 2 - mid);
+        if (d < bestD) { bestD = d; best = v; }
+      });
+      activate(best);
+    };
+    // "near" = crossing the middle 10% of the screen
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) near.add(e.target); else near.delete(e.target); });
+      pick();
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    videos.forEach((v) => io.observe(v));
+    let ticking = false;
+    addEventListener('scroll', () => {
+      if (ticking || near.size < 2) return;                           // only needs re-ranking when two cards share the middle
+      ticking = true;
+      requestAnimationFrame(() => { ticking = false; pick(); });
+    }, { passive: true });
+    // Pause when the tab is hidden; resume the middle card on return
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) { if (current) current.pause(); }
+      else if (current && !(current.dataset.cardVideo === 'once' && current.ended)) {
+        const p = current.play(); if (p && p.catch) p.catch(() => {});
+      }
     });
   }
   initCardVideos($$('[data-card-video]'));
