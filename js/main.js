@@ -361,9 +361,11 @@
     { title: 'Fundraise Readiness Package', section: 'Prologue', href: 'prologue.html#pl-services' },
     { title: 'Founders’ Bootcamp', section: 'Prologue', href: 'prologue.html#pl-services' },
     { title: 'Pre-funding: data room, consultancy', section: 'Prologue', href: '#prologue' },
-    { title: 'From the deal table', section: 'Perspectives', href: '#perspectives' },
-    { title: 'Founder Stories', section: 'Perspectives', href: '#perspectives' },
-    { title: 'Podcasts', section: 'Perspectives', href: '#perspectives' },
+    { title: 'Our Perspectives: articles and newsletter', section: 'Perspectives', href: 'perspectives.html' },
+    { title: 'Indian Startup Chronicle', section: 'Perspectives', href: 'perspectives.html#chronicle' },
+    { title: 'From the deal table', section: 'Perspectives', href: 'perspectives.html#deal-table' },
+    { title: 'Founder Stories', section: 'Perspectives', href: 'perspectives.html#founder-stories' },
+    { title: 'Podcasts', section: 'Perspectives', href: 'perspectives.html#podcasts' },
     { title: 'Us in the News: press coverage', section: 'Our Press', href: 'press.html' },
     { title: 'Our portfolio: all companies', section: 'Portfolio', href: 'portfolio.html' },
     { title: 'Bootcamps: founder bootcamps on campus', section: 'Bootcamps', href: 'bootcamps.html' },
@@ -801,12 +803,11 @@
   if (stairs) initStairs(stairs);
 
   /* ------------------------------------------------------------------------
-     About: scroll-drawn lines (How we work, Our growth journey). Each [data-thread]
+     About: hand-drawn lines (How we work, Our growth journey). Each [data-thread]
      gets a line with a scribbled knot at every [data-thread-node]; the line draws
      with the scroll, each knot and its text appear as the line reaches them, and
      what has been drawn stays. data-thread-h runs across on wide screens, and
      falls back to the vertical line on narrower ones.
-     data-thread-clean: a straight line from the first point to the last, with round points.
      ------------------------------------------------------------------------ */
   function initThread(el) {
     const NS = 'http://www.w3.org/2000/svg';
@@ -818,7 +819,6 @@
     el.prepend(svg);
     el.classList.add('is-live');
     const still = reduceMotion.matches;
-    const clean = el.hasAttribute('data-thread-clean');
     let pos = [], len = 0, start = 0, line = null, best = still ? 1 : 0, horiz = false, size = '', raf = 0;
 
     // Seeded, so the hand-drawn shapes are the same on every visit and after a resize
@@ -834,10 +834,10 @@
       return d;
     }
     function scribble(x, y, r) {
-      const pts = [], turns = 3.6, n = 40, ph = r() * 6.28, sx = 0.8 + r() * 0.35, sy = 0.8 + r() * 0.35;
-      const ox = (r() - 0.5) * 3, oy = (r() - 0.5) * 3;
+      const pts = [], n = 46, ph = r() * 6.28, sx = 0.82 + r() * 0.4, sy = 0.82 + r() * 0.4;
+      const ox = (r() - 0.5) * 7, oy = (r() - 0.5) * 5;                     // the loose loops sit off-centre
       for (let i = 0; i <= n; i++) {
-        const k = i / n, a = ph + k * turns * 6.283, rad = 7.5 - 5.5 * k + (r() - 0.5) * 1.6;
+        const k = i / n, a = ph + k * 3.4 * 6.283, rad = 8.6 - 6.2 * k + (r() - 0.5) * 1.8;
         pts.push([x + ox * (1 - k) + Math.cos(a) * rad * sx, y + oy * (1 - k) + Math.sin(a) * rad * sy]);
       }
       return curve(pts);
@@ -880,28 +880,21 @@
           // relative to its own step, so the step's reveal shift cancels out
           return n.offsetTop + t.getBoundingClientRect().top - n.getBoundingClientRect().top + t.offsetHeight / 2;
         });
-        if (clean) {
-          start = pos[0];
-          len = pos[pos.length - 1] - start;
-          pts.push([20, start], [20, start + len]);
-        } else {
         pts.push([15 + r() * 3, 0]);
         if (pos[0] > 50) pts.push([18, 34]);
         pos.forEach((y, i) => {
           pts.push([20 + (r() - 0.5) * 2, y]);
           const gap = (i < pos.length - 1 ? pos[i + 1] : len) - y;
           if (gap > 110) {
-            const b = (r() - 0.5) * (r() > 0.5 ? 14 : 3);
+            const b = (i % 2 ? -1 : 1) * (5 + r() * 6);
             pts.push([20 + b * 0.35, y + gap * 0.3], [20 + b, y + gap * 0.62], [20 + b * 0.4, y + gap * 0.86]);
           }
         });
         pts.push([17 + r() * 8, len]);
-        }
       }
       line = add(curve(pts), 'thread__line');
-      nodes.forEach((n, i) => { 
-        n._knot = clean ? add(`M13 ${pos[i]}a7 7 0 1 1 14 0a7 7 0 1 1-14 0Z`, 'thread__dot')
-          : add(horiz ? scribble(pos[i], 19, r) : scribble(19.5, pos[i], r), 'thread__knot');
+      nodes.forEach((n, i) => {
+        n._knot = add(horiz ? scribble(pos[i], 19, r) : scribble(19.5, pos[i], r), 'thread__knot');
       });
       pos = pos.map((p) => (p - start) / len);
       draw();
@@ -1059,6 +1052,35 @@
   }
   const pfFilter = $('[data-pf-filter]');
   if (pfFilter) initPortfolioFilter(pfFilter);
+
+  /* ------------------------------------------------------------------------
+     Our Perspectives: the journal opens once when it is in view (the turning is
+     all CSS), and a link to a series (#id) opens that series' list.
+     ------------------------------------------------------------------------ */
+  const book = $('[data-book]');
+  if (book) {
+    if (reduceMotion.matches || !('IntersectionObserver' in window)) book.classList.add('is-open');
+    else {
+      const io = new IntersectionObserver((es) => {
+        if (es.some((e) => e.isIntersecting)) { io.disconnect(); setTimeout(() => book.classList.add('is-open'), 350); }
+      }, { threshold: 0.2 });
+      io.observe(book);
+    }
+    const openSeries = (id) => {
+      const el = id && document.getElementById(id);
+      if (!el || !el.matches('.pv-series')) return false;
+      el.open = true;
+      el.scrollIntoView({ behavior: reduceMotion.matches ? 'auto' : 'smooth', block: 'start' });
+      return true;
+    };
+    $$('[data-series-link]').forEach((a) => a.addEventListener('click', (e) => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+      const id = a.hash.slice(1);
+      if (openSeries(id)) { e.preventDefault(); history.replaceState(null, '', '#' + id); }
+    }));
+    addEventListener('hashchange', () => openSeries(location.hash.slice(1)));
+    if (location.hash) openSeries(location.hash.slice(1));
+  }
 
   /* ------------------------------------------------------------------------
      Home Perspectives: each row opens as it scrolls into view and stays open,

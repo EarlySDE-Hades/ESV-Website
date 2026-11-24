@@ -1,0 +1,59 @@
+  <main id="main" class="pv-page">
+    <!-- ============================== Perspectives hero: a journal that opens ============================== -->
+    <!-- The contents, covers and series come from tools/perspectives/posts.json via tools/team/build.py (double-brace placeholders).
+         js initBook opens the book once; without JS it is simply an open spread. -->
+    <section class="pv-hero" aria-labelledby="pv-title">
+      <div class="container pv-hero__inner">
+        <div class="book" data-book>
+          <div class="book__right">
+            <h2 class="book__label">Contents</h2>
+            <ol class="book__toc" role="list">
+{{CONTENTS}}
+            </ol>
+            <p class="book__folio"><span>{{POST_COUNT}} articles</span><span>{{SERIES_COUNT}} series</span></p>
+          </div>
+          <div class="book__turn book__turn--left">
+            <div class="book__left">
+              <img class="book__logo" src="assets/brand/logo-dark.png" alt="" width="136" height="51" />
+              <h1 class="book__title" id="pv-title">Our Perspectives</h1>
+              <p class="book__lede">Fundraising playbooks, founder stories and our work across India’s startup ecosystem.</p>
+              <a class="btn book__cta" href="perspectives.html#latest">Start reading <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 3v10M3.5 8.5 8 13l4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+            <span class="book__back" aria-hidden="true"></span>
+          </div>
+          <div class="book__turn book__turn--leaf2" aria-hidden="true"><span class="book__blank"></span><span class="book__back"></span></div>
+          <div class="book__turn book__turn--leaf1" aria-hidden="true"><span class="book__blank"></span><span class="book__back"></span></div>
+          <div class="book__turn book__turn--cover" aria-hidden="true"><span class="book__blank"></span><span class="book__back book__cover"><img src="assets/brand/logo-light.png" alt="" width="212" height="80" /><span>Perspectives</span></span></div>
+          <span class="book__ribbon" aria-hidden="true"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== Latest: covers on a shelf ============================== -->
+    <section class="section pv-latest" id="latest" aria-labelledby="latest-title">
+      <div class="container pv-latest__head" data-reveal>
+        <h2 class="ab-title" id="latest-title">Off the shelf</h2>
+        <p class="ab-sub">Our latest writing, newest first.</p>
+      </div>
+      <div class="carousel container pv-shelf" data-carousel data-reveal style="--i:1">
+        <button class="carousel__arrow" type="button" aria-label="Previous articles" data-strip-prev><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="strip" data-strip tabindex="0" role="region" aria-roledescription="carousel" aria-label="Latest articles: drag, swipe, or use the arrows">
+          <ul class="strip__track" role="list" data-strip-track>
+{{COVERS}}
+          </ul>
+        </div>
+        <button class="carousel__arrow" type="button" aria-label="Next articles" data-strip-next><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </section>
+
+    <!-- ============================== Every series ============================== -->
+    <section class="section pv-all" aria-labelledby="pv-all-title">
+      <div class="container">
+        <h2 class="ab-title" id="pv-all-title" data-reveal>Browse by series</h2>
+        <div class="pv-list" data-series-list>
+{{SERIES}}
+        </div>
+        <p class="press-contact" data-reveal>Get the next edition: <a href="https://earlyseedventures.substack.com/" target="_blank" rel="noopener noreferrer">subscribe on Substack<span class="visually-hidden"> (opens in a new tab)</span></a> · Story ideas: <a href="mailto:info@earlyseedventures.com">info@earlyseedventures.com</a></p>
+      </div>
+    </section>
+  </main>

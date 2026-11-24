@@ -3,6 +3,7 @@
     about.html   <- tools/about/main.html
     team.html    <- tools/team/main.html
     press.html   <- tools/press/main.html (+ tools/press/press.json)
+    perspectives.html, perspective-<slug>.html  <- tools/perspectives/ (+ posts.json)
     portfolio.html, portfolio-<slug>.html  <- tools/portfolio/ (+ companies.json)
     events.html  <- tools/events/main.html
     event-seed-to-success.html  <- tools/events/seed-to-success.html
@@ -29,6 +30,7 @@ PAGES = [
     ("about.html", "tools/about/main.html", "Earlyseed Ventures is a boutique investment banking firm in Mumbai, helping tech start-ups raise seed to Series A rounds.", "About"),
     ("team.html", "tools/team/main.html", "The leadership team, strategic growth partners and team behind Earlyseed Ventures.", "Team"),
     ("portfolio.html", "tools/portfolio/main.html", "The companies Earlyseed Ventures has raised for and invested in, from rural commerce and space-tech to AI and consumer brands.", "Our Portfolio"),
+    ("perspectives.html", "tools/perspectives/main.html", "Our Perspectives: fundraising playbooks, founder stories and the Indian Startup Chronicle, from Earlyseed Ventures.", "Our Perspectives"),
     ("press.html", "tools/press/main.html", "Us in the News: media coverage, funding announcements and industry conversations featuring Earlyseed Ventures and its co-founders.", "Our Press"),
     ("bootcamps.html", "tools/bootcamps/main.html", "Founder bootcamps on campus: Earlyseed Ventures works with universities and incubators on business planning, pitch decks, financial projections and access to investors.", "Bootcamps"),
     ("events.html", "tools/events/main.html", "Founder meet-ups, investor sessions and campus programmes from Earlyseed Ventures.", "Events"),
@@ -65,8 +67,9 @@ def _load(name, path):
 
 press_render = _load("press_render", "tools/press/render.py")
 portfolio_render = _load("portfolio_render", "tools/portfolio/render.py")
+perspectives_render = _load("perspectives_render", "tools/perspectives/render.py")
 bootcamps_render = _load("bootcamps_render", "tools/bootcamps/render.py")
-FILLERS = {"press.html": press_render.render, "portfolio.html": portfolio_render.render_portfolio, "bootcamps.html": bootcamps_render.render}
+FILLERS = {"press.html": press_render.render, "perspectives.html": perspectives_render.render, "portfolio.html": portfolio_render.render_portfolio, "bootcamps.html": bootcamps_render.render}
 
 
 def write(out, main, description, label):
@@ -89,3 +92,7 @@ for out, main_src, description, label in PAGES:
 # One page per portfolio company (portfolio-<slug>.html)
 for out, main, description in portfolio_render.company_pages():
     write(out, main, description, "Our Portfolio")
+
+# One page per article hosted on this site (perspective-<slug>.html)
+for out, main, description in perspectives_render.article_pages():
+    write(out, main, description, "Our Perspectives")
