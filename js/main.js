@@ -801,6 +801,227 @@
   if (stairs) initStairs(stairs);
 
   /* ------------------------------------------------------------------------
+     About: scroll-drawn lines (How we work, Our growth journey). Each [data-thread]
+     gets a line with a scribbled knot at every [data-thread-node]; the line draws
+     with the scroll, each knot and its text appear as the line reaches them, and
+     what has been drawn stays. data-thread-h runs across on wide screens, and
+     falls back to the vertical line on narrower ones.
+     data-thread-clean: a straight line from the first point to the last, with round points.
+     ------------------------------------------------------------------------ */
+  function initThread(el) {
+    const NS = 'http://www.w3.org/2000/svg';
+    const wide = matchMedia('(min-width: 1100px)');
+    const nodes = $$('[data-thread-node]', el);
+    const svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('class', 'thread__svg');
+    svg.setAttribute('aria-hidden', 'true');
+    el.prepend(svg);
+    el.classList.add('is-live');
+    const still = reduceMotion.matches;
+    const clean = el.hasAttribute('data-thread-clean');
+    let pos = [], len = 0, start = 0, line = null, best = still ? 1 : 0, horiz = false, size = '', raf = 0;
+
+    // Seeded, so the hand-drawn shapes are the same on every visit and after a resize
+    function rng(seed) { let s = seed * 9301 + 49297; return () => { s = (s * 9301 + 49297) % 233280; return s / 233280; }; }
+    // Smooth curve through points (Catmull-Rom as beziers)
+    function curve(p) {
+      const f = (n) => n.toFixed(1);
+      let d = `M${f(p[0][0])} ${f(p[0][1])}`;
+      for (let i = 0; i < p.length - 1; i++) {
+        const a = p[i - 1] || p[i], b = p[i], c = p[i + 1], e = p[i + 2] || c;
+        d += `C${f(b[0] + (c[0] - a[0]) / 6)} ${f(b[1] + (c[1] - a[1]) / 6)} ${f(c[0] - (e[0] - b[0]) / 6)} ${f(c[1] - (e[1] - b[1]) / 6)} ${f(c[0])} ${f(c[1])}`;
+      }
+      return d;
+    }
+    function scribble(x, y, r) {
+      const pts = [], turns = 3.6, n = 40, ph = r() * 6.28, sx = 0.8 + r() * 0.35, sy = 0.8 + r() * 0.35;
+      const ox = (r() - 0.5) * 3, oy = (r() - 0.5) * 3;
+      for (let i = 0; i <= n; i++) {
+        const k = i / n, a = ph + k * turns * 6.283, rad = 7.5 - 5.5 * k + (r() - 0.5) * 1.6;
+        pts.push([x + ox * (1 - k) + Math.cos(a) * rad * sx, y + oy * (1 - k) + Math.sin(a) * rad * sy]);
+      }
+      return curve(pts);
+    }
+    function add(d, cls) {
+      const p = document.createElementNS(NS, 'path');
+      p.setAttribute('d', d);
+      p.setAttribute('class', cls);
+      p.setAttribute('pathLength', '1');
+      svg.appendChild(p);
+      return p;
+    }
+    function build() {
+      const box = el.getBoundingClientRect();
+      horiz = el.hasAttribute('data-thread-h') && wide.matches;
+      const key = `${Math.round(box.width)}x${Math.round(box.height)}${horiz}`;
+      if (key === size || !box.width) return;
+      size = key;
+      svg.textContent = '';
+      const r = rng(+el.dataset.seed || 1);
+      const pts = [];
+      start = 0;
+      if (horiz) {
+        // straight, as in the mockup, running off the right edge of the screen
+        const w = document.documentElement.clientWidth - box.left;
+        svg.setAttribute('width', w);
+        svg.setAttribute('height', 40);
+        pos = nodes.map((n) => n.offsetLeft + 8);
+        start = pos[0];
+        pts.push([start, 20]);
+        for (let x = start + 60; x < w - 20; x += 60) pts.push([x, 20 + (r() - 0.5) * 0.9]);
+        pts.push([w, 20]);
+        len = w - start;
+      } else {
+        len = el.clientHeight;
+        svg.setAttribute('width', 40);
+        svg.setAttribute('height', len);
+        pos = nodes.map((n) => {
+          const t = $('.how-step__title, .jr-year__n', n);
+          // relative to its own step, so the step's reveal shift cancels out
+          return n.offsetTop + t.getBoundingClientRect().top - n.getBoundingClientRect().top + t.offsetHeight / 2;
+        });
+        if (clean) {
+          start = pos[0];
+          len = pos[pos.length - 1] - start;
+          pts.push([20, start], [20, start + len]);
+        } else {
+        pts.push([15 + r() * 3, 0]);
+        if (pos[0] > 50) pts.push([18, 34]);
+        pos.forEach((y, i) => {
+          pts.push([20 + (r() - 0.5) * 2, y]);
+          const gap = (i < pos.length - 1 ? pos[i + 1] : len) - y;
+          if (gap > 110) {
+            const b = (r() - 0.5) * (r() > 0.5 ? 14 : 3);
+            pts.push([20 + b * 0.35, y + gap * 0.3], [20 + b, y + gap * 0.62], [20 + b * 0.4, y + gap * 0.86]);
+          }
+        });
+        pts.push([17 + r() * 8, len]);
+        }
+      }
+      line = add(curve(pts), 'thread__line');
+      nodes.forEach((n, i) => { 
+        n._knot = clean ? add(`M13 ${pos[i]}a7 7 0 1 1 14 0a7 7 0 1 1-14 0Z`, 'thread__dot')
+          : add(horiz ? scribble(pos[i], 19, r) : scribble(19.5, pos[i], r), 'thread__knot');
+      });
+      pos = pos.map((p) => (p - start) / len);
+      draw();
+    }
+    function draw() {
+      if (!line) return;
+      line.style.strokeDashoffset = (1 - best).toFixed(4);
+      nodes.forEach((n, i) => {
+        if (best >= 1 || best > 0 && best >= pos[i] - 0.001) { n.classList.add('is-on'); n._knot.classList.add('is-on'); }
+      });
+    }
+    function update() {
+      raf = 0;
+      const box = el.getBoundingClientRect(), vh = innerHeight;
+      // vertical: the tip stays about 70% down the screen. Horizontal: draws as the section rises.
+      const p = horiz ? (vh * 0.86 - box.top) / (vh * 0.5) : (vh * 0.7 - box.top - start) / len;
+      // reaching the bottom of the page must never leave a line unfinished
+      const end = innerHeight + scrollY >= document.documentElement.scrollHeight - 4;
+      best = Math.max(best, end ? 1 : Math.min(1, Math.max(0, p)));
+      draw();
+      if (best >= 1) removeEventListener('scroll', onScroll);
+    }
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    build();
+    if ('ResizeObserver' in window) new ResizeObserver(build).observe(el);
+    addEventListener('resize', build);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { size = ''; build(); });
+    if (still) return;
+    addEventListener('scroll', onScroll, { passive: true });
+    update();
+  }
+  $$('[data-thread]').forEach(initThread);
+
+  /* ------------------------------------------------------------------------
+     About: the end-to-end wheel. Choosing a slice turns the wheel so that slice
+     faces its card (right on wide screens, down on narrow ones), the wheel makes
+     room, and the card grows out of it. Interruptible: every move is a CSS
+     transition from wherever things are now.
+     ------------------------------------------------------------------------ */
+  function initWheel(root) {
+    const svg = $('.wheel', root), segs = $$('[data-wheel-seg]', root), cards = $$('[data-wheel-card]', root);
+    const label = $('[data-wheel-label]', root);
+    const wide = matchMedia('(min-width: 900px)');
+    let open = -1, rot = 0;
+    root.classList.add('is-live');
+    cards.forEach((c) => { c.inert = true; });
+
+    // Slices and ring assemble when the wheel scrolls into view
+    if (reduceMotion.matches || !('IntersectionObserver' in window)) root.classList.add('is-in');
+    else {
+      const io = new IntersectionObserver((es) => {
+        if (es.some((e) => e.isIntersecting)) { io.disconnect(); root.classList.add('is-in'); }
+      }, { threshold: 0.3 });
+      io.observe(svg);
+    }
+    const say = (i) => {
+      if (i >= 0) label.textContent = segs[i].dataset.title;
+      svg.classList.toggle('has-label', i >= 0);
+    };
+    function turn() {
+      if (open < 0) rot = Math.round(rot / 360) * 360;                      // home: upright, the short way round
+      else {
+        const want = (wide.matches ? 90 : 180) - (+segs[open].dataset.angle);
+        rot += ((((want - rot) % 360) + 540) % 360) - 180;                  // shortest way round
+      }
+      svg.style.setProperty('--rot', rot + 'deg');
+    }
+    function show(i) {
+      const from = open;
+      open = i;
+      segs.forEach((s, n) => { s.classList.toggle('is-open', n === i); s.setAttribute('aria-expanded', n === i ? 'true' : 'false'); });
+      cards.forEach((c, n) => { c.classList.toggle('is-open', n === i); c.inert = n !== i; });
+      root.classList.toggle('has-open', i >= 0);
+      say(i);
+      turn();
+      if (i < 0) { if (from >= 0) segs[from].focus({ preventScroll: true }); say(-1); return; }
+      cards[i].focus({ preventScroll: true });
+      if (!wide.matches) setTimeout(() => {                                 // narrow: bring the card under the wheel into view
+        if (open !== i) return;
+        const r = cards[i].getBoundingClientRect();
+        if (r.bottom > innerHeight - 12) scrollBy({ top: Math.min(r.bottom - innerHeight + 24, r.top - 96), behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+      }, 560);
+    }
+    segs.forEach((s, i) => {
+      const toggle = () => show(open === i ? -1 : i);
+      s.addEventListener('click', toggle);
+      s.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+      s.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') say(i); });
+      s.addEventListener('pointerleave', () => say(open));
+      s.addEventListener('focus', () => { if (s.matches(':focus-visible')) say(i); });
+      s.addEventListener('blur', () => say(open));
+    });
+    root.addEventListener('click', (e) => {
+      const step = e.target.closest('[data-wheel-step]');
+      if (step) show((open + (+step.dataset.wheelStep) + segs.length) % segs.length);
+      else if (e.target.closest('[data-wheel-close]')) show(-1);
+    });
+    root.addEventListener('keydown', (e) => { if (e.key === 'Escape' && open >= 0) { e.stopPropagation(); show(-1); } });
+    if (wide.addEventListener) wide.addEventListener('change', turn);
+  }
+  const wheel = $('[data-wheel]');
+  if (wheel) initWheel(wheel);
+
+  /* About: On campus cards. Hover or keyboard focus shows the text (CSS); on touch a tap toggles it. */
+  const campusCards = $$('[data-campus-card]');
+  campusCards.forEach((card) => {
+    const hit = $('.campus-card__hit', card);
+    let touch = false;
+    hit.addEventListener('pointerdown', (e) => { touch = e.pointerType !== 'mouse'; });
+    hit.addEventListener('click', () => {
+      if (!touch) return;
+      const on = !card.classList.contains('is-open');
+      campusCards.forEach((c) => {
+        c.classList.toggle('is-open', c === card && on);
+        $('.campus-card__hit', c).setAttribute('aria-expanded', c === card && on ? 'true' : 'false');
+      });
+    });
+  });
+
+  /* ------------------------------------------------------------------------
      Portfolio page: search + sector filter. Cards that come back animate in;
      the sector is kept in the URL (?sector=…) so a filtered view can be shared.
      ------------------------------------------------------------------------ */

@@ -274,121 +274,199 @@
     </section>
 
     <!-- ============================== How we work ============================== -->
-    <section class="section ab-section" aria-labelledby="ab-how-title">
+    <!-- Figma: About Us Section/Desktop.png. The lines are drawn by js initThread as you scroll. -->
+    <section class="section ab-section ab-v2" aria-labelledby="ab-how-title">
       <div class="container">
         <header class="section-head" data-reveal>
-          <h2 class="section-title section-title--ruled" id="ab-how-title"><span>How we work</span></h2>
+          <h2 class="ab-title" id="ab-how-title">How we work</h2>
         </header>
-        <div class="ab-how">
-          <div class="ab-how__col" data-reveal>
-            <h3 class="ab-how__for">For start-ups</h3>
-            <ol class="ab-how__list" role="list">
-              <li><h4>Round one</h4><p>Fill in the starter form and send us your pitch deck. We get back to you in 7 to 10 working days.</p></li>
-              <li><h4>Deep dive</h4><p>A 1:1 session to get to know the founders and the brand: the core values and ideas that drive the business.</p></li>
-              <li><h4>Building a funding strategy</h4><p>We understand your funding requirements and build with you a pitch deck that captures your market position, the potential of the idea and the strength of the team behind it.</p></li>
-              <li><h4>Mandate and meetings</h4><p>Once you are convinced to work with us, we agree on a mandate and start setting up meetings with aligned investors.</p></li>
-            </ol>
-            <a class="btn" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
+        <div class="how">
+          <div class="how-col">
+            <div class="thread" data-thread data-thread-clean data-seed="3">
+              <h3 class="how-col__for">For start-ups</h3>
+              <ol class="how-col__list" role="list">
+                <li class="how-step" data-thread-node><h4 class="how-step__title">Round one</h4><p>Fill in the starter form and send us your pitch deck. We get back to you in 7 to 10 working days.</p></li>
+                <li class="how-step" data-thread-node><h4 class="how-step__title">Deep dive</h4><p>A 1:1 session to get to know the founders and the brand: the core values and ideas that drive the business.</p></li>
+                <li class="how-step" data-thread-node><h4 class="how-step__title">Building a funding strategy</h4><p>We understand your funding requirements and build with you a pitch deck that captures your market position, the potential of the idea and the strength of the team behind it.</p></li>
+                <li class="how-step" data-thread-node><h4 class="how-step__title">Mandate and meetings</h4><p>Once you are convinced to work with us, we agree on a mandate and start setting up meetings with aligned investors.</p></li>
+              </ol>
+            </div>
+            <a class="btn how-col__cta" href="https://ecosystem.earlyseedventures.com/apply">Pitch to us</a>
           </div>
-          <div class="ab-how__col" data-reveal style="--i:1">
-            <h3 class="ab-how__for">For investors</h3>
-            <ol class="ab-how__list" role="list">
-              <li><h4>Deep dive</h4><p>We learn your investment philosophy and strategy.</p></li>
-              <li><h4>Knowledge sharing</h4><p>We share our view of the startup ecosystem, then present curated start-ups to look at, meet and potentially invest in.</p></li>
-              <li><h4>Closing the loop</h4><p>If you commit, we conduct due procedures to close the investment and lay out the next steps for founders and investors.</p></li>
-              <li><h4>Sustainable partnership</h4><p>Startup investments are slow-brewing. We are here for the long haul, working with you on a regular basis.</p></li>
-            </ol>
-            <a class="btn" href="index.html#for-investors">Invest with us</a>
+          <div class="how-col">
+            <div class="thread" data-thread data-thread-clean data-seed="4">
+              <h3 class="how-col__for">For investors</h3>
+              <ol class="how-col__list" role="list">
+                <li class="how-step" data-thread-node><h4 class="how-step__title">Deep dive</h4><p>We learn your investment philosophy and strategy.</p></li>
+                <li class="how-step" data-thread-node><h4 class="how-step__title">Knowledge sharing</h4><p>We share our view of the startup ecosystem, then present curated start-ups to look at, meet and potentially invest in.</p></li>
+                <li class="how-step" data-thread-node><h4 class="how-step__title">Closing the loop</h4><p>If you commit, we conduct due procedures to close the investment and lay out the next steps for founders and investors.</p></li>
+                <li class="how-step" data-thread-node><h4 class="how-step__title">Sustainable partnership</h4><p>Startup investments are slow-brewing. We are here for the long haul, working with you on a regular basis.</p></li>
+              </ol>
+            </div>
+            <a class="btn how-col__cta" href="index.html#for-investors">Invest with us</a>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ============================== End-to-end ============================== -->
-    <section class="section ab-section" aria-labelledby="ab-e2e-title">
+    <!-- Wheel: click a slice, it turns towards the card and the card opens (js initWheel). Without JS the five cards are a plain list. -->
+    <section class="section ab-section ab-v2" aria-labelledby="ab-e2e-title">
       <div class="container">
         <header class="section-head" data-reveal>
-          <h2 class="section-title section-title--ruled" id="ab-e2e-title"><span>With founders, end to end</span></h2>
-          <p class="section-sub">We support companies end to end, and onboard them with the vision of giving them future exits.</p>
+          <h2 class="ab-title" id="ab-e2e-title">With founders, end to end</h2>
+          <p class="ab-sub">We support companies end to end, and onboard them with the vision of giving them future exits.</p>
         </header>
-
-        <ol class="ab-steps" role="list">
-          <li class="ab-step" data-reveal>
-            <span class="ab-step__n" aria-hidden="true">01</span>
-            <h3 class="ab-step__title">Bootcamps</h3>
-            <p>We guide founders on round structuring, governance and risk management, go-to-market strategy, and other critical early-stage mentorship needs.</p>
-          </li>
-          <li class="ab-step" data-reveal style="--i:1">
-            <span class="ab-step__n" aria-hidden="true">02</span>
-            <h3 class="ab-step__title">Pre-funding</h3>
-            <p>We help founders build proper resources and structures for raising funds: market research, pitch decks, financial projections and valuation reports, through <a class="post__link" href="index.html#prologue">Prologue by ESV</a>.</p>
-          </li>
-          <li class="ab-step" data-reveal style="--i:2">
-            <span class="ab-step__n" aria-hidden="true">03</span>
-            <h3 class="ab-step__title">Investments</h3>
-            <p>We curate deals for our investors and believe in strategic capital: sourcing through our network, validating through our in-house investment committee and due diligence, and negotiating valuation and terms.</p>
-          </li>
-          <li class="ab-step" data-reveal>
-            <span class="ab-step__n" aria-hidden="true">04</span>
-            <h3 class="ab-step__title">Investment banking</h3>
-            <p>We guide early-stage founders on round structuring and fundraising, give portfolio companies access to institutional investors and angels for subsequent rounds, and assist with deal execution.</p>
-          </li>
-          <li class="ab-step" data-reveal style="--i:1">
-            <span class="ab-step__n" aria-hidden="true">05</span>
-            <h3 class="ab-step__title">Exits, pre-IPO and acquisitions</h3>
-            <p>Our newest vertical, so that the companies we back early have a path to an exit.</p>
-          </li>
-        </ol>
-        <p class="ab-more" data-reveal><a class="btn btn--ghost" href="index.html#services">See our services</a></p>
+        <div class="e2e" data-wheel>
+          <div class="e2e__wheel">
+            <svg class="wheel" viewBox="-384 -384 768 768" role="group" aria-label="How we support founders: five stages. Select one to open it." focusable="false">
+              <circle class="wheel__shadow wheel__shadow--ring" r="366"/>
+              <circle class="wheel__shadow" r="333"/>
+              <g class="wheel__turn">
+                <path class="wheel__arc" style="--i:0" pathLength="1" data-wheel-arc d="M-348.09 113.10A366 366 0 0 1 -215.13 -296.10" stroke="#CEAAFD"/>
+                <path class="wheel__arc" style="--i:1" pathLength="1" data-wheel-arc d="M0.00 366.00A366 366 0 0 1 -348.09 113.10" stroke="#D3C1A9"/>
+                <path class="wheel__arc" style="--i:2" pathLength="1" data-wheel-arc d="M348.09 113.10A366 366 0 0 1 0.00 366.00" stroke="#CB8C7C"/>
+                <path class="wheel__arc" style="--i:3" pathLength="1" data-wheel-arc d="M215.13 -296.10A366 366 0 0 1 348.09 113.10" stroke="#745FFD"/>
+                <path class="wheel__arc" style="--i:4" pathLength="1" data-wheel-arc d="M-215.13 -296.10A366 366 0 0 1 215.13 -296.10" stroke="#D5AE8F"/>
+                <circle class="wheel__disc" r="333"/>
+                <g class="wheel__seg" role="button" tabindex="0" aria-expanded="false" aria-controls="e2e-bootcamps" aria-label="Bootcamps" data-wheel-seg="0" data-angle="288" data-title="Bootcamps" style="--i:0;--ux:-0.9511;--uy:-0.3090;--c:#CEAAFD">
+                  <path class="wheel__slice" d="M-296.53 86.89A309 309 0 0 1 -188.83 -244.59L-95.29 -115.84A150 150 0 0 0 -145.18 37.71Z"/>
+                  <g transform="translate(-209.2 -68.0)"><g class="wheel__icon"><path d="M0-18C-6-22-17-23-24-20V16C-17 13.500-6 14 0 17C6 14 17 13.500 24 16V-20C17-23 6-22 0-18ZM0-18V17M-24-14H-29.500V22H-5C-5 25 5 25 5 22H29.500V-14H24M6-10H17M6-5H17M6 0H13"/></g></g>
+                </g>
+                <g class="wheel__seg" role="button" tabindex="0" aria-expanded="false" aria-controls="e2e-pre-funding" aria-label="Pre-funding" data-wheel-seg="1" data-angle="216" data-title="Pre-funding" style="--i:1;--ux:-0.5878;--uy:0.8090;--c:#D3C1A9">
+                  <path class="wheel__slice" d="M-9.00 308.87A309 309 0 0 1 -290.97 104.01L-139.62 54.83A150 150 0 0 0 -9.00 149.73Z"/>
+                  <g transform="translate(-129.3 178.0)"><g class="wheel__icon"><path d="M-27-22H27M-23-22V9M23-22V9M-27 9H27M0-26V-22M0 9V26M0 9L-14 24M0 9L14 24M-11 3V-5H-6V3ZM-2 3V-10H3V3ZM7 3V-16H12V3Z"/></g></g>
+                </g>
+                <g class="wheel__seg" role="button" tabindex="0" aria-expanded="false" aria-controls="e2e-investments" aria-label="Investments" data-wheel-seg="2" data-angle="144" data-title="Investments" style="--i:2;--ux:0.5878;--uy:0.8090;--c:#CB8C7C">
+                  <path class="wheel__slice" d="M290.97 104.01A309 309 0 0 1 9.00 308.87L9.00 149.73A150 150 0 0 0 139.62 54.83Z"/>
+                  <g transform="translate(129.3 178.0)"><g class="wheel__icon"><path class="f" d="M-31 12v8c0 4.200 8.500 7.500 19 7.500s19-3.300 19-7.500v-8"/><ellipse class="f" cx="-12" cy="12" rx="19" ry="7.500"/><path d="M-24 18.5v8M-16 19.8v8M-8 19.8v8M0 18.5v8"/><path class="f" d="M-28 2v8c0 4.200 8.500 7.500 19 7.500s19-3.300 19-7.500v-8"/><ellipse class="f" cx="-9" cy="2" rx="19" ry="7.500"/><path d="M-21 8.5v8M-13 9.8v8M-5 9.8v8M3 8.5v8"/><path class="f" d="M-31 -14v8c0 4.200 8.500 7.500 19 7.500s19-3.300 19-7.500v-8"/><ellipse class="f" cx="-12" cy="-14" rx="19" ry="7.500"/><path d="M-24 -7.5v8M-16 -6.2v8M-8 -6.2v8M0 -7.5v8"/><path class="f" d="M-5 17v8c0 4.200 8.500 7.500 19 7.500s19-3.300 19-7.500v-8"/><ellipse class="f" cx="14" cy="17" rx="19" ry="7.500"/><path d="M2 23.5v8M10 24.8v8M18 24.8v8M26 23.5v8"/><path class="f" d="M-9 6v8c0 4.200 8.500 7.500 19 7.500s19-3.300 19-7.500v-8"/><ellipse class="f" cx="10" cy="6" rx="19" ry="7.500"/><path d="M-2 12.5v8M6 13.8v8M14 13.8v8M22 12.5v8"/></g></g>
+                </g>
+                <g class="wheel__seg" role="button" tabindex="0" aria-expanded="false" aria-controls="e2e-investment-banking" aria-label="Investment banking" data-wheel-seg="3" data-angle="72" data-title="Investment banking" style="--i:3;--ux:0.9511;--uy:-0.3090;--c:#745FFD">
+                  <path class="wheel__slice" d="M188.83 -244.59A309 309 0 0 1 296.53 86.89L145.18 37.71A150 150 0 0 0 95.29 -115.84Z"/>
+                  <g transform="translate(209.2 -68.0)"><g class="wheel__icon"><path d="M-31.500-13.500H31.500V13.500H-31.500ZM-26-6H-13M-26 0H8M13-4H25V0H13ZM4 7c3-2 4 2 7 0s3-3 5-2 1 3 4 2 3-1 5 0"/></g></g>
+                </g>
+                <g class="wheel__seg" role="button" tabindex="0" aria-expanded="false" aria-controls="e2e-exits" aria-label="Exits, pre-IPO and acquisitions" data-wheel-seg="4" data-angle="0" data-title="Exits, pre-IPO and acquisitions" style="--i:4;--ux:0.0000;--uy:-1.0000;--c:#D5AE8F">
+                  <path class="wheel__slice" d="M-174.27 -255.17A309 309 0 0 1 174.27 -255.17L80.73 -126.42A150 150 0 0 0 -80.73 -126.42Z"/>
+                  <g transform="translate(0.0 -220.0)"><g class="wheel__icon"><path d="M-26-23L-7-31V31L-26 23ZM-4-22H7V-5M7 6V22H-4M1 0H27M16-11L27 0L16 11"/></g></g>
+                </g>
+              </g>
+              <image class="wheel__logo" href="assets/brand/logo-dark.png" x="-76" y="-28.600" width="152" height="57.200"/>
+              <foreignObject class="wheel__label" x="-116" y="-70" width="232" height="140"><div xmlns="http://www.w3.org/1999/xhtml" data-wheel-label></div></foreignObject>
+            </svg>
+            <p class="e2e__hint" data-wheel-hint>Select a part of the circle to open it</p>
+          </div>
+          <ol class="e2e__cards" role="list">
+            <li class="e2e-card" id="e2e-bootcamps" data-wheel-card="0" tabindex="-1" style="--c:#CEAAFD" aria-labelledby="e2e-bootcamps-t">
+              <button class="e2e-card__close" type="button" aria-label="Close" data-wheel-close><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="m3.500 3.500 9 9m0-9-9 9" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round"/></svg></button>
+              <p class="e2e-card__n" aria-hidden="true">01 <span>of 05</span></p>
+              <h3 class="e2e-card__title" id="e2e-bootcamps-t">Bootcamps</h3>
+              <p class="e2e-card__text">We guide founders on round structuring, governance and risk management, go-to-market strategy, and other critical early-stage mentorship needs.</p>
+              <div class="e2e-card__foot">
+                <a class="e2e-card__link" href="bootcamps.html">See our bootcamps</a>
+                <span class="e2e-card__nav"><button type="button" aria-label="Previous" data-wheel-step="-1"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" aria-label="Next" data-wheel-step="1"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"/></svg></button></span>
+              </div>
+            </li>
+            <li class="e2e-card" id="e2e-pre-funding" data-wheel-card="1" tabindex="-1" style="--c:#D3C1A9" aria-labelledby="e2e-pre-funding-t">
+              <button class="e2e-card__close" type="button" aria-label="Close" data-wheel-close><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="m3.500 3.500 9 9m0-9-9 9" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round"/></svg></button>
+              <p class="e2e-card__n" aria-hidden="true">02 <span>of 05</span></p>
+              <h3 class="e2e-card__title" id="e2e-pre-funding-t">Pre-funding</h3>
+              <p class="e2e-card__text">We help founders build proper resources and structures for raising funds: market research, pitch decks, financial projections and valuation reports, through Prologue by ESV.</p>
+              <div class="e2e-card__foot">
+                <a class="e2e-card__link" href="index.html#prologue">Prologue by ESV</a>
+                <span class="e2e-card__nav"><button type="button" aria-label="Previous" data-wheel-step="-1"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" aria-label="Next" data-wheel-step="1"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"/></svg></button></span>
+              </div>
+            </li>
+            <li class="e2e-card" id="e2e-investments" data-wheel-card="2" tabindex="-1" style="--c:#CB8C7C" aria-labelledby="e2e-investments-t">
+              <button class="e2e-card__close" type="button" aria-label="Close" data-wheel-close><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="m3.500 3.500 9 9m0-9-9 9" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round"/></svg></button>
+              <p class="e2e-card__n" aria-hidden="true">03 <span>of 05</span></p>
+              <h3 class="e2e-card__title" id="e2e-investments-t">Investments</h3>
+              <p class="e2e-card__text">We curate deals for our investors and believe in strategic capital: sourcing through our network, validating through our in-house investment committee and due diligence, and negotiating valuation and terms.</p>
+              <div class="e2e-card__foot">
+                <a class="e2e-card__link" href="index.html#services">See our services</a>
+                <span class="e2e-card__nav"><button type="button" aria-label="Previous" data-wheel-step="-1"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" aria-label="Next" data-wheel-step="1"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"/></svg></button></span>
+              </div>
+            </li>
+            <li class="e2e-card" id="e2e-investment-banking" data-wheel-card="3" tabindex="-1" style="--c:#745FFD" aria-labelledby="e2e-investment-banking-t">
+              <button class="e2e-card__close" type="button" aria-label="Close" data-wheel-close><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="m3.500 3.500 9 9m0-9-9 9" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round"/></svg></button>
+              <p class="e2e-card__n" aria-hidden="true">04 <span>of 05</span></p>
+              <h3 class="e2e-card__title" id="e2e-investment-banking-t">Investment banking</h3>
+              <p class="e2e-card__text">We guide early-stage founders on round structuring and fundraising, give portfolio companies access to institutional investors and angels for subsequent rounds, and assist with deal execution.</p>
+              <div class="e2e-card__foot">
+                <a class="e2e-card__link" href="index.html#services">See our services</a>
+                <span class="e2e-card__nav"><button type="button" aria-label="Previous" data-wheel-step="-1"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" aria-label="Next" data-wheel-step="1"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"/></svg></button></span>
+              </div>
+            </li>
+            <li class="e2e-card" id="e2e-exits" data-wheel-card="4" tabindex="-1" style="--c:#D5AE8F" aria-labelledby="e2e-exits-t">
+              <button class="e2e-card__close" type="button" aria-label="Close" data-wheel-close><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="m3.500 3.500 9 9m0-9-9 9" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round"/></svg></button>
+              <p class="e2e-card__n" aria-hidden="true">05 <span>of 05</span></p>
+              <h3 class="e2e-card__title" id="e2e-exits-t">Exits, pre-IPO and acquisitions</h3>
+              <p class="e2e-card__text">Our newest vertical, so that the companies we back early have a path to an exit.</p>
+              <div class="e2e-card__foot">
+                <a class="e2e-card__link" href="index.html#services">See our services</a>
+                <span class="e2e-card__nav"><button type="button" aria-label="Previous" data-wheel-step="-1"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" aria-label="Next" data-wheel-step="1"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round" stroke-linejoin="round"/></svg></button></span>
+              </div>
+            </li>
+          </ol>
+        </div>
       </div>
     </section>
 
     <!-- ============================== Journey ============================== -->
-    <section class="section ab-section" aria-labelledby="ab-journey-title">
+    <section class="section ab-section ab-v2 ab-journey" aria-labelledby="ab-journey-title">
       <div class="container">
         <header class="section-head" data-reveal>
-          <h2 class="section-title section-title--ruled" id="ab-journey-title"><span>Our growth journey</span></h2>
+          <h2 class="ab-title" id="ab-journey-title">Our growth journey</h2>
         </header>
-
-        <ol class="ab-timeline" role="list">
-          <li class="ab-year" data-reveal><span class="ab-year__n">2020</span><p>Began our association as regional partners for a venture capital fund.</p></li>
-          <li class="ab-year" data-reveal><span class="ab-year__n">2022</span><p>Earlyseed Ventures Pvt. Ltd. was incorporated to support start-ups through investment banking services.</p></li>
-          <li class="ab-year" data-reveal><span class="ab-year__n">2023</span><p>Established an angel investor syndicate and carried out investments under the Earlyseed Ventures banner.</p></li>
-          <li class="ab-year" data-reveal><span class="ab-year__n">2024</span><p>Onboarded venture partners in Ludhiana and Jaipur, and conducted bootcamps in collaboration with Manipal.</p></li>
-          <li class="ab-year" data-reveal><span class="ab-year__n">2025</span><p>Launched the pre-IPO vertical and onboarded two franchise partners.</p></li>
-          <li class="ab-year ab-year--next" data-reveal><span class="ab-year__n">2026</span><p><span class="ab-year__tag">Goal</span> Expand to 10 franchise partners across the UAE, South India and West India.</p></li>
-          <li class="ab-year ab-year--next" data-reveal><span class="ab-year__n">2027</span><p><span class="ab-year__tag">Goal</span> Launch a ₹100 Cr Category I AIF.</p></li>
-        </ol>
+      </div>
+      <div class="jr">
+        <div class="thread thread--h" data-thread data-thread-h data-seed="11">
+          <ol class="jr__list" role="list">
+            <li class="jr-year" data-thread-node><span class="jr-year__n">2020</span><p>Began our association as regional partners for a venture capital fund.</p></li>
+            <li class="jr-year" data-thread-node><span class="jr-year__n">2022</span><p>Earlyseed Ventures Pvt. Ltd. was incorporated to support start-ups through investment banking services.</p></li>
+            <li class="jr-year" data-thread-node><span class="jr-year__n">2023</span><p>Established an angel investor syndicate and carried out investments under the Earlyseed Ventures banner.</p></li>
+            <li class="jr-year" data-thread-node><span class="jr-year__n">2024</span><p>Onboarded venture partners in Ludhiana and Jaipur, and conducted bootcamps in collaboration with Manipal.</p></li>
+            <li class="jr-year" data-thread-node><span class="jr-year__n">2025</span><p>Launched the pre-IPO vertical and onboarded two franchise partners.</p></li>
+            <li class="jr-year" data-thread-node><span class="jr-year__n">2026 <span class="jr-year__tag">Goal</span></span><p>Expand to 10 franchise partners across the UAE, South India and West India.</p></li>
+            <li class="jr-year" data-thread-node><span class="jr-year__n">2027 <span class="jr-year__tag">Goal</span></span><p>Launch a ₹100 Cr Category I AIF.</p></li>
+          </ol>
+        </div>
       </div>
     </section>
 
     <!-- ============================== Campuses ============================== -->
-    <section class="section ab-section" aria-labelledby="ab-campus-title">
+    <section class="section ab-section ab-v2" aria-labelledby="ab-campus-title">
       <div class="container">
         <header class="section-head" data-reveal>
-          <h2 class="section-title section-title--ruled" id="ab-campus-title"><span>On campus</span></h2>
-          <p class="section-sub">We connect with aspiring student entrepreneurs, and give them access to funding, mentorship and resources.</p>
+          <h2 class="ab-title" id="ab-campus-title">On campus</h2>
+          <p class="ab-sub">We connect with aspiring student entrepreneurs, and give them access to funding, mentorship and resources.</p>
         </header>
-
-        <ul class="ab-cards" role="list">
-          <li class="ab-card" data-reveal>
-            <h3 class="ab-step__title">MIT World Peace University, Pune</h3>
-            <p>A programme for 4,000+ students, covering everything from business planning to pre-funding exercises such as pitch decks, financial projections and valuations.</p>
+        <ul class="campus-grid" role="list">
+          <li class="campus-card" data-campus-card data-reveal style="--i:0">
+            <img class="campus-card__logo" src="assets/logos/campus/mit-wpu.webp" alt="" width="324" height="94" style="width:240px" loading="lazy" decoding="async" draggable="false" />
+            <button class="campus-card__hit" type="button" aria-expanded="false"><span class="visually-hidden">MIT World Peace University, Pune: show details</span></button>
+            <div class="campus-card__text"><h3 class="campus-card__title">MIT World Peace University, Pune</h3><p>A programme for 4,000+ students, covering everything from business planning to pre-funding exercises such as pitch decks, financial projections and valuations.</p></div>
+            <span class="campus-card__plus" aria-hidden="true"></span>
           </li>
-          <li class="ab-card" data-reveal style="--i:1">
-            <h3 class="ab-step__title">Gharda Institute of Technology</h3>
-            <p>An MoU to support its incubation centre with mentorship, bootcamps and workshops, industry insights and access to investors and partners.</p>
+          <li class="campus-card" data-campus-card data-reveal style="--i:1">
+            <img class="campus-card__logo" src="assets/logos/campus/gharda.webp" alt="" width="229" height="63" style="width:229px" loading="lazy" decoding="async" draggable="false" />
+            <button class="campus-card__hit" type="button" aria-expanded="false"><span class="visually-hidden">Gharda Institute of Technology: show details</span></button>
+            <div class="campus-card__text"><h3 class="campus-card__title">Gharda Institute of Technology</h3><p>An MoU to support its incubation centre with mentorship, bootcamps and workshops, industry insights and access to investors and partners.</p></div>
+            <span class="campus-card__plus" aria-hidden="true"></span>
           </li>
-          <li class="ab-card" data-reveal style="--i:2">
-            <h3 class="ab-step__title">Skill Titans</h3>
-            <p>Knowledge partners for OLL’s Skill Titans, in partnership with CNBC-TV18, alongside MIT Pune, Manipal University, Gharda Institute of Technology and Ashoka University.</p>
+          <li class="campus-card" data-campus-card data-reveal style="--i:0">
+            <img class="campus-card__logo" src="assets/logos/campus/skill-titans.webp" alt="" width="163" height="141" style="width:163px" loading="lazy" decoding="async" draggable="false" />
+            <button class="campus-card__hit" type="button" aria-expanded="false"><span class="visually-hidden">Skill Titans: show details</span></button>
+            <div class="campus-card__text"><h3 class="campus-card__title">Skill Titans</h3><p>Knowledge partners for OLL’s Skill Titans, in partnership with CNBC-TV18, alongside MIT Pune, Manipal University, Gharda Institute of Technology and Ashoka University.</p></div>
+            <span class="campus-card__plus" aria-hidden="true"></span>
           </li>
-          <li class="ab-card" data-reveal>
-            <h3 class="ab-step__title">IIT Madras</h3>
-            <p>Invited as mentors for student founders.</p>
+          <li class="campus-card" data-campus-card data-reveal style="--i:1">
+            <img class="campus-card__logo" src="assets/logos/campus/iit-madras.webp" alt="" width="149" height="149" style="width:149px" loading="lazy" decoding="async" draggable="false" />
+            <button class="campus-card__hit" type="button" aria-expanded="false"><span class="visually-hidden">IIT Madras: show details</span></button>
+            <div class="campus-card__text"><h3 class="campus-card__title">IIT Madras</h3><p>Invited as mentors for student founders.</p></div>
+            <span class="campus-card__plus" aria-hidden="true"></span>
           </li>
         </ul>
-        <p class="ab-more" data-reveal><a class="btn btn--ghost" href="index.html#team">Our campus partners</a></p>
+        <p class="campus-grid__more" data-reveal><a class="btn" href="index.html#team">Our campus partners</a></p>
       </div>
     </section>
 
