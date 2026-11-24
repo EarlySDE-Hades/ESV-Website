@@ -7,13 +7,14 @@
     portfolio.html, portfolio-<slug>.html  <- tools/portfolio/ (+ companies.json)
     events.html  <- tools/events/main.html
     event-seed-to-success.html  <- tools/events/seed-to-success.html
+    titles, descriptions, canonical links, structured data, sitemap.xml and robots.txt  <- tools/seo/seo.py
 
 Run after changing the shared header/footer in index.html, or either main.html:
 
     python tools/team/build.py
 """
 import re
-from html import escape
+from html import unescape
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -22,7 +23,6 @@ src = (ROOT / "index.html").read_text(encoding="utf-8")
 head, rest = src.split("<body>", 1)
 header = rest[rest.index("  <a class=\"skip-link\""):rest.index("  <main id=\"main\">")]
 footer = rest[rest.index("  <!-- ============================== Footer"):]
-head = re.sub(r"<title>.*?</title>", "<title>Earlyseed Ventures</title>", head)
 
 # output file, source of <main>, meta description, nav link text to mark as the current page
 PAGES = [
@@ -65,6 +65,7 @@ def _load(name, path):
     return mod
 
 
+seo = _load("seo", "tools/seo/seo.py")
 press_render = _load("press_render", "tools/press/render.py")
 portfolio_render = _load("portfolio_render", "tools/portfolio/render.py")
 perspectives_render = _load("perspectives_render", "tools/perspectives/render.py")
@@ -72,9 +73,13 @@ bootcamps_render = _load("bootcamps_render", "tools/bootcamps/render.py")
 FILLERS = {"press.html": press_render.render, "perspectives.html": perspectives_render.render, "portfolio.html": portfolio_render.render_portfolio, "bootcamps.html": bootcamps_render.render}
 
 
-def write(out, main, description, label):
+written = []
+
+
+def write(out, main, description, label, title=None):
     assert "{{" not in main, f"unfilled placeholder in {out}"
-    page_head = re.sub(r'(<meta name="description" content=")[^"]*', lambda m: m.group(1) + escape(description, quote=True), head)
+    page_head = seo.apply(head, out, description, title)
+    written.append(out)
     if out in EXTRA_HEAD:
         page_head = page_head.replace("</head>", EXTRA_HEAD[out] + "</head>")
     page = page_head + "<body>\n" + relink(header, out, label) + main + "\n" + relink(footer, out, label)
@@ -95,4 +100,10 @@ for out, main, description in portfolio_render.company_pages():
 
 # One page per article hosted on this site (perspective-<slug>.html)
 for out, main, description in perspectives_render.article_pages():
-    write(out, main, description, "Our Perspectives")
+    heading = re.search(r'id="post-title"[^>]*>([^<]+)', main).group(1)
+    write(out, main, description, "Our Perspectives", f"{unescape(heading)} | Earlyseed Ventures")
+
+# index.html is edited by hand; only its search tags are written here
+(ROOT / "index.html").write_text(seo.apply(src, "index.html", ""), encoding="utf-8", newline="\n")
+seo.write_sitemap(["index.html"] + written)
+print("wrote index.html search tags, sitemap.xml, robots.txt")
