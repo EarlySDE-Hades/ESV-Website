@@ -323,18 +323,18 @@
     { title: 'Our growth journey', section: 'About', href: 'about.html#ab-journey-title' },
     { title: 'Sectors we work across', section: 'About', href: 'about.html#ab-sectors-title' },
     { title: 'Leadership team', section: 'Team', href: 'team.html#leadership' },
-    { title: 'CA Monica Gupta, Co-founder and CEO', section: 'Team', href: 'team.html#leadership' },
-    { title: 'CA Manan Patel, Head of Investments & Tax', section: 'Team', href: 'team.html#leadership' },
-    { title: 'CA Nimit Shah, Head of Partnerships', section: 'Team', href: 'team.html#leadership' },
-    { title: 'Adv. Rahul Hingmire, Chief Legal Advisor', section: 'Team', href: 'team.html#leadership' },
-    { title: 'Sudhir Mehta, Strategy and International Relations', section: 'Team', href: 'team.html#leadership' },
+    { title: 'CA Monica Gupta, Co-founder and CEO', section: 'Team', href: 'team-monica-gupta.html' },
+    { title: 'CA Manan Patel, Chief Investment Officer', section: 'Team', href: 'team-manan-patel.html' },
+    { title: 'CA Nimit Shah, Head of Partnerships', section: 'Team', href: 'team-nimit-shah.html' },
+    { title: 'Adv. Rahul Hingmire, Chief Legal Advisor', section: 'Team', href: 'team-rahul-hingmire.html' },
+    { title: 'Sudhir Mehta, Strategy and International Relations', section: 'Team', href: 'team-sudhir-mehta.html' },
     { title: 'Strategic Growth Partners', section: 'Team', href: 'team.html#growth-partners' },
-    { title: 'Pankaj Harwansh, Growth Partner', section: 'Team', href: 'team.html#growth-partners' },
-    { title: 'S Robin, Growth Partner', section: 'Team', href: 'team.html#growth-partners' },
-    { title: 'Subramanian Srinivasan, Growth Partner', section: 'Team', href: 'team.html#growth-partners' },
-    { title: 'Suresh Menon, Growth Partner', section: 'Team', href: 'team.html#growth-partners' },
-    { title: 'Sandeep Agrawal, Growth Partner', section: 'Team', href: 'team.html#growth-partners' },
-    { title: 'Anup Nathani, Growth Partner', section: 'Team', href: 'team.html#growth-partners' },
+    { title: 'Pankaj Harwansh, Growth Partner', section: 'Team', href: 'team-pankaj-harwansh.html' },
+    { title: 'S Robin, Growth Partner', section: 'Team', href: 'team-s-robin.html' },
+    { title: 'Subramanian Srinivasan, Growth Partner', section: 'Team', href: 'team-subramanian-srinivasan.html' },
+    { title: 'Suresh Menon, Growth Partner', section: 'Team', href: 'team-suresh-menon.html' },
+    { title: 'Sandeep Agrawal, Growth Partner', section: 'Team', href: 'team-sandeep-agrawal.html' },
+    { title: 'Anup Nathani, Growth Partner', section: 'Team', href: 'team-anup-nathani.html' },
     { title: 'Sakshay Upadhyay, Investment Associate', section: 'Team', href: 'team.html#team-members' },
     { title: 'Karan Shah, Deal Manager', section: 'Team', href: 'team.html#team-members' },
     { title: 'Mehak Gupta, Creative Head', section: 'Team', href: 'team.html#team-members' },
@@ -1456,7 +1456,13 @@
       anim.onfinish = () => { [...panel.children].forEach((el) => el.getAnimations().forEach((a) => a.cancel())); anim.cancel(); finish(); };
     }
 
-    $$(dialog.dataset.cards || '.svc-card').forEach((card) => card.addEventListener('click', () => open(card)));
+    $$(dialog.dataset.cards || '.svc-card').forEach((card) => card.addEventListener('click', (e) => {
+      if (card.href) {                                  // a link to the full page: new-tab clicks go there, a plain click opens the pop-up
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+      }
+      open(card);
+    }));
     $('[data-svc-close]', dialog).addEventListener('click', () => close());
     dialog.addEventListener('cancel', (e) => { e.preventDefault(); close(); });   // Esc
     dialog.addEventListener('click', (e) => { if (e.target === dialog) close(); }); // backdrop

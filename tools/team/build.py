@@ -2,6 +2,7 @@
 
     about.html   <- tools/about/main.html
     team.html    <- tools/team/main.html
+    team-<slug>.html  <- tools/team/profiles.py (the profile templates in main.html + profiles.json)
     press.html   <- tools/press/main.html (+ tools/press/press.json)
     perspectives.html, perspective-<slug>.html  <- tools/perspectives/ (+ posts.json)
     portfolio.html, portfolio-<slug>.html  <- tools/portfolio/ (+ companies.json)
@@ -69,6 +70,7 @@ seo = _load("seo", "tools/seo/seo.py")
 press_render = _load("press_render", "tools/press/render.py")
 portfolio_render = _load("portfolio_render", "tools/portfolio/render.py")
 perspectives_render = _load("perspectives_render", "tools/perspectives/render.py")
+profiles = _load("profiles", "tools/team/profiles.py")
 bootcamps_render = _load("bootcamps_render", "tools/bootcamps/render.py")
 FILLERS = {"press.html": press_render.render, "perspectives.html": perspectives_render.render, "portfolio.html": portfolio_render.render_portfolio, "bootcamps.html": bootcamps_render.render}
 
@@ -97,6 +99,10 @@ for out, main_src, description, label in PAGES:
 # One page per portfolio company (portfolio-<slug>.html)
 for out, main, description in portfolio_render.company_pages():
     write(out, main, description, "Our Portfolio")
+
+# One page per leader and growth partner (team-<slug>.html)
+for out, main, description in profiles.pages():
+    write(out, main, description, "Team")
 
 # One page per article hosted on this site (perspective-<slug>.html)
 for out, main, description in perspectives_render.article_pages():

@@ -4,6 +4,7 @@ plus sitemap.xml and robots.txt. Called by tools/team/build.py.
 The tags live between the <!-- seo --> and <!-- /seo --> comments in each page's <head>, index.html included.
 Change the wording here (TITLES, HOME_DESCRIPTION), not in the pages. If the domain changes, change SITE.
 """
+import importlib.util
 import json
 import re
 from html import escape, unescape
@@ -55,28 +56,28 @@ def _companies():
     return {f"portfolio-{c['slug']}.html": c for c in cs}
 
 
-def _leaders():
-    """The Leadership section's people, from the team page's profile templates."""
-    t = (ROOT / "tools/team/main.html").read_text(encoding="utf-8")
-    sec = t[t.index('id="leadership"'):t.index('id="team-members"')]
-    people = []
-    for slug, role, name, body in re.findall(r'<template id="team-([\w-]+)" data-group="([^"]*)" data-title="([^"]*)">([\s\S]*?)</template>', sec):
-        name = unescape(name)
-        prefix = next((p for p in ("CA", "Adv.") if name.startswith(p + " ")), None)
-        person = {"@type": "Person", "@id": f"{SITE}/team.html#{slug}", "name": name[len(prefix) + 1:] if prefix else name,
-                  "jobTitle": unescape(role), "worksFor": {"@id": ORG}, "image": f"{SITE}/assets/team/{slug}.webp",
-                  "description": unescape(re.sub(r"<[^>]+>", "", re.search(r'profile__bio">([\s\S]*?)</p>', body).group(1)))}
-        if prefix:
-            person["honorificPrefix"] = prefix
-        link = re.search(r'href="(https://www\.linkedin\.com/in/[^"]+)"', body)
-        if link:
-            person["sameAs"] = [link.group(1)]
-        books = [unescape(b) for b in re.findall(r'class="work">[\s\S]*?work__title">([^<]+)</p>', body)]
-        people.append((person, books))
-    return people
+def _people():
+    spec = importlib.util.spec_from_file_location("profiles", ROOT / "tools/team/profiles.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return {p["page"]: p for p in mod.people()}
 
 
-def _organization(leaders):
+def _person(p):
+    d = {"@type": "Person", "@id": f"{SITE}/{p['page']}#person", "name": p["name"], "url": url(p["page"]), "jobTitle": p["role"],
+         "image": f"{SITE}/assets/team/{p['slug']}.webp", "description": p["bio"]}
+    if p["group"] == "leadership":
+        d["worksFor"] = {"@type": "Organization", "@id": ORG, "name": BRAND, "url": f"{SITE}/"}
+    if p["prefix"]:
+        d["honorificPrefix"] = p["prefix"]
+    if p["linkedin"]:
+        d["sameAs"] = [p["linkedin"]]
+    if p["affiliations"]:
+        d["affiliation"] = [{"@type": "Organization", "name": a} for a, _ in p["affiliations"]]
+    return d
+
+
+def _organization(people):
     return {
         "@type": "Organization", "@id": ORG, "name": BRAND, "legalName": "Earlyseed Ventures Pvt. Ltd.", "url": f"{SITE}/",
         "logo": f"{SITE}/assets/brand/icons/icon-512.png", "image": f"{SITE}/assets/brand/og.jpg", "description": HOME_DESCRIPTION,
@@ -84,13 +85,16 @@ def _organization(leaders):
         "address": {"@type": "PostalAddress", "streetAddress": "3, Enterprise Centre, Near Orchid Hotel, Vile Parle (E)",
                     "addressLocality": "Mumbai", "addressRegion": "Maharashtra", "postalCode": "400099", "addressCountry": "IN"},
         "areaServed": "IN", "sameAs": ["https://www.linkedin.com/company/earlyseed-ventures"],
-        "founder": [{"@type": "Person", "name": p["name"], "jobTitle": p["jobTitle"]} for p, _ in leaders if p["jobTitle"].startswith("Co-founder")],
+        "founder": [{"@type": "Person", "@id": f"{SITE}/{p['page']}#person", "name": p["name"], "jobTitle": p["role"], "url": url(p["page"])}
+                    for p in people.values() if p["role"].startswith("Co-founder")],
     }
 
 
-def _crumbs(page, companies):
+def _crumbs(page, companies, people):
     if page in companies:
         chain = [("Home", "index.html"), ("Our Portfolio", "portfolio.html"), (companies[page]["name"], page)]
+    elif page in people:
+        chain = [("Home", "index.html"), ("Team", "team.html"), (people[page]["name"], page)]
     elif page in CRUMBS:
         name, parent = CRUMBS[page]
         chain = [("Home", "index.html")] + ([(CRUMBS[parent][0], parent)] if parent else []) + [(name, page)]
@@ -101,8 +105,15 @@ def _crumbs(page, companies):
 
 
 def block(page, description, title=None):
-    companies, leaders = _companies(), _leaders()
-    c = companies.get(page)
+    companies, people = _companies(), _people()
+    c, person = companies.get(page), people.get(page)
+    if person:
+        title = f"{person['name']}, {person['role']} | {BRAND}"
+        if len(title) > 65:
+            role = person["role"].removeprefix("Co-founder and ") if person["group"] == "leadership" else "Strategic Growth Partner"
+            title = f"{person['name']}, {role} | {BRAND}"
+        if len(title) > 70:
+            title = f"{person['name']} | {BRAND}"
     if c:
         title = f"{c['name']}: {c.get('tag') or c['sector']} | {BRAND}"
         if len(title) > 62:
@@ -112,13 +123,13 @@ def block(page, description, title=None):
     description = short(HOME_DESCRIPTION if page == "index.html" else description)
     graph = []
     if page == "index.html":
-        graph += [_organization(leaders), {"@type": "WebSite", "@id": f"{SITE}/#website", "url": f"{SITE}/", "name": BRAND, "publisher": {"@id": ORG}, "inLanguage": "en-IN"}]
+        graph += [_organization(people), {"@type": "WebSite", "@id": f"{SITE}/#website", "url": f"{SITE}/", "name": BRAND, "publisher": {"@id": ORG}, "inLanguage": "en-IN"}]
     else:
         web = {"@type": TYPES.get(page, "WebPage"), "@id": url(page), "url": url(page), "name": title.split(" | ")[0], "description": description,
                "isPartOf": {"@type": "WebSite", "@id": f"{SITE}/#website", "name": BRAND, "url": f"{SITE}/"},
                "publisher": {"@type": "Organization", "@id": ORG, "name": BRAND, "url": f"{SITE}/"}, "inLanguage": "en-IN"}
         if page == "about.html":
-            web["about"] = _organization(leaders)
+            web["about"] = _organization(people)
             del web["publisher"]
         if c:
             web["about"] = {k: v for k, v in {"@type": "Organization", "name": c["name"], "url": c.get("website"), "description": c["short"]}.items() if v}
@@ -127,10 +138,13 @@ def block(page, description, title=None):
                 {"@type": "ListItem", "position": i, "name": x["name"], "url": url(p)} for i, (p, x) in enumerate(companies.items(), 1)]}
         graph.append(web)
         if page == "team.html":
-            for person, books in leaders:
-                graph.append(person)
-                graph += [{"@type": "Book", "name": b, "author": {"@id": person["@id"]}} for b in books]
-        crumbs = _crumbs(page, companies)
+            web["mainEntity"] = {"@type": "ItemList", "itemListElement": [
+                {"@type": "ListItem", "position": i, "name": x["name"], "url": url(p)} for i, (p, x) in enumerate(people.items(), 1)]}
+        if person:
+            web["@type"] = "ProfilePage"
+            web["mainEntity"] = _person(person)
+            graph += [{"@type": "Book", "name": b, "author": {"@id": web["mainEntity"]["@id"]}} for b in person["books"]]
+        crumbs = _crumbs(page, companies, people)
         if crumbs:
             graph.append(crumbs)
     data = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
