@@ -4,7 +4,7 @@
     { "id": "chronicle", "name": "Indian Startup Chronicle", "about": "Our newsletter: a roundup of the Indian startup ecosystem and the latest market trends." },
     { "id": "deal-table", "name": "From the deal table", "about": "Fundraising playbooks, founder stories and our work across India’s startup ecosystem.", "photo": "deal-table.webp", "focus": "22% 30%" },
     { "id": "founder-stories", "name": "Founder Stories", "about": "Founders on what raising capital really looked like.", "photo": "founder-stories.webp", "focus": "50% 40%" },
-    { "id": "finance", "name": "Finance for the Fundraising-Curious", "about": "Round structures, valuations and term sheets, explained simply." },
+    { "id": "finance", "name": "Finance for the Fundraising-Curious", "about": "Round structures, valuations and term sheets, explained simply.", "icon": "finance" },
     { "id": "campus", "name": "On campus", "about": "What we learn from founder-readiness programmes with universities and student founders.", "photo": "mit-wpu.webp", "focus": "30% 45%" },
     { "id": "podcasts", "name": "Podcasts", "about": "Entrepreneurship Unplugged with Suresh Menon. Grit, Guts & Gumption: Monica Gupta’s journey as an entrepreneur.", "photo": "podcasts.webp", "focus": "50% 30%", "soon": "Episodes coming soon" }
   ],

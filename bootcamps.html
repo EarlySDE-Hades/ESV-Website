@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sorts+Mill+Goudy:ital@0;1&display=swap" />
-  <link rel="stylesheet" href="css/styles.css?v=202611241010" />
+  <link rel="stylesheet" href="css/styles.css?v=202611241102" />
 
   <!-- Enables JS-only states (scroll reveals) without hiding content when JS is unavailable -->
   <script>document.documentElement.classList.add('js');</script>
@@ -129,46 +129,194 @@
   </header>
 
   <main id="main" class="bc-page">
-    <!-- ============================== Bootcamps ============================== -->
-    <!-- Campus programmes. Copy from the About page's "On campus" section; the partner list is generated from
-         the #partner-data JSON in index.html by tools/team/build.py. The home page's campus logos link here (#slug). -->
-    <section class="bc-hero" aria-labelledby="bc-title">
-      <div class="container bc-hero__inner">
-        <p class="eyebrow" data-reveal>Bootcamps</p>
-        <h1 class="ev-hero__title" id="bc-title" data-reveal style="--i:1">Founder bootcamps on campus.</h1>
-        <p class="bc-hero__lede" data-reveal style="--i:2">We connect with aspiring student entrepreneurs, and give them access to funding, mentorship and resources.</p>
-        <ul class="bc-topics" role="list" data-reveal style="--i:3">
-          <li>Business planning</li>
-          <li>Pitch decks</li>
-          <li>Financial projections</li>
-          <li>Valuations</li>
-          <li>Mentorship</li>
-          <li>Access to investors</li>
+    <!-- ============================== Bootcamps hero: the lecture-hall board ============================== -->
+    <!-- Source: ESV Bootcamp Case Study (ESV x MAHE). js initBoard sketches the doodle once and lets visitors draw with the
+         chalk on the tray; without JS it is a finished board. The partner and campus lists are filled in by tools/team/build.py. -->
+    <section class="board-hero" aria-labelledby="bc-title">
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <filter id="chalk" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="4" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.6 2.35" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in" result="c"/><feDisplacementMap in="c" in2="n" scale="1.6"/></filter>
+      </svg>
+      <div class="container">
+        <div class="board" data-board>
+          <div class="board__face" data-board-face>
+            <div class="board__copy">
+              <p class="board__eyebrow">Bootcamps</p>
+              <h1 class="board__title" id="bc-title">From the classroom to the pitch room.</h1>
+              <p class="board__lede">We connect with aspiring student entrepreneurs, and give them access to funding, mentorship and resources.</p>
+              <div class="board__ctas">
+                <a class="btn" href="mailto:bootcamp@earlyseedventures.com?subject=Bootcamp%20enquiry">Bring it to your campus</a>
+                <a class="board__link" href="bootcamps.html#case-study">See how it ran at Manipal</a>
+              </div>
+            </div>
+            <svg class="board__sketch" viewBox="0 0 520 430" role="img" aria-label="Chalk sketch of a founder's path: an idea, then a model, then a pitch, then investment." focusable="false">
+              <g class="ck-group">
+                <!-- idea -->
+                <path class="ck" pathLength="1" style="--d:200ms;--t:900ms" d="M92 118c-3-16-24-26-23-50 1-25 20-41 43-40 25 1 42 19 41 43-1 22-21 32-24 48"/>
+                <path class="ck" pathLength="1" style="--d:1000ms;--t:500ms" d="M91 122c13 3 26 2 39-1M94 132c11 3 23 2 33-1M102 142c6 4 12 3 17 0"/>
+                <path class="ck" pathLength="1" style="--d:1400ms;--t:500ms" d="M102 117c1-19-10-27-8-36 5-7 11 6 17 5 6 0 10-12 16-6 4 8-7 18-6 37"/>
+                <path class="ck ck--amber" pathLength="1" style="--d:1800ms;--t:450ms" d="M111 14c0-4 1-7 0-11M163 34c4-4 6-5 9-9M177 78c5 0 9-1 14 0M59 34c-4-4-6-6-9-9M45 78c-5 1-8 0-13 0"/>
+                <text class="ck-t" style="--d:1900ms" x="112" y="186">idea</text>
+                <path class="ck ck--lilac" pathLength="1" style="--d:2100ms;--t:600ms" d="M204 82c34-24 70-24 104-3M292 64c6 5 11 10 17 15-8 2-15 3-22 6"/>
+                <!-- model -->
+                <path class="ck" pathLength="1" style="--d:2600ms;--t:800ms" d="M338 36c50-3 100-2 148 1 2 36 2 68-1 102-48 2-98 2-147-1-3-34-3-68 0-102ZM330 36c55-4 110-3 164 0"/>
+                <path class="ck" pathLength="1" style="--d:3200ms;--t:400ms" d="M411 140v18M411 158l-26 27M411 158l27 27"/>
+                <path class="ck ck--amber" pathLength="1" style="--d:3400ms;--t:800ms" d="M360 122c0-9 0-17 1-25 6-1 11 0 16 0 1 8 0 17 0 25M392 122c0-14 0-28 1-42 5-1 11-1 16 0 1 14 0 28 0 42M424 122c0-20 0-42 1-62 5-1 11-1 16 0 1 20 1 42 0 62M351 123c34 1 72 1 106-1"/>
+                <text class="ck-t" style="--d:3900ms" x="412" y="212">model</text>
+                <path class="ck ck--lilac" pathLength="1" style="--d:4100ms;--t:600ms" d="M428 228c12 34 2 64-34 88M414 296c-8 7-14 13-20 20 10-1 18-1 27 1"/>
+                <!-- pitch -->
+                <path class="ck" pathLength="1" style="--d:4600ms;--t:900ms" d="M258 402c2-30 3-56 2-84 30-3 62-3 92 0-2 28-1 56 2 84-32 2-64 2-96 0ZM246 318c40-6 80-6 120 0"/>
+                <path class="ck" pathLength="1" style="--d:5200ms;--t:700ms" d="M306 248c10 0 17 8 17 18s-8 18-18 18-17-8-17-18 8-18 18-18ZM278 316c2-18 12-27 28-27s27 9 29 27M335 304c10-6 17-14 23-25"/>
+                <path class="ck ck--amber" pathLength="1" style="--d:5700ms;--t:400ms" d="M372 250c5 4 8 9 9 15M386 238c8 6 13 15 14 26"/>
+                <text class="ck-t" style="--d:5900ms" x="306" y="368">pitch</text>
+                <path class="ck ck--lilac" pathLength="1" style="--d:6100ms;--t:600ms" d="M236 352c-28 14-52 14-80 0M172 366c-6-5-11-9-17-14 7-3 14-5 20-8"/>
+                <!-- invest -->
+                <path class="ck ck--amber" pathLength="1" style="--d:6600ms;--t:800ms" d="M88 268c34 0 57 24 57 56s-25 56-57 55c-33 0-56-24-55-56 0-32 24-55 55-55ZM86 277c28-1 49 19 49 47"/>
+                <path class="ck ck--amber" pathLength="1" style="--d:7200ms;--t:700ms" d="M66 298h45M66 312h45M70 298c28-3 30 28-3 27 12 10 22 20 33 31"/>
+                <text class="ck-t" style="--d:7600ms" x="88" y="414">invest</text>
+              </g>
+            </svg>
+            <canvas class="board__canvas" data-board-canvas aria-hidden="true"></canvas>
+          </div>
+          <div class="board__tray">
+            <p class="board__hint" data-board-hint>Go on, pick up the chalk and draw on the board.</p>
+            <div class="board__tools" role="group" aria-label="Draw on the board">
+              <button class="chalk" type="button" style="--k:#FFFFFF" data-chalk="#FFFFFF" aria-pressed="true" aria-label="White chalk"></button>
+              <button class="chalk" type="button" style="--k:#CEAAFD" data-chalk="#CEAAFD" aria-pressed="false" aria-label="Lilac chalk"></button>
+              <button class="chalk" type="button" style="--k:#F2B544" data-chalk="#F2B544" aria-pressed="false" aria-label="Amber chalk"></button>
+              <button class="duster" type="button" data-duster aria-label="Wipe the board"><span></span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== Syllabus ============================== -->
+    <section class="section bc-section" aria-labelledby="bc-syl-title">
+      <div class="container bc-syl">
+        <div class="bc-syl__intro" data-reveal>
+          <h2 class="ab-title" id="bc-syl-title">What founders work on</h2>
+          <p class="bc-text">Online and offline sessions taken by the Earlyseed Ventures team and industry experts, followed by an expert visit to campus for the final pitch day.</p>
+        </div>
+        <div class="notebook" data-reveal style="--i:1">
+          <ul role="list">
+            <li>Ideation to MVP</li>
+            <li>Market research</li>
+            <li>Go-to-market strategy</li>
+            <li>Pitch deck preparation</li>
+            <li>Financial modelling and valuation</li>
+            <li>Governance, risk and compliance</li>
+            <li>Legal and documentation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== Case study: ESV x MAHE ============================== -->
+    <section class="section bc-section bc-case" id="case-study" aria-labelledby="bc-case-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <div class="bc-case__logos"><img src="assets/brand/logo-dark.png" alt="Earlyseed Ventures" width="136" height="51" /><span aria-hidden="true">×</span><img src="assets/logos/campus/manipal.webp" alt="Manipal Academy of Higher Education" class="bc-case__mahe" /></div>
+          <h2 class="ab-title" id="bc-case-title">Five weeks at Manipal</h2>
+          <p class="ab-sub bc-case__sub">Manipal Academy of Higher Education offers resources that help founders turn ideas into reality. Through its partnership with us, it can support them in growing and scaling their ventures in the real world, and foster an entrepreneurial culture among students, faculty and alumni.</p>
+        </header>
+      </div>
+      <div class="jr run">
+        <div class="thread thread--h" data-thread data-thread-h data-thread-stop data-seed="23">
+          <ol class="jr__list run__list" role="list">
+            <li data-thread-node><span class="jr-year__n">Kick-off</span><p>Introduction and masterclass with the ESV team</p></li>
+            <li data-thread-node><span class="jr-year__n">Masterclass</span><p>ESV team and industry expert</p></li>
+            <li data-thread-node><span class="jr-year__n">Masterclass</span><p>ESV team and industry expert</p></li>
+            <li data-thread-node><span class="jr-year__n">Masterclass</span><p>ESV team and industry expert</p></li>
+            <li class="run__key" data-thread-node><span class="jr-year__n">On campus</span><p>The ESV team visits for two days of 1:1 deep dives</p></li>
+            <li data-thread-node><span class="jr-year__n">Masterclass</span><p>ESV team and industry expert</p></li>
+            <li data-thread-node><span class="jr-year__n">Masterclass</span><p>ESV team and industry expert</p></li>
+            <li data-thread-node><span class="jr-year__n">Masterclass</span><p>ESV team and industry expert</p></li>
+            <li class="run__key" data-thread-node><span class="jr-year__n">Mock pitch</span><p>With an ESV expert panel</p></li>
+            <li class="run__key" data-thread-node><span class="jr-year__n">Pitch day</span><p>9 February 2025</p></li>
+          </ol>
+        </div>
+      </div>
+      <div class="container">
+        <div class="bc-photos">
+          <figure class="bc-photo bc-photo--rose" data-reveal><img src="assets/bootcamps/manipal-team.webp" alt="Four members of the Earlyseed Ventures team on the steps of the Innovation Centre at Manipal" width="649" height="664" loading="lazy" decoding="async" /></figure>
+          <figure class="bc-photo bc-photo--lilac" data-reveal style="--i:1"><img src="assets/bootcamps/manipal-session.webp" alt="A founder speaking in front of a panel seated at a long desk" width="684" height="527" loading="lazy" decoding="async" /></figure>
+          <figure class="bc-photo bc-photo--sand" data-reveal style="--i:2"><img src="assets/bootcamps/manipal-award.webp" alt="A participant receiving a gift on stage in front of the Pitch Tank screen" width="488" height="366" loading="lazy" decoding="async" /></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== Pitch day ============================== -->
+    <section class="section bc-section" aria-labelledby="bc-day-title">
+      <div class="container bc-day">
+        <figure class="bc-day__photo" data-reveal><img src="assets/bootcamps/manipal-summit.webp" alt="The stage at the Manipal Entrepreneurship Summit, seen from the audience" width="1280" height="960" loading="lazy" decoding="async" /></figure>
+        <div data-reveal style="--i:1">
+          <h2 class="ab-title" id="bc-day-title">Final pitch day</h2>
+          <p class="bc-text">The bootcamp closed at the Manipal Entrepreneurship Summit, MES 2025. Some of the industry experts who joined us:</p>
+          <ul class="bc-experts" role="list">
+            <li><span>Madhu</span><span>SAN Angels</span></li>
+            <li><span>Piyush Jain</span><span>Venture Partner, Ludhiana</span></li>
+            <li><span>Vikas Agarwal</span><span>EvolveX Accelerator</span></li>
+            <li><span>Praneeth Kannah</span><span>Astir Ventures</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== Results ============================== -->
+    <section class="section bc-section bc-results" aria-labelledby="bc-res-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <h2 class="ab-title" id="bc-res-title">What the founders said</h2>
+        </header>
+        <div class="bc-score" data-reveal>
+          <p class="bc-score__n">4.72</p>
+          <div><span class="bc-stars" role="img" aria-label="4.72 out of 5 stars"></span><p>Average rating given by the participants</p></div>
+        </div>
+        <ul class="bc-rings" role="list">
+          <li data-reveal><span class="ring" style="--v:1"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle class="ring__v" cx="60" cy="60" r="52" pathLength="1"/></svg><b>100%</b></span><p>said the bootcamp helped them on their entrepreneurial journey</p></li>
+          <li data-reveal style="--i:1"><span class="ring" style="--v:0.9"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle class="ring__v" cx="60" cy="60" r="52" pathLength="1"/></svg><b>90%</b></span><p>found the in-person review of their pitch deck, elevator pitch and financial model the most impactful session</p></li>
+          <li data-reveal style="--i:2"><span class="ring" style="--v:1"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52"/><circle class="ring__v" cx="60" cy="60" r="52" pathLength="1"/></svg><b>100%</b></span><p>would like to stay connected with us, for mentorship, fundraising, decks, models, valuations and more</p></li>
+        </ul>
+        <p class="bc-note">Taken solely from the feedback form filled in by the bootcamp participants.</p>
+        <ul class="bc-notes" role="list">
+          <li class="bc-sticky" data-reveal><blockquote>Embracing failures as learning experiences and staying adaptable to market dynamics is essential for growth.</blockquote><p>Red Mountain Healthcare</p></li>
+          <li class="bc-sticky" data-reveal style="--i:1"><blockquote>Helped to get understand the investor’s mindset for a startup.</blockquote><p>Flying Electronics</p></li>
+          <li class="bc-sticky" data-reveal style="--i:2"><blockquote>A great business is not just about a unique idea but about delivering tangible value to customers in a scalable and sustainable way.</blockquote><p>Red Mountain Healthcare</p></li>
+          <li class="bc-sticky" data-reveal style="--i:3"><blockquote>Understanding the details we should be focused on both for raising funds as well as executing on your business.</blockquote><p>Nights Fintech Pvt Ltd (Sthani Club)</p></li>
         </ul>
       </div>
     </section>
 
+    <!-- ============================== Other campuses ============================== -->
     <section class="section bc-section" aria-labelledby="bc-high-title">
       <div class="container">
         <header class="section-head" data-reveal>
-          <h2 class="section-title section-title--ruled" id="bc-high-title"><span>Highlights</span></h2>
+          <h2 class="ab-title" id="bc-high-title">On other campuses</h2>
         </header>
-        <ul class="ab-cards" role="list">
-          <li class="ab-card" data-reveal>
-            <h3 class="ab-step__title">MIT World Peace University, Pune</h3>
-            <p>A programme for 4,000+ students, covering everything from business planning to pre-funding exercises such as pitch decks, financial projections and valuations.</p>
+        <ul class="campus-grid" role="list">
+          <li class="campus-card" data-campus-card data-reveal style="--i:0">
+            <img class="campus-card__logo" src="assets/logos/campus/mit-wpu.webp" alt="" width="324" height="94" style="width:240px" loading="lazy" decoding="async" draggable="false" />
+            <button class="campus-card__hit" type="button" aria-expanded="false"><span class="visually-hidden">MIT World Peace University, Pune: show details</span></button>
+            <div class="campus-card__text"><h3 class="campus-card__title">MIT World Peace University, Pune</h3><p>A programme for 4,000+ students, covering everything from business planning to pre-funding exercises such as pitch decks, financial projections and valuations.</p></div>
+            <span class="campus-card__plus" aria-hidden="true"></span>
           </li>
-          <li class="ab-card" data-reveal style="--i:1">
-            <h3 class="ab-step__title">Gharda Institute of Technology</h3>
-            <p>An MoU to support its incubation centre with mentorship, bootcamps and workshops, industry insights and access to investors and partners.</p>
+          <li class="campus-card" data-campus-card data-reveal style="--i:1">
+            <img class="campus-card__logo" src="assets/logos/campus/gharda.webp" alt="" width="229" height="63" style="width:229px" loading="lazy" decoding="async" draggable="false" />
+            <button class="campus-card__hit" type="button" aria-expanded="false"><span class="visually-hidden">Gharda Institute of Technology: show details</span></button>
+            <div class="campus-card__text"><h3 class="campus-card__title">Gharda Institute of Technology</h3><p>An MoU to support its incubation centre with mentorship, bootcamps and workshops, industry insights and access to investors and partners.</p></div>
+            <span class="campus-card__plus" aria-hidden="true"></span>
           </li>
-          <li class="ab-card" data-reveal style="--i:2">
-            <h3 class="ab-step__title">Skill Titans</h3>
-            <p>Knowledge partners for OLL’s Skill Titans, in partnership with CNBC-TV18, alongside MIT Pune, Manipal University, Gharda Institute of Technology and Ashoka University.</p>
+          <li class="campus-card" data-campus-card data-reveal style="--i:0">
+            <img class="campus-card__logo" src="assets/logos/campus/skill-titans.webp" alt="" width="163" height="141" style="width:163px" loading="lazy" decoding="async" draggable="false" />
+            <button class="campus-card__hit" type="button" aria-expanded="false"><span class="visually-hidden">Skill Titans: show details</span></button>
+            <div class="campus-card__text"><h3 class="campus-card__title">Skill Titans</h3><p>Knowledge partners for OLL’s Skill Titans, in partnership with CNBC-TV18, alongside MIT Pune, Manipal University, Gharda Institute of Technology and Ashoka University.</p></div>
+            <span class="campus-card__plus" aria-hidden="true"></span>
           </li>
-          <li class="ab-card" data-reveal>
-            <h3 class="ab-step__title">IIT Madras</h3>
-            <p>Invited as mentors for student founders.</p>
+          <li class="campus-card" data-campus-card data-reveal style="--i:1">
+            <img class="campus-card__logo" src="assets/logos/campus/iit-madras.webp" alt="" width="149" height="149" style="width:149px" loading="lazy" decoding="async" draggable="false" />
+            <button class="campus-card__hit" type="button" aria-expanded="false"><span class="visually-hidden">IIT Madras: show details</span></button>
+            <div class="campus-card__text"><h3 class="campus-card__title">IIT Madras</h3><p>Invited as mentors for student founders.</p></div>
+            <span class="campus-card__plus" aria-hidden="true"></span>
           </li>
         </ul>
       </div>
@@ -177,7 +325,7 @@
     <section class="section bc-section" aria-labelledby="bc-partners-title">
       <div class="container">
         <header class="section-head" data-reveal>
-          <h2 class="section-title section-title--ruled" id="bc-partners-title"><span>Campus partners</span></h2>
+          <h2 class="ab-title" id="bc-partners-title">Campus partners</h2>
         </header>
         <ul class="bc-partners" role="list">
           <li class="bc-partner" id="nmims" data-reveal>
@@ -240,10 +388,10 @@
 
     <section class="section bc-section bc-close" aria-labelledby="bc-close-title">
       <div class="container bc-hero__inner">
-        <h2 class="section-title" id="bc-close-title" data-reveal>Bring a bootcamp to your campus</h2>
+        <h2 class="ab-title" id="bc-close-title" data-reveal>Bring a bootcamp to your campus</h2>
         <p class="bc-hero__lede" data-reveal style="--i:1">Tell us about your incubation centre or entrepreneurship cell and we’ll plan a programme together.</p>
         <div class="hero__ctas" data-reveal style="--i:2">
-          <a class="btn" href="mailto:info@earlyseedventures.com?subject=Bootcamp%20enquiry">Get in touch</a>
+          <a class="btn" href="mailto:bootcamp@earlyseedventures.com?subject=Bootcamp%20enquiry">bootcamp@earlyseedventures.com</a>
         </div>
       </div>
     </section>
@@ -275,11 +423,12 @@
       </nav>
       <p class="site-footer__legal">
         <span>© <span data-year>2026</span> Earlyseed Ventures</span>
+        <span>Powered by <a href="https://arboreallabs.com/" target="_blank" rel="noopener">Arboreal Labs<span class="visually-hidden"> (opens in a new tab)</span></a></span>
         <a href="https://www.linkedin.com/company/earlyseed-ventures" target="_blank" rel="noopener">LinkedIn</a>
       </p>
     </div>
   </footer>
 
-  <script src="js/main.js?v=202611241010" defer></script>
+  <script src="js/main.js?v=202611241102" defer></script>
 </body>
 </html>

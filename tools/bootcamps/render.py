@@ -1,5 +1,5 @@
 """Render the Bootcamps page's campus partners from the #partner-data JSON in index.html
-(the same data the home page's campus strip uses). Called by tools/team/build.py."""
+(the same data the home page's campus strip uses), and the campus logo cards from the About page. Called by tools/team/build.py."""
 import json
 import re
 from html import escape
@@ -33,4 +33,7 @@ def render():
               {site}
             </div>
           </li>''')
-    return {"{{PARTNERS}}": "\n".join(rows), "{{PARTNER_COUNT}}": str(len(partners))}
+    # the same logo cards as About's "On campus" section
+    about = (ROOT / "tools/about/main.html").read_text(encoding="utf-8")
+    campus = re.search(r'        <ul class="campus-grid"[\s\S]*?</ul>', about).group(0)
+    return {"{{CAMPUS}}": campus, "{{PARTNERS}}": "\n".join(rows), "{{PARTNER_COUNT}}": str(len(partners))}

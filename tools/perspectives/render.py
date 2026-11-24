@@ -89,7 +89,8 @@ def render():
             count = escape(s.get("soon", "First article coming soon"))
             body = f'<p class="pv-soon">{count}.</p>'
         art = (f'<img class="pv-series__art" src="assets/perspectives/{s["photo"]}" alt="" style="object-position:{s["focus"]}" loading="lazy" decoding="async" />'
-               if s.get("photo") else "")
+               if s.get("photo") else
+               f'<img class="pv-series__icon" src="assets/icons/sectors/{s["icon"]}.webp" alt="" width="112" height="112" loading="lazy" decoding="async" />' if s.get("icon") else "")
         groups.append(f'''          <details class="pv-series" id="{s["id"]}"{" open" if n == 0 else ""}>
             <summary><span class="pv-series__n" aria-hidden="true">{n + 1}</span><h3 class="pv-series__name">{escape(s["name"])}</h3><span class="pv-series__count">{count}</span><span class="pv-series__plus" aria-hidden="true"></span></summary>
             <div class="pv-series__body">

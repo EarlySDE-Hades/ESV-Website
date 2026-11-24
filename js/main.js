@@ -862,7 +862,8 @@
       start = 0;
       if (horiz) {
         // straight, as in the mockup, running off the right edge of the screen
-        const w = document.documentElement.clientWidth - box.left;
+        // (data-thread-stop: ends at its last point instead)
+        const w = el.hasAttribute('data-thread-stop') ? nodes[nodes.length - 1].offsetLeft + 8 : document.documentElement.clientWidth - box.left;
         svg.setAttribute('width', w);
         svg.setAttribute('height', 40);
         pos = nodes.map((n) => n.offsetLeft + 8);
@@ -1081,6 +1082,106 @@
     addEventListener('hashchange', () => openSeries(location.hash.slice(1)));
     if (location.hash) openSeries(location.hash.slice(1));
   }
+
+  /* ------------------------------------------------------------------------
+     Bootcamps board: the chalk sketch draws itself once, and visitors can draw on
+     the board. Mouse or pen: just drag. Touch: tap a chalk first (so the page still
+     scrolls normally), tap it again to put it down. The duster wipes what was drawn.
+     ------------------------------------------------------------------------ */
+  function initBoard(board) {
+    const face = $('[data-board-face]', board), canvas = $('[data-board-canvas]', board);
+    const chalks = $$('[data-chalk]', board), duster = $('[data-duster]', board), hint = $('[data-board-hint]', board);
+    const ctx = canvas.getContext('2d');
+    let colour = '#FFFFFF', armed = false, last = null, id = null, wiping = 0, dpr = 1;
+
+    if (reduceMotion.matches || !('IntersectionObserver' in window)) board.classList.add('is-drawn');
+    else {
+      const io = new IntersectionObserver((es) => {
+        if (!es.some((e) => e.isIntersecting)) return;
+        io.disconnect();
+        board.classList.add('is-live');
+        setTimeout(() => { board.classList.add('is-drawn'); board.classList.remove('is-live'); }, 8200);
+      }, { threshold: 0.2 });
+      io.observe(face);
+    }
+
+    function size() {
+      const w = face.clientWidth, h = face.clientHeight;
+      dpr = Math.min(2, devicePixelRatio || 1);
+      const W = Math.round(w * dpr), H = Math.round(h * dpr);
+      if (canvas.width === W && canvas.height === H) return;
+      const keep = document.createElement('canvas');
+      keep.width = canvas.width; keep.height = canvas.height;
+      if (canvas.width) keep.getContext('2d').drawImage(canvas, 0, 0);
+      const kw = canvas.width;
+      canvas.width = W; canvas.height = H;
+      if (kw > 1) ctx.drawImage(keep, 0, 0, W, H);
+    }
+    size();
+    if ('ResizeObserver' in window) new ResizeObserver(size).observe(face);
+
+    // A chalk line: many faint, slightly scattered specks
+    function chalkLine(a, b) {
+      const dx = b[0] - a[0], dy = b[1] - a[1], n = Math.max(1, Math.ceil(Math.hypot(dx, dy) / 1.1));
+      ctx.fillStyle = colour;
+      for (let i = 0; i < n; i++) {
+        const x = a[0] + dx * i / n, y = a[1] + dy * i / n;
+        for (let k = 0; k < 5; k++) {
+          const t = Math.random() * 6.283, r = Math.sqrt(Math.random()) * 2.5;
+          ctx.globalAlpha = 0.16 + Math.random() * 0.5;
+          const s = (0.5 + Math.random() * 1.1) * dpr;
+          ctx.fillRect((x + Math.cos(t) * r) * dpr, (y + Math.sin(t) * r) * dpr, s, s);
+        }
+      }
+      ctx.globalAlpha = 1;
+    }
+    const at = (e) => { const r = canvas.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+    face.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0 || e.target.closest('a, button')) return;
+      if (e.pointerType === 'touch' && !armed) return;
+      e.preventDefault();
+      id = e.pointerId;
+      last = at(e);
+      face.setPointerCapture(id);
+      chalkLine(last, [last[0] + 0.6, last[1] + 0.6]);
+      hint.textContent = 'Nice. The duster wipes it clean.';
+    });
+    face.addEventListener('pointermove', (e) => {
+      if (id !== e.pointerId || !last) return;
+      const pts = e.getCoalescedEvents ? e.getCoalescedEvents() : [];
+      (pts.length ? pts : [e]).forEach((p) => { const q = at(p); chalkLine(last, q); last = q; });
+    });
+    const up = (e) => { if (id === e.pointerId) { id = null; last = null; } };
+    face.addEventListener('pointerup', up);
+    face.addEventListener('pointercancel', up);
+
+    const touchy = matchMedia('(hover: none), (pointer: coarse)');
+    if (touchy.matches) {
+      chalks.forEach((c) => c.setAttribute('aria-pressed', 'false'));
+      hint.textContent = 'Tap a chalk, then draw on the board.';
+    }
+    chalks.forEach((c) => c.addEventListener('click', () => {
+      const putDown = touchy.matches && armed && c.dataset.chalk === colour;
+      armed = !putDown;
+      colour = c.dataset.chalk;
+      chalks.forEach((o) => o.setAttribute('aria-pressed', o === c && !putDown ? 'true' : 'false'));
+      face.classList.toggle('is-armed', armed);
+      if (touchy.matches) hint.textContent = putDown ? 'Tap a chalk, then draw on the board.' : 'Draw away. Tap the chalk again to put it down.';
+    }));
+    duster.addEventListener('click', () => {
+      cancelAnimationFrame(wiping);
+      const t0 = performance.now(), ms = reduceMotion.matches ? 1 : 650;
+      const step = (t) => {
+        const k = Math.min(1, (t - t0) / ms);
+        ctx.clearRect(0, 0, canvas.width * k, canvas.height);
+        if (k < 1) wiping = requestAnimationFrame(step);
+      };
+      wiping = requestAnimationFrame(step);
+      hint.textContent = touchy.matches && !armed ? 'All clean. Tap a chalk to draw again.' : 'All clean. Draw again.';
+    });
+  }
+  const boardEl = $('[data-board]');
+  if (boardEl) initBoard(boardEl);
 
   /* ------------------------------------------------------------------------
      Home Perspectives: each row opens as it scrolls into view and stays open,
