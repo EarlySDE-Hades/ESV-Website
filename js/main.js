@@ -361,8 +361,7 @@
     { title: 'Fundraise Readiness Package', section: 'Prologue', href: 'prologue.html#pl-services' },
     { title: 'Founders’ Bootcamp', section: 'Prologue', href: 'prologue.html#pl-services' },
     { title: 'Pre-funding: data room, consultancy', section: 'Prologue', href: '#prologue' },
-    { title: 'Our Perspectives: articles and newsletter', section: 'Perspectives', href: 'perspectives.html' },
-    { title: 'Indian Startup Chronicle', section: 'Perspectives', href: 'perspectives.html#chronicle' },
+    { title: 'Our Perspectives: articles', section: 'Perspectives', href: 'perspectives.html' },
     { title: 'From the deal table', section: 'Perspectives', href: 'perspectives.html#deal-table' },
     { title: 'Founder Stories', section: 'Perspectives', href: 'perspectives.html#founder-stories' },
     { title: 'Podcasts', section: 'Perspectives', href: 'perspectives.html#podcasts' },
@@ -803,11 +802,12 @@
   if (stairs) initStairs(stairs);
 
   /* ------------------------------------------------------------------------
-     About: hand-drawn lines (How we work, Our growth journey). Each [data-thread]
-     gets a line with a scribbled knot at every [data-thread-node]; the line draws
-     with the scroll, each knot and its text appear as the line reaches them, and
-     what has been drawn stays. data-thread-h runs across on wide screens, and
-     falls back to the vertical line on narrower ones.
+     Scroll-drawn lines (About: How we work, Our growth journey; Bootcamps: the
+     programme). Each [data-thread] gets a straight line with a round point at every
+     [data-thread-node]; the line draws with the scroll, each point and its text
+     appear as the line reaches them, and what has been drawn stays. With
+     data-thread-h it runs across on wide screens, off the right edge of the page
+     (data-thread-stop: to its last point), and down the page on narrower ones.
      ------------------------------------------------------------------------ */
   function initThread(el) {
     const NS = 'http://www.w3.org/2000/svg';
@@ -821,27 +821,6 @@
     const still = reduceMotion.matches;
     let pos = [], len = 0, start = 0, line = null, best = still ? 1 : 0, horiz = false, size = '', raf = 0;
 
-    // Seeded, so the hand-drawn shapes are the same on every visit and after a resize
-    function rng(seed) { let s = seed * 9301 + 49297; return () => { s = (s * 9301 + 49297) % 233280; return s / 233280; }; }
-    // Smooth curve through points (Catmull-Rom as beziers)
-    function curve(p) {
-      const f = (n) => n.toFixed(1);
-      let d = `M${f(p[0][0])} ${f(p[0][1])}`;
-      for (let i = 0; i < p.length - 1; i++) {
-        const a = p[i - 1] || p[i], b = p[i], c = p[i + 1], e = p[i + 2] || c;
-        d += `C${f(b[0] + (c[0] - a[0]) / 6)} ${f(b[1] + (c[1] - a[1]) / 6)} ${f(c[0] - (e[0] - b[0]) / 6)} ${f(c[1] - (e[1] - b[1]) / 6)} ${f(c[0])} ${f(c[1])}`;
-      }
-      return d;
-    }
-    function scribble(x, y, r) {
-      const pts = [], n = 46, ph = r() * 6.28, sx = 0.82 + r() * 0.4, sy = 0.82 + r() * 0.4;
-      const ox = (r() - 0.5) * 7, oy = (r() - 0.5) * 5;                     // the loose loops sit off-centre
-      for (let i = 0; i <= n; i++) {
-        const k = i / n, a = ph + k * 3.4 * 6.283, rad = 8.6 - 6.2 * k + (r() - 0.5) * 1.8;
-        pts.push([x + ox * (1 - k) + Math.cos(a) * rad * sx, y + oy * (1 - k) + Math.sin(a) * rad * sy]);
-      }
-      return curve(pts);
-    }
     function add(d, cls) {
       const p = document.createElementNS(NS, 'path');
       p.setAttribute('d', d);
@@ -857,45 +836,32 @@
       if (key === size || !box.width) return;
       size = key;
       svg.textContent = '';
-      const r = rng(+el.dataset.seed || 1);
-      const pts = [];
+      let d;
       start = 0;
       if (horiz) {
-        // straight, as in the mockup, running off the right edge of the screen
-        // (data-thread-stop: ends at its last point instead)
         const w = el.hasAttribute('data-thread-stop') ? nodes[nodes.length - 1].offsetLeft + 8 : document.documentElement.clientWidth - box.left;
         svg.setAttribute('width', w);
         svg.setAttribute('height', 40);
         pos = nodes.map((n) => n.offsetLeft + 8);
         start = pos[0];
-        pts.push([start, 20]);
-        for (let x = start + 60; x < w - 20; x += 60) pts.push([x, 20 + (r() - 0.5) * 0.9]);
-        pts.push([w, 20]);
+        d = `M${start} 20H${w}`;
         len = w - start;
       } else {
-        len = el.clientHeight;
         svg.setAttribute('width', 40);
-        svg.setAttribute('height', len);
+        svg.setAttribute('height', el.clientHeight);
         pos = nodes.map((n) => {
           const t = $('.how-step__title, .jr-year__n', n);
           // relative to its own step, so the step's reveal shift cancels out
           return n.offsetTop + t.getBoundingClientRect().top - n.getBoundingClientRect().top + t.offsetHeight / 2;
         });
-        pts.push([15 + r() * 3, 0]);
-        if (pos[0] > 50) pts.push([18, 34]);
-        pos.forEach((y, i) => {
-          pts.push([20 + (r() - 0.5) * 2, y]);
-          const gap = (i < pos.length - 1 ? pos[i + 1] : len) - y;
-          if (gap > 110) {
-            const b = (i % 2 ? -1 : 1) * (5 + r() * 6);
-            pts.push([20 + b * 0.35, y + gap * 0.3], [20 + b, y + gap * 0.62], [20 + b * 0.4, y + gap * 0.86]);
-          }
-        });
-        pts.push([17 + r() * 8, len]);
+        start = pos[0];
+        len = pos[pos.length - 1] - start;
+        d = `M20 ${start}v${len}`;
       }
-      line = add(curve(pts), 'thread__line');
+      line = add(d, 'thread__line');
       nodes.forEach((n, i) => {
-        n._knot = add(horiz ? scribble(pos[i], 19, r) : scribble(19.5, pos[i], r), 'thread__knot');
+        const x = horiz ? pos[i] : 20, y = horiz ? 20 : pos[i];
+        n._dot = add(`M${x - 7} ${y}a7 7 0 1 1 14 0a7 7 0 1 1-14 0Z`, 'thread__dot');
       });
       pos = pos.map((p) => (p - start) / len);
       draw();
@@ -904,7 +870,7 @@
       if (!line) return;
       line.style.strokeDashoffset = (1 - best).toFixed(4);
       nodes.forEach((n, i) => {
-        if (best >= 1 || best > 0 && best >= pos[i] - 0.001) { n.classList.add('is-on'); n._knot.classList.add('is-on'); }
+        if (best >= 1 || best > 0 && best >= pos[i] - 0.001) { n.classList.add('is-on'); n._dot.classList.add('is-on'); }
       });
     }
     function update() {

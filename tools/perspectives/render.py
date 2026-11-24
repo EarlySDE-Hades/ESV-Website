@@ -18,6 +18,8 @@ COVERS = ["lilac", "sand", "violet", "rose", "crema", "bronze", "ink"]   # cover
 
 def _data():
     d = json.loads((HERE / "posts.json").read_text(encoding="utf-8"))
+    for k in ("series", "posts"):
+        d[k] = [x for x in d[k] if not x.get("hidden")]
     d["posts"].sort(key=lambda p: p["date"], reverse=True)
     return d
 
@@ -74,6 +76,16 @@ def render():
               </a>
             </li>''')
 
+    # series with nothing published yet wait at the end of the shelf
+    for s in series:
+        if not any(p["series"] == s["id"] for p in posts):
+            covers.append(f'''            <li class="cover">
+              <div class="cover__link cover__link--soon">
+                <span class="cover__face cover__face--soon"><span class="cover__title">{escape(s["name"])}</span></span>
+                <span class="cover__meta"><span>Coming soon</span></span>
+              </div>
+            </li>''')
+
     groups = []
     for n, s in enumerate(series):
         mine = [p for p in posts if p["series"] == s["id"]]
@@ -102,7 +114,7 @@ def render():
         "{{CONTENTS}}": "\n".join(contents).replace("class=visually-hidden", 'class="visually-hidden"'),
         "{{COVERS}}": "\n".join(covers),
         "{{SERIES}}": "\n".join(groups),
-        "{{POST_COUNT}}": str(len(posts)),
+        "{{POST_COUNT}}": f'{len(posts)} article{"s" if len(posts) != 1 else ""}',
         "{{SERIES_COUNT}}": str(len(series)),
     }
 

@@ -30,7 +30,7 @@ PAGES = [
     ("about.html", "tools/about/main.html", "Earlyseed Ventures is a boutique investment banking firm in Mumbai, helping tech start-ups raise seed to Series A rounds.", "About"),
     ("team.html", "tools/team/main.html", "The leadership team, strategic growth partners and team behind Earlyseed Ventures.", "Team"),
     ("portfolio.html", "tools/portfolio/main.html", "The companies Earlyseed Ventures has raised for and invested in, from rural commerce and space-tech to AI and consumer brands.", "Our Portfolio"),
-    ("perspectives.html", "tools/perspectives/main.html", "Our Perspectives: fundraising playbooks, founder stories and the Indian Startup Chronicle, from Earlyseed Ventures.", "Our Perspectives"),
+    ("perspectives.html", "tools/perspectives/main.html", "Our Perspectives: fundraising playbooks and founder stories from Earlyseed Ventures.", "Our Perspectives"),
     ("press.html", "tools/press/main.html", "Us in the News: media coverage, funding announcements and industry conversations featuring Earlyseed Ventures and its co-founders.", "Our Press"),
     ("bootcamps.html", "tools/bootcamps/main.html", "Founder bootcamps on campus: Earlyseed Ventures works with universities and incubators on business planning, pitch decks, financial projections and access to investors.", "Bootcamps"),
     ("events.html", "tools/events/main.html", "Founder meet-ups, investor sessions and campus programmes from Earlyseed Ventures.", "Events"),
