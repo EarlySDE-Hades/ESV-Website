@@ -3,13 +3,13 @@
 **For:** the coding agent working on `ecosystem.earlyseedventures.com`
 **From:** the Earlyseed Ventures website (`www.earlyseedventures.com`)
 
-The website has pages with application buttons. Each button needs a public form in the ecosystem app. The syndicate and SGP forms are built and published. The internship form is published too. **Only the job form is left.**
+The website has pages with application buttons. Each button needs a public form in the ecosystem app. The syndicate and SGP forms are built and published. The internship form is published too. **Still to do: the HR task on the internship form, and the job form.**
 
 | Form | Website page | Public link the website expects | Spec | Status |
 |---|---|---|---|---|
 | Syndicate application | `/invest.html` | `https://ecosystem.earlyseedventures.com/apply/syndicate` | [syndicate-form.md](syndicate-form.md) | Published |
 | Strategic Growth Partner (SGP) application | `/invest.html` | `https://ecosystem.earlyseedventures.com/apply/partner` | [partner-form.md](partner-form.md) | Published |
-| Internship application | `/careers.html` | `https://ecosystem.earlyseedventures.com/apply/intern` | [internship-form.md](internship-form.md) | Published |
+| Internship application | `/careers.html` | `https://ecosystem.earlyseedventures.com/apply/intern` | [internship-form.md](internship-form.md) | Published. **To add: HR task** |
 | Job application | `/careers.html` | `https://ecosystem.earlyseedventures.com/apply/careers` | [job-form.md](job-form.md) | To build once there are open roles |
 
 Read this file first. It holds everything the forms share.
@@ -18,11 +18,11 @@ Read this file first. It holds everything the forms share.
 
 Build:
 
-1. Each form marked "To build", using the form system that already serves the founder form at `/apply`.
+1. Each form marked "To build", and each "To add" item, using the form system that already serves the founder form at `/apply`.
 2. One public link for each, at the paths above.
 3. A pipeline for each, so submissions arrive somewhere the team can work them.
 
-Do not change the founder form (`ESV Founder Intake`), the published forms, their links or their pipelines.
+Do not change the founder form (`ESV Founder Intake`), the published forms, their links or their pipelines, except for a "To add" item in the table.
 
 ## What we know about the existing form system
 
@@ -60,7 +60,7 @@ The specs use only these features, so they should need no new question types. If
 
 **Consent.** The consent question is a required step and must be the last question. Store the answer with the submission time and the exact wording shown. Link the words "privacy policy" to the app's existing privacy page. If there is none, stop and ask (see Questions).
 
-**Source.** Record on each submission that it came from the website, using the app's existing link or source field. The links above carry no query string. If the app supports one for tracking, tell us and we will add it.
+**Source.** Record on each submission that it came from the website, using the app's existing link or source field. The links above carry no query string. No tracking parameter is needed (confirmed).
 
 **Notifications.** Follow what the founder form does on submission. If it does nothing, stop and ask who should be told.
 
@@ -83,7 +83,6 @@ The specs use only these features, so they should need no new question types. If
 
 1. The final public link for each form, if it differs from the table above.
 2. Anything built differently from the spec, and why.
-3. The tracking parameter to use, if there is one.
 
 The website's buttons already point at the links in the table, so the forms must be live at those paths before the page is published. If a link has to differ, tell us and we will change it on the website. **Do not edit the website repo from the ecosystem side.**
 

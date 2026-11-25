@@ -93,18 +93,31 @@
       <div class="container">
         <header class="section-head" data-reveal>
           <h2 class="section-title section-title--ruled" id="upcoming-title"><span>Upcoming</span></h2>
-          <p class="section-sub">Dates will be announced here.</p>
+          <p class="section-sub">More dates will be announced here.</p>
         </header>
 
         <ul class="ev-list" role="list" data-ev-list>
-          <li class="ev-row" data-mode="offline" data-reveal>
-            <div class="ev-row__date" aria-label="Date to be announced"><span class="ev-row__day">TBA</span><span class="ev-row__month">Date</span></div>
-            <div class="ev-row__body">
-              <p class="ev-row__type">Founder meet-up <span class="ev-mode ev-mode--offline">Offline</span></p>
-              <h3 class="ev-row__title">To be announced</h3>
-              <p class="ev-row__meta">Location to be announced</p>
+          <!-- Details from the Edition 5 posters and luma.com/81i7f8x3. data-ends: the row removes itself after that time (js: initEventFilter) -->
+          <li class="ev-soon" data-mode="offline" data-ends="2026-12-02T18:00:00+05:30" data-reveal>
+            <div class="ev-soon__body">
+              <p class="ev-soon__tags"><span class="ev-mode ev-mode--soon">Coming soon</span> <span class="ev-mode ev-mode--offline">Offline</span> <span class="ev-mode ev-mode--recurring">Recurring</span></p>
+              <h3 class="ev-soon__title">The Startup Mixer, Edition 5</h3>
+              <p class="ev-soon__when">Wednesday 2 December 2026, 4 to 6 pm</p>
+              <p class="ev-soon__text">A curated evening for founders, investors and advisors, hosted by Global St. Angelo’s Venture Funding and co-hosted by Earlyseed Ventures and Vis Legis Law Practice.</p>
+              <dl class="ev-soon__facts">
+                <div><dt>Where</dt><dd>Santé Spa Cuisine, Unit No. 6, INS Tower, G Block, Bandra Kurla Complex, Mumbai</dd></div>
+                <div><dt>Fee</dt><dd>₹1,500 per person, including food</dd></div>
+              </dl>
+              <div class="ev-soon__ctas">
+                <a class="btn lf-btn" href="https://luma.com/81i7f8x3" target="_blank" rel="noopener">Register<span class="visually-hidden"> for The Startup Mixer on Luma (opens in a new tab)</span></a>
+                <a class="btn btn--ghost" href="event-startup-mixer.html">See a past edition</a>
+              </div>
             </div>
-            <a class="btn btn--sm ev-row__cta is-disabled" aria-disabled="true">Register</a>
+            <div class="ev-soon__speakers">
+              <p class="ev-soon__label">Featured speakers</p>
+              <a href="team-monica-gupta.html"><img src="assets/team/monica-gupta.webp" alt="" width="600" height="600" loading="lazy" decoding="async" /><span>CA Monica Gupta<small>Chartered accountant and angel investor</small></span></a>
+              <a href="team-nimit-shah.html"><img src="assets/team/nimit-shah.webp" alt="" width="600" height="600" loading="lazy" decoding="async" /><span>CA Nimit Shah<small>Chartered accountant, business and investment advisor</small></span></a>
+            </div>
           </li>
           <li class="ev-row" data-mode="online" data-reveal style="--i:1">
             <div class="ev-row__date" aria-label="Date to be announced"><span class="ev-row__day">TBA</span><span class="ev-row__month">Date</span></div>
@@ -130,7 +143,7 @@
     </section>
 
     <!-- ============================== Past ============================== -->
-    <!-- Each .ev-card is one past event, linking to its recap page (see tools/events/seed-to-success.html). -->
+    <!-- Our own evening first, with its recap page (tools/events/seed-to-success.html), then everything else, newest first. -->
     <section class="section ev-section ev-section--last" id="past" aria-labelledby="past-title">
       <div class="container">
         <header class="section-head" data-reveal>
@@ -139,7 +152,7 @@
 
         <!-- One wide card per past event: photo beside the summary, linking to its recap page -->
         <ul class="ev-past" role="list" data-ev-list>
-          <li data-mode="offline" data-reveal>
+          <li class="ev-past__feature" data-mode="offline" data-reveal>
             <a class="ev-feature" href="event-seed-to-success.html">
               <img class="ev-feature__photo" src="assets/events/seed-to-success-audience-wide.webp" alt="" width="1200" height="800" loading="lazy" decoding="async" />
               <div class="ev-feature__body">
@@ -150,6 +163,8 @@
               </div>
             </a>
           </li>
+          <!-- The rest come from tools/events/events.json -->
+{{PAST_EVENTS}}
         </ul>
         <p class="ev-empty" hidden data-ev-empty>No past events of this kind yet.</p>
       </div>

@@ -1,0 +1,317 @@
+{
+  "_readme": "Team stories linked from careers.html: each makes life-<id>.html, in the same layout as the event posts (tools/events/render.py). Photos: assets/careers/<photo>.webp. In the text, [words](page.html) makes a link. After a change run: python tools/team/build.py. Written from Monica Gupta's LinkedIn posts ('source', not shown on the site). Things to check before launch: docs/pre-launch-review.md.",
+  "stories": [
+    {
+      "id": "model-united-nations",
+      "when": "2025",
+      "photo": "mun-debate",
+      "alt": "Two team members debating in front of the screen",
+      "size": [
+        800,
+        449
+      ],
+      "facts": [
+        [
+          "What",
+          "An in-house Model United Nations"
+        ],
+        [
+          "Who",
+          "The whole team"
+        ]
+      ],
+      "source": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7369781595660050433",
+      "post": {
+        "title": "Nine countries, one team",
+        "lede": "In 2025 we tried something unusual at Earlyseed Ventures: our own Model United Nations, with the whole team taking part.",
+        "blocks": [
+          {
+            "h": "Ambassadors for a day",
+            "p": [
+              "For one day the team put their own passports aside and spoke for nine countries. It took sleepless nights of research, and then hours of debate."
+            ]
+          },
+          {
+            "h": "What we debated",
+            "list": [
+              "Start-up landscapes around the world.",
+              "Tax policy, and how easy it is to do business.",
+              "Governance and political stability.",
+              "Trade policy and global engagement.",
+              "How countries adapt to new business models."
+            ]
+          },
+          {
+            "h": "What we took from it",
+            "p": [
+              "Everyone had to understand a country well enough to argue for it, and that meant thinking in a different way. It was also proof of something simple: when everybody takes part fully, the team is at its best."
+            ]
+          },
+          {
+            "h": "Thank you",
+            "p": [
+              "To everyone who helped put the day together, and to Nazaria Arts Collective, which trains marginalised young people and women in multimedia arts, for filming it."
+            ]
+          }
+        ],
+        "close": "Like the sound of it?",
+        "cta": [
+          "See our openings",
+          "careers.html#openings"
+        ],
+        "photos": [
+          {
+            "photo": "mun-room",
+            "alt": "A team member raising a point from the floor during the debate",
+            "size": [
+              800,
+              450
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "art-workshop",
+      "when": "2025",
+      "photo": "art-team",
+      "alt": "The team in aprons, holding up the canvases they painted",
+      "size": [
+        800,
+        600
+      ],
+      "facts": [
+        [
+          "What",
+          "A weekend art workshop"
+        ],
+        [
+          "Who",
+          "The whole team"
+        ]
+      ],
+      "source": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7396055462690852864",
+      "post": {
+        "title": "Start before the picture is clear",
+        "lede": "One weekend we gave the team a blank canvas each, and a simple brief: pick up a brush and make something abstract.",
+        "blocks": [
+          {
+            "h": "The messy middle",
+            "p": [
+              "It begins with an empty space. Then comes the part where nothing looks right and you cannot tell where it is going. Many of us recognised that from our twenties and thirties: confusing, sometimes too much, and full of possibility."
+            ]
+          },
+          {
+            "h": "Keep moving",
+            "p": [
+              "The canvases came together because people carried on. Taking the next small step made the one after it clearer. When we stood back, no two looked alike."
+            ]
+          },
+          {
+            "h": "What stayed with us",
+            "list": [
+              "Act, even in small steps.",
+              "Trust yourself.",
+              "Let yourself be inspired.",
+              "Go where the work leads."
+            ]
+          },
+          {
+            "h": "After the paint dried",
+            "p": [
+              "We sat down and talked about what we want to build as a company, and how we want to be while we build it. It was an honest conversation, and we found we agreed on a great deal."
+            ]
+          }
+        ],
+        "close": "You do not need the whole picture to begin.",
+        "cta": [
+          "See our openings",
+          "careers.html#openings"
+        ],
+        "photos": [
+          {
+            "photo": "art-painting",
+            "alt": "Someone painting a canvas in red, orange and green",
+            "size": [
+              900,
+              1200
+            ]
+          },
+          {
+            "photo": "art-canvases",
+            "alt": "Finished canvases laid out on the floor, with the team standing around them",
+            "size": [
+              900,
+              1200
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "massages-at-work",
+      "when": "December 2025",
+      "photo": "wellness",
+      "alt": "The group at the office after the massage session",
+      "size": [
+        800,
+        600
+      ],
+      "facts": [
+        [
+          "What",
+          "Massages and stretches"
+        ],
+        [
+          "Where",
+          "Our office, Mumbai"
+        ],
+        [
+          "With",
+          "The Maalish Co."
+        ]
+      ],
+      "source": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7408733400305442816",
+      "post": {
+        "title": "Massages at work",
+        "lede": "In December 2025 The Maalish Co. came to our office and gave the team massages and stretches.",
+        "blocks": [
+          {
+            "h": "Why we did it",
+            "p": [
+              "Most days start with energy. By midday the stiffness sets in, and by evening people are tired and pushing through. Anyone with a desk job knows the back pain and the bad posture that come with it."
+            ]
+          },
+          {
+            "h": "Who gave them",
+            "p": [
+              "The massages were given by specially abled professionals, trained for this work. That made the day mean more."
+            ]
+          },
+          {
+            "h": "What it did",
+            "p": [
+              "It was a short break, and it brought real relief and a lot of smiles. The session was for our team and for MN & Co. Chartered Accountants."
+            ]
+          }
+        ],
+        "close": "When a company looks after its people, everyone grows.",
+        "cta": [
+          "See our openings",
+          "careers.html#openings"
+        ],
+        "photos": []
+      }
+    },
+    {
+      "id": "women-and-money",
+      "when": "September 2026",
+      "photo": "money-session",
+      "alt": "Women talking around a table, with Financial Literacy for women on the screen",
+      "size": [
+        800,
+        600
+      ],
+      "facts": [
+        [
+          "What",
+          "A session on financial literacy for women"
+        ],
+        [
+          "Led by",
+          "Monica Gupta"
+        ]
+      ],
+      "source": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7509824942583144449",
+      "post": {
+        "title": "A room full of women, talking about money",
+        "lede": "One weekend in September 2026 our co-founder Monica Gupta spent a few hours with a group of women on a subject that rarely gets an honest conversation.",
+        "blocks": [
+          {
+            "h": "The questions",
+            "p": [
+              "There were no budgeting tips. The talk was about how we feel about money, who taught us about it, and who makes the financial decisions at home."
+            ]
+          },
+          {
+            "h": "What came up",
+            "p": [
+              "Many in the room had learned about money by watching somebody else handle it. Most leave insurance, tax and investments to another person. Nobody said it was because they could not understand it. They had simply never been invited in."
+            ]
+          },
+          {
+            "h": "The worksheet",
+            "p": [
+              "Everyone then placed their own money on a grid: active or passive, easy or hard to turn into cash. That is where the room stopped being polite, and the real learning started. There was a lot of laughter."
+            ]
+          },
+          {
+            "h": "Why it matters",
+            "p": [
+              "Financial independence is a safety net. It gives women choices, and a voice at the table. This session was the first of more."
+            ]
+          }
+        ],
+        "close": "Would you like a session for your community?",
+        "cta": [
+          "Write to us",
+          "mailto:info@earlyseedventures.com"
+        ],
+        "photos": []
+      }
+    },
+    {
+      "id": "ideas-on-the-board",
+      "when": "October 2025",
+      "photo": "ideas",
+      "alt": "The team talking around the meeting table at the office",
+      "size": [
+        800,
+        600
+      ],
+      "facts": [
+        [
+          "What",
+          "How we run meetings"
+        ],
+        [
+          "Where",
+          "Our office, Mumbai"
+        ]
+      ],
+      "source": "https://www.linkedin.com/feed/update/urn:li:share:7383205256459022336",
+      "post": {
+        "title": "From task lists to ideas on the board",
+        "lede": "A few years ago most of our meetings ended with a list of tasks. Now they end with 15 to 20 new ideas on the board.",
+        "blocks": [
+          {
+            "h": "What changed",
+            "p": [
+              "Ownership. Monica Gupta, our co-founder, stopped arriving with all the answers once it was clear the team had answers of its own. These days she often leaves with better ideas than the ones she brought."
+            ]
+          },
+          {
+            "h": "Why it works",
+            "p": [
+              "Google’s Project Aristotle studied more than 180 teams. The best sign that a team would do well was its environment, and whether people felt safe to share, argue and try things."
+            ]
+          },
+          {
+            "h": "What we see",
+            "list": [
+              "Decisions are made faster.",
+              "People are more engaged.",
+              "Once the direction is set, the team works out the rest."
+            ]
+          }
+        ],
+        "close": "Bring your ideas.",
+        "cta": [
+          "See our openings",
+          "careers.html#openings"
+        ],
+        "photos": []
+      }
+    }
+  ]
+}

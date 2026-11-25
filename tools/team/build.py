@@ -6,9 +6,9 @@
     press.html   <- tools/press/main.html (+ tools/press/press.json)
     perspectives.html, perspective-<slug>.html  <- tools/perspectives/ (+ posts.json)
     portfolio.html, portfolio-<slug>.html  <- tools/portfolio/ (+ companies.json)
-    events.html  <- tools/events/main.html
+    events.html  <- tools/events/main.html (+ events.json: the past events, which also make event-<id>.html)
     invest.html  <- tools/invest/main.html (+ links.json: where the application buttons go)
-    careers.html <- tools/careers/main.html (+ openings.json: the open roles and application links)
+    careers.html <- tools/careers/main.html (+ openings.json: the open roles and application links; stories.json: life-<id>.html)
     event-seed-to-success.html  <- tools/events/seed-to-success.html
     titles, descriptions, canonical links, structured data, sitemap.xml and robots.txt  <- tools/seo/seo.py
 
@@ -77,8 +77,9 @@ perspectives_render = _load("perspectives_render", "tools/perspectives/render.py
 profiles = _load("profiles", "tools/team/profiles.py")
 bootcamps_render = _load("bootcamps_render", "tools/bootcamps/render.py")
 invest_render = _load("invest_render", "tools/invest/render.py")
+events_render = _load("events_render", "tools/events/render.py")
 careers_render = _load("careers_render", "tools/careers/render.py")
-FILLERS = {"press.html": press_render.render, "perspectives.html": perspectives_render.render, "portfolio.html": portfolio_render.render_portfolio, "bootcamps.html": bootcamps_render.render, "invest.html": invest_render.render, "careers.html": careers_render.render}
+FILLERS = {"press.html": press_render.render, "perspectives.html": perspectives_render.render, "portfolio.html": portfolio_render.render_portfolio, "bootcamps.html": bootcamps_render.render, "invest.html": invest_render.render, "careers.html": careers_render.render, "events.html": events_render.render}
 
 
 written = []
@@ -91,6 +92,7 @@ def write(out, main, description, label, title=None):
     if out in EXTRA_HEAD:
         page_head = page_head.replace("</head>", EXTRA_HEAD[out] + "</head>")
     page = page_head + "<body>\n" + relink(header, out, label) + main + "\n" + relink(footer, out, label)
+    page = re.sub(r"[ \t]*<!--(?!\[if)[\s\S]*?-->[ \t]*\n?", "", page)   # notes to ourselves stay out of the public page source
     (ROOT / out).write_text(page, encoding="utf-8", newline="\n")
     print("wrote", out)
 
@@ -109,6 +111,14 @@ for out, main, description in portfolio_render.company_pages():
 # One page per leader and growth partner (team-<slug>.html)
 for out, main, description in profiles.pages():
     write(out, main, description, "Team")
+
+# One post per past event (event-<id>.html)
+for out, main, description, title in events_render.pages():
+    write(out, main, description, "-", title)
+
+# One page per team story (life-<id>.html)
+for out, main, description, title in careers_render.pages(events_render.post_page):
+    write(out, main, description, "-", title)
 
 # One page per article hosted on this site (perspective-<slug>.html)
 for out, main, description in perspectives_render.article_pages():

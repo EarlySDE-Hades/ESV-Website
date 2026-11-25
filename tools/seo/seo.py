@@ -58,6 +58,16 @@ def _companies():
     return {f"portfolio-{c['slug']}.html": c for c in cs}
 
 
+def _events():
+    xs = json.loads((ROOT / "tools/events/events.json").read_text(encoding="utf-8"))["past"]
+    return {f"event-{x['id']}.html": x["title"] for x in xs}
+
+
+def _stories():
+    xs = json.loads((ROOT / "tools/careers/stories.json").read_text(encoding="utf-8"))["stories"]
+    return {f"life-{x['id']}.html": x["post"]["title"] for x in xs}
+
+
 def _people():
     spec = importlib.util.spec_from_file_location("profiles", ROOT / "tools/team/profiles.py")
     mod = importlib.util.module_from_spec(spec)
@@ -97,6 +107,10 @@ def _crumbs(page, companies, people):
         chain = [("Home", "index.html"), ("Our Portfolio", "portfolio.html"), (companies[page]["name"], page)]
     elif page in people:
         chain = [("Home", "index.html"), ("Team", "team.html"), (people[page]["name"], page)]
+    elif page in _events():
+        chain = [("Home", "index.html"), ("Events", "events.html"), (_events()[page], page)]
+    elif page in _stories():
+        chain = [("Home", "index.html"), ("Careers", "careers.html"), (_stories()[page], page)]
     elif page in CRUMBS:
         name, parent = CRUMBS[page]
         chain = [("Home", "index.html")] + ([(CRUMBS[parent][0], parent)] if parent else []) + [(name, page)]

@@ -1,0 +1,576 @@
+{
+  "_readme": "Past events, newest first (the Seed to success feature is in main.html). Each makes a card on events.html and a post at event-<id>.html. 'when' is shown as written. 'mode' is offline or online. 'role' is our part in it. Photos: assets/events/<photo>.webp; the card photo is 3:2 unless fit is contain. In post text, [words](page.html) makes a link. After a change run: python tools/team/build.py. Written from the co-founders' LinkedIn posts ('source', not shown on the site); guests are not named. Dates they don't give: IFTA and GITEX from the organisers' coverage, BNI from the Grimaldi Forum listing, RRU from its poster. 'March 2026' and 'Early 2026' come from the posting dates (23 Mar and 7 Feb 2026). 'review' notes are for us and are never shown; the full list is docs/pre-launch-review.md.",
+  "past": [
+    {
+      "id": "bni-global-convention",
+      "title": "BNI Global Convention",
+      "when": "28 to 30 October 2026",
+      "place": "Monaco",
+      "mode": "offline",
+      "role": "Exhibitor",
+      "text": "A stand to connect Indian companies in deep tech, defence, clean energy, fintech and pharma with global companies, family offices and advisors.",
+      "photo": "bni-global-convention",
+      "fit": "contain",
+      "alt": "Announcement: Your Gateway to India’s Emerging Opportunities, BNI 2026 Global Convention, Monaco",
+      "source": [
+        "https://www.linkedin.com/feed/update/urn:li:share:7513100648196952064"
+      ],
+      "size": [
+        800,
+        800
+      ],
+      "post": {
+        "title": "Taking Indian companies to Monaco",
+        "lede": "For the BNI Global Convention in Monaco we had one purpose: to connect some of India’s most promising companies with the world, and the world with India.",
+        "blocks": [
+          {
+            "h": "Why India, why now",
+            "p": [
+              "India is far more than a market. It makes things, it invents things, and it is one of the strongest growth stories of this decade."
+            ]
+          },
+          {
+            "h": "Who we wanted to meet",
+            "list": [
+              "Global companies, family offices and advisors looking at India for investments, joint ventures or vendor partnerships.",
+              "Strategic partners who can help our companies in deep tech, defence, clean energy, fintech and pharma go global."
+            ]
+          },
+          {
+            "h": "Our stand",
+            "p": [
+              "We exhibited on 28 and 29 October, and were in Monaco from 27 October to meet people before the expo opened."
+            ]
+          }
+        ],
+        "close": "Looking at India, or want to take an Indian company further?",
+        "cta": [
+          "Invest with us",
+          "invest.html"
+        ],
+        "photos": []
+      },
+      "review": "Photos to come; replace the announcement graphic."
+    },
+    {
+      "id": "fwd-supreme",
+      "title": "FWD Supreme launch, Flying Wedge",
+      "when": "13 October 2026",
+      "place": "New Delhi",
+      "mode": "offline",
+      "role": "Portfolio launch",
+      "text": "Our portfolio company Flying Wedge Defence & Aerospace unveiled the full-scale static prototype of FWD Supreme, its AI-piloted fighter aircraft.",
+      "photo": "fwd-supreme",
+      "alt": "Guests standing in a row in front of the FWD Supreme prototype",
+      "source": [
+        "https://www.linkedin.com/feed/update/urn:li:ugcPost:7516699033894199296"
+      ],
+      "size": [
+        800,
+        533
+      ],
+      "post": {
+        "title": "An AI-piloted fighter aircraft takes the stage",
+        "lede": "On 13 October 2026 our portfolio company Flying Wedge Defence & Aerospace unveiled FWD Supreme in New Delhi: the full-scale static prototype of an AI-piloted, fighter-class aircraft.",
+        "blocks": [
+          {
+            "h": "Four years in the making",
+            "p": [
+              "Suhas Tejaskanda founded [Flying Wedge](portfolio-flying-wedge.html) in 2022. Four years later, an aircraft designed and engineered in India stood in front of the room."
+            ]
+          },
+          {
+            "h": "Built to decide for itself",
+            "p": [
+              "FWD Supreme is not a remote-controlled drone. It is designed to fly and make decisions using AI, and to fight in a coordinated swarm, under what the company calls its Mobbing Doctrine."
+            ]
+          },
+          {
+            "h": "What we take from it",
+            "p": [
+              "Deep tech and defence companies are rarely built in a single round. They need conviction, patience and the right people around them. That is why we back founders who set out to build something nobody has built before."
+            ]
+          }
+        ],
+        "close": "Building something bold in deep tech?",
+        "cta": [
+          "Pitch to us",
+          "https://ecosystem.earlyseedventures.com/apply"
+        ],
+        "photos": [
+          {
+            "photo": "fwd-supreme-kaalabhairav",
+            "alt": "Two guests beside a model of the FWD Kaalabhairav",
+            "size": [
+              900,
+              1200
+            ]
+          },
+          {
+            "photo": "fwd-supreme-aircraft",
+            "alt": "A guest standing under the nose of the FWD Supreme prototype",
+            "size": [
+              900,
+              1200
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "bihar-startup-showcase",
+      "title": "Bihar StartUp Showcase",
+      "when": "16 September 2026",
+      "place": "Patna",
+      "mode": "offline",
+      "role": "Speaker",
+      "text": "Sixteen shortlisted founders pitched one to one to early-stage investors at the second edition, hosted by CIMP-BIIF. Monica Gupta and Nimit Shah took part.",
+      "photo": "bihar-startup-showcase",
+      "fit": "contain",
+      "alt": "Collage of moments from the second edition of the Bihar Startup Showcase",
+      "source": [
+        "https://www.linkedin.com/feed/update/urn:li:share:7506560481021550593"
+      ],
+      "size": [
+        800,
+        533
+      ],
+      "post": {
+        "title": "Sixteen founders in Patna",
+        "lede": "Monica Gupta and Nimit Shah spent a day in Patna for the second edition of the Bihar StartUp Showcase, hosted by CIMP-BIIF at the CIMP campus.",
+        "blocks": [
+          {
+            "h": "One to one with investors",
+            "p": [
+              "Sixteen shortlisted start-ups met angel networks and venture capital investors for individual pitches and negotiations, alongside keynotes and panel discussions."
+            ]
+          },
+          {
+            "h": "Past the pitch deck",
+            "p": [
+              "Much of the discussion was about what investors weigh once the deck is closed: evidence that the market wants the product, how risk is managed, and whether the business can scale."
+            ]
+          },
+          {
+            "h": "Our view of Bihar",
+            "p": [
+              "We came away with a belief confirmed. Bihar’s start-up ecosystem is past the point of emerging, and it will not be long before the rest of the country notices. Our thanks to CIMP-BIIF for building the platform."
+            ]
+          }
+        ],
+        "close": "Building outside the big cities? We would like to hear from you.",
+        "cta": [
+          "Pitch to us",
+          "https://ecosystem.earlyseedventures.com/apply"
+        ],
+        "photos": []
+      },
+      "review": "Event photos wanted (organiser's collage in use)."
+    },
+    {
+      "id": "startup-mixer",
+      "title": "The Startup Mixer",
+      "when": "5 August 2026",
+      "place": "BKC, Mumbai",
+      "mode": "offline",
+      "role": "Co-host",
+      "recurring": true,
+      "text": "The first edition: a curated evening for founders, investors and advisors at Santé Spa Cuisine, with Global St. Angelo’s Venture Funding and Vis Legis Law Practice.",
+      "photo": "startup-mixer",
+      "alt": "The Startup Mixer poster: capital, connections and strategic growth",
+      "source": [
+        "https://www.linkedin.com/feed/update/urn:li:ugcPost:7491369734270259200",
+        "https://www.linkedin.com/feed/update/urn:li:ugcPost:7486646750468964352"
+      ],
+      "size": [
+        1023,
+        682
+      ],
+      "post": {
+        "title": "The Startup Mixer comes to BKC",
+        "lede": "An evening in Mumbai where founders sit across the table from investors who can back them, advisors who have seen what works, and others building companies of their own.",
+        "blocks": [
+          {
+            "h": "The evening",
+            "p": [
+              "We co-hosted the Mixer with Global St. Angelo’s Venture Funding and Vis Legis Law Practice at Santé Spa Cuisine, from 4 to 6 pm. Seats were limited and the guest list was curated, so the conversations had room to go somewhere."
+            ]
+          },
+          {
+            "h": "What it is for",
+            "list": [
+              "Conversations about capital, with people ready to invest.",
+              "Clarity on fundraising and compliance.",
+              "Connections that help with the next phase of growth.",
+              "Time with other founders."
+            ]
+          },
+          {
+            "h": "Next editions",
+            "p": [
+              "The Mixer is recurring, and Edition 5 is set for 2 December 2026 at the same venue. Details, and later dates, are under [upcoming events](events.html#upcoming)."
+            ]
+          }
+        ],
+        "close": "Great ideas, good advice and the right capital belong in one room.",
+        "cta": [
+          "See upcoming events",
+          "events.html#upcoming"
+        ],
+        "photos": []
+      },
+      "review": "Details and photos of Editions 2 to 4 to come. Event photos of Edition 1 wanted."
+    },
+    {
+      "id": "rru-session",
+      "title": "Igniting entrepreneurship, with AIC-RRU",
+      "when": "19 May 2026",
+      "place": "Google Meet",
+      "mode": "online",
+      "role": "Speaker",
+      "text": "Monica Gupta led a session for students of the AIC-RRU Incubation Foundation at Rashtriya Raksha University, from idea to MVP and from college to investor exit.",
+      "photo": "rru-session",
+      "alt": "Workshop poster: Igniting Entrepreneurship, with Monica Gupta",
+      "source": [
+        "https://www.linkedin.com/feed/update/urn:li:ugcPost:7463456277348691971"
+      ],
+      "size": [
+        1186,
+        791
+      ],
+      "post": {
+        "title": "Igniting entrepreneurship, with AIC-RRU",
+        "lede": "Monica Gupta led an online session for students of the AIC-RRU Incubation Foundation at Rashtriya Raksha University, on start-up ideas, strategies and success.",
+        "blocks": [
+          {
+            "h": "From college to exit",
+            "p": [
+              "The session followed the whole journey: from an idea to a minimum viable product, from there to a company that lasts, and from a college project to an investor’s exit."
+            ]
+          },
+          {
+            "h": "Five things to take away",
+            "list": [
+              "Test the idea early.",
+              "Solve a problem people really have.",
+              "Keep building, even when resources are short.",
+              "Find mentors, and build a network.",
+              "How well you execute counts for more than the idea."
+            ]
+          },
+          {
+            "h": "Thank you",
+            "p": [
+              "To the AIC-RRU Incubation Foundation and Rashtriya Raksha University for the invitation, and to the students for their questions. We run [bootcamps on campus](bootcamps.html) too."
+            ]
+          }
+        ],
+        "close": "Want a session for your students?",
+        "cta": [
+          "See our bootcamps",
+          "bootcamps.html"
+        ],
+        "photos": []
+      },
+      "review": "Event photo wanted (poster in use)."
+    },
+    {
+      "id": "rotary-for-business",
+      "title": "Rotary for Business",
+      "when": "March 2026",
+      "place": "NESCO, Mumbai",
+      "mode": "offline",
+      "role": "Exhibitor",
+      "text": "Our stall at the Rotary exhibition, for investors who want to back founders and industry leaders who want to mentor them.",
+      "photo": "rotary-for-business",
+      "alt": "Four people at the Earlyseed Ventures stall",
+      "source": [
+        "https://www.linkedin.com/feed/update/urn:li:ugcPost:7441708933746028544"
+      ],
+      "size": [
+        1194,
+        796
+      ],
+      "post": {
+        "title": "Our stall at Rotary for Business",
+        "lede": "We took a stall at Rotary for Business, at NESCO in Mumbai, and spent the event in conversation.",
+        "blocks": [
+          {
+            "h": "Common ground",
+            "p": [
+              "Rotary brings together people who put service first. It is close to how we see our own work: standing beside founders and businesses that want to create real value."
+            ]
+          },
+          {
+            "h": "Where we invest",
+            "p": [
+              "Health, edtech, fintech, agriculture and defence are among the sectors we have invested in. You can see the companies in [our portfolio](portfolio.html)."
+            ]
+          },
+          {
+            "h": "An open invitation",
+            "p": [
+              "If you are an investor who wants to be active, or an industry leader who would like to mentor founders, there are [two ways to join us](invest.html)."
+            ]
+          }
+        ],
+        "close": "Put your capital or your experience behind a founder.",
+        "cta": [
+          "Invest with us",
+          "invest.html"
+        ],
+        "photos": [
+          {
+            "photo": "rotary-conversation",
+            "alt": "A conversation at the Earlyseed Ventures stall",
+            "size": [
+              900,
+              1200
+            ]
+          },
+          {
+            "photo": "rotary-stall",
+            "alt": "Four people in front of the Earlyseed Ventures stall",
+            "size": [
+              1163,
+              1175
+            ]
+          },
+          {
+            "photo": "rotary-visitors",
+            "alt": "Visitors gathered at the stall",
+            "size": [
+              675,
+              1200
+            ]
+          }
+        ]
+      },
+      "review": "Exact date unknown: the post went up on 23 Mar 2026."
+    },
+    {
+      "id": "international-investors-summit",
+      "title": "International Investors Summit",
+      "when": "Early 2026",
+      "place": "Dubai",
+      "mode": "offline",
+      "role": "Collaborator",
+      "text": "The launch of the summit, led by Dr. Anil Sureen in collaboration with us. Monica Gupta moderated the panel, and four companies pitched, including Flying Wedge.",
+      "photo": "international-investors-summit",
+      "alt": "Guests applauding a presentation on stage under the summit and Earlyseed Ventures logos",
+      "source": [
+        "https://www.linkedin.com/feed/update/urn:li:ugcPost:7425848490087596032"
+      ],
+      "size": [
+        800,
+        533
+      ],
+      "post": {
+        "title": "Launching the International Investors Summit in Dubai",
+        "lede": "In Dubai we marked the launch of the International Investors Summit, an initiative led by Dr. Anil Sureen in collaboration with Earlyseed Ventures.",
+        "blocks": [
+          {
+            "h": "The panel",
+            "p": [
+              "Monica Gupta moderated a five-person panel on how different ecosystems shape the way founders raise money, and what that means for a company’s growth in the long run. It was candid, and drawn from experience."
+            ]
+          },
+          {
+            "h": "The keynote",
+            "p": [
+              "The keynote looked at strategy: how to build a business that scales across several markets."
+            ]
+          },
+          {
+            "h": "The pitches",
+            "p": [
+              "Four companies pitched to investors and business collaborators from around the world:"
+            ],
+            "list": [
+              "[Flying Wedge](portfolio-flying-wedge.html), in defence",
+              "Flip, in fintech",
+              "SICI, in premium footwear for children",
+              "Anahad, in pharma-tech"
+            ]
+          },
+          {
+            "h": "What comes next",
+            "p": [
+              "This is the start of the collaboration. Its aim is to help capital, conversations and partnerships cross borders."
+            ]
+          }
+        ],
+        "close": "Raising across borders, or investing across them?",
+        "cta": [
+          "Invest with us",
+          "invest.html"
+        ],
+        "photos": [
+          {
+            "photo": "iis-panel",
+            "alt": "The panel on stage, with their portraits on the screen behind",
+            "size": [
+              1179,
+              850
+            ]
+          },
+          {
+            "photo": "iis-lamp",
+            "alt": "The lamp-lighting on stage",
+            "size": [
+              800,
+              533
+            ]
+          },
+          {
+            "photo": "iis-agreement",
+            "alt": "Two people holding a document together on stage",
+            "size": [
+              1179,
+              817
+            ]
+          },
+          {
+            "photo": "iis-dinner",
+            "alt": "Guests gathered around a dinner table",
+            "size": [
+              800,
+              600
+            ]
+          }
+        ]
+      },
+      "review": "Exact date unknown: the post went up on 7 Feb 2026."
+    },
+    {
+      "id": "india-fintech-forum",
+      "title": "India FinTech Forum, IFTA 2025",
+      "when": "10 December 2025",
+      "place": "Mumbai",
+      "mode": "offline",
+      "role": "Attendee",
+      "text": "The tenth edition of the forum’s awards brought together fintech founders, investors and industry leaders. Sessions covered AI and the fraud stack.",
+      "photo": "india-fintech-forum",
+      "alt": "Four attendees in front of the IFTA 2025 partner wall",
+      "source": [
+        "https://www.linkedin.com/feed/update/urn:li:ugcPost:7405112231115579392"
+      ],
+      "size": [
+        960,
+        640
+      ],
+      "post": {
+        "title": "A decade of fintech, at IFTA 2025",
+        "lede": "We were in Mumbai for IFTA 2025, the India FinTech Forum’s tenth edition, with founders, investors and industry leaders under one roof.",
+        "blocks": [
+          {
+            "h": "What people talked about",
+            "list": [
+              "Growth led by the product.",
+              "How financial services feel to the people using them.",
+              "AI, and the next generation of digital-first fintech."
+            ]
+          },
+          {
+            "h": "The session that stayed with us",
+            "p": [
+              "A discussion on rethinking the fraud stack in the age of AI: how it is changing fraud detection, risk management and the security of the whole system."
+            ]
+          },
+          {
+            "h": "Why we go",
+            "p": [
+              "Meeting founders who are pushing at the edges of a sector tells us where it is heading. Our thanks to the India FinTech Forum team for a well-run day."
+            ]
+          }
+        ],
+        "close": "Building in fintech?",
+        "cta": [
+          "Pitch to us",
+          "https://ecosystem.earlyseedventures.com/apply"
+        ],
+        "photos": [
+          {
+            "photo": "ifta-stage",
+            "alt": "Three people in front of the India FinTech Forum backdrop",
+            "size": [
+              900,
+              1200
+            ]
+          },
+          {
+            "photo": "ifta-selfie",
+            "alt": "A selfie of three people at the venue",
+            "size": [
+              900,
+              1200
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "gitex-global",
+      "title": "GITEX Global",
+      "when": "13 to 17 October 2025",
+      "place": "Dubai",
+      "mode": "offline",
+      "role": "Attendee",
+      "text": "Energy tech, AI, robotics and the circular economy, with talks on climate tech, policy and venture funding.",
+      "photo": "gitex-global",
+      "alt": "Three visitors among the aircraft on show at GITEX Global",
+      "source": [
+        "https://www.linkedin.com/feed/update/urn:li:ugcPost:7388276025056632833"
+      ],
+      "size": [
+        800,
+        533
+      ],
+      "post": {
+        "title": "What we saw at GITEX Global",
+        "lede": "GITEX Global in Dubai is where a great deal of technology meets a great deal of ambition. These are the things that stood out in 2025.",
+        "blocks": [
+          {
+            "h": "The scale",
+            "p": [
+              "A few years ago start-ups had one pavilion. This time there were ten."
+            ]
+          },
+          {
+            "h": "The technology",
+            "p": [
+              "Energy tech, AI, robotics and ideas for a circular economy, with talks on climate tech, sustainability, policy and how venture funding is changing."
+            ]
+          },
+          {
+            "h": "The ecosystem",
+            "p": [
+              "What impressed us most was who had come. Trade departments, national innovation councils and global funds were there in force, looking for ways to work together."
+            ]
+          },
+          {
+            "h": "What we take from it",
+            "p": [
+              "The best reason for a founder to go is the thinking you bring home: new frameworks, and a clearer sense of where your industry is going."
+            ]
+          }
+        ],
+        "close": "The next decade of innovation will be built together.",
+        "cta": [
+          "Pitch to us",
+          "https://ecosystem.earlyseedventures.com/apply"
+        ],
+        "photos": [
+          {
+            "photo": "gitex-hall",
+            "alt": "Crowds beneath a wall of screens listing upcoming GITEX events",
+            "size": [
+              800,
+              600
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

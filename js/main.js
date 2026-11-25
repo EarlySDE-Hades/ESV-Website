@@ -350,6 +350,16 @@
     { title: 'Events', section: 'Events', href: 'events.html' },
     { title: 'Upcoming events', section: 'Events', href: 'events.html#upcoming' },
     { title: 'Past events', section: 'Events', href: 'events.html#past' },
+    { title: 'BNI Global Convention, Monaco', section: 'Events', href: 'event-bni-global-convention.html' },
+    { title: 'FWD Supreme launch, Flying Wedge', section: 'Events', href: 'event-fwd-supreme.html' },
+    { title: 'Bihar StartUp Showcase, Patna', section: 'Events', href: 'event-bihar-startup-showcase.html' },
+    { title: 'The Startup Mixer, Edition 5: register', section: 'Upcoming', href: 'events.html#upcoming' },
+    { title: 'The Startup Mixer, Mumbai', section: 'Events', href: 'event-startup-mixer.html' },
+    { title: 'Igniting entrepreneurship, AIC-RRU session', section: 'Events', href: 'event-rru-session.html' },
+    { title: 'Rotary for Business, Mumbai', section: 'Events', href: 'event-rotary-for-business.html' },
+    { title: 'International Investors Summit, Dubai', section: 'Events', href: 'event-international-investors-summit.html' },
+    { title: 'India FinTech Forum, IFTA 2025', section: 'Events', href: 'event-india-fintech-forum.html' },
+    { title: 'GITEX Global, Dubai', section: 'Events', href: 'event-gitex-global.html' },
     { title: 'From seed to success: event recap', section: 'Events', href: 'event-seed-to-success.html' },
     { title: 'Services for Founders: fundraising', section: 'Services', href: '#services' },
     { title: 'Services for Investors', section: 'Services', href: '#for-investors' },
@@ -370,6 +380,11 @@
     { title: 'Bootcamps: founder bootcamps on campus', section: 'Bootcamps', href: 'bootcamps.html' },
     { title: 'Careers: life at Earlyseed', section: 'Careers', href: 'careers.html' },
     { title: 'Job openings', section: 'Careers', href: 'careers.html#openings' },
+    { title: 'Our own Model United Nations', section: 'Careers', href: 'life-model-united-nations.html' },
+    { title: 'The art workshop', section: 'Careers', href: 'life-art-workshop.html' },
+    { title: 'Massages at work', section: 'Careers', href: 'life-massages-at-work.html' },
+    { title: 'Women and money: financial literacy', section: 'Careers', href: 'life-women-and-money.html' },
+    { title: 'From task lists to ideas on the board', section: 'Careers', href: 'life-ideas-on-the-board.html' },
     { title: 'Intern with us', section: 'Careers', href: 'careers.html#intern' },
     { title: 'Pitch to us', section: 'Raise', href: 'https://ecosystem.earlyseedventures.com/apply' },
     { title: 'Invest with us', section: 'Invest', href: 'invest.html' },
@@ -1512,6 +1527,7 @@
   function initEventFilter(bar) {
     const btns = $$('.ev-filter__btn', bar), pill = $('.ev-filter__pill', bar);
     const lists = $$('[data-ev-list]');
+    $$('[data-ends]').forEach((li) => { if (Date.now() > Date.parse(li.dataset.ends)) li.remove(); });   // an upcoming event that is over
     const movePill = () => {
       const b = $('.ev-filter__btn.is-active', bar);
       pill.style.width = b.offsetWidth + 'px';
