@@ -62,6 +62,18 @@ Tick an item when it is done. Add new ones under the heading that fits. "Must" m
 - [ ] Dates of the team stories: 2025 (Model UN, art workshop), October 2025 (ideas), December 2025 (massages), September 2026 (women and money).
 - [ ] Original photos for `mun-debate`, `mun-room`, `wellness` and `money-session`, or the Codex versions (`docs/codex-careers-photos.md`).
 
+## Company profiles
+
+- [ ] **Founder photos still needed** (initials until then): The Artment (Aditya Agarwal, Aanchal Agarwal), WinMagic Toys (Mukesh Jagwani), EsportsXO (Utsav Umang, Rohit Raj, Vikas Goel), Regenerix (Aanchal Jain), Kalaneca (Ramya Rao, Kavea Chavali).
+- [ ] **Larger founder photos would be sharper** (200px today): Hesa (both), OLL, Flying Wedge, Skyroot (Bharath Daka), Alchemyst AI (both), Cup-Ji (Jay Sotta), JustDeliveries.
+- [x] Founder photos from LinkedIn and other sites are fine to be public (confirmed 25 Nov 2026).
+  Put each in `Founder Photos/companies/<company slug>/<first-last>.jpg`, run `python tools/portfolio/assets.py`, then `python tools/team/build.py`.
+- [x] People shown for Kyoora, JimzCart, Shaurrya and Misfits are fine to be public (confirmed 25 Nov 2026).
+- [ ] Shaurrya: we show Sudeb Sarbadhikary (Founder and Director, Finance) and Pankaj Agrawal (Chairman), as in their deck. Add anyone else, such as Mahesh Choudhary?
+- [ ] Cup-Ji: Jay Sotta and Aakash Sotta are from press coverage of Shark Tank India. Confirm.
+- [ ] Frevolt: who are the founders? None are shown.
+- [ ] Logos needed: DCGpac and WinMagic Toys (current versions; our deck has older ones). A larger JimzCart and ElectriQ logo would be sharper. JimzCart's own deck uses a newer gold logo: which is current?
+
 ## Invest page
 
 - [ ] Strategic Growth Partner copy and the four steps, including "Orientation", were drafted by us. Approve.

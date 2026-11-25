@@ -5,10 +5,14 @@ Called by tools/team/build.py:
   company_pages()     -> [(output file, <main> html, meta description)] from tools/portfolio/company.html
 """
 import json
+import sys
 from html import escape
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
+from scenes import scene  # noqa: E402
+
 ROOT = HERE.parents[1]
 EXT = '<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 ARROW = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
@@ -22,9 +26,33 @@ def page_of(c):
     return f"portfolio-{c['slug']}.html" if c.get("description") else None
 
 
-def _logo(c, cls):
-    f = next(iter(sorted((ROOT / "assets/logos/portfolio").glob(f"{c['slug']}.*"))), None)
-    return f'<img class="{cls}" src="assets/logos/portfolio/{f.name}" alt="" />' if f else ""
+def _json(name):
+    return json.loads((HERE / name).read_text(encoding="utf-8"))
+
+
+def _logo(c):
+    """The logo at its balanced size (tools/portfolio/assets.py), or the name set in type."""
+    size = _json("logos.json").get(c["slug"])
+    if not size:
+        return f'<span class="co-plate__name" aria-hidden="true">{escape(c["name"])}</span>'
+    return f'<img src="assets/logos/profile/{c["slug"]}.webp" alt="" width="{size[0]}" height="{size[1]}" style="--w:{size[0]}px" />'
+
+
+def _people(c):
+    """Founder cards. Photos: assets/portfolio/founders/<slug>-<name>.webp, else initials."""
+    if not c.get("team"):
+        return ""
+    sizes, cards = _json("photos.json"), []
+    for p in c["team"]:
+        key = f"{c['slug']}-{p['name'].lower().replace(' ', '-')}"
+        if key in sizes:
+            w, h = sizes[key]
+            face = f'<img src="assets/portfolio/founders/{key}.webp" alt="" width="{w}" height="{h}" loading="lazy" decoding="async" />'
+        else:
+            face = f'<span class="co-person__initials" aria-hidden="true">{escape("".join(w[0] for w in p["name"].split()[:1] + p["name"].split()[1:][-1:]))}</span>'
+        cards.append(f'<li class="co-person"><span class="co-person__face">{face}</span><strong>{escape(p["name"])}</strong><small>{escape(p["role"])}</small></li>')
+    label = c.get("teamLabel") or ("Founders" if len(cards) > 1 else "Founder")
+    return f'<section class="co-people" aria-label="{label}"><h2 class="co-label">{label}</h2><ul class="co-people__list{" co-people__list--3" if len(cards) == 3 else ""}" role="list">{"".join(cards)}</ul></section>'
 
 
 def render_portfolio():
@@ -100,10 +128,7 @@ def company_pages():
     cs = _companies()
     pages = []
     for n, c in enumerate(cs):
-        logo = _logo(c, "co-hero__logo") or f'<span class="co-hero__wordmark" aria-hidden="true">{escape(c["name"])}</span>'
         side = []
-        if c.get("team"):
-            side.append(_group("Team", c["team"]))
         if c.get("milestones"):
             side.append(_group("Milestones", c["milestones"]))
         if c.get("location"):
@@ -118,7 +143,9 @@ def company_pages():
                     f'aria-label="{escape(c["name"])} website (opens in a new tab)">{escape(host)} {EXT}</a>')
         nxt = cs[(n + 1) % len(cs)]
         fill = {
-            "{{LOGO}}": logo,
+            "{{LOGO}}": _logo(c),
+            "{{SCENE}}": scene(c["sector"]),
+            "{{PEOPLE}}": _people(c),
             "{{NAME}}": escape(c["name"]),
             "{{DESCRIPTION}}": escape(c["description"]),
             "{{FACTS}}": "\n            ".join(side),

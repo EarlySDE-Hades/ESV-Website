@@ -2,24 +2,32 @@
     <!-- ============================== Company page ============================== -->
     <!-- From the Figma mockup (Figma Source/Company Page). One page per company, generated from
          tools/portfolio/companies.json by tools/team/build.py; Blogs & Media comes from tools/press/press.json. -->
-    <article class="container co-wrap">
-      <a class="co-back" href="portfolio.html"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>All portfolio companies</a>
-      <header class="co-hero" data-reveal>
-        <h1 class="co-hero__title">{{LOGO}}<span class="visually-hidden">{{NAME}}</span></h1>
+    <article>
+      <header class="co-band">
+        {{SCENE}}
+        <div class="container co-band__inner">
+        <a class="co-back" href="portfolio.html"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>All portfolio companies</a>
+          <h1 class="co-plate" data-reveal>{{LOGO}}<span class="visually-hidden">{{NAME}}</span></h1>
+        </div>
       </header>
+      <div class="container co-wrap">
       <div class="co-body">
         <div class="co-about" data-reveal style="--i:1">
           <p class="co-desc">{{DESCRIPTION}}</p>
           <ul class="co-tags" role="list">{{TAGS}}</ul>
           {{SITE}}
         </div>
-        <div class="co-facts" data-reveal style="--i:2">
+        <div class="co-side" data-reveal style="--i:2">
+          {{PEOPLE}}
+          <div class="co-facts">
             {{FACTS}}
+          </div>
         </div>
       </div>
 {{MEDIA}}
       <nav class="co-next" aria-label="Next company">
         <a href="{{NEXT_HREF}}"><span>Next company</span><strong>{{NEXT_NAME}}</strong><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </nav>
+      </div>
     </article>
   </main>
