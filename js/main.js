@@ -369,7 +369,9 @@
     { title: 'Our portfolio: all companies', section: 'Portfolio', href: 'portfolio.html' },
     { title: 'Bootcamps: founder bootcamps on campus', section: 'Bootcamps', href: 'bootcamps.html' },
     { title: 'Pitch to us', section: 'Raise', href: 'https://ecosystem.earlyseedventures.com/apply' },
-    { title: 'Invest with us', section: 'Invest', href: '#for-investors' },
+    { title: 'Invest with us', section: 'Invest', href: 'invest.html' },
+    { title: 'Join our syndicate', section: 'Invest', href: 'invest.html#syndicate' },
+    { title: 'Become a Strategic Growth Partner', section: 'Invest', href: 'invest.html#partner' },
   ];  // Companies and partners come from the JSON the dialogs already use (home page only)
   let fullIndex = null;
   function searchIndex() {
