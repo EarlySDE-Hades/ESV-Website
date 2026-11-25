@@ -8,6 +8,7 @@
     portfolio.html, portfolio-<slug>.html  <- tools/portfolio/ (+ companies.json)
     events.html  <- tools/events/main.html
     invest.html  <- tools/invest/main.html (+ links.json: where the application buttons go)
+    careers.html <- tools/careers/main.html (+ openings.json: the open roles and application links)
     event-seed-to-success.html  <- tools/events/seed-to-success.html
     titles, descriptions, canonical links, structured data, sitemap.xml and robots.txt  <- tools/seo/seo.py
 
@@ -37,6 +38,7 @@ PAGES = [
     ("bootcamps.html", "tools/bootcamps/main.html", "Founder bootcamps on campus: Earlyseed Ventures works with universities and incubators on business planning, pitch decks, financial projections and access to investors.", "Bootcamps"),
     ("events.html", "tools/events/main.html", "Founder meet-ups, investor sessions and campus programmes from Earlyseed Ventures.", "Events"),
     ("invest.html", "tools/invest/main.html", "Two ways to back India’s founders early: join the Earlyseed Ventures syndicate from ₹5 Lakh, or become a Strategic Growth Partner.", "-"),
+    ("careers.html", "tools/careers/main.html", "Life at Earlyseed Ventures, our open roles, and internships with rolling applications.", "Careers"),
     ("event-seed-to-success.html", "tools/events/seed-to-success.html", "From seed to success: a recap of the Earlyseed Ventures evening for founders, investors and ecosystem leaders.", "-"),
 ]
 
@@ -75,7 +77,8 @@ perspectives_render = _load("perspectives_render", "tools/perspectives/render.py
 profiles = _load("profiles", "tools/team/profiles.py")
 bootcamps_render = _load("bootcamps_render", "tools/bootcamps/render.py")
 invest_render = _load("invest_render", "tools/invest/render.py")
-FILLERS = {"press.html": press_render.render, "perspectives.html": perspectives_render.render, "portfolio.html": portfolio_render.render_portfolio, "bootcamps.html": bootcamps_render.render, "invest.html": invest_render.render}
+careers_render = _load("careers_render", "tools/careers/render.py")
+FILLERS = {"press.html": press_render.render, "perspectives.html": perspectives_render.render, "portfolio.html": portfolio_render.render_portfolio, "bootcamps.html": bootcamps_render.render, "invest.html": invest_render.render, "careers.html": careers_render.render}
 
 
 written = []

@@ -25,13 +25,14 @@ TITLES = {
     "events.html": "Events for Founders and Investors | Earlyseed Ventures",
     "event-seed-to-success.html": "From Seed to Success: Event Recap | Earlyseed Ventures",
     "invest.html": "Invest With Us: Syndicate and Partners | Earlyseed Ventures",
+    "careers.html": "Careers: Life at Earlyseed and Openings | Earlyseed Ventures",
     "prologue.html": "Prologue: Fundraising Prep for Founders | Earlyseed Ventures",
 }
 # breadcrumb: the page's own name, and its parent page if it isn't directly under Home
 CRUMBS = {
     "about.html": ("About", None), "team.html": ("Team", None), "portfolio.html": ("Our Portfolio", None),
     "perspectives.html": ("Our Perspectives", None), "press.html": ("Our Press", None), "bootcamps.html": ("Bootcamps", None),
-    "events.html": ("Events", None), "event-seed-to-success.html": ("From seed to success", "events.html"), "prologue.html": ("Prologue", None), "invest.html": ("Invest with us", None),
+    "events.html": ("Events", None), "event-seed-to-success.html": ("From seed to success", "events.html"), "prologue.html": ("Prologue", None), "invest.html": ("Invest with us", None), "careers.html": ("Careers", None),
 }
 TYPES = {"about.html": "AboutPage", "portfolio.html": "CollectionPage", "press.html": "CollectionPage", "perspectives.html": "CollectionPage", "events.html": "CollectionPage"}
 ORG = f"{SITE}/#organization"

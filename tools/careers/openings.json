@@ -1,0 +1,16 @@
+{
+  "_readme": "The open roles on careers.html. Add one object per role to 'openings', remove it when the role closes, then run: python tools/team/build.py. With no openings, the page says so. Form specs: docs/ecosystem-forms/.",
+  "_example": {
+    "title": "Role title",
+    "team": "Team name",
+    "location": "City, or Remote",
+    "type": "Full-time",
+    "summary": "One or two sentences on the role.",
+    "do": ["What the person will do"],
+    "bring": ["What we are looking for"],
+    "apply": "Optional. A link for this role only; leave out to use 'careers' below."
+  },
+  "careers": "https://ecosystem.earlyseedventures.com/apply/careers",
+  "intern": "https://ecosystem.earlyseedventures.com/apply/intern",
+  "openings": []
+}
