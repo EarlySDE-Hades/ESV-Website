@@ -1,6 +1,6 @@
 """The drawn background of a company page, one scene per sector, all in ESV colours (tools/portfolio/render.py).
 
-Colours: --sx-* on .co-page in css/styles.css. a sand, b pastel purple, c purple, d golden glow, e bronze, ink deep purple.
+Colours: --sx-* on .co-page in css/styles.css. a pale sand, b sand, c golden glow, e bronze; d purple, for one or two small accents per scene; ink deep purple.
 Each scene is drawn on a 1440 x 400 box, weighted to the right, standing on the bottom edge.
 """
 
@@ -43,9 +43,9 @@ def climate():
     s += f'<path d="M300 400c220-26 420-30 640-14s360 4 500-10v24z" {C}/>'
     # scooter on the road
     s += (f'<g transform="translate(700 298)" stroke-linecap="round" stroke-linejoin="round"><path d="M8 54C6 34 20 24 44 24h34l8 30z" {C}/>'
-          f'<path d="M22 16h52q6 0 6 6v2H18q-2-8 4-8z" fill="var(--sx-ink)"/><path d="M80 58h26c10 0 14-6 18-16L112-18" fill="none" stroke="#fff" stroke-width="13"/>'
-          f'<path d="M96-26h22l8 6" fill="none" stroke="var(--sx-ink)" stroke-width="5"/><path d="M114-14l14 4 8 46c-8-2-12 0-16 4z" {W}/><path d="M118 34c10-10 30-8 36 8" fill="none" stroke="#fff" stroke-width="6"/>'
-          f'<circle cx="30" cy="66" r="18" fill="var(--sx-ink)"/><circle cx="30" cy="66" r="8" {W}/><circle cx="138" cy="66" r="18" fill="var(--sx-ink)"/><circle cx="138" cy="66" r="8" {W}/></g>')
+          f'<path d="M22 16h52q6 0 6 6v2H18q-2-8 4-8z" fill="var(--sx-d)"/><path d="M80 58h26c10 0 14-6 18-16L112-18" fill="none" stroke="#fff" stroke-width="13"/>'
+          f'<path d="M96-26h22l8 6" fill="none" stroke="var(--sx-d)" stroke-width="5"/><path d="M114-14l14 4 8 46c-8-2-12 0-16 4z" {W}/><path d="M118 34c10-10 30-8 36 8" fill="none" stroke="#fff" stroke-width="6"/>'
+          f'<circle cx="30" cy="66" r="18" fill="var(--sx-d)"/><circle cx="30" cy="66" r="8" {W}/><circle cx="138" cy="66" r="18" fill="var(--sx-d)"/><circle cx="138" cy="66" r="8" {W}/></g>')
     return s
 
 
@@ -67,7 +67,7 @@ def commerce():
 
 
 def consumer():
-    s = f'<path d="M1010 400V190a130 130 0 0 1 260 0v210z" {A}/><path d="M1060 400V196a80 80 0 0 1 160 0v204z" {W} opacity=".75"/><circle cx="1140" cy="190" r="42" {D}/>'
+    s = f'<path d="M1010 400V190a130 130 0 0 1 260 0v210z" {A}/><path d="M1060 400V196a80 80 0 0 1 160 0v204z" {W} opacity=".75"/><circle cx="1140" cy="190" r="42" {E}/>'
     s += f'<path d="M762 400V270a84 84 0 0 1 168 0v130z" {A}/>'
     s += _line("M844 258c-6-60-34-90-58-104M844 258c0-70 4-104 14-140M846 258c10-54 34-82 62-92", 3)
     s += "".join(f'<ellipse cx="{x}" cy="{y}" rx="24" ry="11" transform="rotate({r} {x} {y})" {C if k % 2 else B}/>' for k, (x, y, r) in enumerate(((780, 148, 40), (812, 190, 20), (858, 112, -70), (846, 168, 60), (912, 160, -20), (884, 200, -50))))
@@ -88,7 +88,7 @@ def education():
         f = W if col == "w" else f'fill="var(--sx-{col})"'
         s += f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" {f}/><rect x="{x + 18}" y="{y}" width="10" height="{h}" {A}/><rect x="{x + w - 46}" y="{y + h / 2 - 3}" width="28" height="6" rx="3" {A}/>'
     s += f'<path d="M1052 214v20c30 16 72 16 102 0v-20l-51 18z" {B}/><path d="M1103 172l94 34-94 34-94-34z" {C}/>' + _line("M1197 206v42", 4) + f'<circle cx="1197" cy="254" r="8" {C}/>'
-    s += f'<rect x="1270" y="290" width="110" height="110" rx="10" {W}/><path d="M1300 345h50M1325 320v50" stroke="var(--sx-c)" stroke-width="8" stroke-linecap="round"/><rect x="1290" y="206" width="84" height="84" rx="10" {B}/><circle cx="1332" cy="248" r="22" {W}/><path d="M1332 130l42 76h-84z" {D}/>'
+    s += f'<rect x="1270" y="290" width="110" height="110" rx="10" {W}/><path d="M1300 345h50M1325 320v50" stroke="var(--sx-c)" stroke-width="8" stroke-linecap="round"/><rect x="1290" y="206" width="84" height="84" rx="10" {B}/><circle cx="1332" cy="248" r="22" {W}/><path d="M1332 130l42 76h-84z" {C}/>'
     s += f'<path d="M820 400 850 214l20-34 14 38-28 182z" {B}/><path d="M850 214l20-34 14 38z" {W}/><path d="M863 192l7-12 5 14z" {C}/><path d="M884 400h74l-74-120z" {C} opacity=".55"/>'
     return s + _line("M640 398h800", 4)
 
@@ -99,7 +99,7 @@ def food():
         s += f'<circle cx="{x}" cy="{y}" r="{r}" fill="{"#fff" if k % 2 else "none"}" stroke="var(--sx-b)" stroke-width="2" opacity=".85"/>'
     s += _line("M1146 150 1176 40l40-14", 8) + f'<path d="M1056 140h150l-18 258h-114z" {W} opacity=".92"/><path d="M1063 206h136l-13 188h-110z" {E}/>'
     s += "".join(f'<circle cx="{x}" cy="{y}" r="{r}" {W} opacity=".8"/>' for x, y, r in ((1096, 350, 8), (1130, 300, 6), (1160, 360, 10), (1120, 250, 7), (1166, 270, 5)))
-    s += f'<g transform="translate(1060 152)"><circle r="44" {D}/><circle r="36" {W}/>' + "".join(f'<path d="M0-5-11-29a31 31 0 0 1 22 0z" {B} transform="rotate({a})"/>' for a in range(0, 360, 60)) + "</g>"
+    s += f'<g transform="translate(1060 152)"><circle r="44" {C}/><circle r="36" {W}/>' + "".join(f'<path d="M0-5-11-29a31 31 0 0 1 22 0z" {B} transform="rotate({a})"/>' for a in range(0, 360, 60)) + "</g>"
     s += f'<path d="M830 270h150l-20 128H850z" {C}/><path d="M820 256h170v18H820z" {W}/><path d="M842 318h126l-6 40H848z" {A}/>'
     s += _line("M872 232c-14-22 14-34 0-60M906 232c-14-26 14-40 0-70M940 232c-14-22 14-34 0-60", 4, "b")
     s += f'<path d="M1270 250l10-18h80l10 18v132l-10 16h-80l-10-16z" {C}/><path d="M1270 284h100v70h-100z" {W}/><circle cx="1320" cy="319" r="22" {D}/><rect x="1288" y="224" width="64" height="10" rx="4" {B}/>'
@@ -110,20 +110,20 @@ def health():
     s = f'<rect x="1060" y="50" width="120" height="340" rx="28" {A}/><rect x="950" y="160" width="340" height="120" rx="28" {A}/>'
     s += _line("M420 222h270l22-54 34 120 34-196 36 162 20-32h130l24-46 30 92 28-46h420", 3.5, "c", .8)
 
-    def pill(x, y, r, l=120, h=48):
-        return f'<g transform="translate({x} {y}) rotate({r})"><rect x="{-l / 2}" y="{-h / 2}" width="{l}" height="{h}" rx="{h / 2}" {W}/><path d="M0 {-h / 2}h{l / 2 - h / 2}a{h / 2} {h / 2} 0 0 1 0 {h}H0z" {C}/><path d="M{-l / 2 + 22} {-h / 2 + 11}h{l / 2 - 30}" stroke="var(--sx-a)" stroke-width="6" stroke-linecap="round"/></g>'
+    def pill(x, y, r, l=120, h=48, f=C):
+        return f'<g transform="translate({x} {y}) rotate({r})"><rect x="{-l / 2}" y="{-h / 2}" width="{l}" height="{h}" rx="{h / 2}" {W}/><path d="M0 {-h / 2}h{l / 2 - h / 2}a{h / 2} {h / 2} 0 0 1 0 {h}H0z" {f}/><path d="M{-l / 2 + 22} {-h / 2 + 11}h{l / 2 - 30}" stroke="var(--sx-a)" stroke-width="6" stroke-linecap="round"/></g>'
 
     def tab(x, y, r):
         return f'<circle cx="{x}" cy="{y}" r="{r}" {W}/><path d="M{x - r * .55:.0f} {y}h{r * 1.1:.0f}" stroke="var(--sx-b)" stroke-width="3" stroke-linecap="round"/>'
     s += f'<g transform="translate(1180 318) rotate(-12)"><rect x="-150" y="-62" width="300" height="130" rx="16" {B}/>' + "".join(f'<ellipse cx="{-105 + i * 70}" cy="{-28 + j * 60}" rx="26" ry="20" {W}/>' for i in range(4) for j in range(2)) + "</g>"
-    s += pill(900, 330, -24) + pill(1370, 150, 32, 110, 44) + pill(830, 100, 18, 92, 36) + tab(1000, 352, 26) + tab(760, 340, 18) + tab(1390, 320, 24) + tab(1270, 84, 18)
+    s += pill(900, 330, -24, f=D) + pill(1370, 150, 32, 110, 44) + pill(830, 100, 18, 92, 36) + tab(1000, 352, 26) + tab(760, 340, 18) + tab(1390, 320, 24) + tab(1270, 84, 18)
     return s
 
 
 def software():
     s = "".join(f'<circle cx="{x}" cy="{y}" r="1.6" {B}/>' for x in range(560, 1440, 32) for y in range(24, 400, 32))
     s += f'<rect x="900" y="60" width="430" height="290" rx="16" {W}/><path d="M916 60h398a16 16 0 0 1 16 16v22H900V76a16 16 0 0 1 16-16z" {A}/>' + "".join(f'<circle cx="{926 + k * 22}" cy="79" r="6" {C if k == 0 else B}/>' for k in range(3))
-    for k, (ind, w, col) in enumerate(((0, 90, "c"), (1, 150, "b"), (2, 120, "a"), (2, 170, "b"), (1, 70, "c"), (0, 120, "b"), (1, 150, "a"))):
+    for k, (ind, w, col) in enumerate(((0, 90, "d"), (1, 150, "b"), (2, 120, "a"), (2, 170, "b"), (1, 70, "c"), (0, 120, "b"), (1, 150, "a"))):
         s += f'<rect x="{930 + ind * 28}" y="{124 + k * 28}" width="{w}" height="10" rx="5" fill="var(--sx-{col})"/><rect x="{940 + ind * 28 + w}" y="{124 + k * 28}" width="{40 + (k * 37) % 50}" height="10" rx="5" {A}/>'
     pts = [(700, 110), (780, 210), (690, 300), (840, 120), (830, 320)]
     s += "".join(_line(f"M{pts[i][0]} {pts[i][1]}L{pts[j][0]} {pts[j][1]}", 2, "b") for i, j in ((0, 1), (1, 2), (1, 3), (1, 4), (0, 3), (2, 4))) + _line("M840 120l60 30M830 320l70-30", 2, "b")
@@ -147,7 +147,7 @@ def supply():
         s += box(x, y, n, light)
 
     def pin(x, y):
-        return f'<g transform="translate({x} {y})"><path d="M0 0c-16-22-24-32-24-46a24 24 0 0 1 48 0c0 14-8 24-24 46z" {C}/><circle cy="-46" r="9" {W}/></g>'
+        return f'<g transform="translate({x} {y})"><path d="M0 0c-16-22-24-32-24-46a24 24 0 0 1 48 0c0 14-8 24-24 46z" {D}/><circle cy="-46" r="9" {W}/></g>'
     s += pin(780, 178) + pin(580, 296)
     s += f'<g transform="translate(730 300)"><rect width="150" height="78" rx="6" {W}/><path d="M154 22h44l26 30v26h-70z" {C}/><path d="M166 32h26l14 18h-40z" {A}/><path d="M16 22h70M16 42h44" stroke="var(--sx-b)" stroke-width="8" stroke-linecap="round"/><circle cx="38" cy="82" r="17" {C}/><circle cx="38" cy="82" r="7" {W}/><circle cx="184" cy="82" r="17" {C}/><circle cx="184" cy="82" r="7" {W}/></g>'
     return s + _line("M560 399h880", 4)
@@ -155,8 +155,8 @@ def supply():
 
 def telecom():
     s = "".join(f'<path d="M{1180 - r} 120a{r} {r} 0 0 1 {2 * r} 0" fill="none" stroke="var(--sx-b)" stroke-width="{3 if k < 3 else 2}" opacity="{.95 - k * .13:.2f}"/>' for k, r in enumerate((50, 90, 135, 190, 255, 330)))
-    s += _line("M1180 134 1120 400M1180 134l60 266M1168 190h24M1156 240h48M1144 292h72M1132 344h96M1168 190l36 50M1192 190l-36 50M1156 240l60 52M1204 240l-60 52M1144 292l84 52M1216 292l-84 52", 4) + f'<circle cx="1180" cy="120" r="14" {C}/>'
-    s += _line("M930 400V262M902 252a40 40 0 0 1 56 0M882 230a68 68 0 0 1 96 0M1370 400V242M1344 232a36 36 0 0 1 52 0M1326 212a62 62 0 0 1 88 0", 3.5, "c", .8) + f'<circle cx="930" cy="266" r="7" {C}/><circle cx="1370" cy="246" r="7" {C}/>'
+    s += _line("M1180 134 1120 400M1180 134l60 266M1168 190h24M1156 240h48M1144 292h72M1132 344h96M1168 190l36 50M1192 190l-36 50M1156 240l60 52M1204 240l-60 52M1144 292l84 52M1216 292l-84 52", 4) + f'<circle cx="1180" cy="120" r="14" {D}/>'
+    s += _line("M930 400V262M902 252a40 40 0 0 1 56 0M882 230a68 68 0 0 1 96 0M1370 400V242M1344 232a36 36 0 0 1 52 0M1326 212a62 62 0 0 1 88 0", 3.5, "c", .8) + f'<circle cx="930" cy="266" r="7" {D}/><circle cx="1370" cy="246" r="7" {D}/>'
     for k in range(9):
         y = 404 - k * 9
         stroke = ("#fff", "var(--sx-b)", "var(--sx-c)")[k % 3]

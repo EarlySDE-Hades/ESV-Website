@@ -2425,7 +2425,7 @@ html:not(.js) .st-cover { display: none; }
 @media (prefers-reduced-motion: reduce) { .pf-card.is-entering { animation: none; } }
 
 /* Company page. One palette for every sector; the drawing (tools/portfolio/scenes.py) shows the sector */
-.co-page { --sx-bg: var(--crema); --sx-a: #E7D8C6; --sx-b: var(--pastel-purple); --sx-c: var(--purple); --sx-d: var(--golden-glow); --sx-e: var(--bronze); --sx-ink: #4B38D8; background: linear-gradient(var(--crema), var(--bg) 1100px); }
+.co-page { --sx-bg: var(--crema); --sx-a: #E7D8C6; --sx-b: var(--sand); --sx-c: var(--golden-glow); --sx-d: var(--purple); --sx-e: var(--bronze); --sx-ink: #4B38D8; background: linear-gradient(var(--crema), var(--bg) 1100px); }
 .co-band { position: relative; overflow: clip; overflow-clip-margin: 80px; min-height: clamp(300px, 30vw, 420px); background: var(--sx-bg); border-bottom: 1px solid var(--sx-a); }
 .co-scene { position: absolute; inset: 0; width: 100%; height: 100%; }
 .co-band__inner { position: relative; display: flex; flex-direction: column; justify-content: space-between; min-height: inherit; padding-top: clamp(20px, 3vw, 40px); }
