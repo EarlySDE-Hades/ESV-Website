@@ -45,9 +45,11 @@ Tick an item when it is done. Add new ones under the heading that fits. "Must" m
 - [ ] Rotary for Business: exact date. The site says "March 2026" (post of 23 Mar 2026).
 - [ ] International Investors Summit, Dubai: exact date. The site says "Early 2026" (post of 7 Feb 2026).
 - [ ] BNI Global Convention: photos, to replace the announcement graphic. The team will provide them.
-- [ ] The Startup Mixer, Editions 2 to 4: dates, details and photos. The team will provide them.
+- [ ] The Startup Mixer, Edition 2: the page uses the press release of 31 Aug 2026, written before the event. Confirm it ran as announced (2 Sept 2026, NESCO, Goregaon; Agnelo Rajesh Athaide, Manan Patel, Rahul Hingmire). Is naming Agnelo Rajesh Athaide as host fine?
+- [ ] The Startup Mixer, Editions 3 and 4: dates and details. Photos of Editions 1 to 4. The team will provide them.
 - [ ] The Startup Mixer, Edition 5 (2 Dec 2026): the poster for Nimit came twice. Is there a third speaker? After the event, add a recap.
-- [ ] The Startup Mixer: the first edition's poster calls us a supporter, and the site says co-host. Agreed with the other hosts?
+- [ ] The Startup Mixer: the first edition's poster, the Edition 2 press release and the Edition 5 Luma page all call us a supporter, and the site says co-host. Agreed with the other hosts?
+- [ ] The Startup Mixer, Edition 5: the poster says ₹1,500, and the Luma page lists registration as free, with approval. Which is right?
 - [ ] Photos for Bihar StartUp Showcase, The Startup Mixer (Edition 1) and the AIC-RRU session, which use posters.
 - [ ] Dates taken from outside the posts: IFTA (10 Dec 2025), GITEX (13 to 17 Oct 2025), BNI (28 to 30 Oct 2026). Confirm.
 - [ ] Dubai summit: Flip, SICI and Anahad pitched, and the post calls them portfolio companies, but they are not on our Portfolio page. Add them?

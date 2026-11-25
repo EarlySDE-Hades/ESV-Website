@@ -170,45 +170,80 @@
     {
       "id": "startup-mixer",
       "title": "The Startup Mixer",
-      "when": "5 August 2026",
-      "place": "BKC, Mumbai",
+      "when": "Since August 2026",
+      "place": "BKC and Goregaon, Mumbai",
       "mode": "offline",
       "role": "Co-host",
       "recurring": true,
-      "text": "The first edition: a curated evening for founders, investors and advisors at Santé Spa Cuisine, with Global St. Angelo’s Venture Funding and Vis Legis Law Practice.",
+      "text": "A curated evening for founders, investors and advisors, with a first edition that sold out. Run with Global St. Angelo’s Venture Funding and Vis Legis Law Practice.",
       "photo": "startup-mixer",
       "alt": "The Startup Mixer poster: capital, connections and strategic growth",
       "source": [
         "https://www.linkedin.com/feed/update/urn:li:ugcPost:7491369734270259200",
-        "https://www.linkedin.com/feed/update/urn:li:ugcPost:7486646750468964352"
+        "https://www.linkedin.com/feed/update/urn:li:ugcPost:7486646750468964352",
+        "https://theprint.in/ani-press-releases/after-a-sold-out-debut-the-startup-mixer-returns-with-edition-2-in-mumbai-on-september-2/3029327/",
+        "https://luma.com/81i7f8x3"
       ],
       "size": [
         1023,
         682
       ],
       "post": {
-        "title": "The Startup Mixer comes to BKC",
+        "title": "The Startup Mixer: capital, connections and growth",
         "lede": "An evening in Mumbai where founders sit across the table from investors who can back them, advisors who have seen what works, and others building companies of their own.",
         "blocks": [
           {
-            "h": "The evening",
+            "h": "Conversation instead of speeches",
             "p": [
-              "We co-hosted the Mixer with Global St. Angelo’s Venture Funding and Vis Legis Law Practice at Santé Spa Cuisine, from 4 to 6 pm. Seats were limited and the guest list was curated, so the conversations had room to go somewhere."
+              "Most start-up events put a few people on a stage and everyone else in rows. The Mixer does the opposite. There are no long speeches and no crowded pitching, only two hours of conversation in a small room.",
+              "A structured format moves people past the usual round of names and business cards, so a founder can talk properly with an investor, a lawyer or another founder. The guest list is curated and the organisers confirm each place, which keeps the room small and relevant."
             ]
           },
           {
-            "h": "What it is for",
+            "h": "Who it is for",
             "list": [
-              "Conversations about capital, with people ready to invest.",
-              "Clarity on fundraising and compliance.",
-              "Connections that help with the next phase of growth.",
-              "Time with other founders."
+              "Founders preparing to raise, or growing after a raise.",
+              "Angel investors, venture funds and family offices.",
+              "Legal, financial and transaction advisors.",
+              "Incubators, accelerators and corporate innovation teams.",
+              "Business owners looking at start-ups as partners."
             ]
           },
           {
-            "h": "Next editions",
+            "h": "What people talk about",
+            "list": [
+              "Raising capital, and what investors expect before they commit.",
+              "Investment readiness: numbers, documents and governance.",
+              "Expansion, partnerships and market access.",
+              "Compliance, due diligence and transactions.",
+              "The next phase of growth, with people who have been through it."
+            ]
+          },
+          {
+            "h": "Edition 1: a sold-out start",
             "p": [
-              "The Mixer is recurring, and Edition 5 is set for 2 December 2026 at the same venue. Details, and later dates, are under [upcoming events](events.html#upcoming)."
+              "The first Mixer was on 5 August 2026 at Santé Spa Cuisine in BKC, from 4 to 6 pm. We co-hosted it with Global St. Angelo’s Venture Funding and Vis Legis Law Practice. It sold out, with founders, investors and advisors in the room."
+            ]
+          },
+          {
+            "h": "Edition 2: on to Goregaon",
+            "p": [
+              "The second edition was announced for 2 September 2026 at Santé Spa Cuisine, NESCO Centre, Goregaon, with a refreshed format and the same curated guest list.",
+              "It was set to bring together Agnelo Rajesh Athaide, Chairman of the Global St. Angelo’s Group of Companies, with two of our co-founders, [CA Manan Patel](team-manan-patel.html) and [Adv. Rahul Hingmire](team-rahul-hingmire.html), for views from entrepreneurship, investment, business strategy and law. [Several outlets carried the announcement](press.html)."
+            ]
+          },
+          {
+            "h": "Advice for founders from our co-founders",
+            "p": [
+              "Ahead of Edition 2, both shared what they most want founders to get right.",
+              "Rahul Hingmire, on the legal side: “Legal readiness should begin from Day 1.” Sound documents with employees, customers, investors, vendors and banks, along with proper due diligence, protect what a company is worth. They also make raising money, scaling and later transactions smoother.",
+              "Manan Patel, on money: make cash flow and runway a standing item, and open every board meeting with them. Founders watch growth closely and often leave cash until it is the only problem left. Runway is the clearest measure of the time a team has to build, change course or raise."
+            ]
+          },
+          {
+            "h": "Next: Edition 5",
+            "p": [
+              "The Mixer is becoming a regular meeting place for founders and business leaders in Mumbai. Edition 5 is set for 2 December 2026, back at Santé Spa Cuisine in BKC. Registration and later dates are under [upcoming events](events.html#upcoming)."
             ]
           }
         ],
@@ -219,7 +254,7 @@
         ],
         "photos": []
       },
-      "review": "Details and photos of Editions 2 to 4 to come. Event photos of Edition 1 wanted."
+      "review": "Edition 2 is from the press release of 31 Aug 2026, written before the event: confirm it ran as announced. Details and photos of Editions 3 and 4 to come. Event photos of Editions 1 and 2 wanted."
     },
     {
       "id": "rru-session",

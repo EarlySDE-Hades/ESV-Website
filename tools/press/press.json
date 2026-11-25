@@ -125,6 +125,7 @@
       "verificationStatus": "verified",
       "notes": "Advertorial disclaimer on page: press release provided by VMPL via ANI.",
       "syndicated": [
+        { "publication": "ThePrint", "url": "https://theprint.in/ani-press-releases/after-a-sold-out-debut-the-startup-mixer-returns-with-edition-2-in-mumbai-on-september-2/3029327/" },
         { "publication": "British Columbia Times", "url": "https://www.britishcolumbiatimes.com/news/after-a-sold-out-debut-the-startup-mixer-returns-with-edition-2-in-mumbai-on-september-220260831111628/" },
         { "publication": "Matrix News", "url": "https://web.matrixnews.in/news/Ndd105abf2fbc59d98f442fd289dc14ec" }
       ]

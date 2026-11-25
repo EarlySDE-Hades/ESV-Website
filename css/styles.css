@@ -3414,7 +3414,7 @@ a.person__card { color: inherit; }
 .ep-photos img { width: 100%; height: auto; border-radius: 16px; background: var(--sand); }
 .ep-photos--narrow { max-width: 760px; margin-inline: auto; }
 .ep-photos + .ep-photos { margin-top: clamp(10px, 1.6vw, 18px); }
-.ep .post__title, .ep .post__lede, .ep .post__quote, .ep-next, .ep-facts dd, .ev-item__title { font-variant-numeric: lining-nums; }
+.ep-h, .ep .post__title, .ep .post__lede, .ep .post__quote, .ep-next, .ep-facts dd, .ev-item__title { font-variant-numeric: lining-nums; }
 .ep-close { margin-top: clamp(56px, 8vw, 92px); }
 .ep-next { display: inline-flex; flex-direction: column; gap: 4px; margin-top: 44px; padding: 10px 16px; border-radius: 12px; font: 400 1.25rem/1.3 var(--font-serif); color: var(--ink); }
 .ep-next span { font: 500 0.875rem/1.4 var(--font-sans); color: #8A4B3C; }
