@@ -1,0 +1,21 @@
+        <figure class="tool tk-tool" data-calc="vesting">
+          <div class="tk-form">
+            <label class="tk-field"><span>Options granted</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="1" value="8000" data-in="options" /><em>options</em></span></label>
+            <label class="tk-field"><span>Vesting starts</span><span class="tk-input"><input type="month" data-in="start" value="2025-04" /></span></label>
+            <label class="tk-field"><span>Vests over</span><span class="tk-input"><input type="number" inputmode="decimal" min="1" step="1" value="4" data-in="years" /><em>years</em></span></label>
+            <label class="tk-field"><span>Cliff</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="1" value="12" data-in="cliff" /><em>months</em></span></label>
+            <div class="tk-field"><span>After the cliff, vests</span><div class="tool-switch tool-switch--sm" role="radiogroup" aria-label="Vesting frequency" data-freq><button type="button" role="radio" aria-checked="true" data-opt="1">Monthly</button><button type="button" role="radio" aria-checked="false" data-opt="3">Quarterly</button><button type="button" role="radio" aria-checked="false" data-opt="12">Yearly</button></div></div>
+            <label class="tk-field"><span>Exercise price</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="10" data-in="strike" /><em>₹ per option</em></span></label>
+            <label class="tk-field"><span>Value of a share today</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="500" data-in="value" /><em>₹</em></span></label>
+            <label class="tk-field"><span>Check on</span><span class="tk-input"><input type="month" data-in="check" /></span><small>Starts at this month</small></label>
+          </div>
+          <div class="tk-results">
+            <p class="tk-out tk-out--big"><span>Vested</span><strong data-out="vested">–</strong></p>
+            <p class="tk-out tk-out--big"><span>Vested options are worth</span><strong data-out="gain">–</strong></p>
+            <p class="tk-out"><span>Still to vest</span><strong data-out="unvested">–</strong></p>
+            <p class="tk-out"><span>Cliff ends</span><strong data-out="cliffdate">–</strong></p>
+            <p class="tk-out"><span>Fully vested</span><strong data-out="full">–</strong></p>
+          </div>
+          <div class="tk-vest" data-out="bars"></div>
+          <figcaption data-out="note"></figcaption>
+        </figure>

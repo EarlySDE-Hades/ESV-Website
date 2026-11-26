@@ -17,6 +17,12 @@ EXT = '<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path 
 ARROW = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 BACK = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 COVERS = ["lilac", "sand", "violet", "rose", "crema", "bronze", "ink"]   # cover colours, in turn
+AUTHORS = {   # name: (role, photo, link)
+    "Sakshay Upadhyay": ("Investment Associate", "assets/team/sakshay-upadhyay.webp", "team.html#team-members"),
+    "Siddarth Menon": ("Investment Associate", "assets/team/siddarth-menon.webp", "team.html#team-members"),
+    "Karan Shah": ("Deal Manager", "assets/team/karan-shah.webp", "team.html#team-members"),
+    "Monica Gupta": ("Co-founder and CEO", "assets/team/monica-gupta.webp", "team-monica-gupta.html"),
+}
 ART_TONES = ["art-crema", "art-lilac", "art-sand"]                    # behind a drawn cover
 
 
@@ -138,14 +144,18 @@ def article_pages():
         body = (HERE / "posts" / f"{p['slug']}.html").read_text(encoding="utf-8")
         hero = (f'\n      <div class="post-art container" data-reveal>{drawings.header(p["art"])}</div>' if p.get("art") else
                 f'\n      <figure class="post__hero container" data-reveal><img src="{p["photo"]}" alt="" decoding="async" /></figure>' if p.get("photo") and p.get("hero", True) else "")
-        by = f' · {escape(p["author"])}' if p.get("author") else ""
+        by = ""
+        if p.get("author") in AUTHORS:
+            role, photo, link = AUTHORS[p["author"]]
+            by = (f'\n        <a class="byline" href="{link}" data-reveal style="--i:3"><img src="{photo}" alt="" width="48" height="48" loading="lazy" decoding="async" />'
+                  f'<span><strong>{escape(p["author"])}</strong>{role}, Earlyseed Ventures</span></a>')
         pages.append((f"perspective-{p['slug']}.html", f'''  <main id="main" class="post-page">
     <article class="post" aria-labelledby="post-title">
       <header class="post__head container">
         <a class="post__back" href="perspectives.html">{BACK}Our Perspectives</a>
-        <p class="eyebrow" data-reveal>{escape(names[p["series"]])} · {_date(p["date"])}{by}</p>
+        <p class="eyebrow" data-reveal>{escape(names[p["series"]])} · {_date(p["date"])}</p>
         <h1 class="post__title" id="post-title" data-reveal style="--i:1">{escape(p["title"])}</h1>
-        <p class="post__lede" data-reveal style="--i:2">{escape(p["summary"])}</p>
+        <p class="post__lede" data-reveal style="--i:2">{escape(p["summary"])}</p>{by}
       </header>{hero}
       <div class="post__body post__prose container">
 {body}

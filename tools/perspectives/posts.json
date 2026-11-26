@@ -1,5 +1,5 @@
 {
-  "_readme": "Articles on perspectives.html. 'url' = published elsewhere (opens in a new tab) or an existing page on this site. For an article hosted here, leave out 'url' and put its body (HTML) in tools/perspectives/posts/<slug>.html; build.py then writes perspective-<slug>.html. 'mark' is the big character on the cover; 'short' is a shorter title for the cover only. 'hidden': true keeps a series or post out of the page (the Substack newsletter is hidden for now). \"hero\": false keeps \"photo\" for the cover only (no large photo at the top of the article). \"original\": the page first appeared elsewhere (the Prologue blog); search engines are pointed to it. \"art\": the drawing (tools/perspectives/art.py) for the book cover and the top of the article.",
+  "_readme": "Articles on perspectives.html. 'url' = published elsewhere (opens in a new tab) or an existing page on this site. For an article hosted here, leave out 'url' and put its body (HTML) in tools/perspectives/posts/<slug>.html; build.py then writes perspective-<slug>.html. 'mark' is the big character on the cover; 'short' is a shorter title for the cover only. 'hidden': true keeps a series or post out of the page (the Substack newsletter is hidden for now). \"hero\": false keeps \"photo\" for the cover only (no large photo at the top of the article). \"original\": the page first appeared elsewhere (the Prologue blog); search engines are pointed to it. \"art\": the drawing (tools/perspectives/art.py) for the book cover and the top of the article. \"author\": shown with their photo under the title (AUTHORS in tools/perspectives/render.py).",
   "series": [
     {
       "id": "chronicle",
@@ -25,6 +25,12 @@
       "id": "finance",
       "name": "Finance for the Fundraising-Curious",
       "about": "Round structures, valuations and term sheets, explained simply.",
+      "icon": "finance"
+    },
+    {
+      "id": "analyst-opinions",
+      "name": "Analyst Opinions",
+      "about": "Our analysts on the sectors and markets they work in: deep tech, defence, health, and timing your raise.",
       "icon": "finance"
     },
     {
@@ -208,6 +214,84 @@
       "words": 518,
       "author": "Sakshay Upadhyay",
       "art": "pie"
+    },
+    {
+      "slug": "deep-tech-defined",
+      "series": "analyst-opinions",
+      "date": "2026-10-22",
+      "title": "Deep Tech, Defined",
+      "summary": "What counts as deep tech, how investors measure it on the TRL scale, and why the software playbook does not fit.",
+      "label": "Siddarth",
+      "words": 532,
+      "author": "Siddarth Menon",
+      "art": "deeptech"
+    },
+    {
+      "slug": "where-indian-deep-tech-breaks",
+      "series": "analyst-opinions",
+      "date": "2026-10-26",
+      "title": "Where Indian Deep Tech Really Breaks",
+      "summary": "Record money, but uneven: the two gaps in Indian deep-tech funding, and how an investor prices a round.",
+      "label": "Siddarth",
+      "words": 632,
+      "author": "Siddarth Menon",
+      "art": "valley"
+    },
+    {
+      "slug": "homework-before-the-handshake",
+      "series": "analyst-opinions",
+      "date": "2026-11-02",
+      "title": "Homework Before the Handshake",
+      "summary": "Rounds stall in diligence, not on the pitch. The checklist to finish before your first investor meeting.",
+      "label": "Siddarth",
+      "words": 529,
+      "author": "Siddarth Menon",
+      "art": "clipboard"
+    },
+    {
+      "slug": "india-defence-importer-to-builder",
+      "series": "analyst-opinions",
+      "date": "2026-10-12",
+      "title": "From Biggest Importer to Builder",
+      "summary": "How geopolitics and policy reform are rewiring India’s defence industry.",
+      "label": "Karan",
+      "words": 494,
+      "author": "Karan Shah",
+      "art": "shield"
+    },
+    {
+      "slug": "get-your-fundraise-timing-right",
+      "series": "analyst-opinions",
+      "date": "2026-10-23",
+      "title": "Too Early or Too Late? Getting Your Fundraising Timing Right",
+      "summary": "Revenue is not the signal to raise. The three things that are.",
+      "label": "Karan",
+      "words": 493,
+      "author": "Karan Shah",
+      "art": "clock",
+      "short": "Too Early or Too Late?"
+    },
+    {
+      "slug": "india-eating-itself-sick",
+      "series": "analyst-opinions",
+      "date": "2026-11-02",
+      "title": "India Is Eating Itself Sick",
+      "summary": "Packaged food, rising obesity and blood sugar, and what India can learn from Chile, Mexico and the UK.",
+      "label": "Karan",
+      "words": 473,
+      "author": "Karan Shah",
+      "art": "plate"
+    },
+    {
+      "slug": "insurer-wants-your-step-count",
+      "series": "analyst-opinions",
+      "date": "2026-11-04",
+      "title": "Your Insurer Wants Your Step Count",
+      "summary": "Insurers now pay you to stay healthy. Do the rewards reach the people who need them?",
+      "label": "Karan",
+      "words": 486,
+      "author": "Karan Shah",
+      "art": "watch"
     }
   ]
 }

@@ -65,17 +65,46 @@
       "slug": "exit-waterfall",
       "name": "Exit waterfall",
       "for": "founders",
-      "soon": true,
-      "summary": "Who gets what when the company is sold, with 1x or 2x and participating preferences.",
-      "icon": "steps"
+      "summary": "Sale price, investors and their preferences: who gets what when the company is sold, and when investors convert.",
+      "icon": "steps",
+      "lede": "Your term sheet decides the order money is paid out when the company is sold. Try different sale prices and see what the preferences cost you.",
+      "seo": "Exit Waterfall Calculator for Startups",
+      "read": [
+        [
+          "Same Money, Different Paper",
+          "perspective-same-money-different-paper.html"
+        ]
+      ]
     },
     {
       "slug": "esop-pool-sizer",
       "name": "ESOP pool sizer",
       "for": "founders",
-      "soon": true,
-      "summary": "Size your option pool from your hiring plan, and see what it costs the founders.",
-      "icon": "pool"
+      "summary": "Size your option pool from your hiring plan, and see what it costs the founders at this round.",
+      "icon": "pool",
+      "lede": "A pool built from a hiring plan is easier to defend than a round number. Plan the hires to your next round, and see what the pool costs you.",
+      "seo": "ESOP Pool Size Calculator",
+      "read": [
+        [
+          "ESOP Essentials",
+          "perspective-esop-essentials.html"
+        ]
+      ]
+    },
+    {
+      "slug": "vesting-schedule",
+      "name": "Vesting schedule",
+      "for": "founders",
+      "icon": "calendar",
+      "summary": "A grant, a start date and a cliff: how many options are vested on any date, and what they are worth.",
+      "lede": "Vesting decides when options become someone’s to keep. Check any grant on any date, for your team or for yourself.",
+      "seo": "ESOP Vesting Schedule Calculator",
+      "read": [
+        [
+          "ESOP Essentials",
+          "perspective-esop-essentials.html"
+        ]
+      ]
     },
     {
       "slug": "return-calculator",

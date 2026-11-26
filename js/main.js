@@ -375,6 +375,7 @@
     { title: 'From the deal table', section: 'Perspectives', href: 'perspectives.html#deal-table' },
     { title: 'Founder Stories', section: 'Perspectives', href: 'perspectives.html#founder-stories' },
     { title: 'Podcasts', section: 'Perspectives', href: 'perspectives.html#podcasts' },
+    { title: 'Analyst Opinions: deep tech, defence, health, fundraising timing', section: 'Perspectives', href: 'perspectives.html#analyst-opinions' },
     { title: 'Tools for founders and investors', section: 'Tools', href: 'tools.html' },
     { title: 'Round finder: which round am I raising?', section: 'Tools', href: 'tool-round-finder.html' },
     { title: 'Pre-money and post-money valuation calculator', section: 'Tools', href: 'tool-valuation-calculator.html' },
@@ -2386,6 +2387,157 @@
   $$('[data-calc="valuation"]').forEach(initValuation);
   $$('[data-calc="dilution"]').forEach(initDilution);
   $$('[data-calc="runway"]').forEach(initRunway);
+
+  // Small switches inside a calculator (data-mult, data-part, data-freq): they only mark the choice and re-run it
+  function miniSwitches(fig, run) {
+    $$('.tool-switch--sm', fig).forEach((g) => {
+      const bs = $$('[data-opt]', g);
+      bs.forEach((b, i) => {
+        b.addEventListener('click', () => { bs.forEach((x) => x.setAttribute('aria-checked', String(x === b))); run(); });
+        b.addEventListener('keydown', (e) => {
+          const d = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+          if (d) { e.preventDefault(); const nb = bs[(i + d + bs.length) % bs.length]; nb.focus(); nb.click(); }
+        });
+      });
+    });
+  }
+  const opt = (root, attr) => $(`[data-${attr}] [aria-checked="true"]`, root)?.dataset.opt;
+  function initWaterfall(fig) {
+    const rows = $$('[data-inv]', fig), add = $('[data-add]', fig), remove = $('[data-remove]', fig), svg = $('[data-out="chart"]', fig);
+    let n = 2;
+    // Who gets what at one sale price. Non-participating investors pick the better of their preference or converting.
+    const payout = (sale, inv, common) => {
+      let conv = inv.map(() => false);
+      const once = (cv) => {
+        const pref = inv.map((x, i) => (cv[i] ? 0 : x.m * x.a)), P = pref.reduce((a, b) => a + b, 0);
+        if (sale <= P) return { inv: pref.map((p) => (P ? (sale * p) / P : 0)), common: 0 };
+        const R = sale - P, share = inv.map((x, i) => (cv[i] || x.part ? x.o : 0)), s = common + share.reduce((a, b) => a + b, 0);
+        return { inv: inv.map((x, i) => pref[i] + (R * share[i]) / s), common: (R * common) / s };
+      };
+      for (let k = 0; k < 12; k++) {
+        let changed = false;
+        inv.forEach((x, i) => {
+          if (x.part) return;
+          const flip = conv.slice(); flip[i] = !flip[i];
+          if (once(flip).inv[i] > once(conv).inv[i] + 1) { conv = flip; changed = true; }
+        });
+        if (!changed) break;
+      }
+      return { ...once(conv), conv };
+    };
+    const run = calcBase(fig, (val, out) => {
+      const sale = val('sale') * 1e7;
+      const inv = rows.slice(0, n).map((r) => ({ name: $('legend', r).textContent, a: val('amt', r) * 1e7, o: val('own', r) / 100, m: +opt(r, 'mult'), part: opt(r, 'part') === 'p' }));
+      const common = 1 - inv.reduce((a, x) => a + x.o, 0);
+      out('common', pct(Math.max(common, 0)));
+      if (common < 0) { out('note', 'The investors own more than 100% between them. Lower their percentages.'); return; }
+      const r = payout(sale, inv, common);
+      const COLORS = ['var(--purple)', '#4B38D8', 'var(--golden-glow)'];
+      const seg = (v, name, c, light) => { const w = sale ? (v / sale) * 100 : 0; return `<span class="dgm-seg tool-seg" style="--w:${w};--c:${c};${light ? 'color:#fff' : ''}" title="${name}: ${rupees(v)}">${w >= 14 ? `<b>${name}</b><small>${rupees(v)}</small>` : ''}</span>`; };   // label only where it fits
+      $('[data-out="bar"]', fig).innerHTML = `${seg(r.common, 'Founders and team', 'var(--bronze)', false)}`
+        + inv.map((x, i) => seg(r.inv[i], x.name.replace(' investors', ''), COLORS[i], true)).join('');
+      $('[data-out="tbody"]', fig).innerHTML = `<tr><th scope="row">Founders and team</th><td>–</td><td>Their ${pct(common)}</td><td>${rupees(r.common)}</td><td>–</td></tr>`
+        + inv.map((x, i) => `<tr><th scope="row">${x.name}</th><td>${rupees(x.a)}</td><td>${x.part ? `${x.m}x, then their share` : r.conv[i] ? `Converts: ${pct(x.o)}` : `${x.m}x preference`}</td><td>${rupees(r.inv[i])}</td><td>${x.a ? (r.inv[i] / x.a).toFixed(2) + 'x' : '–'}</td></tr>`).join('');
+      const plain = common * sale, gap = plain - r.common;
+      out('note', gap > 1e5 ? `With plain shares for everyone, founders and the team would get ${rupees(plain)}. The preferences move ${rupees(gap)} of that to the investors at this price.` : 'At this price the preferences cost the founders nothing: every investor does at least as well converting to plain shares.');
+      // founders' payout at every sale price
+      const prefs = inv.reduce((a, x) => a + x.m * x.a, 0), max = Math.max(sale * 2, prefs * 2.5, 1e7), N = 80;
+      out('max', rupees(max));
+      const pts = Array.from({ length: N + 1 }, (_, k) => { const s = (max * k) / N; return [s, payout(s, inv, common).common]; });
+      const X = (s) => (s / max) * 600, Y = (v) => 190 - (v / (max * common || 1)) * 175;
+      const line = pts.map(([s, v]) => `${X(s).toFixed(1)},${Y(v).toFixed(1)}`).join(' ');
+      svg.innerHTML = `<line x1="0" y1="190" x2="600" y2="${Y(max * common)}" stroke="var(--sand)" stroke-width="2" stroke-dasharray="6 6" vector-effect="non-scaling-stroke"/><polyline points="${line}" fill="none" stroke="var(--golden-glow)" stroke-width="3" vector-effect="non-scaling-stroke"/><line x1="${X(sale)}" y1="10" x2="${X(sale)}" y2="190" stroke="var(--purple)" stroke-width="2" vector-effect="non-scaling-stroke"/>`;
+    });
+    const show = () => { rows.forEach((r, i) => { r.hidden = i >= n; }); add.hidden = n >= rows.length; remove.hidden = n <= 1; run(); };
+    add.addEventListener('click', () => { n = Math.min(rows.length, n + 1); show(); $('input', rows[n - 1]).focus(); });
+    remove.addEventListener('click', () => { n = Math.max(1, n - 1); show(); });
+    miniSwitches(fig, run);
+    show();
+  }
+  function initPool(fig) {
+    const run = calcBase(fig, (val, out) => {
+      const grants = $$('[data-hire]', fig).reduce((a, r) => a + Math.max(0, val('n', r)) * Math.max(0, val('g', r)), 0) / 100;
+      const pool = grants * (1 + Math.max(0, val('buffer')) / 100), pre = val('pre') * 1e7, raise = val('raise') * 1e7, post = pre + raise;
+      if (!post) { out('note', 'Enter the round to see what the pool costs.'); return; }
+      const worth = pool * post, r = raise / post;
+      out('pool', pct(pool)); out('worth', rupees(worth)); out('eff', rupees(pre - worth)); out('cost', rupees(worth));
+      out('note', pool + r >= 1 ? 'The pool and the new money add up to 100% or more. Check the grants.'
+        : `Your plan needs ${pct(grants)} in grants, plus the buffer. In the pre-money, the founders pay the whole ${rupees(worth)}. Added after the round, the new investor would share the cost: about ${rupees(worth * r)} of it.`);
+    });
+    run();
+  }
+  function initVesting(fig) {
+    const ym = (s) => { const [y, m] = (s || '').split('-').map(Number); return y && m ? y * 12 + (m - 1) : null; };
+    const label = (k) => new Date(Math.floor(k / 12), k % 12, 1).toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
+    const run = calcBase(fig, (val, out) => {
+      const N = Math.max(0, Math.round(val('options'))), Y = Math.max(1, Math.round(val('years'))), C = Math.max(0, Math.round(val('cliff'))), F = +opt(fig, 'freq') || 1;
+      const start = ym($('[data-in="start"]', fig).value), now = new Date(), check = ym($('[data-in="check"]', fig).value) ?? now.getFullYear() * 12 + now.getMonth();
+      if (start == null) { out('note', 'Pick the month vesting starts.'); return; }
+      const total = Y * 12, at = (e) => (e < C ? 0 : Math.floor((N * Math.min(Math.floor(e / F) * F, total)) / total));
+      const e = check - start, v = Math.max(0, at(e));
+      out('vested', `${v.toLocaleString('en-IN')} of ${N.toLocaleString('en-IN')}`); out('unvested', (N - v).toLocaleString('en-IN'));
+      out('gain', rupees(v * Math.max(0, val('value') - val('strike'))));
+      out('cliffdate', label(start + C)); out('full', label(start + total));
+      const qs = Math.ceil(total / 3);
+      $('[data-out="bars"]', fig).innerHTML = Array.from({ length: qs }, (_, q) => { const m = (q + 1) * 3, h = N ? at(m) / N : 0; return `<span class="${m <= e ? 'is-past' : ''}${m - 3 < C && m >= C ? ' is-cliff' : ''}" style="--h:${h}" title="${label(start + m)}: ${at(m).toLocaleString('en-IN')}"></span>`; }).join('');
+      out('note', e < 0 ? 'That date is before vesting starts.' : e < C ? `Nothing vests until the cliff in ${label(start + C)}. Leave before then and nothing is kept.` : v >= N ? 'Every option has vested.' : `${pct(v / N)} vested by ${label(check)}. ${F === 1 ? 'More vests every month' : F === 3 ? 'More vests every quarter' : 'More vests every year'} until ${label(start + total)}.`);
+    });
+    const chk = $('[data-in="check"]', fig), d = new Date();
+    if (!chk.value) chk.value = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;   // this month, so the box is never blank
+    miniSwitches(fig, run);
+    run();
+  }
+  $$('[data-calc="waterfall"]').forEach(initWaterfall);
+  $$('[data-calc="pool"]').forEach(initPool);
+  $$('[data-calc="vesting"]').forEach(initVesting);
+
+  // ---------- Analyst Opinions: interactive pieces (tools/perspectives/posts/*.html) ----------
+  function initTrl(fig) {
+    const L = [
+      ['Lab', 'Basic scientific principles observed.'], ['Lab', 'A practical use for those principles is proposed.'], ['Lab', 'Proof of concept, through analysis and experiment.'],
+      ['Pilot', 'Components work in the lab.'], ['Pilot', 'Components work in a realistic setting.'], ['Pilot', 'A prototype system is shown working in a realistic setting.'],
+      ['Growth', 'The prototype works in real operating conditions.'], ['Growth', 'The final system is built and passes its tests.'], ['Growth', 'The system is proven in actual use.'],
+    ];
+    const MONEY = { Lab: 'Money here goes into proving the core science. Few funds invest this early.', Pilot: 'Money here goes into making something that works outside the lab.', Growth: 'Money here goes into manufacturing, certification and sales.' };
+    const input = $('[data-in="trl"]', fig), steps = $$('.trl__steps i', fig), out = (k, v) => { $(`[data-out="${k}"]`, fig).textContent = v; };
+    const draw = () => { const n = +input.value, [stage, means] = L[n - 1]; out('n', n); out('stage', stage); out('means', means); out('money', MONEY[stage]); steps.forEach((s, i) => s.classList.toggle('is-on', i < n)); };
+    input.addEventListener('input', draw); draw();
+  }
+  function initVcm(fig) {
+    const run = calcBase(fig, (val, out) => {
+      const exit = val('exit') * 1e7, mult = Math.max(1, val('mult')), raise = val('raise') * 1e7, post = exit / mult;
+      out('post', rupees(post)); out('pre', post > raise ? rupees(post - raise) : 'Below zero');
+    });
+    run();
+  }
+  function initChecklist(fig) {
+    const boxes = $$('input[type="checkbox"]', fig), arc = $('.ck__arc', fig);
+    const draw = () => {
+      const n = boxes.filter((b) => b.checked).length, all = boxes.length;
+      $('[data-out="done"]', fig).textContent = `${n} of ${all}`;
+      arc.style.strokeDashoffset = 100 - (n / all) * 100;
+      $('[data-out="note"]', fig).textContent = n === all ? 'Ready for the first meeting. Nothing you tick is saved or sent anywhere.' : n >= all - 3 ? `Nearly there: ${all - n} to go. Fix these before an investor asks.` : 'Tick what you already have. Nothing you tick is saved or sent anywhere.';
+    };
+    fig.addEventListener('change', draw); draw();
+  }
+  function initSignals(fig) {
+    const box = (k) => $(`[data-s="${k}"]`, fig).checked;
+    const draw = () => {
+      const p = box('proof'), m = box('plan'), r = box('runway'), n = [p, m, r].filter(Boolean).length;
+      const [v, why] = n === 0 ? ['Not yet', 'Tick the signals you can honestly show.'] : n === 3 ? ['Time to raise', 'All three signals line up. Raise right after your next milestone, not right before it.']
+        : !r && p && m ? ['Raise soon, or buy time', 'You have the story, but not the runway. Start now, or cut costs so you can say no to a bad term sheet.']
+        : !p ? ['Too early', 'Without proof that repeats, you give away more for less. Build the pattern first.']
+        : !m ? ['Not yet', 'Name the milestone the money unlocks. Until you can, wait.']
+        : ['Not yet', 'Tick the signals you can honestly show.'];
+      $('[data-out="verdict"]', fig).textContent = v; $('[data-out="why"]', fig).textContent = why;
+      fig.dataset.score = n;
+    };
+    fig.addEventListener('change', draw); draw();
+  }
+  $$('[data-trl]').forEach(initTrl);
+  $$('[data-vcm]').forEach(initVcm);
+  $$('[data-checklist]').forEach(initChecklist);
+  $$('[data-signals]').forEach(initSignals);
 
   const header = $('[data-header]');
   if (header) { initHeader(header); initSearch(header); initMobileMenu(header); }

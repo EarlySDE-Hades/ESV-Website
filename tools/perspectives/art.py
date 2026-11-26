@@ -91,7 +91,77 @@ def classroom():
     return s + _line("M30 300h340", 4)
 
 
-DRAW = {"house": house, "paper": paper, "esop": esop, "pie": pie, "village": village, "classroom": classroom}
+
+def deeptech():
+    """Deep Tech, Defined: a lab flask and an atom."""
+    s = f'<g transform="translate(150 40)"><path d="M-22 0h44M-14 0v86L-70 214a20 20 0 0 0 18 30h104a20 20 0 0 0 18-30L14 86V0" {W} stroke="var(--sx-c)" stroke-width="5" stroke-linejoin="round"/><path d="M-52 176h104l14 30a14 14 0 0 1-12 20H-50a14 14 0 0 1-12-20z" {P}/>'
+    s += "".join(f'<circle cx="{x}" cy="{y}" r="{r}" {W} opacity=".9"/>' for x, y, r in ((-18, 196, 7), (10, 188, 5), (24, 206, 6))) + "</g>"
+    s += f'<g transform="translate(300 110)">' + "".join(f'<ellipse rx="62" ry="22" fill="none" stroke="var(--sx-{c})" stroke-width="4" transform="rotate({a})"/>' for a, c in ((0, "c"), (60, "e"), (120, "b"))) + f'<circle r="12" fill="var(--sx-d)"/><circle cx="62" r="6" {C}/><circle cx="-31" cy="54" r="6" {E}/></g>'
+    s += f'<rect x="250" y="250" width="110" height="50" rx="6" {B}/><rect x="262" y="262" width="40" height="10" rx="5" {W}/>'
+    return s + _line("M30 300h340", 4)
+
+
+def valley():
+    """Where Indian Deep Tech Really Breaks: a bridge with a gap in it."""
+    s = f'<path d="M0 300V200h120l20 100zM400 300V160H270l-20 140z" {B}/><path d="M0 200h120M270 160h130" stroke="var(--sx-c)" stroke-width="6"/>'
+    s += f'<path d="M120 200c30 10 60 40 78 60" fill="none" stroke="var(--sx-e)" stroke-width="5" stroke-dasharray="3 10" stroke-linecap="round"/><path d="M270 160c-24 14-44 38-58 64" fill="none" stroke="var(--sx-e)" stroke-width="5" stroke-dasharray="3 10" stroke-linecap="round"/>'
+    s += "".join(f'<rect x="{x}" y="{y}" width="18" height="{300 - y}" {E}/>' for x, y in ((20, 200), (90, 200), (290, 160), (360, 160)))
+    s += f'<g transform="translate(60 170)"><circle r="14" {D}/><path d="M-10 18h20l4 12h-28z" {D}/></g>'
+    s += f'<g transform="translate(330 116)"><path d="M0 0v-40" stroke="var(--sx-c)" stroke-width="4"/><path d="M0-40h34l-8 10 8 10H0z" {C}/></g>'
+    return s + _line("M0 300h400", 4)
+
+
+def clipboard():
+    """Homework Before the Handshake: a checklist on a clipboard."""
+    s = f'<rect x="90" y="40" width="200" height="256" rx="14" {E}/><rect x="104" y="62" width="172" height="222" rx="8" {W}/><rect x="150" y="28" width="80" height="30" rx="8" {C}/>'
+    for k in range(5):
+        y = 92 + k * 38
+        on = k < 3
+        s += f'<rect x="122" y="{y}" width="22" height="22" rx="5" fill="{"var(--sx-d)" if on else "none"}" stroke="var(--sx-{"d" if on else "b"})" stroke-width="3"/>'
+        if on:
+            s += f'<path d="M127 {y + 11}l5 5 9-10" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'
+        s += f'<rect x="156" y="{y + 6}" width="{96 - (k % 2) * 24}" height="10" rx="5" {B if on else A}/>'
+    s += f'<g transform="translate(330 220) rotate(-20)"><rect x="-8" y="-70" width="16" height="96" rx="4" {C}/><path d="M-8 26h16l-8 18z" {E}/></g>'
+    return s + _line("M40 300h320", 4)
+
+
+def shield():
+    """From Biggest Importer to Builder: a shield, a jet and a gear."""
+    s = f'<path d="M180 40l100 36v80c0 70-50 112-100 136-50-24-100-66-100-136V76z" {E}/><path d="M180 66l76 28v62c0 54-38 88-76 106-38-18-76-52-76-106V94z" {W}/>'
+    s += f'<path d="M180 108l30 48h-20v50h-20v-50h-20z" fill="var(--sx-d)"/>'
+    s += f'<g transform="translate(320 90) rotate(-30) scale(.9)"><path d="M82-10C60-18 30-18 6-16l-52-34h-16l26 36-28 2-16-14h-12l10 20-10 16h12l16-10 28 2-26 38h16l52-36c24 2 54 0 76-4z" {C}/></g>'
+    s += f'<g transform="translate(330 250)"><circle r="26" {B}/>' + "".join(f'<rect x="-6" y="-38" width="12" height="16" rx="3" {B} transform="rotate({a})"/>' for a in range(0, 360, 45)) + f'<circle r="10" {W}/></g>'
+    return s + _line("M30 300h340", 4)
+
+
+def clock():
+    """Getting Your Fundraising Timing Right: a clock and rising coins."""
+    s = f'<circle cx="150" cy="160" r="110" {W} stroke="var(--sx-c)" stroke-width="8"/>' + "".join(f'<rect x="146" y="58" width="8" height="18" rx="4" {B} transform="rotate({a} 150 160)"/>' for a in range(0, 360, 30))
+    s += f'<path d="M150 160V96M150 160l46 28" stroke="var(--sx-e)" stroke-width="8" stroke-linecap="round"/><circle cx="150" cy="160" r="10" fill="var(--sx-d)"/>'
+    for k in range(4):
+        for j in range(k + 2):
+            s += f'<ellipse cx="{290 + k * 30}" cy="{290 - j * 12}" rx="14" ry="6" {C if j % 2 else E}/>'
+    return s + _line("M30 300h360", 4)
+
+
+def plate():
+    """India Is Eating Itself Sick: a plate, a chips packet and sugar cubes."""
+    s = f'<ellipse cx="150" cy="250" rx="120" ry="40" {B}/><ellipse cx="150" cy="242" rx="96" ry="28" {W}/>'
+    s += f'<path d="M110 244c10-30 70-30 80 0z" {C}/><circle cx="170" cy="232" r="14" {E}/>'
+    s += f'<g transform="translate(300 110) rotate(8)"><path d="M-50 -40h100l-8 20 8 20-8 20 8 20-8 20 8 20H-50l8-20-8-20 8-20-8-20 8-20z" fill="var(--sx-d)"/><rect x="-30" y="-6" width="60" height="30" rx="6" {W}/><circle cy="9" r="8" {C}/></g>'
+    s += "".join(f'<rect x="{x}" y="{y}" width="26" height="26" rx="4" {W} stroke="var(--sx-b)" stroke-width="3" transform="rotate({r} {x + 13} {y + 13})"/>' for x, y, r in ((300, 248, 10), (334, 252, -8), (316, 220, 4)))
+    return s + _line("M20 300h360", 4)
+
+
+def watch():
+    """Your Insurer Wants Your Step Count: a smartwatch with a heartbeat."""
+    s = f'<rect x="120" y="20" width="80" height="60" rx="14" {B}/><rect x="120" y="220" width="80" height="70" rx="14" {B}/>'
+    s += f'<rect x="90" y="70" width="140" height="160" rx="36" {E}/><rect x="104" y="84" width="112" height="132" rx="26" fill="#2A2140"/>'
+    s += _line("M116 156h22l10-26 14 50 12-36 8 12h22", 4, "c") + f'<text x="160" y="200" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="18" fill="#fff">10,000</text>'
+    s += f'<g transform="translate(320 170)"><path d="M0-70l56 20v40c0 40-28 64-56 78-28-14-56-38-56-78v-40z" fill="var(--sx-d)"/><path d="M-16 0l12 12 24-26" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g>'
+    return s + _line("M40 300h340", 4)
+
+DRAW = {"house": house, "paper": paper, "esop": esop, "pie": pie, "village": village, "classroom": classroom, "deeptech": deeptech, "valley": valley, "clipboard": clipboard, "shield": shield, "clock": clock, "plate": plate, "watch": watch}
 
 
 def _backdrop():

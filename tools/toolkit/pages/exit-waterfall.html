@@ -1,0 +1,33 @@
+        <figure class="tool tk-tool" data-calc="waterfall">
+          <div class="tk-form tk-form--rounds">
+            <label class="tk-field tk-field--lead"><span>The company sells for</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="15" data-in="sale" /><em>₹ crore</em></span></label>
+            <fieldset class="tk-round" data-inv="0">
+              <legend>Seed investors</legend>
+              <label class="tk-field"><span>Invested</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="2" data-in="amt" /><em>₹ crore</em></span></label>
+              <label class="tk-field"><span>Owns</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="20" data-in="own" /><em>%</em></span><small>Fully diluted, as converted</small></label>
+              <div class="tk-field"><span>Preference</span><div class="tool-switch tool-switch--sm" role="radiogroup" aria-label="Preference multiple" data-mult><button type="button" role="radio" aria-checked="true" data-opt="1">1x</button><button type="button" role="radio" aria-checked="false" data-opt="2">2x</button></div></div>
+              <div class="tk-field"><span>Type</span><div class="tool-switch tool-switch--sm" role="radiogroup" aria-label="Participating or not" data-part><button type="button" role="radio" aria-checked="true" data-opt="np">Non-participating</button><button type="button" role="radio" aria-checked="false" data-opt="p">Participating</button></div></div>
+            </fieldset>
+            <fieldset class="tk-round" data-inv="1">
+              <legend>Series A investors</legend>
+              <label class="tk-field"><span>Invested</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="10" data-in="amt" /><em>₹ crore</em></span></label>
+              <label class="tk-field"><span>Owns</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="20" data-in="own" /><em>%</em></span><small>Fully diluted, as converted</small></label>
+              <div class="tk-field"><span>Preference</span><div class="tool-switch tool-switch--sm" role="radiogroup" aria-label="Preference multiple" data-mult><button type="button" role="radio" aria-checked="true" data-opt="1">1x</button><button type="button" role="radio" aria-checked="false" data-opt="2">2x</button></div></div>
+              <div class="tk-field"><span>Type</span><div class="tool-switch tool-switch--sm" role="radiogroup" aria-label="Participating or not" data-part><button type="button" role="radio" aria-checked="true" data-opt="np">Non-participating</button><button type="button" role="radio" aria-checked="false" data-opt="p">Participating</button></div></div>
+            </fieldset>
+            <fieldset class="tk-round" data-inv="2" hidden>
+              <legend>Series B investors</legend>
+              <label class="tk-field"><span>Invested</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="30" data-in="amt" /><em>₹ crore</em></span></label>
+              <label class="tk-field"><span>Owns</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="15" data-in="own" /><em>%</em></span><small>Fully diluted, as converted</small></label>
+              <div class="tk-field"><span>Preference</span><div class="tool-switch tool-switch--sm" role="radiogroup" aria-label="Preference multiple" data-mult><button type="button" role="radio" aria-checked="true" data-opt="1">1x</button><button type="button" role="radio" aria-checked="false" data-opt="2">2x</button></div></div>
+              <div class="tk-field"><span>Type</span><div class="tool-switch tool-switch--sm" role="radiogroup" aria-label="Participating or not" data-part><button type="button" role="radio" aria-checked="true" data-opt="np">Non-participating</button><button type="button" role="radio" aria-checked="false" data-opt="p">Participating</button></div></div>
+            </fieldset>
+            <div class="tk-round-btns"><button type="button" class="btn btn--ghost" data-add>Add an investor round</button><button type="button" class="rf__back" data-remove>Remove the last one</button></div>
+            <p class="tk-field__note">Founders, the team and the ESOP pool hold the rest: <strong data-out="common">60%</strong>. All preferences rank equally here (pari passu).</p>
+          </div>
+          <div class="dgm-bar tool-bar tk-wf-bar" data-out="bar"></div>
+          <div class="table-scroll"><table class="tk-table"><caption>Who gets what</caption><thead><tr><th scope="col">Holder</th><th scope="col">Put in</th><th scope="col">Takes</th><th scope="col">Gets</th><th scope="col">Multiple</th></tr></thead><tbody data-out="tbody"></tbody></table></div>
+          <p class="tk-chart__label">What founders and the team get, at every sale price up to <span data-out="max"></span></p>
+          <svg class="tk-chart" viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true" data-out="chart"></svg>
+          <figcaption data-out="note"></figcaption>
+        </figure>
