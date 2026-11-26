@@ -102,3 +102,9 @@ Tick an item when it is done. Add new ones under the heading that fits. "Must" m
 - [ ] Rahul reviews the Hesa story's line that our investment "returned more than five times its value" (from the bootcamp deck of 7 Aug 2025). A past return on a public page may need a disclaimer, or a softer line.
 - [ ] Hesa and OLL founders are happy with their stories. The facts come from the bootcamp deck and their profiles. The "What founders can take from it" lessons are our own.
 - [ ] OLL: the deck dates the Shark Tank deal to 2022, and the profile says Season 2 (aired 2023). The story gives the season, not the year.
+
+## Tools
+
+- [ ] Rahul reviews the tools' wording and the "not financial, legal or tax advice" note, especially before the investor tools (return calculator, pro-rata cost) go live.
+- [ ] Round finder ranges are the middle half of disclosed Indian rounds, October 2025 to September 2026 (Tracxn), from the Prologue article. Refresh them once a year.
+- [ ] Phase 2: exit waterfall, ESOP pool sizer and vesting schedule. Phase 3: investor tools, iSAFE converter, raise-ready checklist. They show as "Coming soon" on tools.html until built.

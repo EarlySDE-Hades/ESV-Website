@@ -375,6 +375,11 @@
     { title: 'From the deal table', section: 'Perspectives', href: 'perspectives.html#deal-table' },
     { title: 'Founder Stories', section: 'Perspectives', href: 'perspectives.html#founder-stories' },
     { title: 'Podcasts', section: 'Perspectives', href: 'perspectives.html#podcasts' },
+    { title: 'Tools for founders and investors', section: 'Tools', href: 'tools.html' },
+    { title: 'Round finder: which round am I raising?', section: 'Tools', href: 'tool-round-finder.html' },
+    { title: 'Pre-money and post-money valuation calculator', section: 'Tools', href: 'tool-valuation-calculator.html' },
+    { title: 'Dilution simulator: cap table over rounds', section: 'Tools', href: 'tool-dilution-simulator.html' },
+    { title: 'Runway calculator: burn and months left', section: 'Tools', href: 'tool-runway-calculator.html' },
     { title: 'Us in the News: press coverage', section: 'Our Press', href: 'press.html' },
     { title: 'Our portfolio: all companies', section: 'Portfolio', href: 'portfolio.html' },
     { title: 'Bootcamps: founder bootcamps on campus', section: 'Bootcamps', href: 'bootcamps.html' },
@@ -2271,6 +2276,116 @@
   $$('[data-round-finder]').forEach(initRoundFinder);
   $$('[data-pref]').forEach(initPref);
   $$('[data-vest]').forEach(initVest);
+
+  // ---------- Tools (tool-*.html): calculators. Markup in tools/toolkit/pages/*.html ----------
+  const rupees = (r) => {   // ₹ in lakh or crore, Indian style
+    const a = Math.abs(r), s = r < 0 ? '−' : '';
+    if (a >= 1e7) return `${s}₹${(a / 1e7).toLocaleString('en-IN', { maximumFractionDigits: 2 })} crore`;
+    if (a >= 1e5) return `${s}₹${(a / 1e5).toLocaleString('en-IN', { maximumFractionDigits: 2 })} lakh`;
+    return `${s}₹${Math.round(a).toLocaleString('en-IN')}`;
+  };
+  const pct = (x) => `${(x * 100).toLocaleString('en-IN', { maximumFractionDigits: 1 })}%`;
+  const month = (d) => d.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' });
+  function calcBase(fig, draw) {
+    const val = (k, root = fig) => { const v = parseFloat($(`[data-in="${k}"]`, root)?.value); return Number.isFinite(v) ? v : 0; };
+    const out = (k, v) => { const el = $(`[data-out="${k}"]`, fig); if (el) el.textContent = v; };
+    const run = () => draw(val, out);
+    fig.addEventListener('input', run);
+    return run;
+  }
+  function initValuation(fig) {
+    let mode = 'post';
+    const run = calcBase(fig, (val, out) => {
+      const raise = val('raise') * 1e5, v = val('val') * 1e7, shares = Math.max(1, Math.round(val('shares'))), fv = val('fv');
+      const post = mode === 'post' ? v : v + raise, pre = post - raise;
+      if (raise <= 0 || pre <= 0) { out('note', mode === 'post' ? 'The post-money valuation has to be bigger than the amount you raise.' : 'Enter a valuation and an amount to raise.'); return; }
+      const stake = raise / post, price = pre / shares, fresh = raise / price;
+      out('stake', pct(stake)); out('keep', pct(1 - stake)); out('stake2', pct(stake)); out('keep2', pct(1 - stake));
+      out('pre', rupees(pre)); out('post', rupees(post));
+      out('price', rupees(price)); out('newshares', Math.round(fresh).toLocaleString('en-IN'));
+      out('premium', price > fv ? rupees(price - fv) : '₹0');
+      $('[data-seg="stake"]', fig).style.setProperty('--w', stake * 100);
+      $('[data-seg="keep"]', fig).style.setProperty('--w', (1 - stake) * 100);
+      out('note', mode === 'post'
+        ? `Post-money already includes the ${rupees(raise)}, so the investor gets ${rupees(raise)} ÷ ${rupees(post)} = ${pct(stake)}.`
+        : `Pre-money comes before the ${rupees(raise)}, so the investor gets ${rupees(raise)} ÷ ${rupees(post)} = ${pct(stake)}, less than if it were post-money.`);
+    });
+    initSwitch(fig, (k) => { mode = k; run(); });
+    run();
+  }
+  function initDilution(fig) {
+    const rounds = $$('[data-round]', fig), add = $('[data-add]', fig), remove = $('[data-remove]', fig);
+    const COLORS = ['var(--bronze)', 'var(--pastel-purple)', 'var(--sand)', 'var(--purple)', '#4B38D8', 'var(--golden-glow)', '#8F5F52'];
+    let n = 2;
+    const run = calcBase(fig, (val, out) => {
+      const START = 1e6, f = Math.min(100, Math.max(0, val('founders'))) / 100;
+      const h = { Founders: START * f, 'Earlier holders': START * (1 - f), 'ESOP pool': 0 };
+      const stages = [{ name: 'Today', own: { ...h }, worth: null }];
+      let note = '';
+      for (let i = 0; i < n; i++) {
+        const r0 = rounds[i], name = $('legend', r0).textContent;
+        const pre = val('pre', r0) * 1e7, raise = val('raise', r0) * 1e7, t = Math.max(0, val('pool', r0)) / 100;
+        if (pre <= 0 || raise <= 0) { note = `Enter a pre-money and an amount for the ${name}.`; break; }
+        const S = Object.values(h).reduce((a, b) => a + b, 0), E = h['ESOP pool'], r = raise / (pre + raise);
+        if (t + r >= 1) { note = `In the ${name}, the pool and the new money add up to 100% or more. Lower one of them.`; break; }
+        let T = (S - E) / (1 - t - r), P = t * T - E;
+        if (P < 0) { P = 0; T = S / (1 - r); }
+        const price = pre / (S + P);
+        h['ESOP pool'] += P; h[`${name} investors`] = raise / price;
+        stages.push({ name, own: { ...h }, worth: h.Founders * price });
+      }
+      const keys = Object.keys(h).filter((k) => stages.some((s) => (s.own[k] || 0) > 0));
+      const share = (s, k) => (s.own[k] || 0) / Object.values(s.own).reduce((a, b) => a + b, 0);
+      $('[data-out="stack"]', fig).innerHTML = stages.map((s) => `<div class="tk-stack__row"><span>${s.name}</span><div class="dgm-bar">${keys.map((k, j) => { const w = share(s, k) * 100; return w > 0 ? `<span class="dgm-seg tool-seg" style="--w:${w};--c:${COLORS[j % COLORS.length]};${j === 3 || j === 4 ? 'color:#fff' : ''}" title="${k}: ${w.toFixed(1)}%"><b>${w >= 9 ? k.replace(' investors', '') : ''}</b><small>${w >= 9 ? w.toFixed(1) + '%' : ''}</small></span>` : ''; }).join('')}</div></div>`).join('');
+      $('[data-out="thead"]', fig).innerHTML = `<tr><th scope="col">Holder</th>${stages.map((s) => `<th scope="col">${s.name}</th>`).join('')}</tr>`;
+      $('[data-out="tbody"]', fig).innerHTML = keys.map((k, j) => `<tr><th scope="row"><i class="tk-key" style="--c:${COLORS[j % COLORS.length]}"></i>${k}</th>${stages.map((s) => `<td>${s.own[k] ? pct(share(s, k)) : '–'}</td>`).join('')}</tr>`).join('')
+        + `<tr class="is-total"><th scope="row">Founders’ stake is worth</th>${stages.map((s) => `<td>${s.worth == null ? '–' : rupees(s.worth)}</td>`).join('')}</tr>`;
+      const last = stages[stages.length - 1];
+      out('note', note || (stages.length > 1 ? `Founders go from ${pct(share(stages[0], 'Founders'))} to ${pct(share(last, 'Founders'))}, a stake worth ${rupees(last.worth)} at the ${last.name} price.` : ''));
+    });
+    const show = () => { rounds.forEach((r, i) => { r.hidden = i >= n; }); add.hidden = n >= rounds.length; remove.hidden = n <= 1; run(); };
+    add.addEventListener('click', () => { n = Math.min(rounds.length, n + 1); show(); $('input', rounds[n - 1]).focus(); });
+    remove.addEventListener('click', () => { n = Math.max(1, n - 1); show(); });
+    show();
+  }
+  function initRunway(fig) {
+    const svg = $('[data-out="chart"]', fig);
+    const run = calcBase(fig, (val, out) => {
+      const cash0 = val('cash') * 1e5, cost = val('cost') * 1e5, rev0 = val('rev') * 1e5, g = val('growth') / 100, lead = Math.max(0, Math.round(val('raise')));
+      const pts = [cash0]; let cash = cash0, m = 0, alive = null;
+      for (m = 0; m < 120 && cash > 0; m++) {
+        const net = cost - rev0 * (1 + g) ** m;
+        if (net <= 0 && alive == null) alive = m;
+        if (alive != null) break;
+        cash -= net; pts.push(Math.max(cash, 0));
+      }
+      const today = new Date(); today.setDate(1);
+      const at = (k) => { const d = new Date(today); d.setMonth(d.getMonth() + k); return d; };
+      out('burn', rupees(cost - rev0));
+      if (alive != null) {
+        out('months', 'Not running out'); out('date', '–'); out('start', 'When it suits you');
+        out('note', alive === 0 ? 'Revenue already covers your costs.' : `Revenue covers your costs from ${month(at(alive))}, before the cash runs out. You can raise to grow, not to survive.`);
+      } else if (cash > 0) {
+        out('months', 'More than 10 years'); out('date', '–'); out('start', '–'); out('note', '');
+      } else {
+        const months = m - 1 + pts[m - 1] / (cost - rev0 * (1 + g) ** (m - 1));   // the part of the last month the cash covers
+        const left = Math.floor(months), start = left - lead;
+        out('months', `${left} month${left === 1 ? '' : 's'}`); out('date', month(at(left)));
+        out('start', start <= 0 ? 'Now' : month(at(start)));
+        out('note', start <= 0 ? `A raise takes about ${lead} months and you have ${left}. Start now, or cut costs to buy time.` : `You have ${left} months. With a ${lead}-month raise, start by ${month(at(start))}, and earlier is safer.`);
+      }
+      // the chart: cash over time, with the start-raising line
+      const N = Math.max(pts.length - 1, 1), max = Math.max(...pts, 1), x = (k) => (k / N) * 600, y = (v) => 190 - (v / max) * 170;
+      const line = pts.map((v, k) => `${x(k).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+      const s = alive == null && cash <= 0 ? Math.max(0, Math.floor(pts.length - 1 - lead)) : -1;
+      svg.innerHTML = `<polygon points="0,190 ${line} ${x(N)},190" fill="var(--crema)"/><polyline points="${line}" fill="none" stroke="var(--golden-glow)" stroke-width="3" vector-effect="non-scaling-stroke"/><line x1="0" y1="190" x2="600" y2="190" stroke="var(--rule)" vector-effect="non-scaling-stroke"/>`
+        + (s >= 0 ? `<line x1="${x(s)}" y1="10" x2="${x(s)}" y2="190" stroke="var(--purple)" stroke-width="2" stroke-dasharray="5 5" vector-effect="non-scaling-stroke"/>` : '');
+    });
+    run();
+  }
+  $$('[data-calc="valuation"]').forEach(initValuation);
+  $$('[data-calc="dilution"]').forEach(initDilution);
+  $$('[data-calc="runway"]').forEach(initRunway);
 
   const header = $('[data-header]');
   if (header) { initHeader(header); initSearch(header); initMobileMenu(header); }

@@ -1,0 +1,33 @@
+        <figure class="tool tk-tool" data-calc="dilution">
+          <div class="tk-form tk-form--rounds">
+            <label class="tk-field"><span>Founders own today</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="100" data-in="founders" /><em>%</em></span><small>The rest is an existing ESOP pool or earlier investors</small></label>
+            <fieldset class="tk-round" data-round="0">
+              <legend>Seed</legend>
+              <label class="tk-field"><span>Pre-money</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="8" data-in="pre" /><em>₹ crore</em></span></label>
+              <label class="tk-field"><span>Raising</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="2" data-in="raise" /><em>₹ crore</em></span></label>
+              <label class="tk-field"><span>ESOP pool after the round</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="10" data-in="pool" /><em>%</em></span><small>Topped up before the new money, as investors usually ask</small></label>
+            </fieldset>
+            <fieldset class="tk-round" data-round="1">
+              <legend>Series A</legend>
+              <label class="tk-field"><span>Pre-money</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="40" data-in="pre" /><em>₹ crore</em></span></label>
+              <label class="tk-field"><span>Raising</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="10" data-in="raise" /><em>₹ crore</em></span></label>
+              <label class="tk-field"><span>ESOP pool after the round</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="12" data-in="pool" /><em>%</em></span><small>Topped up before the new money, as investors usually ask</small></label>
+            </fieldset>
+            <fieldset class="tk-round" data-round="2" hidden>
+              <legend>Series B</legend>
+              <label class="tk-field"><span>Pre-money</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="150" data-in="pre" /><em>₹ crore</em></span></label>
+              <label class="tk-field"><span>Raising</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="40" data-in="raise" /><em>₹ crore</em></span></label>
+              <label class="tk-field"><span>ESOP pool after the round</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="12" data-in="pool" /><em>%</em></span><small>Topped up before the new money, as investors usually ask</small></label>
+            </fieldset>
+            <fieldset class="tk-round" data-round="3" hidden>
+              <legend>Series C</legend>
+              <label class="tk-field"><span>Pre-money</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="500" data-in="pre" /><em>₹ crore</em></span></label>
+              <label class="tk-field"><span>Raising</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="100" data-in="raise" /><em>₹ crore</em></span></label>
+              <label class="tk-field"><span>ESOP pool after the round</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="12" data-in="pool" /><em>%</em></span><small>Topped up before the new money, as investors usually ask</small></label>
+            </fieldset>
+            <div class="tk-round-btns"><button type="button" class="btn btn--ghost" data-add>Add a round</button><button type="button" class="rf__back" data-remove>Remove the last round</button></div>
+          </div>
+          <div class="tk-stack" data-out="stack"></div>
+          <div class="table-scroll"><table class="tk-table"><caption>Who owns what after each round</caption><thead data-out="thead"></thead><tbody data-out="tbody"></tbody></table></div>
+          <figcaption data-out="note"></figcaption>
+        </figure>

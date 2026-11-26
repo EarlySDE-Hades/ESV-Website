@@ -1,0 +1,20 @@
+        <figure class="tool tk-tool" data-calc="valuation">
+          <div class="tk-form">
+            <label class="tk-field"><span>Amount you are raising</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="30" data-in="raise" /><em>₹ lakh</em></span></label>
+            <label class="tk-field"><span>Valuation</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="1.5" data-in="val" /><em>₹ crore</em></span></label>
+            <div class="tk-field"><span>That valuation is</span><div class="tool-switch" role="radiogroup" aria-label="The valuation is"><button type="button" role="radio" aria-checked="true" data-state="post">Post-money</button><button type="button" role="radio" aria-checked="false" data-state="pre">Pre-money</button></div></div>
+            <label class="tk-field"><span>Shares that exist today</span><span class="tk-input"><input type="number" inputmode="decimal" min="1" step="1" value="10000" data-in="shares" /><em>shares</em></span><small>Check your cap table. Leave as is if you only want the percentages.</small></label>
+            <label class="tk-field"><span>Face value per share</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="10" data-in="fv" /><em>₹</em></span></label>
+          </div>
+          <div class="tk-results">
+            <p class="tk-out tk-out--big"><span>The investor gets</span><strong data-out="stake">–</strong></p>
+            <p class="tk-out tk-out--big"><span>Existing shareholders keep</span><strong data-out="keep">–</strong></p>
+            <p class="tk-out"><span>Pre-money valuation</span><strong data-out="pre">–</strong></p>
+            <p class="tk-out"><span>Post-money valuation</span><strong data-out="post">–</strong></p>
+            <p class="tk-out"><span>Price per share</span><strong data-out="price">–</strong></p>
+            <p class="tk-out"><span>New shares to issue</span><strong data-out="newshares">–</strong></p>
+            <p class="tk-out"><span>Share premium per share</span><strong data-out="premium">–</strong></p>
+          </div>
+          <div class="dgm-bar tool-bar"><span class="dgm-seg tool-seg dgm-c1" data-seg="keep"><b>Existing</b><small data-out="keep2"></small></span><span class="dgm-seg tool-seg dgm-c4" data-seg="stake"><b>Investor</b><small data-out="stake2"></small></span></div>
+          <figcaption data-out="note"></figcaption>
+        </figure>

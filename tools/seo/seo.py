@@ -27,12 +27,14 @@ TITLES = {
     "invest.html": "Invest With Us: Syndicate and Partners | Earlyseed Ventures",
     "careers.html": "Careers: Life at Earlyseed and Openings | Earlyseed Ventures",
     "prologue.html": "Prologue: Fundraising Prep for Founders | Earlyseed Ventures",
+    "tools.html": "Free Fundraising Tools for Founders | Earlyseed Ventures",
 }
 # breadcrumb: the page's own name, and its parent page if it isn't directly under Home
 CRUMBS = {
     "about.html": ("About", None), "team.html": ("Team", None), "portfolio.html": ("Our Portfolio", None),
     "perspectives.html": ("Our Perspectives", None), "press.html": ("Our Press", None), "bootcamps.html": ("Bootcamps", None),
     "events.html": ("Events", None), "event-seed-to-success.html": ("From seed to success", "events.html"), "prologue.html": ("Prologue", None), "invest.html": ("Invest with us", None), "careers.html": ("Careers", None),
+    "tools.html": ("Tools", "perspectives.html"),
 }
 TYPES = {"about.html": "AboutPage", "portfolio.html": "CollectionPage", "press.html": "CollectionPage", "perspectives.html": "CollectionPage", "events.html": "CollectionPage"}
 ORG = f"{SITE}/#organization"
@@ -107,7 +109,7 @@ def _organization(people):
     }
 
 
-def _crumbs(page, companies, people):
+def _crumbs(page, companies, people, title=None):
     if page in companies:
         chain = [("Home", "index.html"), ("Our Portfolio", "portfolio.html"), (companies[page]["name"], page)]
     elif page in people:
@@ -116,6 +118,8 @@ def _crumbs(page, companies, people):
         chain = [("Home", "index.html"), ("Events", "events.html"), (_events()[page], page)]
     elif page in _stories():
         chain = [("Home", "index.html"), ("Careers", "careers.html"), (_stories()[page], page)]
+    elif page.startswith("tool-"):
+        chain = [("Home", "index.html"), ("Tools", "tools.html"), (title.split(" | ")[0] if title else page, page)]
     elif page in CRUMBS:
         name, parent = CRUMBS[page]
         chain = [("Home", "index.html")] + ([(CRUMBS[parent][0], parent)] if parent else []) + [(name, page)]
@@ -165,7 +169,7 @@ def block(page, description, title=None):
             web["@type"] = "ProfilePage"
             web["mainEntity"] = _person(person)
             graph += [{"@type": "Book", "name": b, "author": {"@id": web["mainEntity"]["@id"]}} for b in person["books"]]
-        crumbs = _crumbs(page, companies, people)
+        crumbs = _crumbs(page, companies, people, title)
         if crumbs:
             graph.append(crumbs)
     data = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")

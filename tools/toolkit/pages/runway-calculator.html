@@ -1,0 +1,17 @@
+        <figure class="tool tk-tool" data-calc="runway">
+          <div class="tk-form">
+            <label class="tk-field"><span>Cash in the bank today</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="120" data-in="cash" /><em>₹ lakh</em></span></label>
+            <label class="tk-field"><span>Monthly costs</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="15" data-in="cost" /><em>₹ lakh</em></span></label>
+            <label class="tk-field"><span>Monthly revenue today</span><span class="tk-input"><input type="number" inputmode="decimal" min="0" step="any" value="5" data-in="rev" /><em>₹ lakh</em></span></label>
+            <label class="tk-field"><span>Revenue growth each month</span><span class="tk-input"><input type="number" inputmode="decimal" min="-100" step="any" value="5" data-in="growth" /><em>%</em></span></label>
+            <label class="tk-field"><span>Time a raise usually takes you</span><span class="tk-input"><input type="number" inputmode="decimal" min="1" step="1" value="6" data-in="raise" /><em>months</em></span><small>Plan for six months or more, from first meeting to money in the bank</small></label>
+          </div>
+          <div class="tk-results">
+            <p class="tk-out tk-out--big"><span>Runway</span><strong data-out="months">–</strong></p>
+            <p class="tk-out tk-out--big"><span>Cash runs out</span><strong data-out="date">–</strong></p>
+            <p class="tk-out"><span>Start raising by</span><strong data-out="start">–</strong></p>
+            <p class="tk-out"><span>Net burn this month</span><strong data-out="burn">–</strong></p>
+          </div>
+          <svg class="tk-chart" viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true" data-out="chart"></svg>
+          <figcaption data-out="note"></figcaption>
+        </figure>

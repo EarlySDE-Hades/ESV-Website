@@ -1,0 +1,97 @@
+{
+  "_about": "Tools for founders and investors: tools.html (the hub) and one page per tool, tool-<slug>.html. Each tool's working part is tools/toolkit/pages/<slug>.html; its behaviour is in js/main.js (initTools). 'soon': listed on the hub as coming soon, with no page yet.",
+  "tools": [
+    {
+      "slug": "round-finder",
+      "name": "Round finder",
+      "for": "founders",
+      "summary": "Seven yes-or-no questions to find which round you are really raising, and what it usually raises in India.",
+      "lede": "Round names are a shorthand for what you have proven, not for how much you want. Answer honestly: your first “not yet” is roughly where you are.",
+      "icon": "compass",
+      "read": [
+        [
+          "Fundraise Fundamentals",
+          "perspective-fundraise-fundamentals.html"
+        ]
+      ],
+      "seo": "Round Finder: Which Round Are You Raising?"
+    },
+    {
+      "slug": "valuation-calculator",
+      "name": "Pre-money and post-money calculator",
+      "short": "Pre- and post-money",
+      "for": "founders",
+      "summary": "Enter what you are raising and the valuation. See the investor’s stake, the share price and how many new shares you issue.",
+      "lede": "The same headline number means a different stake depending on whether it is pre-money or post-money. Work out exactly what you are giving away.",
+      "icon": "scale",
+      "read": [
+        [
+          "Fundraise Fundamentals",
+          "perspective-fundraise-fundamentals.html"
+        ]
+      ],
+      "seo": "Pre-Money and Post-Money Calculator"
+    },
+    {
+      "slug": "dilution-simulator",
+      "name": "Dilution simulator",
+      "for": "founders",
+      "summary": "Add up to four rounds and an ESOP pool, and watch every holder’s percentage, and the value of the founders’ stake, change.",
+      "lede": "Every round shrinks your percentage. Whether it also grows your value depends on the price. Model your rounds before you sign the first one.",
+      "icon": "layers",
+      "read": [
+        [
+          "ESOP Essentials",
+          "perspective-esop-essentials.html"
+        ],
+        [
+          "Someone Else Wants In",
+          "perspective-someone-else-wants-in.html"
+        ]
+      ],
+      "seo": "Startup Dilution Simulator"
+    },
+    {
+      "slug": "runway-calculator",
+      "name": "Runway calculator",
+      "for": "founders",
+      "summary": "Cash in the bank, monthly costs and revenue: how many months you have left, and the latest date to start raising.",
+      "lede": "Runway is the clearest measure of how much time you have to build, change course or raise. Know your number, and start raising well before it runs out.",
+      "icon": "hourglass",
+      "read": [],
+      "seo": "Startup Runway Calculator"
+    },
+    {
+      "slug": "exit-waterfall",
+      "name": "Exit waterfall",
+      "for": "founders",
+      "soon": true,
+      "summary": "Who gets what when the company is sold, with 1x or 2x and participating preferences.",
+      "icon": "steps"
+    },
+    {
+      "slug": "esop-pool-sizer",
+      "name": "ESOP pool sizer",
+      "for": "founders",
+      "soon": true,
+      "summary": "Size your option pool from your hiring plan, and see what it costs the founders.",
+      "icon": "pool"
+    },
+    {
+      "slug": "return-calculator",
+      "name": "Return calculator",
+      "for": "investors",
+      "soon": true,
+      "summary": "Cheque size, exit value and years held: the multiple and IRR, after later rounds dilute you.",
+      "icon": "growth"
+    },
+    {
+      "slug": "pro-rata-cost",
+      "name": "Pro-rata cost",
+      "for": "investors",
+      "soon": true,
+      "summary": "What it costs to keep your percentage in the next round.",
+      "icon": "slice"
+    }
+  ]
+}

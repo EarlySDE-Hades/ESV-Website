@@ -38,6 +38,7 @@ PAGES = [
     ("bootcamps.html", "tools/bootcamps/main.html", "Founder bootcamps on campus: Earlyseed Ventures works with universities and incubators on business planning, pitch decks, financial projections and access to investors.", "Bootcamps"),
     ("events.html", "tools/events/main.html", "Founder meet-ups, investor sessions and campus programmes from Earlyseed Ventures.", "Events"),
     ("invest.html", "tools/invest/main.html", "Two ways to back India’s founders early: join the Earlyseed Ventures syndicate from ₹5 Lakh, or become a Strategic Growth Partner.", "-"),
+    ("tools.html", "tools/toolkit/main.html", "Free tools for founders and investors: find your round, work out pre-money and post-money, simulate dilution and calculate your runway, in rupees.", "Tools"),
     ("careers.html", "tools/careers/main.html", "Life at Earlyseed Ventures, our open roles, and internships with rolling applications.", "Careers"),
     ("event-seed-to-success.html", "tools/events/seed-to-success.html", "From seed to success: a recap of the Earlyseed Ventures evening for founders, investors and ecosystem leaders.", "-"),
 ]
@@ -74,12 +75,13 @@ seo = _load("seo", "tools/seo/seo.py")
 press_render = _load("press_render", "tools/press/render.py")
 portfolio_render = _load("portfolio_render", "tools/portfolio/render.py")
 perspectives_render = _load("perspectives_render", "tools/perspectives/render.py")
+toolkit_render = _load("toolkit_render", "tools/toolkit/render.py")
 profiles = _load("profiles", "tools/team/profiles.py")
 bootcamps_render = _load("bootcamps_render", "tools/bootcamps/render.py")
 invest_render = _load("invest_render", "tools/invest/render.py")
 events_render = _load("events_render", "tools/events/render.py")
 careers_render = _load("careers_render", "tools/careers/render.py")
-FILLERS = {"press.html": press_render.render, "perspectives.html": perspectives_render.render, "portfolio.html": portfolio_render.render_portfolio, "bootcamps.html": bootcamps_render.render, "invest.html": invest_render.render, "careers.html": careers_render.render, "events.html": events_render.render}
+FILLERS = {"press.html": press_render.render, "perspectives.html": perspectives_render.render, "portfolio.html": portfolio_render.render_portfolio, "bootcamps.html": bootcamps_render.render, "invest.html": invest_render.render, "careers.html": careers_render.render, "events.html": events_render.render, "tools.html": toolkit_render.render}
 
 
 written = []
@@ -124,6 +126,10 @@ for out, main, description, title in careers_render.pages(events_render.post_pag
 for out, main, description in perspectives_render.article_pages():
     heading = re.search(r'id="post-title"[^>]*>([^<]+)', main).group(1)
     write(out, main, description, "Our Perspectives", f"{unescape(heading)} | Earlyseed Ventures")
+
+# One page per tool (tool-<slug>.html)
+for out, main, description, title in toolkit_render.pages():
+    write(out, main, description, "Tools", title)
 
 # index.html is edited by hand; only its search tags are written here
 (ROOT / "index.html").write_text(seo.apply(src, "index.html", ""), encoding="utf-8", newline="\n")
