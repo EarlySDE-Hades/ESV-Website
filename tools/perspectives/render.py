@@ -10,10 +10,14 @@ from html import escape
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+import sys  # noqa: E402
+sys.path.insert(0, str(HERE))
+import art as drawings  # noqa: E402
 EXT = '<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M6 3.5h6.5V10M12.5 3.5 4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 ARROW = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8h9.5M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 BACK = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 COVERS = ["lilac", "sand", "violet", "rose", "crema", "bronze", "ink"]   # cover colours, in turn
+ART_TONES = ["art-crema", "art-lilac", "art-sand"]                    # behind a drawn cover
 
 
 def _data():
@@ -58,7 +62,11 @@ def render():
 
     covers, k = [], 0
     for p in posts:
-        if p.get("photo"):
+        if p.get("art"):
+            face = drawings.cover(p["art"])
+            tone = ART_TONES[k % len(ART_TONES)]
+            k += 1
+        elif p.get("photo"):
             face = f'<img class="cover__photo" src="{p["photo"]}" alt="" loading="lazy" decoding="async" draggable="false" />'
             tone = "photo"
         else:
@@ -71,6 +79,7 @@ def render():
                   <span class="cover__top"><span>{escape(names[p["series"]])}</span><span>{escape(p["label"])}</span></span>
                   {face}
                   <span class="cover__title">{escape(p.get("short", p["title"]))}</span>
+                  <span class="cover__brand" aria-hidden="true">Earlyseed Ventures</span>
                 </span>
                 <span class="cover__meta"><span><time datetime="{p["date"]}">{_date(p["date"])}</time>{_mins(p)}</span><span class="cover__go" aria-hidden="true">{EXT if _attrs(p) else ARROW}</span></span>{_new_tab(p)}
               </a>
@@ -127,7 +136,8 @@ def article_pages():
         if p.get("url"):
             continue
         body = (HERE / "posts" / f"{p['slug']}.html").read_text(encoding="utf-8")
-        hero = (f'\n      <figure class="post__hero container" data-reveal><img src="{p["photo"]}" alt="" decoding="async" /></figure>' if p.get("photo") else "")
+        hero = (f'\n      <div class="post-art container" data-reveal>{drawings.header(p["art"])}</div>' if p.get("art") else
+                f'\n      <figure class="post__hero container" data-reveal><img src="{p["photo"]}" alt="" decoding="async" /></figure>' if p.get("photo") and p.get("hero", True) else "")
         by = f' · {escape(p["author"])}' if p.get("author") else ""
         pages.append((f"perspective-{p['slug']}.html", f'''  <main id="main" class="post-page">
     <article class="post" aria-labelledby="post-title">

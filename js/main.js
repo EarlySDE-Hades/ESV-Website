@@ -2193,6 +2193,85 @@
   }
   $$('[data-nav-menu]').forEach(initNavMenu);
 
+  // ---------- Perspectives: interactive pieces in the Finance articles (tools/perspectives/posts/*.html) ----------
+  const lakh = (v) => (v >= 100 ? `₹${+(v / 100).toFixed(2)} crore` : `₹${+v.toFixed(2)} lakh`);
+  function initSwitch(fig, onChange) {
+    const btns = $$('[data-state]', fig);
+    const pick = (btn) => {
+      btns.forEach((b) => b.setAttribute('aria-checked', String(b === btn)));
+      const k = btn.dataset.state;
+      $$(`[data-v-${k}]`, fig).forEach((el) => { el.textContent = el.getAttribute(`data-v-${k}`); });
+      $$(`[data-w-${k}]`, fig).forEach((el) => el.style.setProperty('--w', el.getAttribute(`data-w-${k}`)));
+      if (onChange) onChange(k);
+    };
+    btns.forEach((b, i) => {
+      b.addEventListener('click', () => pick(b));
+      b.addEventListener('keydown', (e) => {   // arrow keys move along the group, like native radios
+        const d = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+        if (!d) return;
+        e.preventDefault();
+        const next = btns[(i + d + btns.length) % btns.length];
+        next.focus(); pick(next);
+      });
+    });
+  }
+  function initRoundFinder(fig) {
+    fig.classList.add('is-live');
+    const qs = $$('[data-q]', fig), dots = $$('.rf__steps i', fig), back = $('[data-back]', fig), restart = $('[data-restart]', fig);
+    const trail = [];
+    const show = (el) => {
+      $$('.rf__q, .rf__result', fig).forEach((x) => { x.hidden = x !== el; });
+      el.classList.remove('is-entering'); void el.offsetWidth; el.classList.add('is-entering');
+      const q = trail.length;
+      dots.forEach((d, i) => d.classList.toggle('is-done', i < q));
+      back.hidden = q === 0; restart.hidden = !el.matches('.rf__result');
+    };
+    qs.forEach((q, i) => {
+      $$('[data-answer]', q).forEach((b) => b.addEventListener('click', () => {
+        trail.push(i);
+        const next = b.dataset.answer === 'no' ? $(`[data-result="${q.dataset.no}"]`, fig) : qs[i + 1] || $('[data-result="C"]', fig);
+        show(next);
+        const focusable = $('button', next); (focusable || next).focus?.({ preventScroll: true });
+      }));
+    });
+    back.addEventListener('click', () => { show(qs[trail.pop()]); $('button', qs[trail.length] || qs[0]).focus({ preventScroll: true }); });
+    restart.addEventListener('click', () => { trail.length = 0; show(qs[0]); $('button', qs[0]).focus({ preventScroll: true }); });
+  }
+  function initPref(fig) {
+    const input = $('[data-in="price"]', fig), out = (k) => $(`[data-out="${k}"]`, fig);
+    let m = 1;
+    const draw = () => {
+      const p = +input.value, paid = Math.min(p, 30 * m), conv = 0.2 * p, converts = conv > paid;
+      const esha = converts ? conv : paid, friends = p - esha;
+      out('price').textContent = lakh(p);
+      out('esha').textContent = lakh(esha);
+      out('friends').textContent = `${lakh(friends / 4)} each`;
+      $('[data-seg="esha"]', fig).style.setProperty('--w', (esha / p) * 100);
+      $('[data-seg="friends"]', fig).style.setProperty('--w', (friends / p) * 100);
+      out('note').textContent = converts
+        ? `Above ₹${30 * m * 5 >= 100 ? (30 * m * 5) / 100 + ' crore' : 30 * m * 5 + ' lakh'}, Esha does better converting to plain shares, so she takes her 20%.`
+        : `Esha takes ${m}x her ₹30 lakh first. The four friends share what is left.`;
+    };
+    input.addEventListener('input', draw);
+    initSwitch(fig, (k) => { m = +k; draw(); });
+    draw();
+  }
+  function initVest(fig) {
+    const input = $('[data-in="months"]', fig), dots = $$('.tool-opts i', fig), out = (k) => $(`[data-out="${k}"]`, fig);
+    const draw = () => {
+      const mo = +input.value, kept = mo < 12 ? 0 : Math.min(8, Math.floor(mo / 12) * 2), y = Math.floor(mo / 12), r = mo % 12;
+      out('time').textContent = mo === 0 ? 'his first day' : [y && `${y} year${y > 1 ? 's' : ''}`, r && `${r} month${r > 1 ? 's' : ''}`].filter(Boolean).join(' and ');
+      out('kept').textContent = kept; out('back').textContent = 8 - kept;
+      dots.forEach((d, i) => d.classList.toggle('is-on', i < kept));
+    };
+    input.addEventListener('input', draw);
+    draw();
+  }
+  $$('[data-switcher]').forEach((f) => initSwitch(f));
+  $$('[data-round-finder]').forEach(initRoundFinder);
+  $$('[data-pref]').forEach(initPref);
+  $$('[data-vest]').forEach(initVest);
+
   const header = $('[data-header]');
   if (header) { initHeader(header); initSearch(header); initMobileMenu(header); }
   $$('[data-strip]').forEach(initStrip);

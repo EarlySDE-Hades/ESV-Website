@@ -1,21 +1,213 @@
 {
-  "_readme": "Articles on perspectives.html. 'url' = published elsewhere (opens in a new tab) or an existing page on this site. For an article hosted here, leave out 'url' and put its body (HTML) in tools/perspectives/posts/<slug>.html; build.py then writes perspective-<slug>.html. 'mark' is the big character on the cover; 'short' is a shorter title for the cover only. 'hidden': true keeps a series or post out of the page (the Substack newsletter is hidden for now).",
+  "_readme": "Articles on perspectives.html. 'url' = published elsewhere (opens in a new tab) or an existing page on this site. For an article hosted here, leave out 'url' and put its body (HTML) in tools/perspectives/posts/<slug>.html; build.py then writes perspective-<slug>.html. 'mark' is the big character on the cover; 'short' is a shorter title for the cover only. 'hidden': true keeps a series or post out of the page (the Substack newsletter is hidden for now). \"hero\": false keeps \"photo\" for the cover only (no large photo at the top of the article). \"original\": the page first appeared elsewhere (the Prologue blog); search engines are pointed to it. \"art\": the drawing (tools/perspectives/art.py) for the book cover and the top of the article.",
   "series": [
-    { "id": "chronicle", "hidden": true, "name": "Indian Startup Chronicle", "about": "Our newsletter: a roundup of the Indian startup ecosystem and the latest market trends." },
-    { "id": "deal-table", "name": "From the deal table", "about": "Fundraising playbooks, founder stories and our work across India’s startup ecosystem.", "photo": "deal-table.webp", "focus": "22% 30%" },
-    { "id": "founder-stories", "name": "Founder Stories", "about": "Founders on what raising capital really looked like.", "photo": "founder-stories.webp", "focus": "50% 40%" },
-    { "id": "finance", "name": "Finance for the Fundraising-Curious", "about": "Round structures, valuations and term sheets, explained simply.", "icon": "finance" },
-    { "id": "campus", "name": "On campus", "about": "What we learn from founder-readiness programmes with universities and student founders.", "photo": "mit-wpu.webp", "focus": "30% 45%" },
-    { "id": "podcasts", "name": "Podcasts", "about": "Entrepreneurship Unplugged with Suresh Menon. Grit, Guts & Gumption: Monica Gupta’s journey as an entrepreneur.", "photo": "podcasts.webp", "focus": "50% 30%", "soon": "Episodes coming soon" }
+    {
+      "id": "chronicle",
+      "hidden": true,
+      "name": "Indian Startup Chronicle",
+      "about": "Our newsletter: a roundup of the Indian startup ecosystem and the latest market trends."
+    },
+    {
+      "id": "deal-table",
+      "name": "From the deal table",
+      "about": "Fundraising playbooks, founder stories and our work across India’s startup ecosystem.",
+      "photo": "deal-table.webp",
+      "focus": "22% 30%"
+    },
+    {
+      "id": "founder-stories",
+      "name": "Founder Stories",
+      "about": "How the founders we backed built their companies, and what raising capital looked like along the way.",
+      "photo": "founder-stories-skill-titans.webp",
+      "focus": "50% 50%"
+    },
+    {
+      "id": "finance",
+      "name": "Finance for the Fundraising-Curious",
+      "about": "Round structures, valuations and term sheets, explained simply.",
+      "icon": "finance"
+    },
+    {
+      "id": "campus",
+      "name": "On campus",
+      "about": "What we learn from founder-readiness programmes with universities and student founders.",
+      "photo": "mit-wpu.webp",
+      "focus": "30% 45%"
+    },
+    {
+      "id": "podcasts",
+      "name": "Podcasts",
+      "about": "Entrepreneurship Unplugged with Suresh Menon. Grit, Guts & Gumption: Monica Gupta’s journey as an entrepreneur.",
+      "photo": "podcasts.webp",
+      "focus": "50% 30%",
+      "soon": "Episodes coming soon"
+    }
   ],
   "posts": [
-    { "slug": "seed-to-success", "series": "deal-table", "date": "2026-03-05", "title": "From seed to success: building what Bharat dreams", "summary": "A recap of our evening for founders, investors and ecosystem leaders.", "label": "Event recap", "url": "event-seed-to-success.html", "photo": "assets/events/seed-to-success-panel.webp" },
-    { "slug": "financial-jester", "series": "chronicle", "hidden": true, "date": "2024-04-01", "title": "The Financial Jester: Navigating Playful Investments and Economic Shenanigans", "summary": "High-interest economics, market moods and toy industry shifts.", "label": "April Fool’s edition", "mark": "?", "words": 1121, "url": "https://earlyseedventures.substack.com/p/the-financial-jester-navigating-playful" },
-    { "slug": "budget-session", "series": "chronicle", "hidden": true, "date": "2024-03-08", "title": "India’s budget session: A critical juncture for fiscal planning and policy decisions shaping the nation’s economic trajectory", "short": "India’s budget session: A critical juncture", "summary": "Women’s Day special: the budget session, the repo rate and global markets.", "label": "Issue 05", "mark": "5", "words": 906, "url": "https://earlyseedventures.substack.com/p/indias-budget-session-a-critical" },
-    { "slug": "top-growing-economy", "series": "chronicle", "hidden": true, "date": "2024-02-10", "title": "India Shines as Top Growing Economy", "summary": "Growth, inflation, jobs and the one-trillion-dollar dream.", "label": "Issue 04", "mark": "4", "words": 851, "url": "https://earlyseedventures.substack.com/p/india-shines-as-top-growing-economy" },
-    { "slug": "2023-roundup", "series": "chronicle", "hidden": true, "date": "2024-01-03", "title": "Earlyseed Ventures 2023 Roundup", "summary": "A joyful beginning and a successful year end.", "label": "Year in review", "mark": "’23", "words": 343, "url": "https://earlyseedventures.substack.com/p/earlyseed-ventures-2023-roundup" },
-    { "slug": "chronicle-3", "series": "chronicle", "hidden": true, "date": "2023-11-21", "title": "Indian Startup Chronicle, Edition 3", "summary": "India’s economy, the government’s plan for startups and the fintech sector.", "label": "Edition 3", "mark": "3", "words": 1076, "url": "https://earlyseedventures.substack.com/p/indian-startup-chronicle-956" },
-    { "slug": "chronicle-2", "series": "chronicle", "hidden": true, "date": "2023-10-07", "title": "Indian Startup Chronicle, Edition 2", "summary": "India’s digital showcase at the G20, and the challenges of blockchain.", "label": "Edition 2", "mark": "2", "words": 939, "url": "https://earlyseedventures.substack.com/p/indian-startup-chronicle-815" },
-    { "slug": "chronicle-1", "series": "chronicle", "hidden": true, "date": "2023-09-20", "title": "Indian Startup Chronicle, Edition 1", "summary": "The Chandrayaan-3 effect on the market, and valuation as a science.", "label": "Edition 1", "mark": "1", "words": 1559, "url": "https://earlyseedventures.substack.com/p/indian-startup-chronicle" }
+    {
+      "slug": "seed-to-success",
+      "series": "deal-table",
+      "date": "2026-03-05",
+      "title": "From seed to success: building what Bharat dreams",
+      "summary": "A recap of our evening for founders, investors and ecosystem leaders.",
+      "label": "Event recap",
+      "url": "event-seed-to-success.html",
+      "photo": "assets/events/seed-to-success-panel.webp"
+    },
+    {
+      "slug": "hesa-rural-commerce",
+      "series": "founder-stories",
+      "date": "2026-11-26",
+      "title": "Hesa: building rural commerce on trust",
+      "summary": "How Vamsi Udayagiri and Hema Nandiraju built a phygital marketplace for Bharat, and why we invested twice.",
+      "label": "Hesa",
+      "words": 430,
+      "photo": "assets/portfolio/hesa.webp",
+      "hero": false
+    },
+    {
+      "slug": "oll-skills-school-leaves-out",
+      "series": "founder-stories",
+      "date": "2026-11-25",
+      "title": "OLL: a 15-year-old founder and the skills school leaves out",
+      "summary": "Shreyaan Daga started OLL at 15. A ₹1 Cr raise came first, then Shark Tank India.",
+      "label": "OLL",
+      "words": 440,
+      "photo": "assets/portfolio/oll.webp",
+      "hero": false
+    },
+    {
+      "slug": "financial-jester",
+      "series": "chronicle",
+      "hidden": true,
+      "date": "2024-04-01",
+      "title": "The Financial Jester: Navigating Playful Investments and Economic Shenanigans",
+      "summary": "High-interest economics, market moods and toy industry shifts.",
+      "label": "April Fool’s edition",
+      "mark": "?",
+      "words": 1121,
+      "url": "https://earlyseedventures.substack.com/p/the-financial-jester-navigating-playful"
+    },
+    {
+      "slug": "budget-session",
+      "series": "chronicle",
+      "hidden": true,
+      "date": "2024-03-08",
+      "title": "India’s budget session: A critical juncture for fiscal planning and policy decisions shaping the nation’s economic trajectory",
+      "short": "India’s budget session: A critical juncture",
+      "summary": "Women’s Day special: the budget session, the repo rate and global markets.",
+      "label": "Issue 05",
+      "mark": "5",
+      "words": 906,
+      "url": "https://earlyseedventures.substack.com/p/indias-budget-session-a-critical"
+    },
+    {
+      "slug": "top-growing-economy",
+      "series": "chronicle",
+      "hidden": true,
+      "date": "2024-02-10",
+      "title": "India Shines as Top Growing Economy",
+      "summary": "Growth, inflation, jobs and the one-trillion-dollar dream.",
+      "label": "Issue 04",
+      "mark": "4",
+      "words": 851,
+      "url": "https://earlyseedventures.substack.com/p/india-shines-as-top-growing-economy"
+    },
+    {
+      "slug": "2023-roundup",
+      "series": "chronicle",
+      "hidden": true,
+      "date": "2024-01-03",
+      "title": "Earlyseed Ventures 2023 Roundup",
+      "summary": "A joyful beginning and a successful year end.",
+      "label": "Year in review",
+      "mark": "’23",
+      "words": 343,
+      "url": "https://earlyseedventures.substack.com/p/earlyseed-ventures-2023-roundup"
+    },
+    {
+      "slug": "chronicle-3",
+      "series": "chronicle",
+      "hidden": true,
+      "date": "2023-11-21",
+      "title": "Indian Startup Chronicle, Edition 3",
+      "summary": "India’s economy, the government’s plan for startups and the fintech sector.",
+      "label": "Edition 3",
+      "mark": "3",
+      "words": 1076,
+      "url": "https://earlyseedventures.substack.com/p/indian-startup-chronicle-956"
+    },
+    {
+      "slug": "chronicle-2",
+      "series": "chronicle",
+      "hidden": true,
+      "date": "2023-10-07",
+      "title": "Indian Startup Chronicle, Edition 2",
+      "summary": "India’s digital showcase at the G20, and the challenges of blockchain.",
+      "label": "Edition 2",
+      "mark": "2",
+      "words": 939,
+      "url": "https://earlyseedventures.substack.com/p/indian-startup-chronicle-815"
+    },
+    {
+      "slug": "chronicle-1",
+      "series": "chronicle",
+      "hidden": true,
+      "date": "2023-09-20",
+      "title": "Indian Startup Chronicle, Edition 1",
+      "summary": "The Chandrayaan-3 effect on the market, and valuation as a science.",
+      "label": "Edition 1",
+      "mark": "1",
+      "words": 1559,
+      "url": "https://earlyseedventures.substack.com/p/indian-startup-chronicle"
+    },
+    {
+      "slug": "fundraise-fundamentals",
+      "series": "finance",
+      "date": "2026-10-09",
+      "title": "Fundraise Fundamentals: Four Friends",
+      "short": "Fundraise Fundamentals",
+      "summary": "What a fundraise is, explained with four friends and a house: shares, dilution, valuations, and which round you are raising.",
+      "label": "Part 1",
+      "words": 670,
+      "author": "Sakshay Upadhyay",
+      "art": "house"
+    },
+    {
+      "slug": "same-money-different-paper",
+      "series": "finance",
+      "date": "2026-10-12",
+      "title": "Same Money, Different Paper: Esha's Options",
+      "short": "Same Money, Different Paper",
+      "summary": "The same ₹30 lakh can buy very different deals. What a liquidation preference is, and the kinds of shares and loans investors use.",
+      "label": "Part 2",
+      "words": 637,
+      "author": "Sakshay Upadhyay",
+      "art": "paper"
+    },
+    {
+      "slug": "esop-essentials",
+      "series": "finance",
+      "date": "2026-10-15",
+      "title": "ESOP Essentials: A Slice for Farhan",
+      "short": "ESOP Essentials",
+      "summary": "How an ESOP pool works, who really pays for it, and how employees earn their options over time.",
+      "label": "Part 3",
+      "words": 637,
+      "author": "Sakshay Upadhyay",
+      "art": "esop"
+    },
+    {
+      "slug": "someone-else-wants-in",
+      "series": "finance",
+      "date": "2026-10-29",
+      "title": "Someone Else Wants In: Gauri's Round",
+      "short": "Someone Else Wants In",
+      "summary": "What a second round does to everyone’s percentage, why a smaller slice can be worth more, and what pro-rata rights are.",
+      "label": "Part 4",
+      "words": 518,
+      "author": "Sakshay Upadhyay",
+      "art": "pie"
+    }
   ]
 }

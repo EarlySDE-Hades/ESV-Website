@@ -73,7 +73,7 @@ Tick an item when it is done. Add new ones under the heading that fits. "Must" m
 - [x] People shown for Kyoora, JimzCart, Shaurrya and Misfits are fine to be public (confirmed 25 Nov 2026).
 - [ ] Shaurrya: we show Sudeb Sarbadhikary (Founder and Director, Finance) and Pankaj Agrawal (Chairman), as in their deck. Add anyone else, such as Mahesh Choudhary?
 - [ ] Cup-Ji: Jay Sotta and Aakash Sotta are from press coverage of Shark Tank India. Confirm.
-- [ ] Frevolt: who are the founders? None are shown.
+- [x] Frevolt founders added from their deck of 19 Oct 2026 (Sanket Vyavahare, Ashutosh Bhavsar, Pooja Shetty).
 - [ ] Logos needed: DCGpac and WinMagic Toys (current versions; our deck has older ones). A larger JimzCart and ElectriQ logo would be sharper. JimzCart's own deck uses a newer gold logo: which is current?
 
 ## Invest page
@@ -96,3 +96,9 @@ Tick an item when it is done. Add new ones under the heading that fits. "Must" m
 - [ ] `index.html` is served as written, so its code comments are public. They hold no sensitive notes today; check again before launch. Comments are removed from every other page when it is built.
 - [ ] `README.md` is out of date: it says there is no build step, and lists a font we no longer use.
 - [ ] Final pass on a real iPhone and Android phone, and with a keyboard only.
+
+## Founder stories (Perspectives)
+
+- [ ] Rahul reviews the Hesa story's line that our investment "returned more than five times its value" (from the bootcamp deck of 7 Aug 2025). A past return on a public page may need a disclaimer, or a softer line.
+- [ ] Hesa and OLL founders are happy with their stories. The facts come from the bootcamp deck and their profiles. The "What founders can take from it" lessons are our own.
+- [ ] OLL: the deck dates the Shark Tank deal to 2022, and the profile says Season 2 (aired 2023). The story gives the season, not the year.

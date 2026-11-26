@@ -63,6 +63,11 @@ def _events():
     return {f"event-{x['id']}.html": x["title"] for x in xs}
 
 
+def _originals():
+    xs = json.loads((ROOT / "tools/perspectives/posts.json").read_text(encoding="utf-8"))["posts"]
+    return {f"perspective-{x['slug']}.html": x["original"] for x in xs if x.get("original") and not x.get("url")}
+
+
 def _stories():
     xs = json.loads((ROOT / "tools/careers/stories.json").read_text(encoding="utf-8"))["stories"]
     return {f"life-{x['id']}.html": x["post"]["title"] for x in xs}
@@ -169,7 +174,7 @@ def block(page, description, title=None):
   <!-- Written by tools/seo/seo.py (python tools/team/build.py): change it there. -->
   <title>{escape(title, quote=False)}</title>
   <meta name="description" content="{e(description)}" />
-  <link rel="canonical" href="{url(page)}" />
+  <link rel="canonical" href="{_originals().get(page, url(page))}" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="{BRAND}" />
   <meta property="og:title" content="{e(title)}" />
@@ -191,6 +196,6 @@ def apply(html, page, description, title=None):
 
 
 def write_sitemap(pages):
-    rows = "\n".join(f"  <url><loc>{url(p)}</loc></url>" for p in pages)
+    rows = "\n".join(f"  <url><loc>{url(p)}</loc></url>" for p in pages if p not in _originals())
     (ROOT / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{rows}\n</urlset>\n', encoding="utf-8", newline="\n")
     (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8", newline="\n")

@@ -1,0 +1,73 @@
+        <div class="post-tldr">
+          <h2>In short</h2>
+          <p>How much an investor gives you is only half the deal. The other half is what they get in return. The same ₹30 lakh can buy plain shares, shares that are paid back first, or a loan that turns into shares later. Read that part of the deal as carefully as the valuation.</p>
+        </div>
+
+        <h2>Esha asks for one more thing</h2>
+        <p>In Part 1, Esha put ₹30 lakh into the house for 20% of it. Before she pays, she adds one condition:</p>
+        <p><strong>“If we ever sell the house for less than we paid, I get my ₹30 lakh back before anyone else is paid.”</strong></p>
+        <p>That one sentence is what this whole article is about.</p>
+
+        <h2>When the house sells for less</h2>
+        <p>Say the house has to be sold for just <strong>₹75 lakh</strong>.</p>
+        <p>With plain shares, everyone takes 20%, so everyone gets ₹15 lakh. Esha loses half of her ₹30 lakh.</p>
+        <p>With Esha’s condition, she is paid first. She takes her ₹30 lakh, and the four friends share the ₹45 lakh left, ₹11.25 lakh each.</p>
+
+        <div class="table-scroll">
+          <table>
+            <caption>The house sells for ₹75 lakh</caption>
+            <thead><tr><th scope="col">Who</th><th scope="col">Plain shares</th><th scope="col">Esha paid first</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Esha</th><td>₹15 lakh</td><td>₹30 lakh</td></tr>
+              <tr><th scope="row">Each friend</th><td>₹15 lakh</td><td>₹11.25 lakh</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <figure class="dgm dgm-bars" data-reveal role="img" aria-label="A ₹75 lakh sale. With plain shares, all five get ₹15 lakh. With Esha paid first, she gets ₹30 lakh and each friend ₹11.25 lakh.">
+          <p class="dgm-bars__label">Plain shares</p>
+          <div class="dgm-bar"><span class="dgm-seg dgm-c4" style="--w0:20;--w1:20;--i:0"><b>Esha</b><small>₹15 L</small></span><span class="dgm-seg dgm-c0" style="--w0:20;--w1:20;--i:0"><b>Aman</b><small>₹15 L</small></span><span class="dgm-seg dgm-c1" style="--w0:20;--w1:20;--i:0"><b>Bhavna</b><small>₹15 L</small></span><span class="dgm-seg dgm-c2" style="--w0:20;--w1:20;--i:0"><b>Chirag</b><small>₹15 L</small></span><span class="dgm-seg dgm-c3" style="--w0:20;--w1:20;--i:0"><b>Divya</b><small>₹15 L</small></span></div>
+          <p class="dgm-bars__label">Esha paid first (1x preference)</p>
+          <div class="dgm-bar dgm-bar--move"><span class="dgm-seg dgm-c4" style="--w0:20;--w1:40;--i:0"><b>Esha</b><small>₹30 L</small></span><span class="dgm-seg dgm-c0" style="--w0:20;--w1:15;--i:0"><b>Aman</b><small>₹11.25 L</small></span><span class="dgm-seg dgm-c1" style="--w0:20;--w1:15;--i:0"><b>Bhavna</b><small>₹11.25 L</small></span><span class="dgm-seg dgm-c2" style="--w0:20;--w1:15;--i:0"><b>Chirag</b><small>₹11.25 L</small></span><span class="dgm-seg dgm-c3" style="--w0:20;--w1:15;--i:0"><b>Divya</b><small>₹11.25 L</small></span></div>
+          <figcaption>Same ₹75 lakh. The preference moves ₹15 lakh from the friends to Esha.</figcaption>
+        </figure>
+
+        <p>The condition did not create money. It moved ₹15 lakh from the friends to Esha, in the one case where there was not enough to go around.</p>
+        <p>This is called a <strong>liquidation preference</strong>. The usual size is <strong>1x</strong>: the investor gets back one times what they put in. It costs founders nothing when things go well, and a lot when they do not.</p>
+
+        <h2>When the house sells for more</h2>
+        <p>Now say the house sells for <strong>₹3 crore</strong>. Taking just her ₹30 lakh back would be a bad deal for Esha. So her shares can <strong>convert</strong> into ordinary shares, and she takes her 20% instead: ₹60 lakh.</p>
+        <p>The line is the ₹1.5 crore price she bought in at. Below it she takes her money back. Above it she converts.</p>
+
+        <figure class="tool" data-pref>
+          <p class="tool__eyebrow">Try it: change the sale price</p>
+          <label class="tool-range"><span>The house sells for <strong data-out="price">₹75 lakh</strong></span>
+            <input type="range" min="30" max="300" step="5" value="75" data-in="price" aria-label="Sale price in lakh" /></label>
+          <div class="tool-switch" role="radiogroup" aria-label="Esha's preference"><button type="button" role="radio" aria-checked="true" data-state="1">1x preference</button><button type="button" role="radio" aria-checked="false" data-state="2">2x preference</button></div>
+          <div class="dgm-bar tool-bar"><span class="dgm-seg tool-seg dgm-c4" data-seg="esha"><b>Esha</b><small data-out="esha"></small></span><span class="dgm-seg tool-seg dgm-c1" data-seg="friends"><b>Four friends</b><small data-out="friends"></small></span></div>
+          <figcaption data-out="note">Esha takes her money back first.</figcaption>
+        </figure>
+
+        <h2>The kinds of paper you will see</h2>
+        <ul>
+          <li><strong>Equity shares.</strong> Plain ownership. What founders usually hold. No protection, last in the queue.</li>
+          <li><strong>CCPS (compulsorily convertible preference shares).</strong> Exactly Esha’s deal: paid first on the way down, turned into ordinary shares on the way up. The most common choice for investors in Indian rounds.</li>
+          <li><strong>CCDs (compulsorily convertible debentures).</strong> A loan that must turn into shares later. Often used for quick money between two rounds. Until it converts, it is a loan on your books and may carry interest.</li>
+          <li><strong>NCDs and OCDs.</strong> Loans that never turn into shares, or only if the lender chooses. This is venture debt: the lender wants to be repaid, not a share of your growth.</li>
+          <li><strong>iSAFE.</strong> Money now, shares at your next round, usually at a discount. Fast and simple. You still give up the shares, you just find out how many later.</li>
+        </ul>
+
+        <h2>Remember</h2>
+        <ul>
+          <li>Do not look only at the valuation. A higher valuation with tough terms can leave you worse off than a lower one with a plain 1x.</li>
+          <li>Ask if the preference is “participating”. If it is, the investor takes their money back <em>and</em> a share of what is left.</li>
+          <li>Push back on anything above 1x. At 2x, Esha would take ₹60 lakh of a ₹75 lakh sale.</li>
+          <li>An iSAFE is not free money. Work out how many shares it will cost you at the next round before you sign.</li>
+        </ul>
+
+        <p class="post-note">This is general information, not financial, legal or tax advice. Check your own deal with your CA or company secretary before you sign.</p>
+
+        <h2>Next in the series</h2>
+        <p><a href="perspective-esop-essentials.html">Part 3: ESOP Essentials.</a> Esha asks for 20 shares to be set aside for a future hire. Who pays for them?</p>
+
+        <p class="post-origin">A shorter, simpler version of Part 2 of Finance for the Fundraising-Curious. The full article, with more examples, is on <a href="https://www.prologue.co.in/blog/same-money-different-paper" target="_blank" rel="noopener">Prologue</a>, our pre-funding platform for founders.</p>

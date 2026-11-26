@@ -387,7 +387,20 @@
       "location": "Pune",
       "short": "Frevolt is a Pune-based rooftop solar platform that makes going solar simple for homeowners. Its app manages the full solar journey, from verified installers and collateral-free financing to subsidy support, real-time generation monitoring and maintenance, helping households cut electricity bills while bringing structure and trust to India’s fragmented rooftop solar market.",
       "description": "Frevolt (Frevolt Green Energy Technologies Pvt Ltd) is a Pune-based clean energy company that makes rooftop solar easy and trustworthy for homeowners. Rooftop solar in India is still a fragmented market, and many households hold back because of high upfront costs, confusing subsidy processes and uncertainty about installer quality. Frevolt addresses each of these. Its platform connects homeowners with a network of verified installation partners, offers collateral-free solar financing, and helps customers apply for government subsidies. After installation, the Frevolt app provides real-time generation tracking, maintenance scheduling and system information, so owners can see their savings and keep systems running well. Installers in turn receive qualified leads and project management tools. Starting with Maharashtra, Frevolt is building an organised, end-to-end marketplace that accelerates India’s shift to clean, affordable energy.",
-      "team": [],
+      "team": [
+        {
+          "name": "Sanket Vyavahare",
+          "role": "Co-founder and CEO"
+        },
+        {
+          "name": "Ashutosh Bhavsar",
+          "role": "Co-founder and COO"
+        },
+        {
+          "name": "Pooja Shetty",
+          "role": "Co-founder and CBO"
+        }
+      ],
       "milestones": [],
       "website": null,
       "pressTopic": null
