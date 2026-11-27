@@ -1,8 +1,6 @@
-# Design source files (exported logos live in assets/brand)
-Figma Design/
-Brand Assets/
-/Logos/
-/illustrations/
+# Local source material: logos, photos, brand and design files the build scripts read from.
+# Too large and too private for the repo; the scripts write web-ready copies into assets/.
+/source/
 
 # OS / editor
 .DS_Store
@@ -15,8 +13,3 @@ node_modules/
 tools/hero-layers/.venv/
 tools/hero-layers/out/
 __pycache__/
-/favicon source.png
-/Founder Photos/
-/Photos/
-/Team Photos/
-/Warwick_Business_School_logo.svg.webp

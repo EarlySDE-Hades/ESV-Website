@@ -61,7 +61,7 @@ On `team.html`, each leader card shows a row of affiliation logos under their ta
    ```
 
 2. Remove the `<!-- Affiliation logos go here -->` comment.
-3. Rebuild the page with `python tools/team/build.py`. That script generates `team.html`, so never hand-edit it.
+3. Rebuild the page with `python tools/build.py`. That script generates `team.html`, so never hand-edit it.
 
 ## CSS
 Append the following to the "Team page — Leadership" block at the end of `css/styles.css`:

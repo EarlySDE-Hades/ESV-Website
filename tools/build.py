@@ -12,15 +12,31 @@
     event-seed-to-success.html  <- tools/events/seed-to-success.html
     titles, descriptions, canonical links, structured data, sitemap.xml and robots.txt  <- tools/seo/seo.py
 
-Run after changing the shared header/footer in index.html, or either main.html:
+Run after changing anything under tools/, index.html's header or footer, css/styles.css or js/main.js:
 
-    python tools/team/build.py
+    python tools/build.py
+
+It also stamps the stylesheet and script links with a short hash of their contents (styles.css?v=...),
+so browsers fetch a fresh copy only when the file has really changed.
 """
+import hashlib
 import re
 from html import unescape
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def _stamp_assets():
+    idx = ROOT / "index.html"
+    t = idx.read_text(encoding="utf-8")
+    for path in ("css/styles.css", "js/main.js"):
+        v = hashlib.sha1((ROOT / path).read_bytes().replace(b"\r\n", b"\n")).hexdigest()[:10]
+        t = re.sub(re.escape(path) + r"\?v=[0-9a-z]+", f"{path}?v={v}", t)
+    idx.write_text(t, encoding="utf-8", newline="\n")
+
+
+_stamp_assets()
 src = (ROOT / "index.html").read_text(encoding="utf-8")
 
 head, rest = src.split("<body>", 1)

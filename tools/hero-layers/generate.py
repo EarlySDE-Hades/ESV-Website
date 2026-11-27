@@ -12,7 +12,7 @@ ROOT = HERE.parents[1]
 DEST = ROOT / 'assets/hero'
 OUT = HERE / 'out'
 CONFIG = json.loads((HERE / 'masks.json').read_text())
-SOURCE = ROOT / 'Brand Assets/New v2.png'
+SOURCE = ROOT / 'source/Brand Assets/New v2.png'
 src = np.array(Image.open(SOURCE).convert('RGB'))
 H, W = src.shape[:2]
 assert [W, H] == CONFIG['canvas'], 'Update source-coordinate masks for a new canvas size.'

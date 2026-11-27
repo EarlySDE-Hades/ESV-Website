@@ -1,11 +1,11 @@
-"""Logos and founder photos for the company pages. Run after adding a source file, then run tools/team/build.py.
+"""Logos and founder photos for the company pages. Run after adding a source file, then run tools/build.py.
 
     python tools/portfolio/assets.py
 
 - Logos: Logos/Companies/profile/<slug>.png|svg (gitignored), or the file named in LOGOS.
   Trimmed to the visible mark and sized so each one looks the same size on its white plate
   (equal visual area, not equal height). Output: assets/logos/profile/ + tools/portfolio/logos.json.
-- Founder photos: Founder Photos/companies/<slug>/<name-in-lowercase-with-dashes>.png|jpg|webp (gitignored).
+- Founder photos: source/Founder Photos/companies/<slug>/<name-in-lowercase-with-dashes>.png|jpg|webp (gitignored).
   Kept whole; the square card shows a tall photo from the top, so a head is never cut. Output: assets/portfolio/founders/<slug>-<name>.webp + tools/portfolio/photos.json.
 """
 import json
@@ -21,7 +21,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / "tools/logos"))
 from build import remove_white_background  # noqa: E402
 
-SRC = ROOT / "Logos/Companies"
+SRC = ROOT / "source/Logos/Companies"
 OUT = ROOT / "assets/logos/profile"
 LOGOS = {"alchemyst-ai": "alchemyst AI.svg", "artment": "Artment.png", "electriq": "Electriq.png", "flying-wedge": "FWDA logo.png",
          "garuda-aerospace": "Garuda Aerospace.webp", "hesa": "Hesa-wordmark", "kyoora": "kyoora.png", "oll": "OLL.png", "skyroot": "Skyroot.svg"}
@@ -76,7 +76,7 @@ def photos():
     dest = ROOT / "assets/portfolio/founders"
     dest.mkdir(parents=True, exist_ok=True)
     out = {}
-    for f in sorted((ROOT / "Founder Photos/companies").glob("*/*.*")):
+    for f in sorted((ROOT / "source/Founder Photos/companies").glob("*/*.*")):
         im = Image.open(f)
         im = im.convert("RGBA" if im.mode in ("RGBA", "LA", "P") else "RGB")   # a cut-out keeps its transparency
         im.thumbnail((640, 800), Image.Resampling.LANCZOS)

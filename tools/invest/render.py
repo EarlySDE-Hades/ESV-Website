@@ -1,4 +1,4 @@
-"""Fills the {{…}} placeholders in tools/invest/main.html from links.json. Called by tools/team/build.py."""
+"""Fills the {{…}} placeholders in tools/invest/main.html from links.json. Called by tools/build.py."""
 import json
 from pathlib import Path
 

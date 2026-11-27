@@ -1,5 +1,5 @@
 """One page per leader and growth partner (team-<slug>.html), from tools/team/main.html's profile templates
-plus tools/team/profiles.json. Called by tools/team/build.py and tools/seo/seo.py."""
+plus tools/team/profiles.json. Called by tools/build.py and tools/seo/seo.py."""
 import json
 import re
 from html import escape, unescape

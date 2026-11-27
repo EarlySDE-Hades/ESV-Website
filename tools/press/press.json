@@ -1,5 +1,5 @@
 {
-  "_about": "Us in the News. One entry per article; syndicated copies of the same text sit under the original in 'syndicated'. Every published entry was checked on 18 Nov 2026: the link resolves, the headline and date match the page, and the page names Earlyseed Ventures (often written 'Early Seed Ventures') or a co-founder. coverageType: editorial | roundup | press-release | sponsored | aggregator. Rendered into press.html by tools/team/build.py.",
+  "_about": "Us in the News. One entry per article; syndicated copies of the same text sit under the original in 'syndicated'. Every published entry was checked on 18 Nov 2026: the link resolves, the headline and date match the page, and the page names Earlyseed Ventures (often written 'Early Seed Ventures') or a co-founder. coverageType: editorial | roundup | press-release | sponsored | aggregator. Rendered into press.html by tools/build.py.",
   "verifiedOn": "2026-11-18",
   "stories": {
     "skill-titans": "Skill Titans",

@@ -1,5 +1,5 @@
 {
-  "_readme": "Where the two application buttons on invest.html go. If a form's link changes, change it here and run: python tools/team/build.py. The form specs are in docs/ecosystem-forms/.",
+  "_readme": "Where the two application buttons on invest.html go. If a form's link changes, change it here and run: python tools/build.py. The form specs are in docs/ecosystem-forms/.",
   "syndicate": "https://ecosystem.earlyseedventures.com/apply/syndicate",
   "partner": "https://ecosystem.earlyseedventures.com/apply/partner"
 }

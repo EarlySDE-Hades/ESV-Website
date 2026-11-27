@@ -1,5 +1,5 @@
 """Render the Bootcamps page's campus partners from the #partner-data JSON in index.html
-(the same data the home page's campus strip uses), and the campus logo cards from the About page. Called by tools/team/build.py."""
+(the same data the home page's campus strip uses), and the campus logo cards from the About page. Called by tools/build.py."""
 import json
 import re
 from html import escape

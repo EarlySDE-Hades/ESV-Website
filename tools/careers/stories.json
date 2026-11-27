@@ -1,5 +1,5 @@
 {
-  "_readme": "Team stories linked from careers.html: each makes life-<id>.html, in the same layout as the event posts (tools/events/render.py). Photos: assets/careers/<photo>.webp. In the text, [words](page.html) makes a link. After a change run: python tools/team/build.py. Written from Monica Gupta's LinkedIn posts ('source', not shown on the site). Things to check before launch: docs/pre-launch-review.md.",
+  "_readme": "Team stories linked from careers.html: each makes life-<id>.html, in the same layout as the event posts (tools/events/render.py). Photos: assets/careers/<photo>.webp. In the text, [words](page.html) makes a link. After a change run: python tools/build.py. Written from Monica Gupta's LinkedIn posts ('source', not shown on the site). Things to check before launch: docs/pre-launch-review.md.",
   "stories": [
     {
       "id": "model-united-nations",

@@ -1,4 +1,4 @@
-"""Cards for events.html and one post per event (event-<id>.html), from events.json. Called by tools/team/build.py."""
+"""Cards for events.html and one post per event (event-<id>.html), from events.json. Called by tools/build.py."""
 import json
 import re
 from html import escape as e

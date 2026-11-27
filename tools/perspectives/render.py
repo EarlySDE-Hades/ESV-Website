@@ -1,6 +1,6 @@
 """Render the Our Perspectives page (and any articles hosted here) from tools/perspectives/posts.json.
 
-Called by tools/team/build.py:
+Called by tools/build.py:
   render()        -> placeholder values for tools/perspectives/main.html
   article_pages() -> [(output file, <main> html, meta description)] for posts without a "url"
 """

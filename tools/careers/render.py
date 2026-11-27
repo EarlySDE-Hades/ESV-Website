@@ -1,5 +1,5 @@
 """Fills the {{…}} placeholders in tools/careers/main.html from openings.json, and builds the team stories (life-<id>.html) from stories.json.
-Called by tools/team/build.py."""
+Called by tools/build.py."""
 import json
 from html import escape as e
 from pathlib import Path

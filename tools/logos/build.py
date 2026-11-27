@@ -18,7 +18,7 @@ import shutil
 from PIL import Image, ImageFilter, ImageOps
 
 ROOT = Path(__file__).resolve().parents[2]
-SRC = ROOT / "Logos"
+SRC = ROOT / "source/Logos"
 OUT = ROOT / "assets" / "logos"
 
 # (source file, output slug, alt text, caption). Caption None = no sector shown.
@@ -53,7 +53,7 @@ TEAM = [
     ("Team/cropped-FINAL-LOGO.png", "vis-legis", "Vis Legis Law Practice"),
     ("Team/RotaryMBS-Simple_RGB.png", "rotary", "Rotary"),
     ("Team/WILL_logo_negativo_340.png", "will", "Worldwide Independent Lawyers League"),
-    # Manan Patel's memberships (source: Founder Photos/Manan Patel Affiliations, gitignored)
+    # Manan Patel's memberships (source: source/Founder Photos/Manan Patel Affiliations, gitignored)
     ("../Founder Photos/Manan Patel Affiliations/BCAS.png", "bcas", "Bombay Chartered Accountants Society"),
     ("../Founder Photos/Manan Patel Affiliations/CTC - Chamber of Tax Consultants.webp", "ctc", "The Chamber of Tax Consultants"),
     ("../Founder Photos/Manan Patel Affiliations/Maccia.jpg", "maccia", "Maharashtra Chamber of Commerce, Industry and Agriculture"),

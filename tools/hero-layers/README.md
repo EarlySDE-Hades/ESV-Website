@@ -2,7 +2,7 @@
 
 This is offline artwork tooling. The website has no build step or runtime packages.
 Use Python 3.14 (tested on Windows), install `requirements.txt` in a virtual environment,
-and retain the ignored original `Brand Assets/New v2.png` locally.
+and retain the ignored original `source/Brand Assets/New v2.png` locally.
 
 ```powershell
 python -m venv tools/hero-layers/.venv
@@ -38,7 +38,7 @@ connected differences above 16 channel levels are also reported so a small mean
 cannot conceal a local defect. Lossless opaque people RGB is checked separately.
 
 Use `http://127.0.0.1:5173/?slow=10` for a ten-times slower entrance inspection.
-See `docs/hero-collage-report.md` for the acceptance results and any remaining limits.
+See `docs/archive/hero-collage-report.md` for the acceptance results and any remaining limits.
 
 For the repeatable browser audit, run the static server from the repo root, install
 the development-only browser driver, then run the audit (Google Chrome must be installed):
@@ -48,7 +48,7 @@ npm.cmd install --prefix tools/hero-layers --no-save --package-lock=false playwr
 node tools/hero-layers/verify.mjs
 ```
 
-The audit writes viewport/entrance screenshots to `docs/hero-collage/` and detailed
+The audit writes viewport/entrance screenshots to `docs/archive/hero-collage/` and detailed
 results to `out/browser-report.json`. It covers load failure, decode timeout,
 visibility gating, pointer interruption, scroll return, occasional twinkle,
 initial/runtime reduced motion, no-JS, overflow, compositor-hint cleanup and CLS.

@@ -1,6 +1,6 @@
 """Render the Us in the News page from tools/press/press.json.
 
-Called by tools/team/build.py, which fills the {{…}} placeholders in tools/press/main.html.
+Called by tools/build.py, which fills the {{…}} placeholders in tools/press/main.html.
 Only entries with verificationStatus "verified" are published.
 """
 import json

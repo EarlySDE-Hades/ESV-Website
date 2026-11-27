@@ -2,7 +2,7 @@
 
     python tools/favicon/build.py
 
-The source (favicon source.png, gitignored) is a fine line on transparency (~8px stroke
+The source (source/favicon source.png, gitignored) is a fine line on transparency (~8px stroke
 at ~1400px tall), which would vanish at tab sizes. For each output size the stroke is
 thickened to a target *rendered* width, then the mark is scaled to fit the square.
 
@@ -20,7 +20,7 @@ from PIL import Image, ImageDraw, ImageFilter
 from scipy import ndimage
 
 ROOT = Path(__file__).resolve().parents[2]
-SRC = ROOT / "favicon source.png"
+SRC = ROOT / "source/favicon source.png"
 ICONS = ROOT / "assets" / "brand" / "icons"
 FAIR, INK, WHITE = (244, 244, 244), (17, 17, 17), (244, 244, 244)
 SRC_STROKE = 8.0           # measured stroke width in the source, px

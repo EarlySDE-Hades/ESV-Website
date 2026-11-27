@@ -2,78 +2,239 @@
   "_readme": "One page per person (team-<slug>.html), in this order. The name, role, short bio, photo, LinkedIn link, affiliations, board roles and books come from that person's <template> in tools/team/main.html; this file only adds to them. 'more': extra paragraphs. 'facts': side lists. 'press': press.json item ids to show.",
   "people": [
     {
-      "slug": "monica-gupta", "group": "leadership",
+      "slug": "monica-gupta",
+      "group": "leadership",
       "more": [
         "Based in Mumbai, Monica has spent more than a decade helping new and mid-sized companies set up robust business practices on strong foundations. As co-founder of Earlyseed Ventures, she supports young entrepreneurs through their fundraising journeys, and she has invested as an angel in more than 18 startups.",
         "She has been a juror at pitch-fests hosted by IIT Powai, NMIMS, the Indian Dental Association and EvolveX Accelerator, among others, and sat on the jury of Skill Titans, the student entrepreneurship show. She has also hosted a panel of established investors at MIT’s RIDE event. A Rotarian, she has been closely involved in social projects in and around Mumbai."
       ],
-      "facts": [{ "title": "Focus", "items": ["Fundraising strategy", "Venture capital", "Corporate consulting", "Founder mentorship"] }],
-      "press": ["webindia-startup-mixer", "moneycontrol-skill-titans"]
+      "facts": [
+        {
+          "title": "Focus",
+          "items": [
+            "Fundraising strategy",
+            "Venture capital",
+            "Corporate consulting",
+            "Founder mentorship"
+          ]
+        }
+      ],
+      "press": [
+        "webindia-startup-mixer",
+        "moneycontrol-skill-titans"
+      ]
     },
     {
-      "slug": "manan-patel", "group": "leadership",
+      "slug": "manan-patel",
+      "group": "leadership",
       "more": [
         "With over 14 years of experience, he has advised high-net-worth individuals, small and medium enterprises, Non-Resident Indians and corporate clients. His expertise covers tax structuring, FEMA compliance, transfer pricing, direct and indirect tax strategy, and tax-related litigation.",
         "More recently, he has focused on advising startups on financial projections, valuations and tax structuring: areas that are often overlooked, but integral to their long-term success."
       ],
       "facts": [
-        { "title": "Focus", "items": ["Investment structuring", "Tax advisory and litigation", "FEMA and transfer pricing", "Projections and valuations"] },
-        { "title": "Education", "items": ["Chartered Accountant", "Master’s in Commerce, Mumbai University", "LLB, Mumbai University"] }
+        {
+          "title": "Focus",
+          "items": [
+            "Investment structuring",
+            "Tax advisory and litigation",
+            "FEMA and transfer pricing",
+            "Projections and valuations"
+          ]
+        },
+        {
+          "title": "Education",
+          "items": [
+            "Chartered Accountant",
+            "Master’s in Commerce, Mumbai University",
+            "LLB, Mumbai University"
+          ]
+        }
       ],
-      "press": ["webindia-startup-mixer"]
+      "press": [
+        "webindia-startup-mixer"
+      ]
     },
     {
-      "slug": "nimit-shah", "group": "leadership",
-      "more": ["Based in Mumbai, Nimit leads partnerships at Earlyseed Ventures and specialises in financial and business consulting for Non-Resident Indians and international companies."],
-      "facts": [{ "title": "Focus", "items": ["Partnerships", "NRI and international clients", "Financial and business consulting"] }],
-      "press": ["webindia-startup-mixer"]
+      "slug": "nimit-shah",
+      "group": "leadership",
+      "more": [
+        "Based in Mumbai, Nimit leads partnerships at Earlyseed Ventures and specialises in financial and business consulting for Non-Resident Indians and international companies."
+      ],
+      "facts": [
+        {
+          "title": "Focus",
+          "items": [
+            "Partnerships",
+            "NRI and international clients",
+            "Financial and business consulting"
+          ]
+        }
+      ],
+      "press": [
+        "webindia-startup-mixer"
+      ]
     },
     {
-      "slug": "rahul-hingmire", "group": "leadership",
+      "slug": "rahul-hingmire",
+      "group": "leadership",
       "more": [
         "As Co-founder and Chief Legal Advisor, Rahul steers Earlyseed Ventures through the legal landscape, with an emphasis on simplifying complex legal processes. He is also the Founding Managing Partner of Vis Legis Law Practice, where he has championed a solution-driven approach and played a pivotal role in the firm’s expansion to multiple cities.",
         "As an angel investor, he has backed over a dozen startups, including LegalPay and Skyroot Aerospace."
       ],
       "facts": [
-        { "title": "Focus", "items": ["Corporate and commercial law", "Regulatory compliance", "Cross-border commerce", "Angel investing"] },
-        { "title": "Education", "items": ["Postgraduate degree in International Commercial Law, University of Nottingham", "Bachelor’s degree, D.E.S. Law College"] }
+        {
+          "title": "Focus",
+          "items": [
+            "Corporate and commercial law",
+            "Regulatory compliance",
+            "Cross-border commerce",
+            "Angel investing"
+          ]
+        },
+        {
+          "title": "Education",
+          "items": [
+            "Postgraduate degree in International Commercial Law, University of Nottingham",
+            "Bachelor’s degree, D.E.S. Law College"
+          ]
+        }
       ],
-      "press": ["webindia-startup-mixer"]
+      "press": [
+        "webindia-startup-mixer"
+      ]
     },
     {
-      "slug": "sudhir-mehta", "group": "leadership",
-      "facts": [{ "title": "Focus", "items": ["Strategy", "International relations", "Water and wastewater treatment", "Business development"] }]
+      "slug": "sudhir-mehta",
+      "group": "leadership",
+      "facts": [
+        {
+          "title": "Focus",
+          "items": [
+            "Strategy",
+            "International relations",
+            "Water and wastewater treatment",
+            "Business development"
+          ]
+        }
+      ]
     },
     {
-      "slug": "pankaj-harwansh", "group": "partners",
-      "facts": [{ "title": "Focus", "items": ["Peer advisory boards", "Executive coaching", "Scaling businesses"] }]
+      "slug": "anup-nathani",
+      "group": "partners",
+      "facts": [
+        {
+          "title": "Focus",
+          "items": [
+            "Marketing",
+            "Brand positioning",
+            "Market expansion",
+            "Relationship-led growth"
+          ]
+        }
+      ]
     },
     {
-      "slug": "s-robin", "group": "partners",
+      "slug": "pankaj-harwansh",
+      "group": "partners",
+      "facts": [
+        {
+          "title": "Focus",
+          "items": [
+            "Peer advisory boards",
+            "Executive coaching",
+            "Scaling businesses"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "s-robin",
+      "group": "partners",
       "more": [
         "Before becoming an entrepreneur, he worked closely with industry leaders in pharmaceuticals, logistics, leasing, banking, hospitality, cash management, digital security and news media, gaining deep operational and strategic insight. Kautilya Consulting Group has three verticals: Finance, Advertising and Human Resources.",
         "His financial advisory practice covers business loans, loan restructuring and syndication, supply chain and post-shipment finance, EV battery financing, and L3 and L5 electric vehicle financing. In real estate, he helps clients raise funds for construction finance, redevelopment and self-redevelopment projects.",
         "Outside work, he is passionate about music and deeply involved in social causes."
       ],
-      "facts": [{ "title": "Focus", "items": ["Business loans and syndication", "Supply chain finance", "EV financing", "Construction and redevelopment finance"] }]
+      "facts": [
+        {
+          "title": "Focus",
+          "items": [
+            "Business loans and syndication",
+            "Supply chain finance",
+            "EV financing",
+            "Construction and redevelopment finance"
+          ]
+        }
+      ]
     },
     {
-      "slug": "subramanian-srinivasan", "group": "partners",
-      "more": ["Through CEOMITRA, Subuu helps organisations unleash the power of their people by building self-managed, self-driven teams in a happy workplace. Passionate about growth, Subuu goes by the name “Scale-Up Buddy”."],
-      "facts": [{ "title": "Focus", "items": ["Business coaching", "Building self-managed teams", "India market entry", "Independent directorship (IICA)"] }]
+      "slug": "sandeep-agrawal",
+      "group": "partners",
+      "more": [
+        "With over two decades of experience in intellectual property, trademarks and setting up businesses across India, Sandeep steers clients through company registration and patent procedures, tailoring solutions to the challenges each business faces."
+      ],
+      "facts": [
+        {
+          "title": "Focus",
+          "items": [
+            "Trademarks and copyright",
+            "Patents and designs",
+            "Company registration",
+            "Business set-up in India"
+          ]
+        }
+      ]
     },
     {
-      "slug": "suresh-menon", "group": "partners",
-      "facts": [{ "title": "Focus", "items": ["MSME governance", "InsureTech", "RetailTech", "Sales"] }]
+      "slug": "sanket-vathare",
+      "group": "partners",
+      "more": [
+        "He is also the founder of Atlanta Metallurgical Services Pvt. Ltd., which he has run since 2013."
+      ],
+      "facts": [
+        {
+          "title": "Focus",
+          "items": [
+            "Startups in Tier 2 and Tier 3 cities",
+            "Connecting investors with founders",
+            "Investment strategy",
+            "Relationship management"
+          ]
+        }
+      ]
     },
     {
-      "slug": "sandeep-agrawal", "group": "partners",
-      "more": ["With over two decades of experience in intellectual property, trademarks and setting up businesses across India, Sandeep steers clients through company registration and patent procedures, tailoring solutions to the challenges each business faces."],
-      "facts": [{ "title": "Focus", "items": ["Trademarks and copyright", "Patents and designs", "Company registration", "Business set-up in India"] }]
+      "slug": "subramanian-srinivasan",
+      "group": "partners",
+      "more": [
+        "Through CEOMITRA, Subuu helps organisations unleash the power of their people by building self-managed, self-driven teams in a happy workplace. Passionate about growth, Subuu goes by the name “Scale-Up Buddy”."
+      ],
+      "facts": [
+        {
+          "title": "Focus",
+          "items": [
+            "Business coaching",
+            "Building self-managed teams",
+            "India market entry",
+            "Independent directorship (IICA)"
+          ]
+        }
+      ]
     },
     {
-      "slug": "anup-nathani", "group": "partners",
-      "facts": [{ "title": "Focus", "items": ["Marketing", "Brand positioning", "Market expansion", "Relationship-led growth"] }]
+      "slug": "suresh-menon",
+      "group": "partners",
+      "facts": [
+        {
+          "title": "Focus",
+          "items": [
+            "MSME governance",
+            "InsureTech",
+            "RetailTech",
+            "Sales"
+          ]
+        }
+      ]
     }
   ]
 }

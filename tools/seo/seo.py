@@ -1,5 +1,5 @@
 """Search tags for every page: title, description, canonical link, link-preview tags and structured data,
-plus sitemap.xml and robots.txt. Called by tools/team/build.py.
+plus sitemap.xml and robots.txt. Called by tools/build.py.
 
 The tags live between the <!-- seo --> and <!-- /seo --> comments in each page's <head>, index.html included.
 Change the wording here (TITLES, HOME_DESCRIPTION), not in the pages. If the domain changes, change SITE.
@@ -175,7 +175,7 @@ def block(page, description, title=None):
     data = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     e = lambda s: escape(s, quote=True)
     return f'''<!-- seo -->
-  <!-- Written by tools/seo/seo.py (python tools/team/build.py): change it there. -->
+  <!-- Written by tools/seo/seo.py (python tools/build.py): change it there. -->
   <title>{escape(title, quote=False)}</title>
   <meta name="description" content="{e(description)}" />
   <link rel="canonical" href="{_originals().get(page, url(page))}" />

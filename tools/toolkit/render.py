@@ -1,4 +1,4 @@
-"""Tools for founders and investors, from tools/toolkit/tools.json. Called by tools/team/build.py.
+"""Tools for founders and investors, from tools/toolkit/tools.json. Called by tools/build.py.
 
   render() -> placeholders for tools/toolkit/main.html (tools.html, the hub)
   pages()  -> (output file, <main>, description, title) for each tool that is not 'soon'

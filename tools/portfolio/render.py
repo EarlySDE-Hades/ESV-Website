@@ -1,6 +1,6 @@
 """Render the Portfolio page and one page per company from tools/portfolio/companies.json.
 
-Called by tools/team/build.py:
+Called by tools/build.py:
   render_portfolio()  -> placeholder values for tools/portfolio/main.html
   company_pages()     -> [(output file, <main> html, meta description)] from tools/portfolio/company.html
 """

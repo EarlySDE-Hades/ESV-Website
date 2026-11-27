@@ -1,4 +1,4 @@
-"""Build the team portraits from the HD cut-outs in Founder Photos/ (gitignored).
+"""Build the team portraits from the HD cut-outs in source/Founder Photos/ (gitignored).
 
     python tools/team/photos.py
 
@@ -10,7 +10,7 @@ from pathlib import Path
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
-SRC = ROOT / "Founder Photos"
+SRC = ROOT / "source/Founder Photos"
 OUT = ROOT / "assets" / "team"
 BEIGE = (211, 193, 169)          # --sand
 SIZE = 600                       # exported square (displayed at up to ~280px, ~2x)
@@ -26,8 +26,8 @@ PEOPLE = [
 ]
 # Growth partners: cut-outs lifted from the BNI deck (slide "Our Growth Partners")
 PEOPLE += [(f"partners/{slug}.png", slug) for slug in (
-    "pankaj-harwansh", "s-robin", "subramanian-srinivasan", "suresh-menon", "sandeep-agrawal", "anup-nathani")]
-# Team members: cleaned, upscaled cut-outs in Team Photos/cleaned/ (gitignored)
+    "pankaj-harwansh", "s-robin", "subramanian-srinivasan", "suresh-menon", "sandeep-agrawal", "anup-nathani", "sanket-vathare")]
+# Team members: cleaned, upscaled cut-outs in source/Team Photos/cleaned/ (gitignored)
 PEOPLE += [(f"../Team Photos/cleaned/{slug}.png", slug) for slug in (
     "sakshay-upadhyay", "karan-shah", "mehak-gupta", "ruhaan-gupta", "siddhant-baliga",
     "dhwani-joshi", "dale-galbano", "sneha-lakra", "siddarth-menon", "manav-khare")]
@@ -101,7 +101,7 @@ def build(src, slug):
 
 def build_crop(src, slug, box):
     from PIL import ImageOps
-    im = ImageOps.exif_transpose(Image.open(ROOT / "Team Photos" / src)).convert("RGB")
+    im = ImageOps.exif_transpose(Image.open(ROOT / "source/Team Photos" / src)).convert("RGB")
     left, top, size = box
     side = round(size * im.width)
     x, y = round(left * im.width), round(top * im.height)

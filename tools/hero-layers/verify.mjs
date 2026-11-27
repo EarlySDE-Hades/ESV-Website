@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
-const shots = path.join(root, 'docs/hero-collage');
+const shots = path.join(root, 'docs/archive/hero-collage');
 await fs.mkdir(shots, { recursive: true });
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 const report = { viewports: [], scenarios: {}, consoleErrors: [] };
