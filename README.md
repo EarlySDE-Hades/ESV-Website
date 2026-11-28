@@ -5,16 +5,18 @@ The public site for [Earlyseed Ventures](https://esvwebsite.vercel.app). It's pl
 ## Run locally
 
 ```bash
-python -m http.server 5173
+python tools/serve.py
 # open http://127.0.0.1:5173
 ```
 
 Vercel serves the repo root as it is. A push to `main` deploys.
 
+Addresses have no `.html`: `about.html` is served at `/about`, and `/about.html` redirects there (`"cleanUrls"` in `vercel.json`). Write internal links either way in templates; the build strips `.html` from every page and `tools/serve.py` behaves like Vercel. `vercel.json` also redirects the old Wix addresses and keeps the `vercel.app` preview out of search results. Missing addresses show `404.html`.
+
 ## How the repo is laid out
 
 ```
-index.html, *.html   The pages. Their file names are the public URLs, so they stay at the root.
+index.html, *.html   The pages. Their file names, without .html, are the public URLs, so they stay at the root.
                      index.html is edited by hand; every other page is built (see below).
 css/styles.css       All styles: brand tokens, layout, motion, accessibility preferences
 js/main.js           All behaviour: header, search, menus, carousels, reveals, interactive tools and diagrams

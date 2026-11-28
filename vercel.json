@@ -1,0 +1,37 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/services", "destination": "/#services", "permanent": true },
+    { "source": "/copy-of-services", "destination": "/#services", "permanent": true },
+    { "source": "/copy-of-founder", "destination": "/invest", "permanent": true },
+    { "source": "/portfoliogeneral", "destination": "/portfolio", "permanent": true },
+    { "source": "/portfoliosyndicate", "destination": "/portfolio", "permanent": true },
+    { "source": "/education", "destination": "/bootcamps", "permanent": true },
+    { "source": "/copy-of-impact-1", "destination": "/bootcamps", "permanent": true },
+    { "source": "/impact", "destination": "/about", "permanent": true },
+    { "source": "/hub", "destination": "/perspectives", "permanent": true },
+    { "source": "/connectwithus", "destination": "/about", "permanent": true },
+    { "source": "/contact", "destination": "/about", "permanent": true },
+    { "source": "/online-cards", "destination": "/team", "permanent": true },
+    { "source": "/copy-of-team", "destination": "/team", "permanent": true },
+    { "source": "/monicagupta", "destination": "/team-monica-gupta", "permanent": true },
+    { "source": "/mananpatel", "destination": "/team-manan-patel", "permanent": true },
+    { "source": "/mp", "destination": "/team-manan-patel", "permanent": true },
+    { "source": "/nimitshah", "destination": "/team-nimit-shah", "permanent": true },
+    { "source": "/rahulhingmire", "destination": "/team-rahul-hingmire", "permanent": true },
+    { "source": "/pankajharwansh", "destination": "/team-pankaj-harwansh", "permanent": true },
+    { "source": "/sandeepagrawal", "destination": "/team-sandeep-agrawal", "permanent": true },
+    { "source": "/srobin", "destination": "/team-s-robin", "permanent": true },
+    { "source": "/subramaniansrinivasan", "destination": "/team-subramanian-srinivasan", "permanent": true },
+    { "source": "/sb", "destination": "/team#team-members", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "esvwebsite.vercel.app" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    }
+  ]
+}

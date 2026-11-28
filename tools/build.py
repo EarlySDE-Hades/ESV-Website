@@ -57,6 +57,7 @@ PAGES = [
     ("tools.html", "tools/toolkit/main.html", "Free tools for founders and investors: find your round, work out pre-money and post-money, simulate dilution and calculate your runway, in rupees.", "Tools"),
     ("careers.html", "tools/careers/main.html", "Life at Earlyseed Ventures, our open roles, and internships with rolling applications.", "Careers"),
     ("event-seed-to-success.html", "tools/events/seed-to-success.html", "From seed to success: a recap of the Earlyseed Ventures evening for founders, investors and ecosystem leaders.", "-"),
+    ("404.html", "tools/notfound/main.html", "", "-"),   # shown by Vercel for missing addresses; noindex, not in the sitemap
 ]
 
 
@@ -71,7 +72,8 @@ def relink(html, out, label):
     html = re.sub(r'href="#(?!main\b)([\w-]+)"', r'href="index.html#\1"', html)
     html = html.replace('href="/"', 'href="index.html"')
     for text in (label, label + " Us"):
-        html = html.replace(f'<a href="{out}">{text}</a>', f'<a href="{out}" aria-current="page">{text}</a>')
+        for link in (out, out.removesuffix(".html")):   # index.html's links may already be clean
+            html = html.replace(f'<a href="{link}">{text}</a>', f'<a href="{link}" aria-current="page">{text}</a>')
     return html
 
 
@@ -100,6 +102,13 @@ careers_render = _load("careers_render", "tools/careers/render.py")
 FILLERS = {"press.html": press_render.render, "perspectives.html": perspectives_render.render, "portfolio.html": portfolio_render.render_portfolio, "bootcamps.html": bootcamps_render.render, "invest.html": invest_render.render, "careers.html": careers_render.render, "events.html": events_render.render, "tools.html": toolkit_render.render}
 
 
+def clean_urls(html):
+    """Internal links without .html: Vercel serves /about for about.html (vercel.json "cleanUrls").
+    Matches a quoted bare file name ("about.html", "team.html#leadership"), never an outside address, which has a slash."""
+    return re.sub(r'''(["'])([a-z0-9][a-z0-9-]*)\.html(?=[#?"'])''',
+                  lambda m: m.group(1) + ("/" if m.group(2) == "index" else m.group(2)), html)
+
+
 written = []
 
 
@@ -111,6 +120,9 @@ def write(out, main, description, label, title=None):
         page_head = page_head.replace("</head>", EXTRA_HEAD[out] + "</head>")
     page = page_head + "<body>\n" + relink(header, out, label) + main + "\n" + relink(footer, out, label)
     page = re.sub(r"[ \t]*<!--(?!\[if)[\s\S]*?-->[ \t]*\n?", "", page)   # notes to ourselves stay out of the public page source
+    page = clean_urls(page)
+    if out == "404.html":   # served at any missing address, even a nested one, so links and files start at the site root
+        page = re.sub(r'\b(href|src)="(?![a-z]+:|/|#)', r'\1="/', page)
     (ROOT / out).write_text(page, encoding="utf-8", newline="\n")
     print("wrote", out)
 
@@ -148,6 +160,6 @@ for out, main, description, title in toolkit_render.pages():
     write(out, main, description, "Tools", title)
 
 # index.html is edited by hand; only its search tags are written here
-(ROOT / "index.html").write_text(seo.apply(src, "index.html", ""), encoding="utf-8", newline="\n")
+(ROOT / "index.html").write_text(clean_urls(seo.apply(src, "index.html", "")), encoding="utf-8", newline="\n")
 seo.write_sitemap(["index.html"] + written)
 print("wrote index.html search tags, sitemap.xml, robots.txt")

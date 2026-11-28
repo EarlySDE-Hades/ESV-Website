@@ -28,6 +28,7 @@ TITLES = {
     "careers.html": "Careers: Life at Earlyseed and Openings | Earlyseed Ventures",
     "prologue.html": "Prologue: Fundraising Prep for Founders | Earlyseed Ventures",
     "tools.html": "Free Fundraising Tools for Founders | Earlyseed Ventures",
+    "404.html": "Page Not Found | Earlyseed Ventures",
 }
 # breadcrumb: the page's own name, and its parent page if it isn't directly under Home
 CRUMBS = {
@@ -41,7 +42,8 @@ ORG = f"{SITE}/#organization"
 
 
 def url(page):
-    return f"{SITE}/" if page == "index.html" else f"{SITE}/{page}"
+    """Public address of a page: Vercel serves clean URLs (vercel.json "cleanUrls"), so no .html."""
+    return f"{SITE}/" if page == "index.html" else f"{SITE}/{page.removesuffix('.html')}"
 
 
 def short(text, limit=158):
@@ -70,6 +72,51 @@ def _originals():
     return {f"perspective-{x['slug']}.html": x["original"] for x in xs if x.get("original") and not x.get("url")}
 
 
+def _posts():
+    """Articles hosted on this site, with their series name: perspective-<slug>.html -> post."""
+    d = json.loads((ROOT / "tools/perspectives/posts.json").read_text(encoding="utf-8"))
+    names = {s["id"]: s["name"] for s in d["series"]}
+    return {f"perspective-{x['slug']}.html": {**x, "series_name": names.get(x["series"])}
+            for x in d["posts"] if not x.get("url") and not x.get("original")}
+
+
+def _authors():
+    spec = importlib.util.spec_from_file_location("perspectives_render", ROOT / "tools/perspectives/render.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod.AUTHORS
+
+
+def _tools():
+    xs = json.loads((ROOT / "tools/toolkit/tools.json").read_text(encoding="utf-8"))["tools"]
+    return {f"tool-{x['slug']}.html": x for x in xs if not x.get("soon")}
+
+
+def _article(page, post, title):
+    """Article markup: headline, dates, author and publisher, so search engines can credit the writer."""
+    d = {"@type": "BlogPosting", "@id": f"{url(page)}#article", "headline": title.split(" | ")[0], "description": post["summary"],
+         "datePublished": post["date"], "dateModified": post.get("updated", post["date"]),
+         "image": f"{SITE}/assets/perspectives/{post['photo']}" if post.get("photo") else f"{SITE}/assets/brand/og.jpg",
+         "mainEntityOfPage": {"@id": url(page)}, "publisher": {"@type": "Organization", "@id": ORG, "name": BRAND, "url": f"{SITE}/",
+         "logo": {"@type": "ImageObject", "url": f"{SITE}/assets/brand/icons/icon-512.png"}}, "inLanguage": "en-IN"}
+    if post.get("series_name"):
+        d["articleSection"] = post["series_name"]
+    if post.get("words"):
+        d["wordCount"] = post["words"]
+    authors = _authors()
+    if post.get("author") in authors:
+        role, photo, link = authors[post["author"]]
+        link = link.split("#")[0]
+        a = {"@type": "Person", "name": post["author"], "jobTitle": role, "image": f"{SITE}/{photo}", "url": url(link),
+             "worksFor": {"@type": "Organization", "@id": ORG, "name": BRAND}}
+        if link.startswith("team-"):
+            a["@id"] = f"{url(link)}#person"
+        d["author"] = a
+    else:
+        d["author"] = {"@type": "Organization", "@id": ORG, "name": BRAND, "url": f"{SITE}/"}
+    return d
+
+
 def _stories():
     xs = json.loads((ROOT / "tools/careers/stories.json").read_text(encoding="utf-8"))["stories"]
     return {f"life-{x['id']}.html": x["post"]["title"] for x in xs}
@@ -83,7 +130,7 @@ def _people():
 
 
 def _person(p):
-    d = {"@type": "Person", "@id": f"{SITE}/{p['page']}#person", "name": p["name"], "url": url(p["page"]), "jobTitle": p["role"],
+    d = {"@type": "Person", "@id": f"{url(p['page'])}#person", "name": p["name"], "url": url(p["page"]), "jobTitle": p["role"],
          "image": f"{SITE}/assets/team/{p['slug']}.webp", "description": p["bio"]}
     if p["group"] == "leadership":
         d["worksFor"] = {"@type": "Organization", "@id": ORG, "name": BRAND, "url": f"{SITE}/"}
@@ -104,7 +151,7 @@ def _organization(people):
         "address": {"@type": "PostalAddress", "streetAddress": "3, Enterprise Centre, Near Orchid Hotel, Vile Parle (E)",
                     "addressLocality": "Mumbai", "addressRegion": "Maharashtra", "postalCode": "400099", "addressCountry": "IN"},
         "areaServed": "IN", "sameAs": ["https://www.linkedin.com/company/earlyseed-ventures"],
-        "founder": [{"@type": "Person", "@id": f"{SITE}/{p['page']}#person", "name": p["name"], "jobTitle": p["role"], "url": url(p["page"])}
+        "founder": [{"@type": "Person", "@id": f"{url(p['page'])}#person", "name": p["name"], "jobTitle": p["role"], "url": url(p["page"])}
                     for p in people.values() if p["role"].startswith("Co-founder")],
     }
 
@@ -118,6 +165,8 @@ def _crumbs(page, companies, people, title=None):
         chain = [("Home", "index.html"), ("Events", "events.html"), (_events()[page], page)]
     elif page in _stories():
         chain = [("Home", "index.html"), ("Careers", "careers.html"), (_stories()[page], page)]
+    elif page.startswith("perspective-"):
+        chain = [("Home", "index.html"), ("Our Perspectives", "perspectives.html"), (title.split(" | ")[0] if title else page, page)]
     elif page.startswith("tool-"):
         chain = [("Home", "index.html"), ("Tools", "tools.html"), (title.split(" | ")[0] if title else page, page)]
     elif page in CRUMBS:
@@ -132,6 +181,7 @@ def _crumbs(page, companies, people, title=None):
 def block(page, description, title=None):
     companies, people = _companies(), _people()
     c, person = companies.get(page), people.get(page)
+    post, tool = _posts().get(page), _tools().get(page)
     if person:
         title = f"{person['name']}, {person['role']} | {BRAND}"
         if len(title) > 65:
@@ -165,6 +215,13 @@ def block(page, description, title=None):
         if page == "team.html":
             web["mainEntity"] = {"@type": "ItemList", "itemListElement": [
                 {"@type": "ListItem", "position": i, "name": x["name"], "url": url(p)} for i, (p, x) in enumerate(people.items(), 1)]}
+        if post:
+            graph.append(_article(page, post, title))
+        if tool:
+            web["mainEntity"] = {"@type": "WebApplication", "name": title.split(" | ")[0], "description": tool["summary"],
+                                 "url": url(page), "applicationCategory": "FinanceApplication", "operatingSystem": "Any",
+                                 "isAccessibleForFree": True, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"},
+                                 "provider": {"@type": "Organization", "@id": ORG, "name": BRAND}}
         if person:
             web["@type"] = "ProfilePage"
             web["mainEntity"] = _person(person)
@@ -174,12 +231,21 @@ def block(page, description, title=None):
             graph.append(crumbs)
     data = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     e = lambda s: escape(s, quote=True)
+    og_type = "article" if post else "website"
+    published = f'\n  <meta property="article:published_time" content="{post["date"]}" />' if post else ""
+    if page == "404.html":
+        # Served at whatever address was missing (build.py makes its links start at the site root); never indexed
+        return f'''<!-- seo -->
+  <!-- Written by tools/seo/seo.py (python tools/build.py): change it there. -->
+  <title>{escape(title, quote=False)}</title>
+  <meta name="robots" content="noindex" />
+  <!-- /seo -->'''
     return f'''<!-- seo -->
   <!-- Written by tools/seo/seo.py (python tools/build.py): change it there. -->
   <title>{escape(title, quote=False)}</title>
   <meta name="description" content="{e(description)}" />
   <link rel="canonical" href="{_originals().get(page, url(page))}" />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="{og_type}" />{published}
   <meta property="og:site_name" content="{BRAND}" />
   <meta property="og:title" content="{e(title)}" />
   <meta property="og:description" content="{e(description)}" />
@@ -200,6 +266,8 @@ def apply(html, page, description, title=None):
 
 
 def write_sitemap(pages):
-    rows = "\n".join(f"  <url><loc>{url(p)}</loc></url>" for p in pages if p not in _originals())
+    posts = _posts()
+    lastmod = lambda p: f"<lastmod>{posts[p].get('updated', posts[p]['date'])}</lastmod>" if p in posts else ""
+    rows = "\n".join(f"  <url><loc>{url(p)}</loc>{lastmod(p)}</url>" for p in pages if p not in _originals() and p != "404.html")
     (ROOT / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{rows}\n</urlset>\n', encoding="utf-8", newline="\n")
     (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8", newline="\n")
